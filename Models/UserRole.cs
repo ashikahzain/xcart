@@ -15,15 +15,13 @@ namespace xcart.Models
         [Required]
         public int Id { get; set; }
 
-        /*
-         * 
-         * [ForeignKey("UserId")]
+       
+        [ForeignKey("UserId")]
         public virtual User UserId { get; set; }
-         * 
-         */
+      
 
         [ForeignKey("RoleId")]
-        public virtual Role Role { get; set; }
+        public virtual Role RoleId { get; set; }
         
     }
 }
