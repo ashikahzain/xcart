@@ -10,6 +10,7 @@ using xcart.Models;
 namespace xcart.Migrations
 {
     [DbContext(typeof(XCartDbContext))]
+
     [Migration("20220125122138_InitialCreate")]
     partial class InitialCreate
 
@@ -92,13 +93,14 @@ namespace xcart.Migrations
                         .HasColumnName("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<long>("UsedId")
-                        .HasColumnName("UsedId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ItemId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Cart");
                 });
@@ -471,6 +473,12 @@ namespace xcart.Migrations
                     b.HasOne("xcart.Models.Item", "Item")
                         .WithMany()
                         .HasForeignKey("ItemId");
+
+                    b.HasOne("xcart.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("xcart.Models.Order", b =>
