@@ -24,9 +24,9 @@ namespace xcart.Models
         [Required]
         public int Quantity { get; set; }
 	
-        [Column("UsedId")]
+        [Column("UserId")]
         [Required]
-        public long UsedId { get; set; }
+        public virtual User User { get; set; }
 
     }
 }
