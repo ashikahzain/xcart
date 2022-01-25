@@ -53,6 +53,9 @@ namespace xcart.Migrations
                         .HasColumnName("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Point")
                         .HasColumnName("Point")
                         .HasColumnType("int");
@@ -60,16 +63,13 @@ namespace xcart.Migrations
                     b.Property<int?>("PresenteeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AwardId");
 
-                    b.HasIndex("PresenteeId");
+                    b.HasIndex("EmployeeId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("PresenteeId");
 
                     b.ToTable("AwardHistory");
                 });
@@ -454,13 +454,13 @@ namespace xcart.Migrations
                         .WithMany()
                         .HasForeignKey("AwardId");
 
+                    b.HasOne("xcart.Models.User", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId");
+
                     b.HasOne("xcart.Models.User", "Presentee")
                         .WithMany()
                         .HasForeignKey("PresenteeId");
-
-                    b.HasOne("xcart.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("xcart.Models.Cart", b =>
