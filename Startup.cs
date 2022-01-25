@@ -27,7 +27,7 @@ namespace xcart
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+            //DBCONTEXT
             services.AddDbContext<Models.XCartDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("XCart")));
         }
 
