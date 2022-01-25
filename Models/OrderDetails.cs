@@ -16,10 +16,10 @@ namespace xcart.Models
         public long Id { get; set; }
 
         
-        [ForeignKey("OrderId")]
+        [ForeignKey("Id")]
         public virtual Order OrderId { get; set; }
         
-        [ForeignKey("ItemId")]
+        [ForeignKey("Id")]
         public virtual Item ItemId { get; set; }
         
 	

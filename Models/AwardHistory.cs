@@ -24,10 +24,10 @@ namespace xcart.Models
         public virtual User UserId { get; set; }
 
         [ForeignKey("AwardId")]
-        public virtual Award AwardId { get; set; }
+        public virtual Award Award { get; set; }
 
         [ForeignKey("PresenteeId")]
-        public virtual User PresenteeId  { get; set; }
+        public virtual User Presentee  { get; set; }
 
         [Column("Point")]
         [Required]
