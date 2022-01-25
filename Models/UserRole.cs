@@ -17,11 +17,11 @@ namespace xcart.Models
 
        
         [ForeignKey("UserId")]
-        public virtual User UserId { get; set; }
+        public virtual User User { get; set; }
       
 
         [ForeignKey("RoleId")]
-        public virtual Role RoleId { get; set; }
+        public virtual Role Role { get; set; }
         
     }
 }

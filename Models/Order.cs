@@ -17,7 +17,7 @@ namespace xcart.Models
 
         
         [ForeignKey("UserId")]
-        public virtual User UserId { get; set; }
+        public virtual User User { get; set; }
 
         [Column("DateOfOrder")]
         [Required]
@@ -33,6 +33,6 @@ namespace xcart.Models
 
         
         [ForeignKey("StatusId")]
-        public virtual StatusDescription StatusId { get; set; }
+        public virtual StatusDescription Status { get; set; }
     }
 }

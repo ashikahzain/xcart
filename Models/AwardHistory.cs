@@ -13,7 +13,7 @@ namespace xcart.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [Column("Date")]
         [Required]
@@ -21,13 +21,13 @@ namespace xcart.Models
 
 
         [ForeignKey("UserId")]
-        public virtual User UserId { get; set; }
+        public virtual User User { get; set; }
 
         [ForeignKey("AwardId")]
-        public virtual Award AwardId { get; set; }
+        public virtual Award Award { get; set; }
 
         [ForeignKey("PresenteeId")]
-        public virtual User PresenteeId  { get; set; }
+        public virtual User Presentee  { get; set; }
 
         [Column("Point")]
         [Required]
