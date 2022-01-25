@@ -27,8 +27,8 @@ namespace xcart
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            services.AddDbContext<Models.XCartDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("XCart"))); //Imported db context
+            //DBCONTEXT
+            services.AddDbContext<Models.XCartDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("XCart")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
