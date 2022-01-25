@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\haizon.cruz\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\haizon.cruz\\.nuget\\packages"
+    ]
+  }
+}

@@ -4912,19 +4912,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ashika.hussain\\.nuget\\packages\\": {}
+    "C:\\Users\\haizon.cruz\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\XCart\\xcart\\xcart.csproj",
+      "projectUniqueName": "D:\\XCart\\Backend\\xcart\\xcart.csproj",
       "projectName": "xcart",
-      "projectPath": "E:\\XCart\\xcart\\xcart.csproj",
-      "packagesPath": "C:\\Users\\ashika.hussain\\.nuget\\packages\\",
-      "outputPath": "E:\\XCart\\xcart\\obj\\",
+      "projectPath": "D:\\XCart\\Backend\\xcart\\xcart.csproj",
+      "packagesPath": "C:\\Users\\haizon.cruz\\.nuget\\packages\\",
+      "outputPath": "D:\\XCart\\Backend\\xcart\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ashika.hussain\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\haizon.cruz\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
