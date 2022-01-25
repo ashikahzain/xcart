@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace xcart.Migrations
 {
+
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

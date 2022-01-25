@@ -12,6 +12,7 @@ namespace xcart.Migrations
     [DbContext(typeof(XCartDbContext))]
     [Migration("20220125122138_InitialCreate")]
     partial class InitialCreate
+
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -532,5 +533,7 @@ namespace xcart.Migrations
                 });
 #pragma warning restore 612, 618
         }
+
+
     }
 }
