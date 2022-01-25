@@ -7,32 +7,34 @@ using System.Threading.Tasks;
 
 namespace xcart.Models
 {
-    public class Order
+    public class Item
     {
         [Column("Id")]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
-        
-        [ForeignKey("UserId")]
-        public virtual User UserId { get; set; }
-
-        [Column("DateOfOrder")]
+        [Column("Name")]
         [Required]
-        public DateTime DateOfOrder { get; set; }
+        [StringLength(50)]
+        public string Name { get; set; }
 
-        [Column("DateOfDelivery")]
+        [Column("Quantity")]
         [Required]
-        public DateTime DateOfDelivery { get; set; }
+        public int Quantity { get; set; }
 
         [Column("Points")]
         [Required]
         public int Points { get; set; }
 
-        
-        [ForeignKey("StatusId")]
-        public virtual StatusDescription StatusId { get; set; }
+        [Column("Image")]
+        [Required]
+        public byte[] Image { get; set; }
+
+        [Column("IsActive")]
+        [Required]
+        public bool? IsActive { get; set; }
+
     }
 }

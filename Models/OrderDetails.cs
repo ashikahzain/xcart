@@ -7,21 +7,25 @@ using System.Threading.Tasks;
 
 namespace xcart.Models
 {
-    public class UserRole
+    public class OrderDetails
     {
         [Column("Id")]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
-       
-        [ForeignKey("UserId")]
-        public virtual User UserId { get; set; }
-      
-
-        [ForeignKey("RoleId")]
-        public virtual Role RoleId { get; set; }
         
+        [ForeignKey("OrderId")]
+        public virtual Order OrderId { get; set; }
+        
+        [ForeignKey("ItemId")]
+        public virtual Item ItemId { get; set; }
+        
+	
+        [Column("Quantity")]
+        [Required]
+        public int Quantity { get; set; }
+
     }
 }

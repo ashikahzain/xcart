@@ -4912,19 +4912,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\haizon.cruz\\.nuget\\packages\\": {}
+    "C:\\Users\\ashika.hussain\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\XCart\\Backend\\xcart\\xcart.csproj",
+      "projectUniqueName": "E:\\XCart\\xcart\\xcart.csproj",
       "projectName": "xcart",
-      "projectPath": "D:\\XCart\\Backend\\xcart\\xcart.csproj",
-      "packagesPath": "C:\\Users\\haizon.cruz\\.nuget\\packages\\",
-      "outputPath": "D:\\XCart\\Backend\\xcart\\obj\\",
+      "projectPath": "E:\\XCart\\xcart\\xcart.csproj",
+      "packagesPath": "C:\\Users\\ashika.hussain\\.nuget\\packages\\",
+      "outputPath": "E:\\XCart\\xcart\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\haizon.cruz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ashika.hussain\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4988,13 +4988,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\XCart\\Backend\\xcart\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
