@@ -1,7 +1,3 @@
 is_global = true
 build_property.RootNamespace = xcart
-<<<<<<< HEAD
 build_property.ProjectDir = D:\XCart\Backend\xcart\
-=======
-build_property.ProjectDir = E:\XCart\xcart\
->>>>>>> ee5b89448af63d7bc1684f73040401c0d5c5fa22
