@@ -30,8 +30,7 @@ namespace xcart.Models
 
         [Column("Image")]
         [Required]
-        [StringLength(150)]
-        public string Image { get; set; }
+        public byte[] Image { get; set; }
 
         [Column("IsActive")]
         [Required]
