@@ -15,6 +15,7 @@ appsettings.json
 /bin/Debug
 /obj
 /.vs
+Migrations
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
