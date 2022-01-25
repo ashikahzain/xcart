@@ -33,6 +33,6 @@ namespace xcart.Models
 
         
         [ForeignKey("StatusId")]
-        public virtual StatusDescription Status { get; set; }
+        public virtual StatusDescription StatusDescription { get; set; }
     }
 }

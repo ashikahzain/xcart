@@ -19,9 +19,11 @@ namespace xcart.Models
         public virtual User User { get; set; }
 
         [Column("TotalPoints")]
+        [Required]
         public long TotalPoints { get; set; }
 
         [Column("CurrentPoints")]
+        [Required]
         public long CurrentPoints { get; set; }
     }
 }
