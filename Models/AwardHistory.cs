@@ -20,8 +20,8 @@ namespace xcart.Models
         public DateTime Date { get; set; }
 
 
-        [ForeignKey("UserId")]
-        public virtual User UserId { get; set; }
+        [ForeignKey("EmployeeId")]
+        public virtual User Employee { get; set; }
 
         [ForeignKey("AwardId")]
         public virtual Award Award { get; set; }

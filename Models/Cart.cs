@@ -16,17 +16,17 @@ namespace xcart.Models
         public long Id { get; set; }
 
         
-        [ForeignKey("Id")]
-        public virtual Item ItemId { get; set; }
-
-        [ForeignKey("Id")]
-        public virtual User UserId { get; set; }
+        [ForeignKey("ItemId")]
+        public virtual Item Item { get; set; }
+        
 
         [Column("Quantity")]
         [Required]
         public int Quantity { get; set; }
 	
-        
+        [Column("UsedId")]
+        [Required]
+        public long UsedId { get; set; }
 
     }
 }

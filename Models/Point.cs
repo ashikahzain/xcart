@@ -15,13 +15,15 @@ namespace xcart.Models
         [Required]
         public long Id { get; set; }
 
-        [ForeignKey("Id")]
-        public virtual User UserId { get; set; }
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
 
         [Column("TotalPoints")]
+        [Required]
         public long TotalPoints { get; set; }
 
         [Column("CurrentPoints")]
+        [Required]
         public long CurrentPoints { get; set; }
     }
 }
