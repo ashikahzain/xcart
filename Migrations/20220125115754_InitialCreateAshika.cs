@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace xcart.Migrations
 {
-    public partial class DbCreate : Migration
+    public partial class InitialCreateAshika : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -89,6 +89,19 @@ namespace xcart.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Location", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Role",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Role", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -179,7 +192,7 @@ namespace xcart.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<int>(nullable: true),
+                    EmployeeId = table.Column<int>(nullable: true),
                     AwardId = table.Column<int>(nullable: true),
                     PresenteeId = table.Column<int>(nullable: true),
                     Point = table.Column<int>(nullable: false)
@@ -194,14 +207,14 @@ namespace xcart.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_AwardHistory_User_PresenteeId",
-                        column: x => x.PresenteeId,
+                        name: "FK_AwardHistory_User_EmployeeId",
+                        column: x => x.EmployeeId,
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_AwardHistory_User_UserId",
-                        column: x => x.UserId,
+                        name: "FK_AwardHistory_User_PresenteeId",
+                        column: x => x.PresenteeId,
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -316,14 +329,14 @@ namespace xcart.Migrations
                 column: "AwardId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AwardHistory_EmployeeId",
+                table: "AwardHistory",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AwardHistory_PresenteeId",
                 table: "AwardHistory",
                 column: "PresenteeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AwardHistory_UserId",
-                table: "AwardHistory",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cart_ItemId",
@@ -411,6 +424,9 @@ namespace xcart.Migrations
 
             migrationBuilder.DropTable(
                 name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "Role");
 
             migrationBuilder.DropTable(
                 name: "StatusDescription");
