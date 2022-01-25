@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\ashika.hussain\\.nuget\\packages\\": {}
+    "C:\\Users\\sujith.kumar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\XCart\\xcart\\xcart.csproj",
+      "projectUniqueName": "D:\\Xcart\\Api\\xcart\\xcart.csproj",
       "projectName": "xcart",
-      "projectPath": "E:\\XCart\\xcart\\xcart.csproj",
-      "packagesPath": "C:\\Users\\ashika.hussain\\.nuget\\packages\\",
-      "outputPath": "E:\\XCart\\xcart\\obj\\",
+      "projectPath": "D:\\Xcart\\Api\\xcart\\xcart.csproj",
+      "packagesPath": "C:\\Users\\sujith.kumar\\.nuget\\packages\\",
+      "outputPath": "D:\\Xcart\\Api\\xcart\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ashika.hussain\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sujith.kumar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
