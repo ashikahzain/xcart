@@ -1,0 +1,40 @@
+
+#navsearch {
+    position: relative;
+    width: 250%;
+    left: 1050%;
+    top: 10%;
+    background: #FFFFFF;
+    border-radius: 20px;
+    text-align: left;
+  }
+
+  #search{
+      margin-left: 60%;
+  }
+
+  #logout{
+      margin-right: 2%;
+      color: white;
+  }
+
+  #home{
+      position: relative;
+      width: 10%;
+      left: 5%;
+      background: #F7C02D;
+      border-radius: 5px;
+      text-align: center;
+  }
+  #homeicon{
+      padding-right:8%;
+  }
+
+  .btn-space {
+    margin-right: 400px;
+    width: 50%;
+    background: #4E71A2;
+}
+
+
+  
