@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using xcart.Models;
+using xcart.ViewModel;
 
 namespace xcart.Services
 {
@@ -11,6 +12,10 @@ namespace xcart.Services
         public User ValidateUser(string UserName, string password);
 
         public string GenerateJWTToken(User user);
+
+        public Task<List<LoginViewModel>> GetByCredential(string UserName);
+
+ 
 
     }
 }
