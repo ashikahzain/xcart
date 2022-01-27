@@ -15,9 +15,12 @@ namespace xcart.Services
 {
     public class LoginService : ILoginService
     {
+
         private IConfiguration config;
 
         XCartDbContext db;
+
+        //Dependency injection for db and config
         public LoginService(IConfiguration _config, XCartDbContext _db)
         {
             config = _config;
@@ -32,23 +35,25 @@ namespace xcart.Services
 
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
+            //Adding claims
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name,userModel.UserName),
                 new Claim(ClaimTypes.Role,userModel.RoleName)
             };
 
-            //token
+            //token generation
             var token = new JwtSecurityToken(
                 config["Jwt:Issuer"],
                 config["Jwt:Issuer"],
                 claims,
-                expires: DateTime.Now.AddMinutes(120),
+                expires: DateTime.Now.AddMinutes(5),
                 signingCredentials:credentials
                 );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
 
         public async Task<List<LoginViewModel>> GetByCredential(string UserName)
         {
