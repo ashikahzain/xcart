@@ -15,46 +15,40 @@ namespace xcart.Services
 {
     public class LoginService : ILoginService
     {
-
         private IConfiguration config;
 
         XCartDbContext db;
-
-        //Dependency injection for db and config
         public LoginService(IConfiguration _config, XCartDbContext _db)
         {
             config = _config;
             db = _db;
         }
 
-
+        //Token Generation method implementation
         public string GenerateJWTToken(LoginViewModel userModel)
         {
-
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]));
 
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-            //Adding claims
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name,userModel.UserName),
                 new Claim(ClaimTypes.Role,userModel.RoleName)
             };
 
-            //token generation
+            //token
             var token = new JwtSecurityToken(
                 config["Jwt:Issuer"],
                 config["Jwt:Issuer"],
                 claims,
-                expires: DateTime.Now.AddMinutes(5),
+                expires: DateTime.Now.AddMinutes(120),
                 signingCredentials:credentials
                 );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
-
+        //View Model for user role
         public async Task<List<LoginViewModel>> GetByCredential(string UserName)
         {
             if(db!=null)
@@ -78,15 +72,15 @@ namespace xcart.Services
             }
             return null;
         }
-
+        //User Validation with database
         public User ValidateUser(string UserName, string password)
         {
            if(db!=null)
             {
-                User u = db.User.FirstOrDefault(em => em.UserName == UserName && em.Password == password);
-                if(u!=null)
+                User user = db.User.FirstOrDefault(em => em.UserName == UserName && em.Password == password);
+                if(user!=null)
                 {
-                    return u;
+                    return user;
                 }
                 return null;
             }

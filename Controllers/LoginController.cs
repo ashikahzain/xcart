@@ -21,7 +21,7 @@ namespace xcart.Controllers
             login = _login;
         }
 
-        //Token Generation POST Method
+        //Authenticate user POST Method
         [AllowAnonymous]
         [HttpPost("{userName}/{password}")]
         public async Task<IActionResult> Login(string userName, string password)
@@ -45,7 +45,6 @@ namespace xcart.Controllers
         }
 
         [Authorize(Roles ="User")]
-        //[Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet("{userName}")]
 
         public async Task<IActionResult> GetUser(string userName)
