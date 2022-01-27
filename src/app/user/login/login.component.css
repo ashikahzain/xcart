@@ -144,9 +144,43 @@ hr{
         left: 5%;
         top: 5%;
     }
+    .form-control{
+        width: 140%;
+        height: 45px;
+        background: #FFFFFF;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
+    
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) {
-
+    .container{
+        position: absolute;
+        width: 80%;
+        height: 90%;
+        left: 5%;
+        top: 5%;
+    }
+    .form-control{
+        width:140%;
+        height: 60px;
+        background: #FFFFFF;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
+    .button1{
+        position: absolute;
+        width: 63%;
+        height: 7%;
+        left: 17%;
+        top: 57%;
+        background: #F7C02D;
+        border: 1px solid #484848;
+        box-sizing: border-box;
+        border-radius: 30px;
+    }
 }
