@@ -24,10 +24,9 @@ namespace xcart.Services
             db = _db;
         }
 
-
+        //Token Generation method implementation
         public string GenerateJWTToken(LoginViewModel userModel)
         {
-
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]));
 
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -49,7 +48,7 @@ namespace xcart.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
+        //View Model for user role
         public async Task<List<LoginViewModel>> GetByCredential(string UserName)
         {
             if(db!=null)
@@ -73,15 +72,15 @@ namespace xcart.Services
             }
             return null;
         }
-
+        //User Validation with database
         public User ValidateUser(string UserName, string password)
         {
            if(db!=null)
             {
-                User u = db.User.FirstOrDefault(em => em.UserName == UserName && em.Password == password);
-                if(u!=null)
+                User user = db.User.FirstOrDefault(em => em.UserName == UserName && em.Password == password);
+                if(user!=null)
                 {
-                    return u;
+                    return user;
                 }
                 return null;
             }

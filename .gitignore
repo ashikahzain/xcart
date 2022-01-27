@@ -12,9 +12,9 @@
 *.userosscache
 *.sln.docstates
 appsettings.json
-/bin/Debug
-/obj
-/.vs
+bin/Debug
+obj
+.vs
 Migrations
 
 # User-specific files (MonoDevelop/Xamarin Studio)
