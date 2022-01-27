@@ -30,6 +30,7 @@ namespace xcart.Controllers
 
             if(user!=null)
             {
+                
                 var tokenString = login.GenerateJWTToken(user);
                 response = Ok(new
                 {

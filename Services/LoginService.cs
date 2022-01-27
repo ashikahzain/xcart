@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using xcart.Models;
@@ -26,7 +27,9 @@ namespace xcart.Services
 
         public string GenerateJWTToken(User user)
         {
-
+            var usermodel = GetByCredential(user.UserName);
+            var claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.Name, usermodel.ToString()));
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]));
 
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -71,10 +74,10 @@ namespace xcart.Services
         {
            if(db!=null)
             {
-                User u = db.User.FirstOrDefault(em => em.UserName == UserName && em.Password == password);
-                if(u!=null)
+                User user = db.User.FirstOrDefault(em => em.UserName == UserName && em.Password == password);
+                if(user!=null)
                 {
-                    return u;
+                    return user;
                 }
                 return null;
             }
