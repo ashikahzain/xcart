@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "xcartui"
+    }
+  },
+  "defaultProject": "xcartui",
+  "cli": {
+    "analytics": "a91a3650-6ce1-45e3-a86f-dad278a88ec4"
+  }
 }

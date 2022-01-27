@@ -1,0 +1,158 @@
+
+.bgimage{
+    background-image: url('/assets/images/loginbg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    position: absolute;
+    width: 1239px;
+    height: 875px;
+
+}
+
+.container{
+    position: absolute;
+width: 35%;
+height: 70%;
+left: 893px;
+top: 21px;
+
+background: #3E597F;
+border: 6px solid #757575;
+box-sizing: border-box;
+box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.25);
+border-radius: 20px;
+}
+
+h3{
+    position: absolute;
+left: 141px;
+top: 39px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 250%;
+line-height: 30px;
+
+color: #FFFFFF;
+}
+hr{
+    position: absolute;
+width: 115px;
+height: 0px;
+left: 142px;
+top: 60px;
+
+border: 2px solid #FFFFFF;
+}
+
+.credentials1{
+    position: absolute;
+    left: 54px;
+    top: 133px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 150%;
+    line-height: 35px;
+    
+    color: #FFFFFF;
+}
+.credentials2{
+    position: absolute;
+left: 54px;
+top: 250px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 150%;
+line-height: 35px;
+
+color: #FFFFFF;
+}
+.form-control{
+    width: 300px;
+    height: 52px;
+    
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.button1{
+    position: absolute;
+width: 270px;
+height: 47px;
+left: 77px;
+top: 367px;
+
+background: #F7C02D;
+border: 1px solid #484848;
+box-sizing: border-box;
+border-radius: 30px;
+}
+.sign{
+    position: absolute;
+width: 74px;
+height: 28px;
+left: 99px;
+top: 9px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 28px;
+
+color: #484848;
+}
+.option{
+    position: absolute;
+width: 165px;
+height: 23px;
+left: 131px;
+top: 461px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 23px;
+
+color: #FFFFFF;
+}
+.button2{
+    position: absolute;
+width: 143px;
+height: 44px;
+left: 141px;
+top: 520px;
+
+background: #FFFFFF;
+border-radius: 10px;
+}
+.microsoft{
+    position: absolute;
+width: 78px;
+height: 21px;
+left: 15px;
+top: 12px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 21px;
+/* identical to box height */
+
+
+color: #000000;
+}
+.win-logo{
+    width: 20px;
+    height: 20px;
+    margin-left: 85px;
+}
