@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,9 @@ namespace xcart.Controllers
         }
 
         //Token Generation POST Method
+        [AllowAnonymous]
         [HttpPost("{userName}/{password}")]
-        public IActionResult Login(string userName, string password)
+        public async Task<IActionResult> Login(string userName, string password)
         {
             IActionResult response = Unauthorized();
 
@@ -30,7 +32,9 @@ namespace xcart.Controllers
 
             if(user!=null)
             {
-                var tokenString = login.GenerateJWTToken(user);
+                var userModelList =await login.GetByCredential(userName);
+                var userModel = userModelList[0];
+                var tokenString = login.GenerateJWTToken(userModel);
                 response = Ok(new
                 {
                     token = tokenString,
@@ -40,7 +44,8 @@ namespace xcart.Controllers
             return response;
         }
 
-
+        //[Authorize(Roles ="Admin")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet("{userName}")]
 
         public async Task<IActionResult> GetUser(string userName)
@@ -50,7 +55,7 @@ namespace xcart.Controllers
             {
                 return NotFound();
             }
-            return Ok(user);
+            return Ok(user[0]);
         }
     }
 }
