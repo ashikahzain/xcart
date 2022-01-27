@@ -368,3 +368,22 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+.vs/xcart/DesignTimeBuild/.dtbcache.v2
+.vs/xcart/v16/.suo
+appsettings.json
+bin/Debug/netcoreapp3.1/appsettings.json
+bin/Debug/netcoreapp3.1/xcart.dll
+bin/Debug/netcoreapp3.1/xcart.pdb
+bin/Debug/netcoreapp3.1/xcart.runtimeconfig.dev.json
+obj/Debug/netcoreapp3.1/xcart.assets.cache
+obj/Debug/netcoreapp3.1/xcart.csproj.AssemblyReference.cache
+obj/Debug/netcoreapp3.1/xcart.csproj.CoreCompileInputs.cache
+obj/Debug/netcoreapp3.1/xcart.csproj.FileListAbsolute.txt
+obj/Debug/netcoreapp3.1/xcart.dll
+obj/Debug/netcoreapp3.1/xcart.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/netcoreapp3.1/xcart.genruntimeconfig.cache
+obj/Debug/netcoreapp3.1/xcart.pdb
+obj/project.assets.json
+obj/project.nuget.cache
+obj/xcart.csproj.nuget.dgspec.json
+obj/xcart.csproj.nuget.g.props
