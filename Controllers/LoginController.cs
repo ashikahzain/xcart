@@ -44,8 +44,8 @@ namespace xcart.Controllers
             return response;
         }
 
-        //[Authorize(Roles ="Admin")]
-        [Authorize(AuthenticationSchemes = "Bearer")]
+        [Authorize(Roles ="User")]
+        //[Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet("{userName}")]
 
         public async Task<IActionResult> GetUser(string userName)
