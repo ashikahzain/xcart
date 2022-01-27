@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using xcart.Services;
 
 namespace xcart
 {
@@ -29,6 +30,8 @@ namespace xcart
             services.AddControllers();
             //DBCONTEXT
             services.AddDbContext<Models.XCartDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("XCart")));
+
+            services.AddScoped<ILoginService, LoginService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
