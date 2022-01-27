@@ -115,3 +115,12 @@ D:\Experion\XCart\BackEnd\xcart\obj\Debug\netcoreapp3.1\xcart.RazorTargetAssembl
 D:\Experion\XCart\BackEnd\xcart\obj\Debug\netcoreapp3.1\xcart.dll
 D:\Experion\XCart\BackEnd\xcart\obj\Debug\netcoreapp3.1\xcart.pdb
 D:\Experion\XCart\BackEnd\xcart\obj\Debug\netcoreapp3.1\xcart.genruntimeconfig.cache
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+D:\Experion\XCart\BackEnd\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.CopyComplete
