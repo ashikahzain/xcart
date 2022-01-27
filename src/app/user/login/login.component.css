@@ -1,19 +1,20 @@
 
+
 .bgimage{
     background-image: url('/assets/images/loginbg.jpg');
     background-repeat: no-repeat;
-    background-size: 93% 78%;
+    background-size: contain;
     position: absolute;
-    width: 90%;
-    height: 130%;
+    width: 100%;
+    height: 100%;
 
 }
 
 .container{
     position: absolute;
-    width: 33%;
-    height: 70%;
-    left: 73%;
+    width: 30%;
+    height: 95%;
+    left: 65%;
     top: 3%;
     background: #3E597F;
     border: 6px solid #757575;
@@ -24,48 +25,48 @@
 
 h3{
     position: absolute;
-    left: 35%;
+    left: 37%;
     top: 7%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    font-size: 250%;
+    font-size: 210%;
     line-height: 50%;
     color: #FFFFFF;
 }
 hr{
     position: absolute;
-    width: 27.5%;   
-    left: 35%;
+    width: 27%;   
+    left: 37%;
     top: 10%;
     border: 2px solid #FFFFFF;
 }
 
 .credentials1{
     position: absolute;
-    left: 12%;
+    left: 10%;
     top: 20%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    font-size: 150%;
+    font-size: 130%;
     line-height: 130%;
     color: #FFFFFF;
 }
 .credentials2{
     position: absolute;
-    left: 12%;
-    top: 40%;
+    left: 10%;
+    top: 38%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    font-size: 150%;
+    font-size: 130%;
     line-height: 130%;
     color: #FFFFFF;
 }
 .form-control{
-    width: 150%;
-    height: 51px;
+    width: 140%;
+    height: 45px;
     background: #FFFFFF;
     border: 1px solid #000000;
     box-sizing: border-box;
@@ -74,9 +75,9 @@ hr{
 .button1{
     position: absolute;
     width: 63%;
-    height: 8%;
-    left: 18%;
-    top: 58%;
+    height: 7%;
+    left: 17%;
+    top: 57%;
     background: #F7C02D;
     border: 1px solid #484848;
     box-sizing: border-box;
@@ -84,23 +85,23 @@ hr{
 }
 .sign{
     position: absolute;
-    left: 37%;
-    top: 30%;
+    left: 36%;
+    top: 25%;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
-    font-size: 130%;
+    font-size: 120%;
     line-height: 100%;
     color: #484848;
 }
 .option{
     position: absolute;
     left: 31%;
-    top: 73%;
+    top: 70%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    font-size: 120%;
+    font-size: 105%;
     line-height: 100%;
     color: #FFFFFF;
 }
@@ -108,8 +109,8 @@ hr{
     position: absolute;
     width: 33%;
     height: 7%;
-    left: 34%;
-    top: 83%;
+    left: 33%;
+    top: 79%;
     background: #FFFFFF;
     border: 1px solid #484848;
     box-sizing: border-box;
@@ -132,4 +133,20 @@ hr{
     width: 20%;
     height: 65%;
     margin-left: 70%;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .container{
+        position: absolute;
+        width: 80%;
+        height: 90%;
+        left: 5%;
+        top: 5%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+
 }
