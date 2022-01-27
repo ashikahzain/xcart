@@ -25,7 +25,7 @@ namespace xcart.Services
         }
 
 
-        public string GenerateJWTToken(User user)
+        public string GenerateJWTToken(LoginViewModel userModel)
         {
             var usermodel = GetByCredential(user.UserName);
             var claims = new List<Claim>();
@@ -34,12 +34,18 @@ namespace xcart.Services
 
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
+           /* var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name,userModel.UserName),
+                new Claim(ClaimTypes.Role,userModel.RoleName)
+            };*/
+
             //token
             var token = new JwtSecurityToken(
                 config["Jwt:Issuer"],
                 config["Jwt:Issuer"],
                 null,
-                expires: DateTime.Now.AddMinutes(5),
+                expires: DateTime.Now.AddMinutes(120),
                 signingCredentials:credentials
                 );
 
