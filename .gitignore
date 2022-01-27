@@ -3,7 +3,7 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-obj
+/obj
 
 # User-specific files
 *.rsuser
@@ -12,9 +12,9 @@ obj
 *.userosscache
 *.sln.docstates
 appsettings.json
-/bin/Debug
-/obj
-/.vs
+bin/Debug
+obj
+.vs
 Migrations
 
 # User-specific files (MonoDevelop/Xamarin Studio)
