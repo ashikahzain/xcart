@@ -37,6 +37,7 @@ namespace xcart
 
             //Adding Servies
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IOrderService, OrderService>();
 
             //Adding Authentication
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
