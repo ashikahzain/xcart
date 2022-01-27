@@ -12,6 +12,7 @@ namespace xcart.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+        //Dependency Injection - Login Service
         ILoginService login;
 
         public LoginController(ILoginService _login)
@@ -19,6 +20,7 @@ namespace xcart.Controllers
             login = _login;
         }
 
+        //Token Generation POST Method
         [HttpPost("{userName}/{password}")]
         public IActionResult Login(string userName, string password)
         {
@@ -33,14 +35,22 @@ namespace xcart.Controllers
                 {
                     token = tokenString,
                     userName = userName
-                }
-                    );
-                  
-                   
-  
+                });
             }
             return response;
+        }
 
+
+        [HttpGet("{userName}")]
+
+        public async Task<IActionResult> GetUser(string userName)
+        {
+            var user = await login.GetByCredential(userName);
+            if(user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
         }
     }
 }
