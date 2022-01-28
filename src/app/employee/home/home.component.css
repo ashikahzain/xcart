@@ -8,18 +8,24 @@
   height: 1.75em;
   margin-top: -10%;
 }
+.navbar-brand{
+  margin-left: 5%;
+}
 #logout{
   color: white;
   font-size: 1.75em;
   margin-top: 3%;
   margin-left: 10%;
 }
+.bars2{
+  position: absolute;
+}
 #bars{
   color: white;
   font-size: 1.5em;
-  margin-top: 3%;
   margin-right: 7%;
 }
+
 .form-control {
   border-radius: 1em!important;
 }
@@ -34,6 +40,11 @@ a:focus {
     text-decoration: none;
     transition: all 0.3s;
 }
+
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
 
 .wrapper {
     display: flex;
@@ -55,21 +66,23 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
+    background: #8EA6C8;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
+    border-bottom: 1px solid #8EA6C8;
 }
 
 #sidebar ul li a {
     padding: 10px;
     font-size: 1.1em;
-    font-weight: bold;
     display: block;
+    font-weight: bold;
 }
 
 #sidebar ul li a:hover {
-    color: #000000;
+    color: #000;
     background: #fff;
 }
 
@@ -91,7 +104,11 @@ a[data-toggle="collapse"] {
     transform: translateY(-50%);
 }
 
-
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #8EA6C8;
+}
 
 
 /* ---------------------------------------------------
