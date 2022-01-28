@@ -8,7 +8,7 @@ import { AdminService } from 'src/app/shared/services/admin.service'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private orderService: AdminService) { }
+  constructor(public orderService: AdminService) { }
 
   ngOnInit(): void {
     this.orderService.getOrder();
