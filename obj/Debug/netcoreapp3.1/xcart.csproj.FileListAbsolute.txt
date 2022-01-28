@@ -139,3 +139,4 @@ D:\XCart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.RazorTargetAssemblyInfo.cac
 D:\XCart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.dll
 D:\XCart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.pdb
 D:\XCart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.genruntimeconfig.cache
+D:\XCart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.CopyComplete
