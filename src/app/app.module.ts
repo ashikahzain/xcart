@@ -7,7 +7,8 @@ import { UserModule } from './user/user.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { EmployeeModule } from './employee/employee.module';
-import { AdminModule } from './admin/admin.module'
+import { AdminModule } from './admin/admin.module';
+
 
 @NgModule({
   declarations: [
