@@ -8,11 +8,11 @@
             <!--Username-->
             <div class="credentials1">
                 <label>User Name </label>
-                <input type="text" class="form-control" placeholder="Type Username" formControlName="Username" autocomplete="off" required>
+                <input type="text" class="form-control" placeholder="Type Username" formControlName="UserName" autocomplete="off" required>
             </div>
             <br><br>
-            <div *ngIf="isSubmitted && formControls.Username.errors">
-                <div *ngIf="formControls.Username.errors.required" style="color: red;text-align: left;">
+            <div *ngIf="isSubmitted && formControls.UserName.errors">
+                <div *ngIf="formControls.UserName.errors.required" style="color: red;text-align: left;">
                     Username is required
                 </div>
             </div>
