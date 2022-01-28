@@ -140,8 +140,26 @@ hr{
     margin-left: 70%;
     margin-top: -5%;
 }
-
-
+.main-error{
+    position: relative;
+    color: red;
+    font-weight: bold;
+    margin-top: 75%; 
+}
+.error-name{
+    position: relative;
+    color: red;
+    font-weight: bold;
+    font-size: 0.8em;
+    margin-top: 24%;
+}
+.error-pass{
+    position: relative;
+    color: red;
+    font-weight: bold;
+    font-size: 0.8em;
+    margin-top: 24%;
+}
 @media only screen and (max-width: 480px) {
     .xcart-logo{
         left: 20%;
@@ -162,6 +180,14 @@ hr{
         width: 90px;   
         left: 35%;
         top: 7.5%;
+    }
+    .main-error{
+        margin-top: 11em;
+    margin-left: 15%;
+    font-size: 0.8em;
+    }
+    .error-name, .error-pass{
+        margin-top: 4.5em;
     }
     
 }
@@ -190,6 +216,14 @@ hr{
     h3{
         left: 40%;
     }
+    .main-error{
+        margin-top: 12.5em;
+        margin-left: 20%;
+    font-size: 0.8em;
+    }
+    .error-name, .error-pass{
+        margin-top: 5em;
+    }
     
 }
 
@@ -204,15 +238,31 @@ hr{
         left: 35%;
         top: 7.5%;
     }
+    .main-error{
+        margin-top: 18em;
+    margin-left: 20%;
+    font-size: 0.8em;
+    }
+    .error-name, .error-pass{
+        margin-top: 5em;
+    }
 }
 @media only screen and (max-width: 1200px) and (min-width:992px) {
     .container{
         width: 35%;
-        left: 55%;
+        left: 40%;
     }
     hr{
         width: 25%;   
         left: 36%;
         top: 7.5%;
+    }
+    .main-error{
+        margin-top: 75%;
+    font-size: 0.9em;
+    margin-left: 7%;
+    }
+    .error-name, .error-pass{
+        margin-top: 24%;
     }
 }
