@@ -65,7 +65,7 @@ hr{
     color: #FFFFFF;
 }
 .form-control{
-    width: 70%;
+    width: 140%;
     height: 45px;
     background: #FFFFFF;
     border: 1px solid #000000;
@@ -144,14 +144,14 @@ hr{
         left: 5%;
         top: 5%;
     }
-    .form-control{
+    /* .form-control{
         width: 140%;
         height: 45px;
         background: #FFFFFF;
         border: 1px solid #000000;
         box-sizing: border-box;
         border-radius: 10px;
-    }
+    } */
     
 }
 
