@@ -70,8 +70,8 @@ hr{
     color: #FFFFFF;
 }
 .form-control{
-    width: 90%;
-    height: 3em;
+    width: 140%;
+    height: 45px;
     background: #FFFFFF;
     border: 1px solid #000000;
     box-sizing: border-box;
