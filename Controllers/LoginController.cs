@@ -44,7 +44,7 @@ namespace xcart.Controllers
             return response;
         }
 
-        [Authorize(Roles ="User")]
+        [Authorize(Roles ="Admin")]
         [HttpGet("{userName}")]
 
         public async Task<IActionResult> GetUser(string userName)
@@ -54,7 +54,7 @@ namespace xcart.Controllers
             {
                 return NotFound();
             }
-            return Ok(user[0]);
+            return Ok(user);
         }
     }
 }
