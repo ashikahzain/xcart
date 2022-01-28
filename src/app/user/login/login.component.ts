@@ -60,6 +60,9 @@ export class LoginComponent implements OnInit {
 
           //either local/session
           sessionStorage.setItem("jwtToken", this.jwtResponse.token);
+           console.log("inside login");
+           let token=sessionStorage.getItem('jwtToken');
+          console.log(token);
 
           if (this.jwtResponse.token != null) {
             //logged as Admin

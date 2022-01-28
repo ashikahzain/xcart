@@ -55,7 +55,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let order of orderService.orderList">
+          <tr *ngFor="let order of orderService.orderList |filter:filter">
             <td>{{order.Id}}</td>
             <td>{{order.UserName}}</td>
             <td>{{order.DateOfOrder | date: 'dd-MM-yyyy'}}</td>
