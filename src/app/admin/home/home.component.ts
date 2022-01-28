@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/shared/services/admin.service'
 
 @Component({
   selector: 'app-home',
@@ -7,11 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  filter : string;
-
-  constructor() { }
+  constructor(private orderService: AdminService) { }
 
   ngOnInit(): void {
+    this.orderService.getOrder();
   }
 
 }
