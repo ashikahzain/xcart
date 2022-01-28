@@ -183,9 +183,12 @@ hr{
         height: 45px;
     }
     hr{
-        width: 100px;   
-        left: 35%;
+        width: 90px;   
+        left: 40%;
         top: 7.5%;
+    }
+    h3{
+        left: 40%;
     }
     
 }

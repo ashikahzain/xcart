@@ -1,15 +1,44 @@
-<nav class="navbar navbar-light" style="background-color: #395E91;">
+<nav class="navbar navbar-light bg-custom">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+      <a class="navbar-brand"><i class="fa fa-bars" id="bars"></i><img class="xcart-nav" src="/assets/images/xlogo-nav.png"></a>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <i class="fa fa-sign-out fa-lg" id="logout"></i>
+      </form>
     </div>
-</nav>
+  </nav>
 
-<div class="sidenav">
-    <a href="#">Home</a>
-    <a href="#">Order</a>
-    <a href="#">Profile</a>
-    <a href="#">Cart</a>
+  
+  <div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Username</h3>
+        </div>
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">Order</a>
+            </li>
+            <li>
+                <a href="#">Profile</a>
+            </li>
+            <li>
+                <a href="#">Cart</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+        
+    </div>
 </div>
+
+
+
