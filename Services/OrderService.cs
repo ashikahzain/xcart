@@ -39,5 +39,35 @@ namespace xcart.Services
             }
             return null;
         }
+
+        /*
+        public async List<Item> GetTrendingItem()
+        {
+            if (db != null)
+            {
+                 var itemId = from orderDetails in db.OrderDetails
+                              group orderDetails by orderDetails.Item.Id into Occurance
+
+                              select new Item
+                              {
+                                  Id = (from OD2 in Occurance
+                                        select OD2.Item.Id).Max()
+                              };
+                 return await itemId.ToListAsync();
+                return (from item in db.Item
+                        from orderDetails in db.OrderDetails
+                        where orderDetails.Item.Id == item.Id
+                        group orderDetails by item into itemGroups
+                        select new Item
+                        {
+                            Id = itemGroups,
+                            numberOfOrders = itemGroups.Count()
+                        }
+                        ).OrderByDescending(x => x.numberOfOrders).Distinct().Take(10);
+
+            }
+            return null;
+        }*/
+
     }
 }
