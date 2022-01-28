@@ -70,7 +70,7 @@ hr{
     color: #FFFFFF;
 }
 .form-control{
-    width: 140%;
+    width: 90%;
     height: 45px;
     background: #FFFFFF;
     border: 1px solid #000000;
@@ -183,9 +183,12 @@ hr{
         height: 45px;
     }
     hr{
-        width: 100px;   
-        left: 35%;
+        width: 90px;   
+        left: 40%;
         top: 7.5%;
+    }
+    h3{
+        left: 40%;
     }
     
 }
