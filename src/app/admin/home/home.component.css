@@ -31,9 +31,23 @@
   }
 
   .btn-space {
-    margin-right: 400px;
-    width: 50%;
+    margin-right: 30%;
+    width: 300%;
     background: #4E71A2;
+    border-radius: 20px;
+}
+
+#add{
+    position: absolute;
+      width: 15%;
+      left: 80%;
+      background: #72D761;
+      border-radius: 20px;
+      text-align: center;
+      color: white;
+}
+#addicon{
+    padding-left:25%;
 }
 
 

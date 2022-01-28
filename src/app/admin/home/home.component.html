@@ -1,4 +1,5 @@
 <nav class="navbar navbar-light" style="background-color: #395E91;">
+    <!--<img src="/assets/images/xlogo.png" class="xcart-logo">-->
     <!--Search Functionality-->
     <div class="form-group">
         <button class="form-control" id="navsearch" type="text" [(ngModel)]="filter">Search
@@ -10,12 +11,12 @@
 <br>
 
 <div class="btn-toolbar text-center well">
-    <button class="btn btn-space" id="home" type="button"><i class="fa fa-home"
-            id="homeicon"></i>Home</button>
+    <button class="btn btn-space" id="home" type="button"><i class="fa fa-home" id="homeicon"></i>Home
+    </button>
 
     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle btn-space" type="button"
-            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle btn-space" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
             Sort
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -24,4 +25,7 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
         </ul>
     </div>
+
+    <button class="btn btn-space" id="add" type="button">Add Item<i class="fa fa-plus" id="addicon"></i>
+    </button>
 </div>
