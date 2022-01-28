@@ -1,54 +1,71 @@
 <nav class="navbar navbar-light" style="background-color: #395E91;">
-  <!--<img src="/assets/images/xlogo.png" class="xcart-logo">-->
+  <div class="container logo">
+  <img src="/assets/images/logo-home.png" class="xcart-logo" style="height: 45px; width: 145px;">
+</div>
   <!--Search Functionality-->
   <div class="form-group">
     <button class="form-control" id="profile" type="button"><i class="fa fa-user" id="user"></i>Profile
     </button>
   </div>
-  <i class="fa fa-sign-out fa-lg" id="logout"></i>
+  <div class="signout">
+  <a (click)="logout()"><i class="fa fa-sign-out fa-lg" id="logout"></i></a>
+</div>
 </nav>
-<br>
-<div class="card-deck row">
-  <div class="card  col-lg-3">
-    <div class="card-body text-left">
-      <p class="card-text">Pending Orders</p>
-      <i class="fa fa-arrow-right fa-lg"></i>
-    </div>
-  </div>
-  <div class="card col-lg-3">
-    <div class="card-body text-left">
-      <p class="card-text">Update Points</p>
-      <i class="fa fa-arrow-right fa-lg"></i>
-    </div>
-  </div>
-  <div class="card col-lg-3">
-    <div class="card-body text-left">
-      <p class="card-text">Manage Stock</p>
-      <i class="fa fa-arrow-right fa-lg"></i>
-    </div>
-  </div>
-</div>
-<br>
-<div>
-  <table class="table table-striped table-bordered" id="table">
-    <thead>
-      <tr>
-        <th>Order No:</th>
-        <th>Employee Name</th>
-        <th>Date of Order</th>
-        <th>Date of Delivery</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let order of orderService.orderList">
-        <td>{{order.Id}}</td>
-        <td>{{order.UserName}}</td>
-        <td>{{order.DateOfOrder}}</td>
-        <td>{{order.DateOfDelivery}}</td>
-        <td>{{order.Status}}</td>
 
-      </tr>
-    </tbody>
-  </table>
-</div>
+<body>
+  <br>
+  <div class="card-deck row">
+    <div class="card  col-lg-3">
+      <div class="card-body text-left">
+        <p class="card-text">Pending Orders</p>
+      </div>
+      <i class="fa fa-arrow-right fa-lg"></i>
+    </div>
+    <div class="card col-lg-3">
+      <div class="card-body text-left">
+        <p class="card-text">Update Points</p>
+      </div>
+      <i class="fa fa-arrow-right fa-lg"></i>
+    </div>
+    <div class="card col-lg-3">
+      <div class="card-body text-left">
+        <p class="card-text">Manage Stock</p>
+      </div>
+      <i class="fa fa-arrow-right fa-lg"></i>
+    </div>
+  </div>
+  <br>
+  <div class="container row latest-orders">
+    <div class="col-lg-8 order-list">
+      <div class="list-heading">
+        <h4>Latest Orders</h4>
+      </div>
+      <div class="search">
+        <input id="navsearch" type="text" ngDefaultControl [(ngModel)]="filter" placeholder="Search">
+        <i class="fa fa-search" id="search"></i>
+      </div>
+      <table class="table" id="table">
+        <thead>
+          <tr>
+            <th>Order No</th>
+            <th>Employee Name</th>
+            <th>Date of Order</th>
+            <th>Date of Delivery</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orderService.orderList">
+            <td>{{order.Id}}</td>
+            <td>{{order.UserName}}</td>
+            <td>{{order.DateOfOrder | date: 'dd-MM-yyyy'}}</td>
+            <td>{{order.DateOfDelivery| date: 'dd-MM-yyyy'}}</td>
+            <td>{{order.Status}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-4"></div>
+  </div>
+</body>

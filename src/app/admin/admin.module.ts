@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { UpdatecatalogueComponent } from './updatecatalogue/updatecatalogue.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { UpdatecatalogueComponent } from './updatecatalogue/updatecatalogue.comp
     AdminRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    HttpClientModule
   ]
 })
 export class AdminModule { }

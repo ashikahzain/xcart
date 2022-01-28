@@ -1,81 +1,128 @@
-
+body{
+    background: #EAECEE;
+    font-family: Roboto;
+    height: 100vh;
+}
 #profile {
     position: relative;
     width: 130%;
-    left: 1300%;
     top: 10%;
-    background: #2D415D;
+    right: 100px;
+    background: #2d415d;
     border-radius: 5px;
     color: white;
     text-align: center;
-    
-  }
+}
+.signout{
+    margin-right: 20px;
+}
+.signout a:hover{
+    cursor: pointer;
+}
+img{
+    object-fit: contain;
+}
+#user {
+    margin-left: 10%;
+    padding-right: 10%;
+}
 
-  #user{
-      margin-left: 10%;
-      padding-right: 10%;
-  }
+#logout {
+    margin-right: 2%;
+    color: white;
+}
 
-  #logout{
-      margin-right: 2%;
-      color: white;
-  }
+#home {
+    position: relative;
+    width: 10%;
+    left: 5%;
+    background: #f7c02d;
+    border-radius: 5px;
+    text-align: center;
+}
+#homeicon {
+    padding-right: 8%;
+}
 
-  #home{
-      position: relative;
-      width: 10%;
-      left: 5%;
-      background: #F7C02D;
-      border-radius: 5px;
-      text-align: center;
-  }
-  #homeicon{
-      padding-right:8%;
-  }
-
-  .btn-space {
+.btn-space {
     margin-right: 30%;
     width: 300%;
-    background: #4E71A2;
+    background: #4e71a2;
     border-radius: 20px;
 }
 
-#add{
+#add {
     position: absolute;
-      width: 15%;
-      left: 80%;
-      background: #72D761;
-      border-radius: 20px;
-      text-align: center;
-      color: white;
+    width: 15%;
+    left: 80%;
+    background: #72d761;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
 }
-#addicon{
-    padding-left:25%;
+#addicon {
+    padding-left: 25%;
 }
-.card{
+.card {
     margin-left: 6%;
     height: 109px;
-    background: #ECB626;
+    background: #ecb626;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     color: white;
-    font-weight: 800;
-    
+    font-weight: 400;
+    border: none;
+    font-size: 24px;
 }
-.card-deck{
+.card-deck {
     width: 100%;
 }
-.fa{
+
+.fa-arrow-right {
     color: white;
     margin-left: 90%;
+    font-size: 24px;
+    margin-bottom: 30px;
 }
 
-.table{
-    width: 50%;
-    margin-left:6%;
-    border-radius:20px;
+.list-heading h4 {
+    height: 41px;
+    width: 228px;
+    margin: 1em 1em 0em 1em;
+    left: 10px;
+    top: 9px;
+    border-radius: nullpx;
+    color: #1f4173;
+}
+.latest-orders{
+    margin-left: 3%;
+    margin-top: 5px;
+}
+.order-list{
+    background-color: #fff;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+
+}
+.table {
+    margin: 20px;
+    height: 380px;
+    width: 750px;
+    left: 86px;
+    top: 250px;
+    border-radius: 20px;
 }
 
-
-
-  
+.search {
+    display: inline;
+    margin-left: 70%;
+}
+.search input[type="text"] {
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    align-content: flex-end;
+}
+.fa-search {
+    color: #2d415d;
+}

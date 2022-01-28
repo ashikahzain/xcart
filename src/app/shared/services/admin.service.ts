@@ -15,8 +15,9 @@ export class AdminService {
 
    //get order
    getOrder(){
-     this.httpClient.get(environment.apiUrl+"api/order").toPromise().then(response =>
+     this.httpClient.get(environment.apiUrl+"/api/order").toPromise().then(response =>
       this.orderList=response as Order[]);
+      console.log(this.orderList);
    }
 
 }
