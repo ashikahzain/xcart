@@ -73,10 +73,7 @@ img{
 
 }
 .table {
-    margin: 20px;
-    /*height: 380px;
-    width: 750px;*/
-    left: 86px;
+    margin-top: 20px;
     top: 250px;
     border-radius: 20px;
 }
@@ -84,12 +81,12 @@ img{
 .search {
     display: inline;
     margin-left: 70%;
+    overflow: hidden;
 }
 .search input[type="text"] {
     border-top: 0px;
     border-left: 0px;
     border-right: 0px;
-    align-content: flex-end;
 }
 .fa-search {
     color: #2d415d;
