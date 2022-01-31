@@ -70,10 +70,14 @@ hr{
     color: #FFFFFF;
 }
 .crederror1{
+    position: absolute;
     margin-left: 10%;
+    margin-top: 20%;
 }
 .crederror2{
+    position: absolute;
     margin-left: 10%;
+    margin-top: 50%;
 }
 .form-control{
     width: 90%;
@@ -153,18 +157,14 @@ hr{
     margin-top: 75%; 
 }
 .error-name{
-    position: relative;
     color: red;
     font-weight: bold;
     font-size: 0.8em;
-    margin-top: 65px;
 }
 .error-pass{
-    position: relative;
     color: red;
     font-weight: bold;
     font-size: 0.8em;
-    margin-top: 85px;
 }
 @media only screen and (max-width: 480px) {
     .xcart-logo{
