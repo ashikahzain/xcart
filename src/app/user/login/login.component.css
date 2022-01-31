@@ -69,6 +69,12 @@ hr{
     line-height: 150%;
     color: #FFFFFF;
 }
+.crederror1{
+    margin-left: 10%;
+}
+.crederror2{
+    margin-left: 10%;
+}
 .form-control{
     width: 90%;
     height: 45px;
@@ -151,14 +157,14 @@ hr{
     color: red;
     font-weight: bold;
     font-size: 0.8em;
-    margin-top: 24%;
+    margin-top: 65px;
 }
 .error-pass{
     position: relative;
     color: red;
     font-weight: bold;
     font-size: 0.8em;
-    margin-top: 24%;
+    margin-top: 85px;
 }
 @media only screen and (max-width: 480px) {
     .xcart-logo{
