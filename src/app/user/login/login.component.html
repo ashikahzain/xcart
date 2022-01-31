@@ -13,7 +13,7 @@
             </div>
             <br><br>
             <div *ngIf="isSubmitted && formControls.UserName.errors" class="credentials1">
-                <div *ngIf="formControls.UserName.errors.required" style="color: red;text-align: left;">
+                <div *ngIf="formControls.UserName.errors.required" class="error-name">
                     Username is required
                 </div>
             </div>
@@ -22,8 +22,8 @@
                 <label>Password </label>
                 <input type="password" class="form-control" placeholder=" Type Password" formControlName="Password" autocomplete="off" required>
             </div>
-            <div *ngIf="isSubmitted && formControls.Password.errors">
-                <div *ngIf="formControls.Password.errors.required" style="color: red;text-align: left;">
+            <div *ngIf="isSubmitted && formControls.Password.errors" class="credentials2">
+                <div *ngIf="formControls.Password.errors.required" class="error-pass">
                     Password is required
                 </div>
             </div>
