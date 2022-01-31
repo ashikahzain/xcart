@@ -18,7 +18,7 @@ export class AuthService {
     console.log(user);
     return this.httpClient.post(environment.apiUrl+"/api/login/"+user.UserName+"/" + user.Password,null)
   }
-
+//logout
   public logout(){
     localStorage.clear();
     sessionStorage.clear();
