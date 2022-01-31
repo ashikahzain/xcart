@@ -72,12 +72,12 @@ hr{
 .crederror1{
     position: absolute;
     margin-left: 10%;
-    margin-top: 20%;
+    margin-top: 70px;
 }
 .crederror2{
     position: absolute;
     margin-left: 10%;
-    margin-top: 50%;
+    margin-top: 170px;
 }
 .form-control{
     width: 90%;
@@ -192,9 +192,13 @@ hr{
     margin-left: 15%;
     font-size: 0.8em;
     }
-    .error-name, .error-pass{
-        margin-top: 4.5em;
+    .crederror1{
+        margin-top: 55px;
     }
+    .crederror2{
+        margin-top: 145px;
+    }
+    
     
 }
 /* Extra small devices (phones, 600px and down) */
@@ -227,9 +231,7 @@ hr{
         margin-left: 20%;
     font-size: 0.8em;
     }
-    .error-name, .error-pass{
-        margin-top: 5em;
-    }
+    
     
 }
 
@@ -249,9 +251,13 @@ hr{
     margin-left: 20%;
     font-size: 0.8em;
     }
-    .error-name, .error-pass{
-        margin-top: 5em;
+    .crederror1{
+        padding-top: 25px;
     }
+    .crederror2{
+        padding-top: 45px;
+    }
+    
 }
 @media only screen and (max-width: 1200px) and (min-width:992px) {
     .container{
@@ -268,7 +274,10 @@ hr{
     font-size: 0.9em;
     margin-left: 7%;
     }
-    .error-name, .error-pass{
-        margin-top: 24%;
+    .crederror1{
+        padding-top: 20px;
+    }
+    .crederror2{
+        padding-top: 40px;
     }
 }
