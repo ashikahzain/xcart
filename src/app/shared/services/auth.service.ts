@@ -16,7 +16,7 @@ export class AuthService {
     //calling webservice url and passing username and password
     console.log("Attempt authenticate and authorize : :");
     console.log(user);
-    return this.httpClient.post(environment.apiUrl+"/api/login/"+user.UserName+"/" + user.Password,null)
+    return this.httpClient.post(environment.apiUrl+"/api/login",user)
   }
 //logout
   public logout(){
