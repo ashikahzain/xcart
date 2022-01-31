@@ -31,38 +31,6 @@ img{
     margin-right: 2%;
     color: white;
 }
-
-#home {
-    position: relative;
-    width: 10%;
-    left: 5%;
-    background: #f7c02d;
-    border-radius: 5px;
-    text-align: center;
-}
-#homeicon {
-    padding-right: 8%;
-}
-
-.btn-space {
-    margin-right: 30%;
-    width: 300%;
-    background: #4e71a2;
-    border-radius: 20px;
-}
-
-#add {
-    position: absolute;
-    width: 15%;
-    left: 80%;
-    background: #72d761;
-    border-radius: 20px;
-    text-align: center;
-    color: white;
-}
-#addicon {
-    padding-left: 25%;
-}
 .card {
     margin-left: 6%;
     height: 109px;
@@ -106,8 +74,8 @@ img{
 }
 .table {
     margin: 20px;
-    height: 380px;
-    width: 750px;
+    /*height: 380px;
+    width: 750px;*/
     left: 86px;
     top: 250px;
     border-radius: 20px;
