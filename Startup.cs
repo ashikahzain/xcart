@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Serialization;
 using xcart.Services;
 
 namespace xcart
@@ -58,6 +59,14 @@ namespace xcart
             //Adding MVC and Cors
             services.AddMvc();
             services.AddCors();
+            services.AddControllers().AddNewtonsoftJson(
+            options =>
+            {
+            options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            options.SerializerSettings.ReferenceLoopHandling =
+            Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
