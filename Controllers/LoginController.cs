@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using xcart.Models;
 using xcart.Services;
 
 namespace xcart.Controllers
@@ -21,28 +22,41 @@ namespace xcart.Controllers
             login = _login;
         }
 
+<<<<<<< HEAD
         //Token Generation POST Method
         [HttpPost("{userName}/{password}")]
         public async Task<IActionResult> Login(string userName, string password)
+=======
+        //Authenticate user POST Method
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] User user)
+>>>>>>> 593a082a2b93de62a304cadd185bfde390f26aac
         {
-            IActionResult response = Unauthorized();
-
-            var user = login.ValidateUser(userName, password);
-
-            if(user!=null)
+            if (ModelState.IsValid)
             {
-                var userModelList =await login.GetByCredential(userName);
-                var userModel = userModelList[0];
-                var tokenString = login.GenerateJWTToken(userModel);
-                response = Ok(new
-                {
-                    token = tokenString,
-                    userName = userName
-                });
-            }
-            return response;
-        }
+                IActionResult response = Unauthorized();
 
+
+
+                var dbUser = login.ValidateUser(user.Name, user.Password);
+
+                if (dbUser != null)
+                {
+                    var userModelList = await login.GetByCredential(user.Name);
+                    var userModel = userModelList[0];
+                    var tokenString = login.GenerateJWTToken(userModel);
+                    response = Ok(new
+                    {
+                        token = tokenString,
+                        userName = user.Name
+                    });
+                }
+                return response;
+            }
+            return BadRequest();
+
+<<<<<<< HEAD
 <<<<<<< HEAD
         [Authorize(Roles ="User")]
         //[Authorize(AuthenticationSchemes = "Bearer")]
@@ -59,6 +73,8 @@ namespace xcart.Controllers
                 return NotFound();
             }
             return Ok(user);
+=======
+>>>>>>> 593a082a2b93de62a304cadd185bfde390f26aac
         }
     }
 }

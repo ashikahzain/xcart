@@ -17,7 +17,7 @@ namespace xcart.Services
     {
         private IConfiguration config;
 
-        XCartDbContext db;
+        XCartDbContext db; 
         public LoginService(IConfiguration _config, XCartDbContext _db)
         {
             config = _config;
