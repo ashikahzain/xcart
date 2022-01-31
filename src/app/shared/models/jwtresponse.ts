@@ -1,5 +1,5 @@
-export class JwtResponse{
-    UserName : string;
-    Token : string;
-    RoleName :string;
+export class JwtResponse {
+    UserName: string;
+    Token: string;
+    RoleName: string;
 }

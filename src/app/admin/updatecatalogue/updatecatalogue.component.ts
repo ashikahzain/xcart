@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdatecatalogueComponent implements OnInit {
 
-  filter:string;
+  filter: string;
 
   constructor() { }
 
