@@ -42,14 +42,14 @@ namespace xcart.Services
                 config["Jwt:Issuer"],
                 config["Jwt:Issuer"],
                 claims,
-                expires: DateTime.Now.AddMinutes(1),
+                expires: DateTime.Now.AddMinutes(10),
                 signingCredentials:credentials
                 );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
         //View Model for user role
-        public async Task<List<LoginViewModel>> GetByCredential(string UserName)
+        public async Task<List<LoginViewModel>> GetByUserName(string UserName)
         {
             if(db!=null)
             {

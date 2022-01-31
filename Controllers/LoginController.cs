@@ -32,7 +32,7 @@ namespace xcart.Controllers
 
             if(user!=null)
             {
-                var userModelList =await login.GetByCredential(userName);
+                var userModelList =await login.GetByUserName(userName);
                 var userModel = userModelList[0];
                 var tokenString = login.GenerateJWTToken(userModel);
                 response = Ok(new
