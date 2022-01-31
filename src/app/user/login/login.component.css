@@ -145,6 +145,7 @@ hr{
     color: red;
     font-weight: bold;
     margin-top: 75%; 
+    margin-left: 2em;
 }
 .error-name{
     position: relative;
