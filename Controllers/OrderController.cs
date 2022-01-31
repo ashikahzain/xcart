@@ -17,6 +17,7 @@ namespace xcart.Controllers
 
         XCartDbContext db;
 
+        //constructor 
         public OrderController(IOrderService _orderService, XCartDbContext _db)
         {
             orderService = _orderService;
@@ -24,7 +25,6 @@ namespace xcart.Controllers
         }
 
         [HttpGet]
-
         public async Task<IActionResult> GetOrders()
         {
             var orders = await orderService.GetAllOrders();
@@ -35,27 +35,6 @@ namespace xcart.Controllers
             return Ok(orders);
 
         }
-        /*
-        [HttpGet("trending")]
-        public Task<IActionResult> GetTrending()
-        {
-
-
-            if (db != null)
-            {
-                var itemId = from orderDetails in db.OrderDetails
-                             group orderDetails by orderDetails.Item.Id into Occurance
-
-                             select new Item
-                             {
-                                 Id = (from OD2 in Occurance
-                                       select OD2.Item.Id).Max()
-                             };
-                //int i = Convert.ToInt32(itemId);
-                return Ok(itemId)
-
-            }
-            return null;
-        }*/
+       
     }
 }

@@ -43,18 +43,5 @@ namespace xcart.Controllers
             }
             return response;
         }
-
-        [Authorize(Roles ="Admin")]
-        [HttpGet("{userName}")]
-
-        public async Task<IActionResult> GetUser(string userName)
-        {
-            var user = await login.GetByCredential(userName);
-            if(user == null)
-            {
-                return NotFound();
-            }
-            return Ok(user);
-        }
     }
 }
