@@ -10,7 +10,5 @@ namespace xcart.Services
     public interface IOrderService
     {
         public Task<List<OrderViewModel>> GetAllOrders();
-
-       // public List<Item> GetTrendingItem();
     }
 }
