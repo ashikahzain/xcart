@@ -20,5 +20,9 @@ namespace xcart.Models
         [StringLength(50)]
         public string Name { get; set; }
 
+        [Column("Points")]
+        [Required]
+        public int Points { get; set; }
+
     }
 }
