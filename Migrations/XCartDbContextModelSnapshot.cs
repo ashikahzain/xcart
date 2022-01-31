@@ -33,6 +33,10 @@ namespace xcart.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<int>("Points")
+                        .HasColumnName("Points")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Award");
@@ -89,7 +93,7 @@ namespace xcart.Migrations
                         .HasColumnName("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -473,9 +477,7 @@ namespace xcart.Migrations
 
                     b.HasOne("xcart.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("xcart.Models.Order", b =>
