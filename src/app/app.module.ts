@@ -10,11 +10,13 @@ import { EmployeeModule } from './employee/employee.module';
 import { AdminModule } from './admin/admin.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {AuthInterceptor} from './shared/services/auth.interceptor';
+import { NavbarComponent } from './shared/layout/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

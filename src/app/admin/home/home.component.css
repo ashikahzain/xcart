@@ -3,34 +3,7 @@ body{
     font-family: Roboto;
     height: 100vh;
 }
-#profile {
-    position: relative;
-    width: 130%;
-    top: 10%;
-    right: 100px;
-    background: #2d415d;
-    border-radius: 5px;
-    color: white;
-    text-align: center;
-}
-.signout{
-    margin-right: 20px;
-}
-.signout a:hover{
-    cursor: pointer;
-}
-img{
-    object-fit: contain;
-}
-#user {
-    margin-left: 10%;
-    padding-right: 10%;
-}
 
-#logout {
-    margin-right: 2%;
-    color: white;
-}
 .card {
     margin-left: 6%;
     height: 109px;

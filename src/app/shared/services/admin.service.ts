@@ -15,7 +15,7 @@ export class AdminService {
 
    //get orders using viewmodel
    getOrder(){
-     this.httpClient.get(environment.apiUrl+"/api/order").toPromise().then(response =>
+     this.httpClient.get(environment.apiUrl+"/api/orders").toPromise().then(response =>
       this.orderList=response as Order[]);
    }
 

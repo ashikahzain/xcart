@@ -16,7 +16,5 @@ filter:string;
 
 
   }
-logout(){
-  this.authservice.logout();
-}
+
 }

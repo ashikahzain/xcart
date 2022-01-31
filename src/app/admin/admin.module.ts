@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { UpdatecatalogueComponent } from './updatecatalogue/updatecatalogue.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AppModule } from '../app.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     Ng2SearchPipeModule,
     HttpClientModule
+    
   ]
 })
 export class AdminModule { }

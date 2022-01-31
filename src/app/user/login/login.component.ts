@@ -59,18 +59,27 @@ export class LoginComponent implements OnInit {
           this.jwtResponse = data;
 
           //either local/session
-          sessionStorage.setItem("jwtToken", this.jwtResponse.token);
+          sessionStorage.setItem("jwtToken", this.jwtResponse.Token);
            console.log("inside login");
            let token=sessionStorage.getItem('jwtToken');
           console.log(token);
 
-          if (this.jwtResponse.token != null) {
+          if (this.jwtResponse.Token != null) {
             //logged as Admin
             console.log("Successfully logged in");
             //storing in localStorage/sessionStorage
             localStorage.setItem("username", this.jwtResponse.UserName);
             sessionStorage.setItem("username", this.jwtResponse.UserName);
-            this.router.navigateByUrl('/admin/home');
+            sessionStorage.setItem("role",this.jwtResponse.RoleName);
+            
+            console.log(this.jwtResponse.RoleName);
+            if(this.jwtResponse.RoleName === "Admin"){
+              this.router.navigateByUrl('/admin/home');
+            }
+            else if(this.jwtResponse.RoleName === "Employee"){
+              this.router.navigateByUrl('/employee/home');
+            }
+            
           }
           else {
             this.error = "Sorry Not allowed. Invalid authorization"
