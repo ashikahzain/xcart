@@ -22,7 +22,7 @@ namespace xcart.Services
         public async Task<List<OrderViewModel>> GetAllOrders()
         {
             if (db != null)
-            {
+            {               
                 return await (from order in db.Order
                               from user in db.User
                               from status in db.StatusDescription
