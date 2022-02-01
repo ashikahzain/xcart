@@ -13,10 +13,11 @@ export class SidemenuComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  classToggled = false;
+  public classToggled = false;
 
   public toggleField(): void {
     this.classToggled = !this.classToggled;
+
   }
 
   logout(): void {
