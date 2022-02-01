@@ -25,7 +25,7 @@ namespace xcart.Services
                 //join User and Point
                 return await (from user in db.User
                               from point in db.Point
-                              where user.Id == id && user.Id == point.User.Id
+                              where user.Id == id && point.User.Id == user.Id
                               select new PointViewModel
                               {
                                   Id = user.Id,
