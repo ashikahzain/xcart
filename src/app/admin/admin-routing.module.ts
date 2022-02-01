@@ -4,8 +4,8 @@ import { HomeComponent } from '../admin/home/home.component';
 import { UpdatecatalogueComponent } from './updatecatalogue/updatecatalogue.component';
 
 const routes: Routes = [
-  {path:'admin/home', component: HomeComponent},
-  {path:'updatecatalogue', component: UpdatecatalogueComponent}
+  { path: 'admin/home', component: HomeComponent },
+  { path: 'updatecatalogue', component: UpdatecatalogueComponent }
 ];
 
 @NgModule({
