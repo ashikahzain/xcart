@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using xcart.Models;
 using xcart.Services;
 
 namespace xcart.Controllers
@@ -23,25 +24,32 @@ namespace xcart.Controllers
 
         //Authenticate user POST Method
         [AllowAnonymous]
-        [HttpPost("{userName}/{password}")]
-        public async Task<IActionResult> Login(string userName, string password)
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] User user)
         {
-            IActionResult response = Unauthorized();
-
-            var user = login.ValidateUser(userName, password);
-
-            if(user!=null)
+            if (ModelState.IsValid)
             {
-                var userModelList =await login.GetByUserName(userName);
-                var userModel = userModelList[0];
-                var tokenString = login.GenerateJWTToken(userModel);
-                response = Ok(new
+                IActionResult response = Unauthorized();
+
+
+
+                var dbUser = login.ValidateUser(user.Name, user.Password);
+
+                if (dbUser != null)
                 {
-                    token = tokenString,
-                    userName = userName
-                });
+                    var userModelList = await login.GetByCredential(user.Name);
+                    var userModel = userModelList[0];
+                    var tokenString = login.GenerateJWTToken(userModel);
+                    response = Ok(new
+                    {
+                        token = tokenString,
+                        userName = user.Name
+                    });
+                }
+                return response;
             }
-            return response;
+            return BadRequest();
+
         }
     }
 }
