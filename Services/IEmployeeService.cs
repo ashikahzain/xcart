@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using xcart.Models;
+using xcart.ViewModel;
 
 namespace xcart.Services
 {
     public interface IEmployeeService
     {
-        Task<Point> MostRewarded();
+        Task<MostAwardedEmployeeViewModel> GetMostAwardedEmployee();
+
     }
 }
