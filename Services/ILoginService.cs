@@ -13,9 +13,12 @@ namespace xcart.Services
 
         public string GenerateJWTToken(LoginViewModel userModel);
 
-        public Task<List<LoginViewModel>> GetByCredential(string UserName);
+        public Task<List<LoginViewModel>> GetByUserName(string UserName);
 
- 
+        //public User ValidateUser(string UserName, string password);
+
+
+
 
     }
 }

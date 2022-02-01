@@ -24,7 +24,6 @@ namespace xcart.Models
         public DateTime DateOfOrder { get; set; }
 
         [Column("DateOfDelivery")]
-        [Required]
         public DateTime DateOfDelivery { get; set; }
 
         [Column("Points")]

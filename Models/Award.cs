@@ -24,5 +24,9 @@ namespace xcart.Models
         [Required]
         public int Points { get; set; }
 
+        [Column("IsActive")]
+        [Required]
+        public bool IsActive { get; set; }
+
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using xcart.Models;
 using xcart.Services;
+using xcart.ViewModel;
 
 namespace xcart.Controllers
 {
@@ -22,59 +23,47 @@ namespace xcart.Controllers
             login = _login;
         }
 
-<<<<<<< HEAD
-        //Token Generation POST Method
-        [HttpPost("{userName}/{password}")]
-        public async Task<IActionResult> Login(string userName, string password)
-=======
         //Authenticate user POST Method
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] User user)
->>>>>>> 593a082a2b93de62a304cadd185bfde390f26aac
+
+        public async Task<IActionResult> Login([FromBody] LoginViewModel user)
         {
             if (ModelState.IsValid)
             {
                 IActionResult response = Unauthorized();
-
-
-
-                var dbUser = login.ValidateUser(user.Name, user.Password);
+                var dbUser = login.ValidateUser(user.UserName, user.Password);
 
                 if (dbUser != null)
                 {
-                    var userModelList = await login.GetByCredential(user.Name);
+                    var userModelList = await login.GetByUserName(user.UserName);
                     var userModel = userModelList[0];
                     var tokenString = login.GenerateJWTToken(userModel);
                     response = Ok(new
                     {
-                        token = tokenString,
-                        userName = user.Name
+                        Token = tokenString,
+                        UserName = user.UserName,
+                        RoleName = userModel.RoleName
                     });
                 }
                 return response;
             }
             return BadRequest();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        [Authorize(Roles ="User")]
-        //[Authorize(AuthenticationSchemes = "Bearer")]
-=======
+        }
+
+
         [Authorize(Roles ="Admin")]
->>>>>>> 499a1734d6a5668984ce5db969b9e4583db394d9
         [HttpGet("{userName}")]
 
         public async Task<IActionResult> GetUser(string userName)
         {
-            var user = await login.GetByCredential(userName);
+            var user = await login.GetByUserName(userName);
             if(user == null)
             {
                 return NotFound();
             }
             return Ok(user);
-=======
->>>>>>> 593a082a2b93de62a304cadd185bfde390f26aac
         }
     }
 }
