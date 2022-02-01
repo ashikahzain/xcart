@@ -17,6 +17,8 @@ namespace xcart.Services
             this.db = db;
         }
 
+        #region Get all Orders
+
         public async Task<List<OrderViewModel>> GetAllOrders()
         {
             if (db != null)
@@ -39,6 +41,7 @@ namespace xcart.Services
             }
             return null;
         }
+        #endregion
 
     }
 }
