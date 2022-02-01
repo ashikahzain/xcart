@@ -9,7 +9,6 @@ import { UpdatecatalogueComponent } from './updatecatalogue/updatecatalogue.comp
 import { HttpClientModule } from '@angular/common/http';
 import { AppModule } from '../app.module';
 
-
 @NgModule({
   declarations: [HomeComponent, UpdatecatalogueComponent],
   imports: [
