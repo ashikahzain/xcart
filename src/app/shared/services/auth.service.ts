@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from 'src/app/shared/models/user'
+import { User } from 'src/app/shared/models/user';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
@@ -9,17 +9,17 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient,private router:Router) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
-  //Authorize return token with roleId and userName
-  public loginVerify(user:User){
-    //calling webservice url and passing username and password
-    console.log("Attempt authenticate and authorize : :");
+  // Authorize return token with roleId and userName
+  public loginVerify(user: User): any {
+    // calling webservice url and passing username and password
+    console.log('Attempt authenticate and authorize :');
     console.log(user);
-    return this.httpClient.post(environment.apiUrl+"/api/login",user)
+    return this.httpClient.post(environment.apiUrl + '/api/login', user);
   }
-//logout
-  public logout(){
+  // logout
+  public logout(): void {
     localStorage.clear();
     sessionStorage.clear();
     this.router.navigateByUrl('');
