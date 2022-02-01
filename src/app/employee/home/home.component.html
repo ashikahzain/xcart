@@ -1,37 +1,38 @@
-<nav class="navbar navbar-light bg-custom">
-    <div class="container-fluid">
-        <a  (click)="toggleField()" class="bars2"><i class="fa fa-bars" id="bars"></i></a>
-        <a class="navbar-brand"><img class="xcart-nav" src="/assets/images/xlogo-nav.png"></a>
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <i class="fa fa-sign-out fa-lg" id="logout"></i>
-        </form>
-    </div>
-</nav>
+<app-sidemenu></app-sidemenu>
 
-<div class="wrapper">
-    <!-- Sidebar  -->
-    <nav id="sidebar" [class.active]="classToggled">
-        <div class="sidebar-header">
-            <h4>User Name</h4>
-        </div>
-        <ul class="list-unstyled components">
-            <li class="active">
-                <a href="#"><i class="fa fa-home fa-lg menu-home"></i>Home</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-shopping-bag fa-lg menu-order"></i>Order</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-user fa-lg menu-profile"></i>Profile</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-shopping-cart fa-lg menu-cart"></i>Cart</a>
-            </li>
+<!-- Page Content  -->
+<div id="content">
+    <div class="dropdown">
+        <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
+            Sort
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Points:High to Low</a></li>
+            <li><a class="dropdown-item" href="#">Points: Low to High</a></li>
+            <li><a class="dropdown-item" href="#">Quantity:High to Low</a></li>
+            <li><a class="dropdown-item" href="#">Quantity:Low to High</a></li>
         </ul>
-    </nav>
-
-    <!-- Page Content  -->
-    <div id="content">
+    </div>
+    <div class="user-points">
+        <p>Points Remaining
+        <br> 130</p>
+    </div>
+    <div class="item row">
+        <div class="col-lg-2"  *ngFor="let item of testArray">
+            <div class="card" >
+                <img class="item-image" src="assets/images/diary.jpg">
+                <div class="row">
+                    <div class="item-details col-lg-6">
+                        <h6 class="item-name">{{item}}</h6>
+                        <p class="item-points"></p>
+                        <p class="item-availability">Available</p>
+                    </div>
+                    <div class="item-buttons col-lg-6">
+                        <button class="add-cart"><i class="fa fa-shopping-cart fa-lg menu-cart"></i></button>
+                        <button class="buy">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
