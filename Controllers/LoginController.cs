@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using xcart.Models;
 using xcart.Services;
+using xcart.ViewModel;
 
 namespace xcart.Controllers
 {
@@ -25,7 +26,7 @@ namespace xcart.Controllers
         //Authenticate user POST Method
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] User user)
+        public async Task<IActionResult> Login([FromBody] LoginViewModel user)
         {
             if (ModelState.IsValid)
             {
@@ -33,17 +34,18 @@ namespace xcart.Controllers
 
 
 
-                var dbUser = login.ValidateUser(user.Name, user.Password);
+                var dbUser = login.ValidateUser(user.UserName, user.Password);
 
                 if (dbUser != null)
                 {
-                    var userModelList = await login.GetByCredential(user.Name);
+                    var userModelList = await login.GetByUserName(user.UserName);
                     var userModel = userModelList[0];
                     var tokenString = login.GenerateJWTToken(userModel);
                     response = Ok(new
                     {
-                        token = tokenString,
-                        userName = user.Name
+                        Token = tokenString,
+                        UserName = user.UserName,
+                        RoleName =userModel.RoleName
                     });
                 }
                 return response;

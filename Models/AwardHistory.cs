@@ -32,6 +32,9 @@ namespace xcart.Models
         [Column("Point")]
         [Required]
         public int Point { get; set; }
+
+        [Column("Status")]
+        public bool Status { get;set;}
  
     }
 }

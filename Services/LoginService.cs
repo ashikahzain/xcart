@@ -24,6 +24,7 @@ namespace xcart.Services
             db = _db;
         }
 
+        #region Token Generation
         //Token Generation method implementation
         public string GenerateJWTToken(LoginViewModel userModel)
         {
@@ -31,28 +32,32 @@ namespace xcart.Services
 
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
+            //Adding UserName and RoleName as claims
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name,userModel.UserName),
                 new Claim(ClaimTypes.Role,userModel.RoleName)
             };
 
-            //token
+            //token is generated 
             var token = new JwtSecurityToken(
                 config["Jwt:Issuer"],
                 config["Jwt:Issuer"],
                 claims,
-                expires: DateTime.Now.AddMinutes(1),
+                expires: DateTime.Now.AddMinutes(10),
                 signingCredentials:credentials
                 );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+        #endregion
+
+        #region Get User-Role 
         //View Model for user role
-        public async Task<List<LoginViewModel>> GetByCredential(string UserName)
+        public async Task<List<LoginViewModel>> GetByUserName(string UserName)
         {
             if(db!=null)
-            {
+            {                 //Joining userTable and RoleTable using userName to retrieve roleName
                 return await (from user in db.User
                               from userrole in db.UserRole
                               from role in db.Role
@@ -72,6 +77,9 @@ namespace xcart.Services
             }
             return null;
         }
+        #endregion
+
+        #region Validate User
         //User Validation with database
         public User ValidateUser(string UserName, string password)
         {
@@ -86,5 +94,6 @@ namespace xcart.Services
             }
             return null;
         }
+        #endregion
     }
 }

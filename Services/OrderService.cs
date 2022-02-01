@@ -17,10 +17,12 @@ namespace xcart.Services
             this.db = db;
         }
 
+        #region Get all Orders
+
         public async Task<List<OrderViewModel>> GetAllOrders()
         {
             if (db != null)
-            {
+            {               
                 return await (from order in db.Order
                               from user in db.User
                               from status in db.StatusDescription
@@ -39,6 +41,7 @@ namespace xcart.Services
             }
             return null;
         }
+        #endregion
 
     }
 }
