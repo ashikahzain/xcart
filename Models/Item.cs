@@ -29,7 +29,6 @@ namespace xcart.Models
         public int Points { get; set; }
 
         [Column("Image")]
-        [Required]
         public byte[] Image { get; set; }
 
         [Column("IsActive")]
