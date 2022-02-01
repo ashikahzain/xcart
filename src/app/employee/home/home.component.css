@@ -136,5 +136,10 @@ img.item-image {
     color: #fff;
 }
 .buy:hover {
-    background: #405c83;
+    background: #23416b;
+}
+
+.container1{
+    margin-left: 18%;
+    padding-top: 3%;
 }

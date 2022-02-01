@@ -10,6 +10,7 @@ import { EmployeeModule } from './employee/employee.module';
 import { AdminModule } from './admin/admin.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {AuthInterceptor} from './shared/services/auth.interceptor';
+import { SidemenuComponent } from './shared/layout/sidemenu/sidemenu.component';
 
 
 
@@ -26,7 +27,7 @@ import {AuthInterceptor} from './shared/services/auth.interceptor';
     EmployeeModule,
     AdminModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},SidemenuComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
