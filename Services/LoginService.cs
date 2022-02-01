@@ -24,6 +24,7 @@ namespace xcart.Services
             db = _db;
         }
 
+        #region Token Generation
         //Token Generation method implementation
         public string GenerateJWTToken(LoginViewModel userModel)
         {
@@ -37,7 +38,7 @@ namespace xcart.Services
                 new Claim(ClaimTypes.Role,userModel.RoleName)
             };
 
-            //token
+            //token is generated 
             var token = new JwtSecurityToken(
                 config["Jwt:Issuer"],
                 config["Jwt:Issuer"],
@@ -48,6 +49,8 @@ namespace xcart.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+        #endregion
+        #region Get User-Role 
         //View Model for user role
         public async Task<List<LoginViewModel>> GetByUserName(string UserName)
         {
@@ -72,6 +75,8 @@ namespace xcart.Services
             }
             return null;
         }
+        #endregion
+        #region Validate User
         //User Validation with database
         public User ValidateUser(string UserName, string password)
         {
@@ -86,5 +91,6 @@ namespace xcart.Services
             }
             return null;
         }
+        #endregion
     }
 }
