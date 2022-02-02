@@ -7,10 +7,10 @@
             Sort
         </button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Points:High to Low</a></li>
-            <li><a class="dropdown-item" href="#">Points: Low to High</a></li>
-            <li><a class="dropdown-item" href="#">Quantity:High to Low</a></li>
-            <li><a class="dropdown-item" href="#">Quantity:Low to High</a></li>
+            <li><a class="dropdown-item" (click)="sortPointDescending()">Points:High to Low</a></li>
+            <li><a class="dropdown-item" (click)="sortPointAscending()">Points: Low to High</a></li>
+            <li><a class="dropdown-item" (click)="sortAvailibilityDescending()">Quantity:High to Low</a></li>
+            <li><a class="dropdown-item" (click)="sortAvailibilityAscending()">Quantity:Low to High</a></li>
         </ul>
     </div>
     <div class="user-points">
@@ -23,7 +23,7 @@
     <div class="item row">
         <div class="col-lg-3 col-md-4"  *ngFor="let item of itemList">
             <div class="card" >
-                <img class="item-image" src="{{item.Image}}"/>
+                <img class="item-image" [src]="item.Image"/>
                 <div class="row">
                     <div class="item-details col-lg-6">
                         <h6 class="item-name">{{item.Name}}</h6>

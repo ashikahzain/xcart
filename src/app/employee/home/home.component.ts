@@ -9,26 +9,21 @@ import { Item } from 'src/app/shared/models/item';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  itemList: Item;
+  itemList: Item[];
   imageurl: any;
+  base64String: any;
   constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer) { }
 
   toggle: boolean;
   currentPoints: number;
   ngOnInit(): void {
-
-    //console.log("toggle"+this.toggle);
-
     this.employeeservice.getItems().subscribe(data => {
-
-      this.itemList = data;
-
-      let base64String = btoa(this.itemList[0].Image);
-
-      this.imageurl = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64, ' + base64String);
-
-      console.log(this.imageurl);
-
+      console.log(this.itemList);
+      this.itemList = data
+      data.forEach(item => {
+        item.Image = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + item.Image)
+        console.log(item.Image);
+      });
       this.employeeservice.getCurrentPoints().subscribe(
 
         data => {
@@ -40,19 +35,45 @@ export class HomeComponent implements OnInit {
         }
 
       );
-
-
-
-
     });
-
-   
-
   }
 
 
+  //Sorting
+  sortPointAscending() {
 
-  testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 171, 18, 19, 20];
+    this.itemList.sort((a, b) =>
+      parseFloat(a.Points) - parseFloat(b.Points)
+    );
+    console.log(this.itemList);
+  }
+
+
+  sortPointDescending() {
+
+    this.itemList.sort((a, b) =>
+      parseFloat(b.Points) - parseFloat(a.Points)
+    );
+    console.log(this.itemList);
+  }
+
+
+  sortAvailibilityAscending() {
+
+    this.itemList.sort((a, b) =>
+      parseFloat(a.Quantity) - parseFloat(b.Quantity)
+    );
+    console.log(this.itemList);
+  }
+
+
+  sortAvailibilityDescending() {
+
+    this.itemList.sort((a, b) =>
+      parseFloat(b.Quantity) - parseFloat(a.Quantity)
+    );
+    console.log(this.itemList);
+  }
 
 }
 
