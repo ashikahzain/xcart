@@ -36,7 +36,7 @@ namespace xcart.Controllers
                 {
                     return NotFound();
                 }
-                return Ok(point);
+                return Ok(point.CurrentPoints);
             }
             catch
             {
