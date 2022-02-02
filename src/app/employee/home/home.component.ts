@@ -14,12 +14,15 @@ export class HomeComponent implements OnInit {
    currentPoints: number;
 
   ngOnInit(): void {
-    //console.log("toggle"+this.toggle);
     this.employeeservice.getItems();
-    console.log(this.employeeservice.itemList);
+    //console.log(this.employeeservice.itemList);
 
-    this.employeeservice.getCurrentPoint();
-    console.log("Inside ts"+this.employeeservice.currentpoint);
+    this.employeeservice.getCurrentPoints().subscribe(
+      data=>{
+        //console.log("iside ts"+ data);
+        this.currentPoints=data;
+      }
+    );
     
 
   }

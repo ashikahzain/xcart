@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class EmployeeService {
   itemList: Item[];
-id: number;
-currentpoint:Points[];
+  id: number;
+  currentpoint: number;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -21,12 +21,8 @@ currentpoint:Points[];
       this.itemList = response as Item[]);
   }
 
-  getCurrentPoint(){
-  this.id=parseInt(sessionStorage.getItem('userid'));
-  this.httpClient.get(environment.apiUrl +'/api/points/'+this.id).toPromise().then(response =>
-    this.currentpoint = response as Points[]);
-
-    console.log("Inside Service"+this.currentpoint);
-
+  getCurrentPoints():Observable<any>{
+    this.id = parseInt(sessionStorage.getItem('userid'));
+    return this.httpClient.get(environment.apiUrl+"/api/points/"+this.id);
   }
 }
