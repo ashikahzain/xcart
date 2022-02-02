@@ -41,6 +41,7 @@ namespace xcart.Controllers
                     var tokenString = login.GenerateJWTToken(userModel);
                     response = Ok(new
                     {
+                        UserId=userModel.UserId,
                         Token = tokenString,
                         UserName = user.UserName,
                         RoleName = userModel.RoleName

@@ -9,6 +9,8 @@ namespace xcart.Services
 {
     public interface IPointService
     {
-        Task<PointViewModel> GetPointsByEmployeeId(int id);
+        Task<Point> GetPointsByEmployeeId(int id);
+
+
     }
 }
