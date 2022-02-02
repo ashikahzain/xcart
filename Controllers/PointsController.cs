@@ -26,7 +26,7 @@ namespace xcart.Controllers
 
         #region Get Points By Employee Id
         [HttpGet]
-        [Route("Id/{Id}")]
+        [Route("{Id}")]
         public async Task<IActionResult> GetPointsByEmployeeId(int id)
         {
             try
@@ -36,7 +36,7 @@ namespace xcart.Controllers
                 {
                     return NotFound();
                 }
-                return Ok(point);
+                return Ok(point.CurrentPoints);
             }
             catch
             {
