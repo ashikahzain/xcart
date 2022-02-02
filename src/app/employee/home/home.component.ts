@@ -15,7 +15,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.employeeservice.getItems();
-    //console.log(this.employeeservice.itemList);
+    console.log("Hi "+this.employeeservice.itemList);
+    //console.log(this.employeeservice.itemList.sort());
 
     this.employeeservice.getCurrentPoints().subscribe(
       data=>{
