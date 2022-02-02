@@ -8,11 +8,14 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private router: Router, private authservice: AuthService,public toastr:ToastrService) { }
 
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -28,12 +31,38 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     return next.handle(request)
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          console.log(error);
-          // this.error = 'Invalid Username or Password. Try Again!';
-          return throwError(error.error);
+      .pipe(catchError(
+        (error: HttpErrorResponse) => {
+          if (error instanceof HttpErrorResponse) {
+            if (error.error instanceof ErrorEvent) {
+              console.error("Error Event");
+            } else {
+              console.log(`error status : ${error.status} ${error.statusText}`);
+              switch (error.status) {
+                case 401:      //login
+                  console.log('Unauthorized');
+                  this.authservice.logout();
+                  this.toastr.error('Unauthorized');
+                  break;
+                case 403:     //forbidden
+                  console.log('Access Denied');
+                  this.toastr.error('Access Denied');
+                  break;
+                case 404: //not found
+                  console.log('Not found');
+                  this.toastr.error('Not Found');
+                case 400:
+                  console.log('Bad Request');
+                  this.toastr.error('Bad Request');
+              }
+            }
+          } else {
+            console.error("Error occured");
+          }
+          return throwError(error);
         })
       );
+
+
   }
 }
