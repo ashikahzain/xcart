@@ -21,13 +21,13 @@
 
 
     <div class="item row">
-        <div class="col-lg-3 col-md-4"  *ngFor="let item of testArray">
+        <div class="col-lg-3 col-md-4"  *ngFor="let item of itemList">
             <div class="card" >
-                <img class="item-image" src="assets/images/diary.jpg">
+                <img class="item-image" src="{{item.Image}}"/>
                 <div class="row">
                     <div class="item-details col-lg-6">
-                        <h6 class="item-name">{{item}}</h6>
-                        <p class="item-points"></p>
+                        <h6 class="item-name">{{item.Name}}</h6>
+                        <p class="item-points">{{item.Points}}</p>
                         <p class="item-availability">Available</p>
                     </div>
                     <div class="item-buttons col-lg-6">

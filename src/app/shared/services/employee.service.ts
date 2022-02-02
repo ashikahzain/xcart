@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Item } from 'src/app/shared/models/item'
 import { Observable } from 'rxjs';
+import { Points } from 'src/app/shared/models/point'
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,8 @@ export class EmployeeService {
   constructor(private httpClient: HttpClient) { }
 
   // Get all Items 
-  getItems() {
-    this.httpClient.get(environment.apiUrl + '/api/items').toPromise().then(response =>
-      this.itemList = response as Item[]);
-
-     
+  getItems():Observable<any> {
+    return this.httpClient.get(environment.apiUrl + '/api/items');
   }
 
   getCurrentPoints():Observable<any>{

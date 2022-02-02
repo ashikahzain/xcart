@@ -3,6 +3,6 @@ export class Item{
     Name:string;
     Quantity:string;
     Points:string;
-    Image: string;
+    Image: ArrayBuffer;
     IsActive:boolean;
 }
