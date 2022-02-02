@@ -18,18 +18,17 @@ namespace xcart.Services
         }
 
         #region Get Points By Element Id
-        public async Task<PointViewModel> GetPointsByEmployeeId(int id)
+        public async Task<Point> GetPointsByEmployeeId(int id)
         {
             if (db != null)
             {
                 //join User and Point
-                return await (from user in db.User
-                              from point in db.Point
-                              where user.Id == id && point.User.Id == user.Id
-                              select new PointViewModel
+                return await (from point in db.Point
+                              where point.User.Id == id 
+                              select new Point
                               {
-                                  Id = user.Id,
-                                  CurentPoints = point.CurrentPoints
+                                  Id = point.User.Id,
+                                  CurrentPoints = point.CurrentPoints
                               }).FirstOrDefaultAsync();
             }
             return null;

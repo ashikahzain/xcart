@@ -26,14 +26,12 @@ namespace xcart.Controllers
         //Authenticate user POST Method
         [AllowAnonymous]
         [HttpPost]
+
         public async Task<IActionResult> Login([FromBody] LoginViewModel user)
         {
             if (ModelState.IsValid)
             {
                 IActionResult response = Unauthorized();
-
-
-
                 var dbUser = login.ValidateUser(user.UserName, user.Password);
 
                 if (dbUser != null)
@@ -43,16 +41,30 @@ namespace xcart.Controllers
                     var tokenString = login.GenerateJWTToken(userModel);
                     response = Ok(new
                     {
+                        UserId=userModel.UserId,
                         Token = tokenString,
                         UserName = user.UserName,
-                        RoleName =userModel.RoleName
-                        
+                        RoleName = userModel.RoleName
                     });
                 }
                 return response;
             }
             return BadRequest();
 
+        }
+
+
+        [Authorize(Roles ="Admin")]
+        [HttpGet("{userName}")]
+
+        public async Task<IActionResult> GetUser(string userName)
+        {
+            var user = await login.GetByUserName(userName);
+            if(user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
         }
     }
 }
