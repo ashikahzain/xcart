@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -25,8 +26,8 @@ namespace xcart.Controllers
         }
 
         #region Get Points By Employee Id
-        [HttpGet]
-        [Route("{Id}")]
+        [Authorize(Roles ="Admin")]
+        [HttpGet("{Id}")]
         public async Task<IActionResult> GetPointsByEmployeeId(int id)
         {
             try
