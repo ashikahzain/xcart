@@ -23,7 +23,7 @@
     <div class="item row">
         <div class="col-lg-3 col-md-4"  *ngFor="let item of itemList">
             <div class="card" >
-                <img class="item-image" src="{{item.image}}"/>
+                <img class="item-image" [src]="imageurl"/>
                 <div class="row">
                     <div class="item-details col-lg-6">
                         <h6 class="item-name">{{item.Name}}</h6>
