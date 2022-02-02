@@ -24,4 +24,8 @@ export class EmployeeService {
     this.id = parseInt(sessionStorage.getItem('userid'));
     return this.httpClient.get(environment.apiUrl+"/api/points/"+this.id);
   }
+
+  getMostAwardedEmployee():Observable<any>{
+    return this.httpClient.get(environment.apiUrl+"/api/employees/most-awards");
+  }
 }

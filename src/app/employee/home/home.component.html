@@ -7,10 +7,10 @@
             Sort
         </button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Points:High to Low</a></li>
-            <li><a class="dropdown-item" href="#">Points: Low to High</a></li>
-            <li><a class="dropdown-item" href="#">Quantity:High to Low</a></li>
-            <li><a class="dropdown-item" href="#">Quantity:Low to High</a></li>
+            <li><a class="dropdown-item" (click)="sortPointDescending()">Points:High to Low</a></li>
+            <li><a class="dropdown-item" (click)="sortPointAscending()">Points: Low to High</a></li>
+            <li><a class="dropdown-item" (click)="sortAvailibilityDescending()">Quantity:High to Low</a></li>
+            <li><a class="dropdown-item" (click)="sortAvailibilityAscending()">Quantity:Low to High</a></li>
         </ul>
     </div>
     <div class="user-points">
