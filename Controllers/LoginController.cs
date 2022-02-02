@@ -46,6 +46,7 @@ namespace xcart.Controllers
                         Token = tokenString,
                         UserName = user.UserName,
                         RoleName =userModel.RoleName
+                        
                     });
                 }
                 return response;
