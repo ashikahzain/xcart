@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
     this.employeeservice.getItems().subscribe(data => {
       this.itemList = data;
       let base64String = btoa(this.itemList[0].Image);
-      console.log(base64String);
       this.imageurl = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64, ' + base64String);
       console.log(this.imageurl);
       this.employeeservice.getCurrentPoints().subscribe(
