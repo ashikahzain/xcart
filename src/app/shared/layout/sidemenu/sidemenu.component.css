@@ -46,7 +46,6 @@
       transition: all 0.3s;
   }
   
-  
   /* ---------------------------------------------------
       SIDEBAR STYLE
   ----------------------------------------------------- */
@@ -62,6 +61,7 @@
   #sidebar {
       min-width: 200px;
       max-width: 200px;
+      margin-top: 50px;
       background: #8EA6C8;
       color: #fff;
       transition: all 0.3s;
@@ -143,18 +143,6 @@
       font-size: 0.9em !important;
       padding-left: 30px !important;
       background: #8EA6C8;
-  }
-  
-  
-  /* ---------------------------------------------------
-      CONTENT STYLE
-  ----------------------------------------------------- */
-  
-  #content {
-      width: 100%;
-      padding: 20px;
-      min-height: 100vh;
-      transition: all 0.3s;
   }
   
   /* ---------------------------------------------------
