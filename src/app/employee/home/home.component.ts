@@ -11,10 +11,10 @@ import { Item } from 'src/app/shared/models/item';
 export class HomeComponent implements OnInit {
   itemList: Item;
   imageurl: any;
-  constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent,private domSanitizer:DomSanitizer) { }
+  constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer) { }
 
   toggle: boolean;
-
+  currentPoints: number;
   ngOnInit(): void {
     //console.log("toggle"+this.toggle);
     this.employeeservice.getItems().subscribe(data => {
@@ -23,9 +23,22 @@ export class HomeComponent implements OnInit {
       console.log(base64String);
       this.imageurl = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64, ' + base64String);
       console.log(this.imageurl);
+      this.employeeservice.getCurrentPoints().subscribe(
+        data => {
+          //console.log("iside ts"+ data);
+          this.currentPoints = data;
+        }
+      );
+
 
     });
+
+
+
+
   }
+
+  testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 171, 18, 19, 20];
 
 
 }

@@ -10,8 +10,9 @@ export class SidemenuComponent implements OnInit {
 
   constructor(private authservice: AuthService) { }
   userName = sessionStorage.getItem('username');
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+    console.log(this.userName);
   }
   public classToggled = false;
 
