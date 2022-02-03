@@ -38,6 +38,19 @@ namespace xcart.Controllers
             return Ok(orders);
 
         }
-       
+
+        [HttpGet]
+        [Route("trending-item")]
+        public async Task<IActionResult> GetTrendingIteme()
+        {
+            var orders = await orderService.GetTrendingIteme();
+            if (orders == null)
+            {
+                return NotFound();
+            }
+            return Ok(orders);
+
+        }
+
     }
 }
