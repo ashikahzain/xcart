@@ -13,6 +13,7 @@ import {AuthInterceptor} from './shared/services/auth.interceptor';
 import { SidemenuComponent } from './shared/layout/sidemenu/sidemenu.component';
 import { ToastrModule } from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -29,7 +30,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     EmployeeModule,
     AdminModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},SidemenuComponent],
   bootstrap: [AppComponent]

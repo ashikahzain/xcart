@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { catchError } from 'rxjs/operators'
 import {
   HttpRequest,
   HttpHandler,
@@ -7,7 +8,6 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -15,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router, private authservice: AuthService,public toastr:ToastrService) { }
+  constructor(private router: Router, private authservice: AuthService, public toastr: ToastrService) { }
 
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -25,11 +25,17 @@ export class AuthInterceptor implements HttpInterceptor {
     if (token) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         }
       });
     }
-
+    else {
+      request = request.clone({
+        setHeaders: {
+          ApiKey: 'SecretKey'
+        }
+      });
+    }
     return next.handle(request)
       .pipe(catchError(
         (error: HttpErrorResponse) => {

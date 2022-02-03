@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { EmployeeService } from 'src/app/shared/services/employee.service'
 import { SidemenuComponent } from 'src/app/shared/layout/sidemenu/sidemenu.component'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -9,12 +9,10 @@ import { Item } from 'src/app/shared/models/item';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('child') private child: SidemenuComponent;
+  filter: string ;
   itemList: Item[];
-  imageurl: any;
-  base64String: any;
   constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer) { }
-
-  toggle: boolean;
   currentPoints: number;
   ngOnInit(): void {
     this.employeeservice.getItems().subscribe(data => {
