@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   toggle: boolean;
   currentPoints: number;
   ngOnInit(): void {
-    this.filter = this.sidemenu.filter;
+
     this.employeeservice.getItems().subscribe(data => {
       console.log(this.itemList);
       this.itemList = data

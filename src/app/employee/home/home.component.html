@@ -1,4 +1,4 @@
-<app-sidemenu></app-sidemenu>
+<app-sidemenu [(ngModel)]='filter' name="filter" ngDefaultControl></app-sidemenu>
 
 <!-- Page Content  -->
 <div id="content">
@@ -21,8 +21,8 @@
     <div class="container1">
 
 
-        <div class="item row" >
-            <div class="col-lg-3 col-md-4" *ngFor="let item of itemList | filter:filter" >
+        <div class="item row">
+            <div class="col-lg-3 col-md-4" *ngFor="let item of itemList | filter:filter">
                 <div class="card" [ngClass]="item.Quantity == '0' ? 'isOn' : 'isDisabled'">
                     <div class="img-size">
                         <img class="item-image" [src]="item.Image" />
@@ -36,7 +36,8 @@
                             <p class="item-outofstock" *ngIf="!item.Quantity">Out of Stock</p>
                         </div>
                         <div class="item-buttons col-lg-6">
-                            <button class="add-cart" [disabled]="!(item.Quantity)" ><i class="fa fa-shopping-cart fa-lg menu-cart"></i></button>
+                            <button class="add-cart" [disabled]="!(item.Quantity)"><i
+                                    class="fa fa-shopping-cart fa-lg menu-cart"></i></button>
                             <button class="buy" [disabled]="!(item.Quantity)">Buy</button>
                         </div>
                     </div>
