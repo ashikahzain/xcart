@@ -43,5 +43,22 @@ namespace xcart.Services
         }
         #endregion
 
+        public async Task<TrendingItemViewModel> GetTrendingIteme()
+        {
+            if (db != null)
+            {
+                //join User and Point
+                return await(from orders in db.OrderDetails
+                             from item in db.Item
+                             group orders by orders.Item.Id into Trending
+                             select new TrendingItemViewModel
+                             {
+                                 Id = Trending.Key,
+                                 Quantity = Trending.Sum(x => x.Quantity),
+                             }).FirstOrDefaultAsync();
+            }
+            return null;
+        }
+
     }
 }
