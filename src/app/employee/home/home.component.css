@@ -198,52 +198,19 @@ img.item-image {
     
 }
 
-/* Large devices (laptops/desktops, 992px and up) 
+/* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) and (min-width:600px){
-    .container{
-        width: 60%;
-        left: 40%;
+
+    .add-cart {
+        position: absolute;
+        top: 200px;
     }
-    hr{
-        width: 90px;   
-        left: 35%;
-        top: 7.5%;
-    }
-    .main-error{
-        margin-top: 18em;
-    margin-left: 20%;
-    font-size: 0.8em;
-    }
-    .crederror1{
-        padding-top: 25px;
-    }
-    .crederror2{
-        padding-top: 45px;
+    .buy {
+        position: absolute;
+        top: 240px;
     }
     
 }
-@media only screen and (max-width: 1200px) and (min-width:992px) {
-    .container{
-        width: 35%;
-        left: 40%;
-    }
-    hr{
-        width: 25%;   
-        left: 36%;
-        top: 7.5%;
-    }
-    .main-error{
-        margin-top: 75%;
-    font-size: 0.9em;
-    margin-left: 7%;
-    }
-    .crederror1{
-        padding-top: 20px;
-    }
-    .crederror2{
-        padding-top: 40px;
-    }
-}
-*/
+
 
 
