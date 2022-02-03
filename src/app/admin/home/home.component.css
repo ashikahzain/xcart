@@ -20,6 +20,18 @@ body{
     width: 100%;
 }
 
+.card-lower{
+    margin-left: 6%;
+    height: 109px;
+    background: #ecb626;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    color: white;
+    font-weight: 400;
+    border: none;
+    font-size: 24px;
+}
+
 .fa-arrow-right {
     color: white;
     margin-left: 90%;
@@ -71,7 +83,7 @@ font-style: normal;
 font-weight: 600;
 font-size: 24px;
 line-height: 28px;
-display: flex;
+
 
 background-color:white;
 color: #1F4173;
@@ -91,4 +103,83 @@ color: #1F4173;
     margin-left: 5%;
     margin-top: 3%;
     font-size:large;
+}
+
+@media only screen and (max-width:480px) {
+    .card {
+        margin-left: 30%;
+        margin-bottom: 5%;
+    }
+    .card-deck {
+        width: 70%;
+    }
+    .fa-arrow-right {
+        margin-left: 90%;
+        margin-bottom: 10px;
+    }
+
+    .search {
+        display: inline;
+        margin-left: 40%;
+        overflow: hidden;
+    }
+
+    .card-lower{
+        margin-top: 2%;
+    }
+
+}
+
+@media only screen and (max-width: 600px) and (min-width:480px){
+    .card {
+        margin-left: 50%;
+        margin-bottom: 5%;
+    }
+    .card-deck {
+        width: 50%;
+    }
+
+    .search {
+        display: inline;
+        margin-left: 50%;
+        overflow: hidden;
+    }
+
+    .card-lower{
+        margin-top: 2%;
+    }
+}
+
+@media only screen and (max-width: 992px) and (min-width:600px){
+    .card {
+        margin-left: 55%;
+        margin-bottom: 5%;
+    }
+    .card-deck {
+        width: 40%;
+    }
+
+    .order-list{
+    margin-left: 10%;
+    max-width: 90%;
+    }
+
+    .search {
+        display: inline;
+        margin-left: 50%;
+        overflow: hidden;
+    }
+
+    .card-lower{
+        margin-top: 2%;
+        margin-left: 15%;
+    }
+}
+
+@media only screen and (max-width: 1200px) and (min-width:994px){
+    .search {
+        display: inline;
+        margin-left: 60%;
+        overflow: hidden;
+    }
 }

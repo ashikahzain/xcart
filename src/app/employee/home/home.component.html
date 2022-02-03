@@ -30,7 +30,7 @@
                             <h6 class="item-name">{{item.Name}}</h6>
                             <p class="item-points">Points: {{item.Points}}</p>
 
-                            <p class="item-availability" *ngIf="item.Quantity">Available</p>
+                            <p class="item-availability" *ngIf="item.Quantity">Available:{{item.Quantity}}</p>
                             <p class="item-outofstock" *ngIf="!item.Quantity">Out of Stock</p>
                         </div>
                         <div class="item-buttons col-lg-6">
