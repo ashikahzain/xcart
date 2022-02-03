@@ -24,7 +24,7 @@ namespace xcart.Controllers
         }
 
         //Authenticate user POST Method
-        [AllowAnonymous]
+        [ApiKeyService]
         [HttpPost]
 
         public async Task<IActionResult> Login([FromBody] LoginViewModel user)

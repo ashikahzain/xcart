@@ -25,7 +25,7 @@ namespace xcart.Controllers
             db = _db;
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllItems()
         {
