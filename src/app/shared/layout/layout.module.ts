@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,10 +13,12 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
   imports: [
     CommonModule,
     LayoutRoutingModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ],
   exports: [
     NavbarComponent,
-    SidemenuComponent
+    SidemenuComponent,
   ]
 })
 export class LayoutModule { }

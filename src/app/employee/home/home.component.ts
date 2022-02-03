@@ -9,6 +9,7 @@ import { Item } from 'src/app/shared/models/item';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  filter : string;
   itemList: Item[];
   imageurl: any;
   base64String: any;
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   toggle: boolean;
   currentPoints: number;
   ngOnInit(): void {
+    this.filter = this.sidemenu.filter;
     this.employeeservice.getItems().subscribe(data => {
       console.log(this.itemList);
       this.itemList = data

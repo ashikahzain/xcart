@@ -3,7 +3,7 @@
 <!-- Page Content  -->
 <div id="content">
     <div class="dropdown">
-        <button type="button"  class="dropdown-toggle" data-bs-toggle="dropdown">
+        <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
             Sort
         </button>
         <ul class="dropdown-menu">
@@ -15,29 +15,34 @@
     </div>
     <div class="user-points">
         <p>Points Remaining
-        <br>{{currentPoints}}</p>
+            <br>{{currentPoints}}
+        </p>
     </div>
     <div class="container1">
 
 
-    <div class="item row">
-        <div class="col-lg-3 col-md-4"  *ngFor="let item of itemList">
-            <div class="card" >
-                <img class="item-image" [src]="item.Image"/>
-                <div class="row">
-                    <div class="item-details col-lg-6">
-                        <h6 class="item-name">{{item.Name}}</h6>
-                        <p class="item-points">{{item.Points}}</p>
-                        <p class="item-availability">Available</p>
+        <div class="item row" >
+            <div class="col-lg-3 col-md-4" *ngFor="let item of itemList | filter:filter" >
+                <div class="card" [ngClass]="item.Quantity == '0' ? 'isOn' : 'isDisabled'">
+                    <div class="img-size">
+                        <img class="item-image" [src]="item.Image" />
                     </div>
-                    <div class="item-buttons col-lg-6">
-                        <button class="add-cart"><i class="fa fa-shopping-cart fa-lg menu-cart"></i></button>
-                        <button class="buy">Buy</button>
+                    <div class="row">
+                        <div class="item-details col-lg-6">
+                            <h6 class="item-name">{{item.Name}}</h6>
+                            <p class="item-points">Points: {{item.Points}}</p>
+
+                            <p class="item-availability" *ngIf="item.Quantity">Available</p>
+                            <p class="item-outofstock" *ngIf="!item.Quantity">Out of Stock</p>
+                        </div>
+                        <div class="item-buttons col-lg-6">
+                            <button class="add-cart" [disabled]="!(item.Quantity)" ><i class="fa fa-shopping-cart fa-lg menu-cart"></i></button>
+                            <button class="buy" [disabled]="!(item.Quantity)">Buy</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 </div>

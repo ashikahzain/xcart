@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { catchError } from 'rxjs/operators'
 import {
   HttpRequest,
   HttpHandler,
@@ -7,7 +8,6 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { ToastrService } from 'ngx-toastr';

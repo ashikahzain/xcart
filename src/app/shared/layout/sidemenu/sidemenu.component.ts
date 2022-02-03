@@ -8,6 +8,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SidemenuComponent implements OnInit {
 
+  filter:string;
+
   constructor(private authservice: AuthService) { }
   userName = sessionStorage.getItem('username');
 
