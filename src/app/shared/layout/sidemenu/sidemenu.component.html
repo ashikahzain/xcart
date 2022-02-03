@@ -4,7 +4,7 @@
         <a  (click)="toggleField()" class="bars2"><i class="fa fa-bars" id="bars"></i></a>
         <a class="navbar-brand"><img class="xcart-nav" src="/assets/images/xlogo-nav.png"></a>
         <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="filter">
             <i class="fa fa-sign-out fa-lg" id="logout" (click)="logout()"></i>
         </form>
     </div>
