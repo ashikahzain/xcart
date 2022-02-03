@@ -23,7 +23,7 @@
 
         <div class="item row">
             <div class="col-lg-3 col-md-4" *ngFor="let item of itemList | filter:filter">
-                <div class="card" [ngClass]="item.Quantity == '0' ? 'isOn' : 'isDisabled'">
+                <div class="card" [ngClass]="item.Quantity == '0' ? 'isDisabled' : 'isOn'">
                     <div class="img-size">
                         <img class="item-image" [src]="item.Image" />
                     </div>
