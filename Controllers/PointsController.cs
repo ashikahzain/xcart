@@ -26,7 +26,7 @@ namespace xcart.Controllers
         }
 
         #region Get Points By Employee Id
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles ="Admin,Employee")]
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetPointsByEmployeeId(int id)
         {
