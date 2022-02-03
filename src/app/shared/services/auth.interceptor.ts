@@ -15,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router, private authservice: AuthService,public toastr:ToastrService) { }
+  constructor(private router: Router, private authservice: AuthService, public toastr: ToastrService) { }
 
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -25,11 +25,17 @@ export class AuthInterceptor implements HttpInterceptor {
     if (token) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         }
       });
     }
-
+    else {
+      request = request.clone({
+        setHeaders: {
+          ApiKey: 'SecretKey'
+        }
+      });
+    }
     return next.handle(request)
       .pipe(catchError(
         (error: HttpErrorResponse) => {
