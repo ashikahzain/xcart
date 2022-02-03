@@ -78,13 +78,16 @@ color: #1F4173;
 }
 #trending-item{
     background-color:white;
+    color: black;
 }
 #empdetail{
     text-align: left; 
     margin-left: 5%;
+    font-size: medium;
 }
 #empdetails{
     text-align: left; 
     margin-left: 5%;
     margin-top: 3%;
+    font-size:large;
 }
