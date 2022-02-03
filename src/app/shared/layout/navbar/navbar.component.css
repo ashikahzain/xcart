@@ -8,13 +8,13 @@
     color: white;
     text-align: center;
 }
-.signout{
+.signout {
     margin-right: 20px;
 }
-.signout a:hover{
+.signout a:hover {
     cursor: pointer;
 }
-img{
+img {
     object-fit: contain;
 }
 #user {
@@ -25,4 +25,37 @@ img{
 #logout {
     margin-right: 2%;
     color: white;
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) and (min-width: 400px) {
+    .container {
+        width: 60%;
+        left: 0%;
+    }
+ 
+   
+}
+
+@media only screen and (max-width: 1400px) and (min-width: 992px) {
+    .container {
+        width: 45%;
+    }
+    .signout{
+        margin-right: 0px;
+    }
+    .form-group{
+        float: right;
+    }
+}
+@media only screen and (max-width: 1200px) and (min-width: 992px) {
+    .navigation-buttons{
+        float: right;
+        margin-right: 0;
+        margin-left: auto;
+    }
+}
+@media only screen and (max-width: 400px) and (min-width: 200px) {
+    .container{
+        width: 30%;
+    }
 }
