@@ -31,7 +31,7 @@
                     <td> &nbsp; {{emp.UserId}}</td>
                     <td>{{emp.Name}}</td>
                     <td>{{emp.CurrentPoints}}</td>
-                    <td><button class="btn btn-sm ">+</button> &nbsp;
+                    <td><button class="btn btn-sm " (click)="open()">+</button> &nbsp;
                         <button class="btn btn-sm ">--</button></td>
                     <td><button class="btn btn-primary" (click)="awardHistory(emp.UserId)">view history</button></td>
         
