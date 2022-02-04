@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from '../admin/home/home.component';
+import { UpdateawardComponent } from './updateaward/updateaward.component';
 import { UpdatecatalogueComponent } from './updatecatalogue/updatecatalogue.component';
 
 const routes: Routes = [
   { path: 'admin/home', component: HomeComponent },
-  { path: 'updatecatalogue', component: UpdatecatalogueComponent }
+  { path: 'updatecatalogue', component: UpdatecatalogueComponent },
+  { path: 'updateaward', component: UpdateawardComponent}
 ];
 
 @NgModule({

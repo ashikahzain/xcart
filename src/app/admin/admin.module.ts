@@ -7,9 +7,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { UpdatecatalogueComponent } from './updatecatalogue/updatecatalogue.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from 'src/app/shared/layout/layout.module';
+import { UpdateawardComponent } from './updateaward/updateaward.component';
 
 @NgModule({
-  declarations: [HomeComponent, UpdatecatalogueComponent],
+  declarations: [HomeComponent, UpdatecatalogueComponent, UpdateawardComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
