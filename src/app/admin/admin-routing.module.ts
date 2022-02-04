@@ -6,6 +6,7 @@ import { UpdatecatalogueComponent } from './updatecatalogue/updatecatalogue.comp
 import {EmployeeListComponent} from './employee-list/employee-list.component';
 import {AwardHistoryComponent} from './award-history/award-history.component';
 import {AddPointComponent} from './add-point/add-point.component';
+import { AddAwardComponent } from './award/add-award/add-award.component';
 
 const routes: Routes = [
   { path: 'admin/home', component: HomeComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:'admin/employeeList',component:EmployeeListComponent},
   {path:'admin/awardHistory/:UserId',component:AwardHistoryComponent},
   {path:'admin/addPoints',component:AddPointComponent},
-  { path: 'admin/award', component: AwardComponent}
+  { path: 'admin/award', component: AwardComponent},
+  { path: 'admin/award/add', component: AddAwardComponent}
 
 ];
 

@@ -11,10 +11,11 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { AwardHistoryComponent } from './award-history/award-history.component';
 import { AddPointComponent } from './add-point/add-point.component';
 import { AwardComponent } from './award/award.component';
+import { AddAwardComponent } from './award/add-award/add-award.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, UpdatecatalogueComponent, AwardComponent,EmployeeListComponent, AwardHistoryComponent, AddPointComponent],
+  declarations: [HomeComponent, UpdatecatalogueComponent, AwardComponent,EmployeeListComponent, AwardHistoryComponent, AddPointComponent, AddAwardComponent],
 
   imports: [
     CommonModule,
