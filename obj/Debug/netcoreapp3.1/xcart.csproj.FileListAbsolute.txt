@@ -186,3 +186,4 @@ D:\Xcart\Api\xcart\obj\Debug\netcoreapp3.1\xcart.RazorTargetAssemblyInfo.cache
 D:\Xcart\Api\xcart\obj\Debug\netcoreapp3.1\xcart.dll
 D:\Xcart\Api\xcart\obj\Debug\netcoreapp3.1\xcart.pdb
 D:\Xcart\Api\xcart\obj\Debug\netcoreapp3.1\xcart.genruntimeconfig.cache
+D:\Experion\XCart\BackEnd\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.AssemblyReference.cache

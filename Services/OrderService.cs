@@ -43,7 +43,7 @@ namespace xcart.Services
         }
         #endregion
 
-        public async Task<TrendingItemViewModel> GetTrendingIteme()
+        public async Task<List<TrendingItemViewModel>> GetTrendingIteme()
         {
             if (db != null)
             {
@@ -54,8 +54,8 @@ namespace xcart.Services
                              select new TrendingItemViewModel
                              {
                                  Id = Trending.Key,
-                                 Quantity = Trending.Sum(x => x.Quantity),
-                             }).FirstOrDefaultAsync();
+                                 Quantity = Trending.Sum(x=>x.Quantity),
+                             }).ToListAsync();
             }
             return null;
         }
