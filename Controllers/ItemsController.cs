@@ -27,8 +27,8 @@ namespace xcart.Controllers
             itemService = _itemService;
             db = _db;
         }
-
-        //[Authorize]
+        //get all items 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllItems()
         {

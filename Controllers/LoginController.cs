@@ -24,7 +24,7 @@ namespace xcart.Controllers
         }
 
         //Authenticate user POST Method
-        [AllowAnonymous]
+        [ApiKeyService]
         [HttpPost]
 
         public async Task<IActionResult> Login([FromBody] LoginViewModel user)
@@ -54,7 +54,7 @@ namespace xcart.Controllers
         }
 
 
-        [Authorize(Roles ="Admin")]
+       /* [Authorize(Roles ="Admin")]
         [HttpGet("{userName}")]
 
         public async Task<IActionResult> GetUser(string userName)
@@ -65,6 +65,6 @@ namespace xcart.Controllers
                 return NotFound();
             }
             return Ok(user);
-        }
+        }*/
     }
 }
