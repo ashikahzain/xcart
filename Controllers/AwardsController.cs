@@ -26,7 +26,8 @@ namespace xcart.Controllers
             awardService = _awardService;
             db = _db;
         }
-        //get all awards 
+
+        #region Get All Awards
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllAwards()
@@ -39,5 +40,79 @@ namespace xcart.Controllers
             return Ok(awards);
 
         }
+        #endregion
+
+        #region Add new Award
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> AddAward([FromBody] Award model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var awardId = await awardService.AddAward(model);
+                    if (awardId > 0)
+                    {
+                        return Ok(awardId);
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+                catch (Exception)
+                {
+                    return BadRequest();
+                }
+            }
+            return BadRequest();
+        }
+        #endregion
+
+        #region Update Award
+        [Authorize]
+        [HttpPut]
+        public async Task<IActionResult> UpdateAward([FromBody] Award model)
+        {
+            //check the validation of body
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await awardService.UpdateAward(model);
+                    return Ok();
+                }
+                catch (Exception)
+                {
+                    return BadRequest();
+                }
+            }
+            return BadRequest();
+        }
+        #endregion
+
+        #region Delete Award
+        [Authorize]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAward(int id)
+        {
+            //Check the validation of body
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await awardService.DeleteAward(id);
+                    return Ok();
+                }
+                catch (Exception)
+                {
+                    return BadRequest();
+                }
+            }
+            return BadRequest();
+        }
+        #endregion
+
     }
 }

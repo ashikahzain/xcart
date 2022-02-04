@@ -10,5 +10,8 @@ namespace xcart.Services
     public interface IAwardService
     {
         public Task<List<Award>> GetAllAwards();
+        public Task<int> AddAward(Award award);
+        public Task UpdateAward(Award award);
+        public Task DeleteAward(int id);
     }
 }
