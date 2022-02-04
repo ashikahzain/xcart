@@ -12,8 +12,10 @@ export class HomeComponent implements OnInit {
   @ViewChild('child') private child: SidemenuComponent;
   filter: string ;
   itemList: Item[];
-  constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer) { }
   currentPoints: number;
+
+  constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer) { }
+  
   ngOnInit(): void {
     this.employeeservice.getItems().subscribe(data => {
       console.log(this.itemList);
