@@ -10,11 +10,12 @@ import { LayoutModule } from 'src/app/shared/layout/layout.module';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { AwardHistoryComponent } from './award-history/award-history.component';
 import { AddPointComponent } from './add-point/add-point.component';
-import { UpdateawardComponent } from './updateaward/updateaward.component';
+import { AwardComponent } from './award/award.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, UpdatecatalogueComponent, UpdateawardComponent,EmployeeListComponent, AwardHistoryComponent, AddPointComponent],
+  declarations: [HomeComponent, UpdatecatalogueComponent, AwardComponent,EmployeeListComponent, AwardHistoryComponent, AddPointComponent],
+
   imports: [
     CommonModule,
     AdminRoutingModule,
