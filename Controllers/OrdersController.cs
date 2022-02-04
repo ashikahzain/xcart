@@ -25,9 +25,10 @@ namespace xcart.Controllers
             orderService = _orderService;
             db = _db;
         }
+
+        //get all orders
         [Authorize]
-        [HttpGet]
-        
+        [HttpGet] 
         public async Task<IActionResult> GetOrders()
         {
             var orders = await orderService.GetAllOrders();
@@ -39,11 +40,12 @@ namespace xcart.Controllers
 
         }
 
+        //get the top two trending items
         [HttpGet]
         [Route("trending-item")]
-        public async Task<IActionResult> GetTrendingIteme()
+        public async Task<IActionResult> GetTrendingItems()
         {
-            var orders = await orderService.GetTrendingIteme();
+            var orders = await orderService.GetTrendingItems();
             if (orders == null)
             {
                 return NotFound();
