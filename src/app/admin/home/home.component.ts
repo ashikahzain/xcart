@@ -12,13 +12,13 @@ import { MostAwarded } from 'src/app/shared/models/MostAwarded'
 export class HomeComponent implements OnInit {
   filter: string;
   employee: MostAwarded;
-  constructor(public orderService: AdminService, private authservice: AuthService, 
-    public employeeservice:EmployeeService) { }
+  constructor(public orderService: AdminService, private authservice: AuthService,
+    public employeeservice: EmployeeService) { }
 
   ngOnInit(): void {
     this.orderService.getOrder();
-    this.employeeservice.getMostAwardedEmployee().subscribe(data=>{
-this.employee=data;
+    this.employeeservice.getMostAwardedEmployee().subscribe(data => {
+      this.employee = data;
     });
 
   }
