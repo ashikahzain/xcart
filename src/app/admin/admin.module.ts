@@ -7,9 +7,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { UpdatecatalogueComponent } from './updatecatalogue/updatecatalogue.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from 'src/app/shared/layout/layout.module';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
 
 @NgModule({
-  declarations: [HomeComponent, UpdatecatalogueComponent],
+  declarations: [HomeComponent, UpdatecatalogueComponent, EmployeeListComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
