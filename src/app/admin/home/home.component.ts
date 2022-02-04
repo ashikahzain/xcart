@@ -3,6 +3,8 @@ import { AdminService } from 'src/app/shared/services/admin.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { EmployeeService } from 'src/app/shared/services/employee.service';
 import { MostAwarded } from 'src/app/shared/models/MostAwarded'
+import { Item } from 'src/app/shared/models/item';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -12,15 +14,23 @@ import { MostAwarded } from 'src/app/shared/models/MostAwarded'
 export class HomeComponent implements OnInit {
   filter: string;
   employee: MostAwarded;
-  constructor(public orderService: AdminService, private authservice: AuthService, 
-    public employeeservice:EmployeeService) { }
+  trendingItemList:Item;
+  constructor(public adminService: AdminService, private authservice: AuthService,
+    public employeeservice: EmployeeService,private domSanitizer:DomSanitizer) { }
 
   ngOnInit(): void {
-    this.orderService.getOrder();
-    this.employeeservice.getMostAwardedEmployee().subscribe(data=>{
-this.employee=data;
+    this.adminService.getOrder();
+    this.employeeservice.getMostAwardedEmployee().subscribe(data => {
+      this.employee = data;
     });
-
+    this.adminService.getTrendingItems().subscribe(data=>{
+      this.trendingItemList=data
+      data.forEach(item => {
+        item.Image = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + item.Image)
+        console.log(item.Image);
+      });
+    }
+      );
   }
 
 }

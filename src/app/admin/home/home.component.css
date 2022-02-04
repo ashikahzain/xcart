@@ -19,6 +19,31 @@ body{
 .card-deck {
     width: 100%;
 }
+.trending-item{
+    height: 400px;
+}
+.item-card {
+    width: 204px;
+    height: 250px;
+    background: #fdecbf;
+    border: hidden;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    transition: 0.2s;
+    margin: 1.5em 0em;
+
+}
+img.item-image {
+    width: 204px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    object-fit: fill;
+}
 
 .card-lower{
     margin-left: 6%;
