@@ -9,6 +9,6 @@ namespace xcart.Services
 {
     public interface IAwardService
     {
-        public Task<List<Item>> GetAllAwards();
+        public Task<List<Award>> GetAllAwards();
     }
 }

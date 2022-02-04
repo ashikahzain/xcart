@@ -18,13 +18,13 @@ namespace xcart.Services
             this.db = db;
         }
 
-        #region Get All Items
+        #region Get All Awards
 
-        public async Task<List<Item>> GetAllAwards()
+        public async Task<List<Award>> GetAllAwards()
         {
             if (db != null)
             {
-                var list = await db.Item.ToListAsync();
+                var list = await db.Award.ToListAsync();
                 return list;
             }
             return null;
