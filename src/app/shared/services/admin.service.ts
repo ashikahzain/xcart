@@ -29,8 +29,9 @@ export class AdminService {
   }
 
   // Get all Awards
-  getAwards():Observable<any> {
-    return this.httpClient.get(environment.apiUrl + '/api/awards');
+  getAwards():void {
+    this.httpClient.get(environment.apiUrl + '/api/awards').toPromise().then(response =>
+      this.awardList = response as Award[]);;
   }
 
 }

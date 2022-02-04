@@ -13,24 +13,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">422</th>
-                <td>Spot Award Winner</td>
-                <td>20</td>
-                <td>Edit</td>
-                <td>Delete</td>
-              </tr>
-              <tr>
-                <th scope="row">423</th>
-                <td>Spot Award Winner</td>
-                <td>20</td>
-                <td>Edit</td>
-                <td>Delete</td>
-              </tr>
-              <tr>
-                <th scope="row">424</th>
-                <td>Spot Award Winner</td>
-                <td>20</td>
+              <tr *ngFor="let award of adminService.awardList">
+                <th scope="row">{{award.Id}}</th>
+                <td>{{award.Name}}</td>
+                <td>{{award.Points}}</td>
                 <td>Edit</td>
                 <td>Delete</td>
               </tr>
