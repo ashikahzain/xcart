@@ -1,13 +1,30 @@
-
-body{
-    background: #EAECEE;
+body {
+    background: #eaecee;
     font-family: Roboto;
     height: 100vh;
 }
 
+.heading{
+    display: inline-flex;
+    margin-left: 6%;
+}
+.heading span{
+    height: 51px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    color: #1f4173;
+}
+.heading span h4{
+    margin-left: 5%;
+    margin-bottom: 10%;
+}
 .card {
     margin-left: 6%;
-    height: 109px;
     background: #ecb626;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
@@ -15,37 +32,52 @@ body{
     font-weight: 400;
     border: none;
     font-size: 24px;
+   
 }
 .card-deck {
     width: 100%;
 }
-.trending-item{
-    height: 400px;
+#trending-item{
+    padding-bottom: 10%;
+    padding-top: 5%;
 }
 .item-card {
-    width: 204px;
-    height: 250px;
-    background: #fdecbf;
-    border: hidden;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    transition: 0.2s;
-    margin: 1.5em 0em;
-
+    width: 156px;
+    height: 100%;
+    background: #c1c6ce;
+    border-radius: 5px;
 }
 img.item-image {
-    width: 204px;
-    height: 160px;
+    width: 100%;
+    height: 110%;
     margin: 0;
     padding: 0;
     object-fit: fill;
 }
-
-.card-lower{
+.item-name {
+    width: 105px;
+    height: 23px;
+    margin-left: 5%;
+    margin-top: 6%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: #1f4173;
+}
+.stock {
+    width: 80px;
+    height: 30px;
+    float: right;
+    font-size: 14px;
+    background: #f00b0c;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+.card-lower {
     margin-left: 6%;
     height: 109px;
     background: #ecb626;
@@ -73,15 +105,14 @@ img.item-image {
     border-radius: nullpx;
     color: #1f4173;
 }
-.latest-orders{
+.latest-orders {
     margin-left: 3%;
     margin-top: 5px;
 }
-.order-list{
+.order-list {
     background-color: #fff;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
-
 }
 .table {
     margin-top: 20px;
@@ -102,35 +133,33 @@ img.item-image {
 .fa-search {
     color: #2d415d;
 }
-#reward-employee{
+#reward-employee {
     font-family: Roboto;
-font-style: normal;
-font-weight: 600;
-font-size: 24px;
-line-height: 28px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
 
-
-background-color:white;
-color: #1F4173;
-
+    background-color: white;
+    color: #1f4173;
 }
-#trending-item{
-    background-color:white;
+#trending-item {
+    background-color: white;
     color: black;
 }
-#empdetail{
-    text-align: left; 
+#empdetail {
+    text-align: left;
     margin-left: 5%;
     font-size: medium;
 }
-#empdetails{
-    text-align: left; 
+#empdetails {
+    text-align: left;
     margin-left: 5%;
     margin-top: 3%;
-    font-size:large;
+    font-size: large;
 }
 
-@media only screen and (max-width:480px) {
+@media only screen and (max-width: 480px) {
     .card {
         margin-left: 30%;
         margin-bottom: 5%;
@@ -149,13 +178,12 @@ color: #1F4173;
         overflow: hidden;
     }
 
-    .card-lower{
+    .card-lower {
         margin-top: 2%;
     }
-
 }
 
-@media only screen and (max-width: 600px) and (min-width:480px){
+@media only screen and (max-width: 600px) and (min-width: 480px) {
     .card {
         margin-left: 50%;
         margin-bottom: 5%;
@@ -170,12 +198,12 @@ color: #1F4173;
         overflow: hidden;
     }
 
-    .card-lower{
+    .card-lower {
         margin-top: 2%;
     }
 }
 
-@media only screen and (max-width: 992px) and (min-width:600px){
+@media only screen and (max-width: 992px) and (min-width: 600px) {
     .card {
         margin-left: 55%;
         margin-bottom: 5%;
@@ -184,9 +212,9 @@ color: #1F4173;
         width: 40%;
     }
 
-    .order-list{
-    margin-left: 10%;
-    max-width: 90%;
+    .order-list {
+        margin-left: 10%;
+        max-width: 90%;
     }
 
     .search {
@@ -195,13 +223,13 @@ color: #1F4173;
         overflow: hidden;
     }
 
-    .card-lower{
+    .card-lower {
         margin-top: 2%;
         margin-left: 15%;
     }
 }
 
-@media only screen and (max-width: 1200px) and (min-width:994px){
+@media only screen and (max-width: 1200px) and (min-width: 994px) {
     .search {
         display: inline;
         margin-left: 60%;
