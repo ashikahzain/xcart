@@ -8,6 +8,7 @@ import { User } from '../models/user';
 import {AllEmployeePoints} from '../models/AllEmployeePoint';
 import{AwardHistory} from '../models/AwardHistory';
 
+import { Award } from '../models/award';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +19,7 @@ export class AdminService {
   trendingItemList :Item[];
   awardHistory:AwardHistory[];
   EmployeeDetails:User;
+  awardList: Award[];
 
   constructor(public httpClient: HttpClient) {
 
@@ -46,6 +48,12 @@ export class AdminService {
   GetEmployee(UserId:number){
     this.httpClient.get(environment.apiUrl+"/api/employees/"+UserId).toPromise().then(Response=>
       this.EmployeeDetails=Response as User);
+
+  }
+  // Get all Awards
+  getAwards():void {
+    this.httpClient.get(environment.apiUrl + '/api/awards').toPromise().then(response =>
+      this.awardList = response as Award[]);;
   }
 
 }

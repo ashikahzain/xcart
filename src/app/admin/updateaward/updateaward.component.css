@@ -1,0 +1,14 @@
+.container{
+    margin-top: 20px;
+}
+h3{
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+.btn-award{
+    margin-left: 80%;
+    background-color: #72D761;
+    border-color: #72D761;
+    color: white;
+    border-radius: 1.5em;
+}
