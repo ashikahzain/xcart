@@ -8,9 +8,11 @@ import { UpdatecatalogueComponent } from './updatecatalogue/updatecatalogue.comp
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from 'src/app/shared/layout/layout.module';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { AwardHistoryComponent } from './award-history/award-history.component';
+import { AddPointComponent } from './add-point/add-point.component';
 
 @NgModule({
-  declarations: [HomeComponent, UpdatecatalogueComponent, EmployeeListComponent],
+  declarations: [HomeComponent, UpdatecatalogueComponent, EmployeeListComponent, AwardHistoryComponent, AddPointComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

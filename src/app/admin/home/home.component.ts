@@ -5,6 +5,7 @@ import { EmployeeService } from 'src/app/shared/services/employee.service';
 import { MostAwarded } from 'src/app/shared/models/MostAwarded'
 import { Item } from 'src/app/shared/models/item';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
   employee: MostAwarded;
   trendingItemList:Item;
   constructor(public adminService: AdminService, private authservice: AuthService,
-    public employeeservice: EmployeeService,private domSanitizer:DomSanitizer) { }
+    public employeeservice: EmployeeService,private domSanitizer:DomSanitizer,private router:Router) { }
 
   ngOnInit(): void {
     this.adminService.getOrder();
@@ -31,6 +32,10 @@ export class HomeComponent implements OnInit {
       });
     }
       );
+  }
+
+  toEmployeeList(){
+    this.router.navigateByUrl('/admin/employeeList')
   }
 
 }

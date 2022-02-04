@@ -1,1 +1,45 @@
-<p>employee-list works!</p>
+<body>
+    <app-navbar></app-navbar>
+
+    <br>
+    <button type="button" class="button">
+        <p>Home</p>
+    </button>
+
+
+    <div class="container">
+        <div class="EmployeeList">
+            <div class="heading">
+                <h4>Employee List</h4>
+            </div>
+            <div class="search">
+                <input id="navsearch" type="text" ngDefaultControl [(ngModel)]="filter" placeholder="Search">
+                <i class="fa fa-search" id="search"></i>
+            </div>
+            <table class="table" id="table">
+                <thead>
+                  <tr>
+                    <th>Employee ID</th>
+                    <th>Employee Name</th>
+                    <th>Available Points</th>
+                    <th>Edit Points</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let emp of adminService.employeePointList |filter:filter">
+                    <td> &nbsp; {{emp.UserId}}</td>
+                    <td>{{emp.Name}}</td>
+                    <td>{{emp.CurrentPoints}}</td>
+                    <td><button class="btn btn-sm ">+</button> &nbsp;
+                        <button class="btn btn-sm ">--</button></td>
+                    <td><button class="btn btn-primary" (click)="awardHistory(emp.UserId)">view history</button></td>
+        
+                  </tr>
+                </tbody>
+              </table>
+
+        </div>
+
+    </div>
+</body>

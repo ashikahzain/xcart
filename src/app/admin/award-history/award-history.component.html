@@ -1,0 +1,44 @@
+<body>
+    <app-navbar></app-navbar>
+
+    <br>
+    <button type="button" class="button">
+        <p>Home</p>
+    </button>
+
+
+    <div class="container">
+        <div class="AwardHistory">
+            <div class="heading">
+                <h4>Award History</h4>
+                <h6>Record Of {{this.adminService.EmployeeDetails.Name}}</h6>
+            </div>
+            <div class="search">
+                <input id="navsearch" type="text" ngDefaultControl [(ngModel)]="filter" placeholder="Search">
+                <i class="fa fa-search" id="search"></i>
+            </div>
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th>Award ID</th>
+                        <th>Award Name</th>
+                        <th>Awarded date</th>
+                        <th>Presenter</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let emp of adminService.awardHistory |filter:filter">
+                        <td> &nbsp; {{emp.AwardId}}</td>
+                        <td>{{emp.AwardName}}</td>
+                        <td>{{emp.Date | date: 'dd-MM-yyyy'}}</td>
+                        <td>{{emp.Presenter}}</td>
+                        <td *ngIf="emp.Status">Awarded</td>
+                        <td *ngIf="!emp.Status">Removed</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
