@@ -19,6 +19,9 @@ body{
 .card-deck {
     width: 100%;
 }
+.trending-item{
+    height: 400px;
+}
 .item-card {
     width: 204px;
     height: 250px;
