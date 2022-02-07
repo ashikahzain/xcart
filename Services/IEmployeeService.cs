@@ -11,7 +11,13 @@ namespace xcart.Services
     {
         Task<MostAwardedEmployeeViewModel> GetMostAwardedEmployee();
 
+        Task<List<User>> GetAllEmployees();
 
+        Task<List<AllEmployeePointViewModel>> GetEmployeePoints();
+
+        Task<List<AwardHistoryViewModel>> GetAwardHistory(int UserId);
+
+        Task<User> GetEmployeeById(int id);
 
     }
 }

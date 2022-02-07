@@ -42,35 +42,36 @@ namespace xcart.Services
             return null;
         }
         #endregion
+
         #region Get top two sold items
         public async Task<List<Item>> GetTrendingItems()
         {
             if (db != null)
             {
-                var itemlist = await(from orderdetails in db.OrderDetails        
-                                    group orderdetails.Quantity by orderdetails.Item.Id into g 
-                                    orderby g.Sum() descending
-                                    select g.Key).Take(2).ToListAsync();
+                var itemlist = await (from orderdetails in db.OrderDetails
+                                      group orderdetails.Quantity by orderdetails.Item.Id into g
+                                      orderby g.Sum() descending
+                                      select g.Key).Take(2).ToListAsync();
                 var trendinglist = new List<Item>();
-                foreach(int itemId in itemlist)
+                foreach (int itemId in itemlist)
                 {
-                    var trendingitem=(from item in db.Item
-                                  where item.Id == itemId
-                                  select new Item
-                                  {
-                                      Id=itemId,
-                                      Name =item.Name,
-                                      Image=item.Image,
-                                      Quantity=item.Quantity,
-                                      IsActive=item.IsActive,
-                                      Points =item.Points
-                                  }
+                    var trendingitem = (from item in db.Item
+                                        where item.Id == itemId
+                                        select new Item
+                                        {
+                                            Id = itemId,
+                                            Name = item.Name,
+                                            Image = item.Image,
+                                            Quantity = item.Quantity,
+                                            IsActive = item.IsActive,
+                                            Points = item.Points
+                                        }
                                  ).FirstOrDefault();
                     trendinglist.Add(trendingitem);
-                    
+
                 }
                 return trendinglist;
-                    
+
             }
             return null;
         }
