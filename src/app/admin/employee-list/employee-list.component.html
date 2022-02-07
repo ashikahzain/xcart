@@ -32,8 +32,13 @@
             <td> &nbsp; {{emp.UserId}}</td>
             <td>{{emp.Name}}</td>
             <td>{{emp.CurrentPoints}}</td>
-            <td><button class="btn btn-sm " (click)="openModalDialog()">+</button> &nbsp;
-              <!-- modal -->
+            <td><button class="btn btn-sm " (click)="openAddModal(emp.UserId,1)">+</button> &nbsp;
+              <button class="btn btn-sm ">--</button>
+            </td>
+            <td><button class="btn btn-primary" (click)="awardHistory(emp.UserId)">view history</button></td>
+            
+            
+            <td>          <!-- modal -->
               <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
                 <!-- modal-dialog -->
                 <div class="modal-dialog" role="document">
@@ -45,13 +50,13 @@
                           aria-hidden="true">&times;</span></button>
                       <!-- <h4 class="modal-title">Login</h4> -->
                     </div>
-
+    
                     <!-- modal-body -->
                     <div class="modal-body">
                       <form [formGroup]="addForm" (ngSubmit)="addPoint()">
                         <select name="AwardId" formControlName="AwardId">
                           <option> </option>
-
+    
                         </select>
                         <div>
                           <input type="text" class="textbox" name="EmployeeId" placeholder="EmployeeId"
@@ -62,32 +67,28 @@
                             formControlName="PresenteeId">
                         </div>
                         <div>
-                          <input type="text" class="textbox" name="Point" placeholder="Point"
-                            formControlName="Point">
+                          <input type="text" class="textbox" name="Point" placeholder="Point" formControlName="Point">
                         </div>
                         <div>
-                          <input type="number" class="textbox" name="Status" placeholder="Status"
-                            formControlName="Status">
+                          <input type="number" class="textbox" name="Status" placeholder="Status" formControlName="Status">
                         </div>
                         <div>
-                          <input type="submit" class="btn btn-info btn-lg" value="LogIn"
-                            [disabled]="!logedInForm.valid">
+                          <input type="submit" class="btn btn-info btn-lg" value="Add Point" [disabled]="!addForm.valid">
                         </div>
                       </form>
                     </div>
-
+    
                     <!-- modal-footer -->
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" (click)="closeModalDialog()">Close</button>
                     </div>
                   </div>
                 </div>
-              </div>
-              <button class="btn btn-sm ">--</button>
-            </td>
-            <td><button class="btn btn-primary" (click)="awardHistory(emp.UserId)">view history</button></td>
-
+              </div></td>
+          
+          
           </tr>
+
         </tbody>
       </table>
 
