@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/shared/services/admin.service';
 import {ValidateAwardName, ValidateNumbers} from 'src/app/shared/validators/formdatavalidator'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-award',
@@ -13,7 +14,7 @@ export class AddAwardComponent implements OnInit {
   awardForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, public adminService: AdminService) { }
+  constructor(private formBuilder: FormBuilder, public adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
     this.awardForm = this.formBuilder.group({
@@ -31,6 +32,7 @@ export class AddAwardComponent implements OnInit {
     this.adminService.addAward(this.awardForm.value).subscribe(
       (result) => console.log(result)
     );
+    this.router.navigateByUrl('/admin/award');
   }
 
 }
