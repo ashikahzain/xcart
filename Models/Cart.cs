@@ -17,6 +17,7 @@ namespace xcart.Models
 
         
         [ForeignKey("ItemId")]
+        public int ItemId { get; set; }
         public virtual Item Item { get; set; }
         
 
@@ -25,6 +26,7 @@ namespace xcart.Models
         public int Quantity { get; set; }
 	
         [ForeignKey("UserId")]
+        public int UserId { get; set; }
         public virtual User User { get; set; }
 
     }

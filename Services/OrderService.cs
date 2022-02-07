@@ -26,8 +26,8 @@ namespace xcart.Services
                 return await (from order in db.Order
                               from user in db.User
                               from status in db.StatusDescription
-                              where order.User.Id == user.Id
-                              where order.StatusDescription.Id == status.Id
+                              where order.UserId == user.Id
+                              where order.StatusId == status.Id
 
                               select new OrderViewModel
                               {
@@ -42,6 +42,7 @@ namespace xcart.Services
             return null;
         }
         #endregion
+
         #region Get top two sold items
         public async Task<List<Item>> GetTrendingItems()
         {
@@ -71,6 +72,41 @@ namespace xcart.Services
                 }
                 return trendinglist;
                     
+            }
+            return null;
+        }
+        #endregion
+
+        #region Change the Status of Order
+        public async Task ChangeStatus(Order order)
+        {
+            if (db != null)
+            {
+                    db.Order.Update(order);
+                    await db.SaveChangesAsync();
+            }
+        }
+
+        #endregion
+
+        #region Get Item Details By Order Id
+        public async Task<List<OrderDetailsViewModel>> GetOrderDetailsByOrderId(int id)
+        {
+            if (db != null)
+            {
+                return await (from order in db.Order
+                              from orderdetails in db.OrderDetails
+                              from item in db.Item
+                              where order.Id == id && 
+                              order.Id == orderdetails.OrderId && 
+                              orderdetails.ItemId == item.Id
+                              select new OrderDetailsViewModel
+                              {
+                                  Id = order.Id,
+                                  Name = item.Name,
+                                  Quantity = orderdetails.Quantity,
+                                  Points = order.Points
+                              }).ToListAsync();
             }
             return null;
         }
