@@ -25,6 +25,9 @@ export class AdminService {
   getTrendingItems():Observable<any>{
    return this.httpClient.get(environment.apiUrl+'/api/orders/trending-item');
   }
+addItem(item: Item): Observable<any> {
+  return this.httpClient.post(environment.apiUrl +'/api/items/', item);
 
+}
 
 }

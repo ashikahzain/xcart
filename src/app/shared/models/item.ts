@@ -1,8 +1,8 @@
 export class Item{
     Id :number;
     Name:string;
-    Quantity:string;
-    Points:string;
+    Quantity:number;
+    Points:number;
     Image: any;
     IsActive:boolean;
 }
