@@ -1,0 +1,29 @@
+<body>
+    <app-navbar></app-navbar>
+    <div class="container">
+        <a href="/admin/home" class="btn btn-warning"><i class="fa fa-home fa-lg menu-home"></i>Home</a>
+        <a class="btn btn-award">Add Award +</a>
+        <h3>Manage Awards</h3>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Award ID</th>
+                <th scope="col">Award Name</th>
+                <th scope="col">Points</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let award of adminService.awardList">
+                <th scope="row">{{award.Id}}</th>
+                <td>{{award.Name}}</td>
+                <td>{{award.Points}}</td>
+                <td><a class="btn btn-warning btn-sm">Edit</a></td>
+                <td><a class="btn btn-danger btn-sm">Delete</a></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    
+</body>

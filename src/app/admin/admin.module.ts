@@ -8,9 +8,18 @@ import { UpdatecatalogueComponent } from './updatecatalogue/updatecatalogue.comp
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from 'src/app/shared/layout/layout.module';
 import { ItemFormComponent } from './item-form/item-form.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { AwardHistoryComponent } from './award-history/award-history.component';
+import { AddPointComponent } from './add-point/add-point.component';
+import { AwardComponent } from './award/award.component';
+import { AddAwardComponent } from './award/add-award/add-award.component';
+
 
 @NgModule({
-  declarations: [HomeComponent, UpdatecatalogueComponent, ItemFormComponent],
+  declarations: [HomeComponent, UpdatecatalogueComponent, ItemFormComponent, AwardComponent,EmployeeListComponent, AwardHistoryComponent, AddPointComponent, AddAwardComponent],
+
+
+
   imports: [
     CommonModule,
     AdminRoutingModule,
