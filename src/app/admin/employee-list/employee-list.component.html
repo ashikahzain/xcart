@@ -1,4 +1,4 @@
-<body>
+<body class="backdrop">
   <app-navbar></app-navbar>
 
   <br>
@@ -33,60 +33,10 @@
             <td>{{emp.Name}}</td>
             <td>{{emp.CurrentPoints}}</td>
             <td><button class="btn btn-sm " (click)="openAddModal(emp.UserId,1)">+</button> &nbsp;
-              <button class="btn btn-sm ">--</button>
+              <button class="btn btn-sm " (click)="openAddModal(emp.UserId,0)">--</button>
             </td>
             <td><button class="btn btn-primary" (click)="awardHistory(emp.UserId)">view history</button></td>
-            
-            
-            <td>          <!-- modal -->
-              <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
-                <!-- modal-dialog -->
-                <div class="modal-dialog" role="document">
-                  <!-- modal-content -->
-                  <div class="modal-content">
-                    <!-- modal-header -->
-                    <div class="modal-header">
-                      <button type="button" class="close" aria-label="Close" (click)="openModalDialog()"><span
-                          aria-hidden="true">&times;</span></button>
-                      <!-- <h4 class="modal-title">Login</h4> -->
-                    </div>
-    
-                    <!-- modal-body -->
-                    <div class="modal-body">
-                      <form [formGroup]="addForm" (ngSubmit)="addPoint()">
-                        <select name="AwardId" formControlName="AwardId">
-                          <option> </option>
-    
-                        </select>
-                        <div>
-                          <input type="text" class="textbox" name="EmployeeId" placeholder="EmployeeId"
-                            formControlName="EmployeeId">
-                        </div>
-                        <div>
-                          <input type="text" class="textbox" name="PresenteeId" placeholder="PresenteeId"
-                            formControlName="PresenteeId">
-                        </div>
-                        <div>
-                          <input type="text" class="textbox" name="Point" placeholder="Point" formControlName="Point">
-                        </div>
-                        <div>
-                          <input type="number" class="textbox" name="Status" placeholder="Status" formControlName="Status">
-                        </div>
-                        <div>
-                          <input type="submit" class="btn btn-info btn-lg" value="Add Point" [disabled]="!addForm.valid">
-                        </div>
-                      </form>
-                    </div>
-    
-                    <!-- modal-footer -->
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" (click)="closeModalDialog()">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div></td>
-          
-          
+
           </tr>
 
         </tbody>
@@ -96,3 +46,57 @@
 
   </div>
 </body>
+
+<!-- modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <!-- modal-dialog -->
+  <div class="modal-dialog" role="document">
+    <!-- modal-content -->
+    <div class="modal-content">
+
+      <!-- modal-body -->
+      <div class="modal-body">
+        <form [formGroup]="addForm" (ngSubmit)="addPoint()">
+          <span> Select award</span>
+          <select class="form-control" name="AwardId" formControlName="AwardId"
+            (change)="onChange($event.target.value)">
+            <option *ngFor="let award of adminService.awardList" value={{award.Id}} (click)="awardPoint(award.Points)">
+              {{award.Name}} </option>
+
+          </select>
+          <div>
+            <input type="text" class="textbox" name="EmployeeId" placeholder="EmployeeId" class="form-control"
+              formControlName="EmployeeId" hidden>
+          </div>
+          <div>
+            <input type="text" class="textbox" name="PresenteeId" placeholder="PresenteeId" class="form-control"
+              formControlName="PresenteeId" hidden>
+          </div>
+          <div>
+            <input type="text" class="textbox" name="Point" placeholder="Point" formControlName="Point"
+              class="form-control" hidden>
+          </div>
+          <div>
+            <input type="number" class="textbox" name="Status" placeholder="Status" formControlName="Status"
+              class="form-control" hidden>
+          </div>
+          <p *ngIf="point">{{point}} points will be added/removed</p>
+          <br>
+          <div class="row">
+
+            <div class="col-lg-6">
+              <input type="submit" class="btn btn-info btn-lg" value="Confirm" [disabled]="!addForm.valid">
+            </div>
+            <!-- modal-footer -->
+            <div class="col-lg-6">
+              <button type="button" class="btn btn-info btn-lg" (click)="closeModalDialog()">Cancel</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</div>

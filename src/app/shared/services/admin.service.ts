@@ -45,8 +45,12 @@ addItem(item: Item): Observable<any> {
   }
 
   getAwardHistory(userId:number){
-    this.httpClient.get(environment.apiUrl+"/api/employees/awards/"+userId).toPromise().then(Response=>
+    this.httpClient.get(environment.apiUrl+"/api/awardhistory/"+userId).toPromise().then(Response=>
       this.awardHistory=Response as AwardHistory[]);
+  }
+
+  addAwardHistory(award:AwardHistory):Observable<any>{
+     return this.httpClient.post(environment.apiUrl+"/api/awardhistory",award);
   }
 
   GetEmployee(UserId:number){
@@ -61,7 +65,7 @@ addItem(item: Item): Observable<any> {
   }
   //Add a new award
   addAward(award: Award): Observable<any> {
-    return this.httpClient.post(environment.apiUrl +'/api/awards/', award);
+    return this.httpClient.post(environment.apiUrl +'/api/awards', award);
   }
 
 }
