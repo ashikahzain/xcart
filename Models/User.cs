@@ -51,15 +51,19 @@ namespace xcart.Models
         public string Password { get; set; }
 
         [ForeignKey("LocationId")]
+        public int LocationId { get; set; }
         public Location Location { get; set; }
 
         [ForeignKey("DepartmentId")]
+        public int DepartmentId { get; set; }
         public Department Department { get; set; }
 
         [ForeignKey("GradeId")]
+        public int GradeId { get; set; }
         public Grade Grade { get; set; }
 
         [ForeignKey("JobTitleId")]
+        public int JobTitleId { get; set; }
         public JobTitle JobTitle { get; set; }
 
         

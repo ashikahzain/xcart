@@ -29,20 +29,13 @@ namespace xcart.Controllers
         [Route("{Id}")]
         public async Task<IActionResult> GetPointsByEmployeeId(int id)
         {
-            try
-            {
+            
                 var point = await pointService.GetPointsByEmployeeId(id);
                 if (point == null)
                 {
                     return NotFound();
                 }
                 return Ok(point.CurrentPoints);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-                
         }
         #endregion
     }
