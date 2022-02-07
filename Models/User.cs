@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace xcart.Models
 {
-    public class User
+    public partial class User
     {
         [Column("Id")]
         [Key]
@@ -32,7 +32,6 @@ namespace xcart.Models
 
         [Column("Image")]
         [Required]
-        [StringLength(150)]
         public string Image { get; set; }
 
         [Column("Contact")]
@@ -59,13 +58,13 @@ namespace xcart.Models
         public Department Department { get; set; }
 
         [ForeignKey("GradeId")]
-        public int GradeId { get; set; }
+        public Int16 GradeId { get; set; }
         public Grade Grade { get; set; }
 
         [ForeignKey("JobTitleId")]
-        public int JobTitleId { get; set; }
+        public long JobTitleId { get; set; }
         public JobTitle JobTitle { get; set; }
 
-        
     }
+    
 }

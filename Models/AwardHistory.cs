@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace xcart.Models
 {
-    public class AwardHistory
+    public partial class AwardHistory
     {
+
         [Column("Id")]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

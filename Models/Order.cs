@@ -32,8 +32,7 @@ namespace xcart.Models
         public int Points { get; set; }
 
         
-        [ForeignKey("StatusId")]
-        [Required]
+        [ForeignKey("StatusDescriptionId")]
         public int StatusDescriptionId { get; set; }
         public virtual StatusDescription StatusDescription { get; set; }
     }
