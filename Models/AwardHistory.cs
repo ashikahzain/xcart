@@ -21,12 +21,16 @@ namespace xcart.Models
 
 
         [ForeignKey("EmployeeId")]
+        public int EmployeeId { get; set; }
         public virtual User Employee { get; set; }
 
         [ForeignKey("AwardId")]
+        public int AwardId { get; set; }
         public virtual Award Award { get; set; }
 
         [ForeignKey("PresenteeId")]
+        public int PresenteeId { get; set; }
+
         public virtual User Presentee  { get; set; }
 
         [Column("Point")]

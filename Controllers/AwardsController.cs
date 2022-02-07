@@ -28,7 +28,7 @@ namespace xcart.Controllers
         }
 
         #region Get All Awards
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllAwards()
         {
