@@ -24,7 +24,6 @@ namespace xcart.Models
         [Required]
         [StringLength(50)]
         public string Description { get; set; }
-        public virtual ICollection<User> User { get; set; }
 
     }
 }

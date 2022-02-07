@@ -21,7 +21,7 @@ namespace xcart.Models
         public DateTime Date { get; set; }
 
 
-        [ForeignKey("Employee")]
+        [ForeignKey("EmployeeId")]
         public int EmployeeId { get; set; }
         public virtual User Employee { get; set; }
 
@@ -29,8 +29,8 @@ namespace xcart.Models
         public int AwardId { get; set; }
         public virtual Award Award { get; set; }
 
-        [ForeignKey("Presentee")]
-        public int PresenteeId { get; set; }
+        [ForeignKey("PresenteeId")]
+        public int? PresenteeId { get; set; }
         public virtual User Presentee  { get; set; }
 
         [Column("Point")]

@@ -27,7 +27,7 @@ namespace xcart.Services
                               from user in db.User
                               from status in db.StatusDescription
                               where order.UserId == user.Id
-                              where order.StatusId == status.Id
+                              where order.StatusDescriptionId == status.Id
 
                               select new OrderViewModel
                               {
