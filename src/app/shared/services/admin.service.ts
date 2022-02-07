@@ -34,6 +34,10 @@ export class AdminService {
   getTrendingItems():Observable<any>{
    return this.httpClient.get(environment.apiUrl+'/api/orders/trending-item');
   }
+addItem(item: Item): Observable<any> {
+  return this.httpClient.post(environment.apiUrl +'/api/items/', item);
+
+}
 
   getAllEmployeesPoints(){
     this.httpClient.get(environment.apiUrl+"/api/employees").toPromise().then(Response=>
@@ -54,6 +58,10 @@ export class AdminService {
   getAwards():void {
     this.httpClient.get(environment.apiUrl + '/api/awards').toPromise().then(response =>
       this.awardList = response as Award[]);;
+  }
+  //Add a new award
+  addAward(award: Award): Observable<any> {
+    return this.httpClient.post(environment.apiUrl +'/api/awards/', award);
   }
 
 }
