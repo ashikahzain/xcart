@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace xcart.Models
 {
-    public class User
+    public partial class User
     {
         [Column("Id")]
         [Key]
@@ -66,6 +66,6 @@ namespace xcart.Models
         public int JobTitleId { get; set; }
         public JobTitle JobTitle { get; set; }
 
-        
     }
+    
 }

@@ -22,7 +22,7 @@ namespace xcart.Services
         public async Task<List<OrderViewModel>> GetAllOrders()
         {
             if (db != null)
-            {               
+            {
                 return await (from order in db.Order
                               from user in db.User
                               from status in db.StatusDescription
@@ -33,7 +33,7 @@ namespace xcart.Services
                               {
                                   Id = order.Id,
                                   DateOfOrder = order.DateOfOrder,
-                                  DateOfDelivery = order.DateOfDelivery,
+                                  DateOfDelivery = Convert.ToDateTime(order.DateOfDelivery),
                                   UserName = user.Name,
                                   Status = status.Status
                               }
