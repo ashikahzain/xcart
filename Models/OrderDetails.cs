@@ -17,9 +17,11 @@ namespace xcart.Models
 
         
         [ForeignKey("OrderId")]
+        public int OrderId { get; set; }
         public virtual Order Order { get; set; }
         
         [ForeignKey("ItemId")]
+        public int ItemId { get; set; }
         public virtual Item Item { get; set; }
         
 	

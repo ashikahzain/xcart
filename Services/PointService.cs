@@ -24,10 +24,10 @@ namespace xcart.Services
             {
                 //join User and Point
                 return await (from point in db.Point
-                              where point.User.Id == id 
+                              where point.UserId == id 
                               select new Point
                               {
-                                  Id = point.User.Id,
+                                  Id = point.UserId,
                                   CurrentPoints = point.CurrentPoints
                               }).FirstOrDefaultAsync();
             }

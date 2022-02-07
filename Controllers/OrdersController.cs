@@ -36,8 +36,8 @@ namespace xcart.Controllers
             {
                 return NotFound();
             }
-            return Ok(orders);
-
+            //return Ok(orders);
+            return Ok(db.Order.FirstOrDefault());
         }
 
         //get the top two trending items
@@ -52,6 +52,40 @@ namespace xcart.Controllers
             }
             return Ok(orders);
 
+        }
+
+        //To change the status of an order
+        [HttpPut]
+        [Route("Change-Status")]
+        public async Task<IActionResult> ChangeStatus([FromBody] Order model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await orderService.ChangeStatus(model);
+                    return Ok();
+                }
+                catch
+                {
+                    return BadRequest();
+                }
+                
+            }
+            return BadRequest();
+        }
+
+        //To get the Item details by Order Id
+        [HttpGet]
+        [Route("GetOrderDetails/{id}")]
+        public async Task<IActionResult> GetOrderDetailsByOrderId(int id)
+        {
+            var order = await orderService.GetOrderDetailsByOrderId(id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+            return Ok(order);
         }
 
     }
