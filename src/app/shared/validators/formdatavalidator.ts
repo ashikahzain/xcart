@@ -29,3 +29,11 @@ export function ValidateImage(control: AbstractControl) {
 
 };
 
+export function ValidateAwardName(control: AbstractControl) {
+    if (!control.value) {
+        return null;
+    }
+    const regex = new RegExp('^[A-Za-z -]+$');
+    const valid = regex.test(control.value);
+    return valid ? null : { invalid: true };
+};

@@ -59,5 +59,9 @@ addItem(item: Item): Observable<any> {
     this.httpClient.get(environment.apiUrl + '/api/awards').toPromise().then(response =>
       this.awardList = response as Award[]);;
   }
+  //Add a new award
+  addAward(award: Award): Observable<any> {
+    return this.httpClient.post(environment.apiUrl +'/api/awards/', award);
+  }
 
 }
