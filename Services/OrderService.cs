@@ -33,7 +33,7 @@ namespace xcart.Services
                               {
                                   Id = order.Id,
                                   DateOfOrder = order.DateOfOrder,
-                                  DateOfDelivery = Convert.ToDateTime(order.DateOfDelivery),
+                                  DateOfDelivery = order.DateOfDelivery,
                                   UserName = user.Name,
                                   Points = order.Points,
                                   Status = status.Status
@@ -159,7 +159,7 @@ namespace xcart.Services
                               {
                                   Id = order.Id,
                                   DateOfOrder = order.DateOfOrder,
-                                  DateOfDelivery = Convert.ToDateTime(order.DateOfDelivery),
+                                  DateOfDelivery = order.DateOfDelivery,
                                   UserName = user.Name,
                                   Points = order.Points,
                                   Status = stat.Status

@@ -19,6 +19,7 @@ namespace xcart.Services
         Task<User> GetEmployeeById(int id);
 
         Task<List<EmployeeProfileViewModel>> GetEmployeeProfile(int id);
+        public Task<List<OrderViewModel>> GetAllOrdersByEmployeeId(int id);
 
     }
 }
