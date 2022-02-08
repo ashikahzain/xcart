@@ -185,7 +185,6 @@ D:\Xcart\Api\xcart\obj\Debug\netcoreapp3.1\xcart.RazorTargetAssemblyInfo.cache
 D:\Xcart\Api\xcart\obj\Debug\netcoreapp3.1\xcart.dll
 D:\Xcart\Api\xcart\obj\Debug\netcoreapp3.1\xcart.pdb
 D:\Xcart\Api\xcart\obj\Debug\netcoreapp3.1\xcart.genruntimeconfig.cache
-D:\Experion\XCart\BackEnd\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.CopyComplete
 E:\XCart\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.AssemblyReference.cache
 D:\XCart\xcart\Backend\xcart\bin\Debug\netcoreapp3.1\appsettings.json
 D:\XCart\xcart\Backend\xcart\bin\Debug\netcoreapp3.1\appsettings.Development.json
@@ -237,3 +236,4 @@ D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.dll
 D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.pdb
 D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.genruntimeconfig.cache
 D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.AssemblyReference.cache
+D:\Experion\XCart\BackEnd\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.AssemblyReference.cache

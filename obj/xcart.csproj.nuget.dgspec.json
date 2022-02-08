@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\XCart\\xcart\\Backend\\xcart\\xcart.csproj": {}
+    "D:\\Experion\\XCart\\BackEnd\\xcart\\xcart.csproj": {}
   },
   "projects": {
-    "D:\\XCart\\xcart\\Backend\\xcart\\xcart.csproj": {
+    "D:\\Experion\\XCart\\BackEnd\\xcart\\xcart.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\XCart\\xcart\\Backend\\xcart\\xcart.csproj",
+        "projectUniqueName": "D:\\Experion\\XCart\\BackEnd\\xcart\\xcart.csproj",
         "projectName": "xcart",
-        "projectPath": "D:\\XCart\\xcart\\Backend\\xcart\\xcart.csproj",
-        "packagesPath": "C:\\Users\\haizon.cruz\\.nuget\\packages\\",
-        "outputPath": "D:\\XCart\\xcart\\Backend\\xcart\\obj\\",
+        "projectPath": "D:\\Experion\\XCart\\BackEnd\\xcart\\xcart.csproj",
+        "packagesPath": "C:\\Users\\annie.abraham\\.nuget\\packages\\",
+        "outputPath": "D:\\Experion\\XCart\\BackEnd\\xcart\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\haizon.cruz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\annie.abraham\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

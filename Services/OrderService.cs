@@ -97,7 +97,7 @@ namespace xcart.Services
 
         #endregion
         
-        #region Get Item Details By Order Id
+        #region Get order Details By Order Id
         public async Task<List<OrderDetailsViewModel>> GetOrderDetailsByOrderId(int id)
         {
             if (db != null)
