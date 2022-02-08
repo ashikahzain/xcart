@@ -19,16 +19,16 @@
         </div>
         <ul class="list-unstyled components">
             <li class="active">
-                <a href="#"><i class="fa fa-home fa-lg menu-home"></i>Home</a>
+                <a><i class="fa fa-home fa-lg menu-home"></i>Home</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-shopping-bag fa-lg menu-order"></i>Order</a>
+                <a><i class="fa fa-shopping-bag fa-lg menu-order"></i>Order</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-user fa-lg menu-profile"></i>Profile</a>
+                <a (click)="moveToProfile()"><i class="fa fa-user fa-lg menu-profile"></i>Profile</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-shopping-cart fa-lg menu-cart"></i>Cart</a>
+                <a (click)="moveToCart()"><i class="fa fa-shopping-cart fa-lg menu-cart"></i>Cart</a>
             </li>
         </ul>
     </nav>

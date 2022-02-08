@@ -6,10 +6,12 @@ import { HomeComponent } from './home/home.component';
 import { LayoutModule } from '../shared/layout/layout.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
+import { ProfileComponent } from './profile/profile.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, ProfileComponent, CartComponent],
   imports: [
     CommonModule,
     EmployeeRoutingModule,

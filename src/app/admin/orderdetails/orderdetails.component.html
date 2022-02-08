@@ -33,7 +33,7 @@
         <td>{{list.Points}}</td>
         <td>{{list.DateOfOrder | date: 'dd-MM-yyyy'}}</td>
         <td>{{list.DateOfDelivery| date: 'dd-MM-yyyy'}}</td>
-        <td><button class="form-control" [ngStyle]="{'background-color':list.Status === 'FulFilled' ? '#72D761' : '#D11A2A' }"
+        <td><button class="form-control" [ngStyle]="{'background-color':list.Status === 'Fulfilled' ? '#72D761' : '#D11A2A' }"
           (click)="UpdateStatus(list)">{{list.Status}}</button></td>
       </tr>
     </tbody>
