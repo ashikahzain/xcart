@@ -4,4 +4,5 @@ export class AwardHistory{
     Date:Date;
     Presenter:string;
     Status:Boolean;
+    Point:number;
 }

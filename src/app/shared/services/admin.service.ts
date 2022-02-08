@@ -44,9 +44,10 @@ addItem(item: Item): Observable<any> {
       this.employeePointList=Response as AllEmployeePoints[]);
   }
 
-  getAwardHistory(userId:number){
-    this.httpClient.get(environment.apiUrl+"/api/awardhistory/"+userId).toPromise().then(Response=>
-      this.awardHistory=Response as AwardHistory[]);
+  getAwardHistory(userId:number):Observable<any>{
+    return this.httpClient.get(environment.apiUrl+"/api/awardhistory/"+userId)
+    //.toPromise().then(Response=>
+      //this.awardHistory=Response as AwardHistory[]);
   }
 
   addAwardHistory(award:AwardHistory):Observable<any>{

@@ -2,8 +2,14 @@
   <app-navbar></app-navbar>
 
   <br>
-  <button type="button" class="button">
+  <button type="button" class="button" routerLink='/admin/home'>
     <p>Home</p>
+  </button>
+  <button type="button " class="button Max-points" routerLink='/admin/home'>
+    <p id="points">Current Redeem Limit</p>
+  </button>
+  <button type="button " class="button Manage-awards" routerLink='/admin/home'>
+    <p id="manage">Manage Awards</p>
   </button>
 
 
@@ -57,10 +63,11 @@
       <!-- modal-body -->
       <div class="modal-body">
         <form [formGroup]="addForm" (ngSubmit)="addPoint()">
-          <span> Select award</span>
-          <select class="form-control" name="AwardId" formControlName="AwardId"
-            (change)="onChange($event.target.value)">
-            <option *ngFor="let award of adminService.awardList" value={{award.Id}} (click)="awardPoint(award.Points)">
+          <span class="select-award"> Select Award</span>
+          <br>
+          <select class="form-control select" name="AwardId" formControlName="AwardId"
+            (change)="onChange($event.target.value)" >
+            <option *ngFor="let award of adminService.awardList" value={{award.Id}}>
               {{award.Name}} </option>
 
           </select>
@@ -80,16 +87,18 @@
             <input type="number" class="textbox" name="Status" placeholder="Status" formControlName="Status"
               class="form-control" hidden>
           </div>
-          <p *ngIf="point">{{point}} points will be added/removed</p>
+          <p *ngIf="status && point" class="warning">{{point}} points will be added</p>
+          <p *ngIf="!status && point" class="warning">{{point}} points will be removed</p>
+
           <br>
           <div class="row">
 
             <div class="col-lg-6">
-              <input type="submit" class="btn btn-info btn-lg" value="Confirm" [disabled]="!addForm.valid">
+              <input type="submit" class="btn btn-info btn-lg" id="confirm" value="Confirm" [disabled]="!addForm.valid">
             </div>
             <!-- modal-footer -->
             <div class="col-lg-6">
-              <button type="button" class="btn btn-info btn-lg" (click)="closeModalDialog()">Cancel</button>
+              <button type="button" class="btn btn-info btn-lg" id="cancel" (click)="closeModalDialog()">Cancel</button>
             </div>
           </div>
 
