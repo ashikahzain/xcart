@@ -6,7 +6,7 @@
         <h3>Add New Award</h3>
     </div>
     <div class="form">
-        <form [formGroup]="awardForm" (ngSubmit)="addAward()">
+        <form [formGroup]="awardForm" (ngSubmit)="onSubmit()">
             <div class="form-data" id="Name">
                 <label for="Name">Name</label>
                 <input type="text" class="form-control" placeholder="Enter name of Award" formControlName="Name"
