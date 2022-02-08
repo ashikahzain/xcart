@@ -7,9 +7,11 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { UpdatecatalogueComponent } from './updatecatalogue/updatecatalogue.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from 'src/app/shared/layout/layout.module';
+import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [HomeComponent, UpdatecatalogueComponent],
+  declarations: [HomeComponent, UpdatecatalogueComponent, OrderdetailsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -17,7 +19,8 @@ import { LayoutModule } from 'src/app/shared/layout/layout.module';
     FormsModule,
     Ng2SearchPipeModule,
     HttpClientModule,
-    LayoutModule
+    LayoutModule,
+    NgbModule
 
   ]
 

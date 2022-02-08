@@ -5,6 +5,7 @@ import { EmployeeService } from 'src/app/shared/services/employee.service';
 import { MostAwarded } from 'src/app/shared/models/MostAwarded'
 import { Item } from 'src/app/shared/models/item';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,14 +16,18 @@ export class HomeComponent implements OnInit {
   filter: string;
   employee: MostAwarded;
   trendingItemList:Item;
+
   constructor(public adminService: AdminService, private authservice: AuthService,
-    public employeeservice: EmployeeService,private domSanitizer:DomSanitizer) { }
+    public employeeservice: EmployeeService,private domSanitizer:DomSanitizer,
+    public router:Router) { }
 
   ngOnInit(): void {
     this.adminService.getOrder();
+
     this.employeeservice.getMostAwardedEmployee().subscribe(data => {
       this.employee = data;
     });
+
     this.adminService.getTrendingItems().subscribe(data=>{
       this.trendingItemList=data
       data.forEach(item => {
@@ -31,6 +36,10 @@ export class HomeComponent implements OnInit {
       });
     }
       );
+  }
+
+  OrderDetails(){
+    this.router.navigateByUrl('admin/orderdetails');
   }
 
 }
