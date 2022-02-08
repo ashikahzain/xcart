@@ -74,6 +74,24 @@ namespace xcart.Controllers
 
         }
 
+        #region Get Employee By Id
+
+        //Get employee by id : GET Method : https://localhost:44396/api/employees/employee/2
+        [HttpGet]
+        [Route("employee/{id}")]
+
+        public async Task<IActionResult> GetEmployeeProfile(int id)
+        {
+            var employee = await employeeService.GetEmployeeProfile(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            return Ok(employee);
+        }
+        #endregion
+
+
 
 
     }

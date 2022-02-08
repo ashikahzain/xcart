@@ -79,6 +79,47 @@ namespace xcart.Services
             }
             return null;
         }
+
+
+        #endregion
+
+        #region Get Employee Profile
+        public async Task<List<EmployeeProfileViewModel>> GetEmployeeProfile(int id)
+        {
+            if (db != null)
+            {
+                return await(from user in db.User
+                             from location in db.Location
+                             from department in db.Department
+                             from jobtitle in db.JobTitle
+                             from point in db.Point
+                             from grade in db.Grade
+
+                             where user.Id == id &&
+                             user.LocationId == location.Id &&
+                             user.DepartmentId == department.Id &&
+                             user.GradeId == grade.Id &&
+                             user.JobTitleId == jobtitle.Id &&
+                             point.UserId == user.Id
+
+                             select new EmployeeProfileViewModel
+                             {
+                                 Id = user.Id,
+                                 Name = user.Name,
+                                 Gender = user.Gender,
+                                 Email = user.Email,
+                                 Image = user.Image,
+                                 Contact = user.Contact,
+                                 UserName = user.UserName,
+                                 LocationName = location.Name,
+                                 DepartmentName = department.Name,
+                                 GradeName = grade.Type,
+                                 JobTitleName = jobtitle.Name,
+                                 CurrentPoints = point.CurrentPoints
+                             }).ToListAsync();
+            }
+            return null;
+        }
         #endregion
 
 
