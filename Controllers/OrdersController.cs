@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using xcart.Models;
 using xcart.Services;
+using xcart.ViewModel;
 
 namespace xcart.Controllers
 {
@@ -58,22 +59,17 @@ namespace xcart.Controllers
         //To change the status of an order
         [HttpPut]
         [Route("Change-Status")]
-        public async Task<IActionResult> ChangeStatus([FromBody] Order model)
+        public async Task<IActionResult> ChangeStatus([FromBody]StatusOrderViewModel order)
         {
-            if (ModelState.IsValid)
-            {
                 try
                 {
-                    await orderService.ChangeStatus(model);
+                    await orderService.ChangeStatus(order);
                     return Ok();
                 }
                 catch
                 {
                     return BadRequest();
                 }
-                
-            }
-            return BadRequest();
         }
         
         //To get the Item details by Order Id
@@ -95,6 +91,18 @@ namespace xcart.Controllers
         public async Task<IActionResult> GetOrdersById(int id)
         {
             var order = await orderService.GetOrdersById(id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+            return Ok(order);
+        }
+
+        [HttpGet]
+        [Route("Status/{id}")]
+        public async Task<IActionResult> GetSpecificOrders(int id)
+        {
+            var order = await orderService.GetSpecificOrders(id);
             if (order == null)
             {
                 return NotFound();
