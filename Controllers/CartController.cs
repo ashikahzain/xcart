@@ -35,5 +35,53 @@ namespace xcart.Controllers
             return Ok(cart);
         }
         #endregion
+
+        #region Add to Cart
+       [HttpPost]
+
+       public async Task<IActionResult> AddToCart([FromBody] Cart cart)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var c = await cartService.AddToCart(cart);
+                    if(c>0)
+                    {
+                        return Ok(cart);
+                    }
+                }
+            }
+            catch
+            {
+                return BadRequest();
+            }
+            return BadRequest();     
+        }
+        #endregion
+
+    
+        #region Get all cart by id
+        [HttpGet]
+        [Route("getcart/{id}")]
+
+        public async Task<IActionResult> GetUsers(int id)
+        {
+            try
+            {
+                var user = await cartService.GetCartById(id);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                return Ok(user);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+        #endregion
+   
     }
 }
