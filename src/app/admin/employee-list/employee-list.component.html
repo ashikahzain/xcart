@@ -1,0 +1,102 @@
+<body class="backdrop">
+  <app-navbar></app-navbar>
+
+  <br>
+  <button type="button" class="button">
+    <p>Home</p>
+  </button>
+
+
+  <div class="container">
+    <div class="EmployeeList">
+      <div class="heading">
+        <h4>Employee List</h4>
+      </div>
+      <div class="search">
+        <input id="navsearch" type="text" ngDefaultControl [(ngModel)]="filter" placeholder="Search">
+        <i class="fa fa-search" id="search"></i>
+      </div>
+
+      <table class="table" id="table">
+        <thead>
+          <tr>
+            <th>Employee ID</th>
+            <th>Employee Name</th>
+            <th>Available Points</th>
+            <th>Edit Points</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of adminService.employeePointList |filter:filter">
+            <td> &nbsp; {{emp.UserId}}</td>
+            <td>{{emp.Name}}</td>
+            <td>{{emp.CurrentPoints}}</td>
+            <td><button class="btn btn-sm " (click)="openAddModal(emp.UserId,1)">+</button> &nbsp;
+              <button class="btn btn-sm " (click)="openAddModal(emp.UserId,0)">--</button>
+            </td>
+            <td><button class="btn btn-primary" (click)="awardHistory(emp.UserId)">view history</button></td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+</body>
+
+<!-- modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <!-- modal-dialog -->
+  <div class="modal-dialog" role="document">
+    <!-- modal-content -->
+    <div class="modal-content">
+
+      <!-- modal-body -->
+      <div class="modal-body">
+        <form [formGroup]="addForm" (ngSubmit)="addPoint()">
+          <span> Select award</span>
+          <select class="form-control" name="AwardId" formControlName="AwardId"
+            (change)="onChange($event.target.value)">
+            <option *ngFor="let award of adminService.awardList" value={{award.Id}} (click)="awardPoint(award.Points)">
+              {{award.Name}} </option>
+
+          </select>
+          <div>
+            <input type="text" class="textbox" name="EmployeeId" placeholder="EmployeeId" class="form-control"
+              formControlName="EmployeeId" hidden>
+          </div>
+          <div>
+            <input type="text" class="textbox" name="PresenteeId" placeholder="PresenteeId" class="form-control"
+              formControlName="PresenteeId" hidden>
+          </div>
+          <div>
+            <input type="text" class="textbox" name="Point" placeholder="Point" formControlName="Point"
+              class="form-control" hidden>
+          </div>
+          <div>
+            <input type="number" class="textbox" name="Status" placeholder="Status" formControlName="Status"
+              class="form-control" hidden>
+          </div>
+          <p *ngIf="point">{{point}} points will be added/removed</p>
+          <br>
+          <div class="row">
+
+            <div class="col-lg-6">
+              <input type="submit" class="btn btn-info btn-lg" value="Confirm" [disabled]="!addForm.valid">
+            </div>
+            <!-- modal-footer -->
+            <div class="col-lg-6">
+              <button type="button" class="btn btn-info btn-lg" (click)="closeModalDialog()">Cancel</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</div>

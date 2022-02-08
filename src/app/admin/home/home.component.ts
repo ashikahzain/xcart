@@ -18,8 +18,7 @@ export class HomeComponent implements OnInit {
   trendingItemList:Item;
 
   constructor(public adminService: AdminService, private authservice: AuthService,
-    public employeeservice: EmployeeService,private domSanitizer:DomSanitizer,
-    public router:Router) { }
+    public employeeservice: EmployeeService,private domSanitizer:DomSanitizer,private router:Router) { }
 
   ngOnInit(): void {
     this.adminService.getOrder();
@@ -40,6 +39,9 @@ export class HomeComponent implements OnInit {
 
   OrderDetails(){
     this.router.navigateByUrl('admin/orderdetails');
+  }
+  toEmployeeList(){
+    this.router.navigateByUrl('/admin/employeeList')
   }
 
 }

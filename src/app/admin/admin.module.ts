@@ -9,9 +9,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from 'src/app/shared/layout/layout.module';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ItemFormComponent } from './item-form/item-form.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { AwardHistoryComponent } from './award-history/award-history.component';
+import { AwardComponent } from './award/award.component';
+import { AddAwardComponent } from './award/add-award/add-award.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
-  declarations: [HomeComponent, UpdatecatalogueComponent, OrderdetailsComponent],
+  declarations: [HomeComponent, UpdatecatalogueComponent,OrderdetailsComponent, ItemFormComponent, AwardComponent,EmployeeListComponent, AwardHistoryComponent, AddAwardComponent],
+
+
+
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -20,7 +29,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     Ng2SearchPipeModule,
     HttpClientModule,
     LayoutModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
 
   ]
 

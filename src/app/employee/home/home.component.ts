@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
   sortPointAscending() {
 
     this.itemList.sort((a, b) =>
-      parseFloat(a.Points) - parseFloat(b.Points)
+      a.Points - b.Points
     );
     console.log(this.itemList);
   }
@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
   sortPointDescending() {
 
     this.itemList.sort((a, b) =>
-      parseFloat(b.Points) - parseFloat(a.Points)
+      b.Points - a.Points
     );
     console.log(this.itemList);
   }
@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
   sortAvailibilityAscending() {
 
     this.itemList.sort((a, b) =>
-      parseFloat(a.Quantity) - parseFloat(b.Quantity)
+      a.Quantity - b.Quantity
     );
     console.log(this.itemList);
   }
@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
   sortAvailibilityDescending() {
 
     this.itemList.sort((a, b) =>
-      parseFloat(b.Quantity) - parseFloat(a.Quantity)
+      b.Quantity - a.Quantity
     );
     console.log(this.itemList);
   }
