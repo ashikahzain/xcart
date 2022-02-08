@@ -43,6 +43,16 @@ namespace xcart.Services
         }
         #endregion
 
+        public async Task<Award> GetAwardById(int id)
+        {
+            var award = await db.Award.FirstOrDefaultAsync(i => i.Id == id);
+            if (award == null)
+            {
+                return null;
+            }
+            return award;
+        }
+
         #region Update Award
         public async Task UpdateAward(Award award)
         {
