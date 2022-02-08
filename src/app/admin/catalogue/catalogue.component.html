@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<!-- Page Content  -->
+
+<div id="content">
+    <div class="home-button">
+        <i class="fa fa-home"></i>
+        <h4>HOME</h4>
+    </div>
+    <div class="dropdown">
+        <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
+            Sort
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" (click)="sortPointDescending()">Points:High to Low</a></li>
+            <li><a class="dropdown-item" (click)="sortPointAscending()">Points: Low to High</a></li>
+            <li><a class="dropdown-item" (click)="sortAvailibilityDescending()">Quantity:High to Low</a></li>
+            <li><a class="dropdown-item" (click)="sortAvailibilityAscending()">Quantity:Low to High</a></li>
+        </ul>
+    </div>
+    <div class="add-button">
+        <button routerLink="/admin/itemform">Add Item<i class="fa fa-plus"></i></button>
+    </div>
+
+    <div class="container1">
+        <div class="item row">
+            <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let item of itemList | filter:filter">
+                <div class="card" [ngClass]="item.Quantity == '0' ? 'isDisabled' : 'isOn'">
+                    <div class="img-size">
+                        <img class="item-image" [src]="item.Image" />
+                    </div>
+                    <div class="row">
+                        <div class="item-details col-lg-6">
+                            <h6 class="item-name">{{item.Name}}</h6>
+                            <p class="item-points">Points: {{item.Points}}</p>
+
+                            <p class="item-availability" *ngIf="item.Quantity">Available:{{item.Quantity}}</p>
+                            <p class="item-outofstock" *ngIf="!item.Quantity">Out of Stock</p>
+                        </div>
+                        <div class="item-buttons col-lg-6">
+                            <button class="edit" (click)="edititem(item.Id)"><i
+                                    class="fa fa-pencil fa-lg menu-cart"></i></button>
+                            <button class="delete" (click)="deleteitem(item.Id)"><i
+                                class="fa fa-trash-o fa-lg menu-cart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

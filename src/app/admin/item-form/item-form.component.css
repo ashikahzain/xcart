@@ -44,8 +44,8 @@
 
 .form {
     position: absolute;
-    width: 377px;
-    height: 533px;
+    width: 450px;
+    height: 600px;
     margin: 10% 40%;
     background: #6b8bb7;
     box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.25);
@@ -54,6 +54,8 @@
 .form .form-data {
     margin: 9% 10%;
 }
+
+
 .form label {
     width: 170px;
     font-family: Roboto;
@@ -72,6 +74,7 @@
 .form input[type="file"] {
     width: 250px;
 }
+
 .form button {
     width: 132px;
     height: 33px;
@@ -94,7 +97,15 @@
     box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
 }
+.imagePreview{
+    height: 50%;
+    width: 50%;
 
+}
+.imagePreview img{
+    height: 50%;
+    width: 50%;
+}
 .error{
     color: red;
 }
