@@ -23,12 +23,12 @@ namespace xcart.Services
 
         #region Get All Items
 
-        public async Task<List<Item>> GetAllItems()
+        public async Task<List<Item>> GetAllActiveItems()
         {
             if (db != null)
             {
-                var list = await db.Item.ToListAsync();              
-                return list;
+               var item = await db.Item.Where(i => i.IsActive == true).ToListAsync();
+                return item;
             }
             return null;
         }
@@ -114,6 +114,17 @@ namespace xcart.Services
                 return item.Id;
             }
             return 0;
+        }
+
+        public async Task<List<Item>> GetAllInactiveItems()
+        {
+
+            if (db != null)
+            {
+                var item = await db.Item.Where(i => i.IsActive == false).ToListAsync();
+                return item;
+            }
+            return null;
         }
     }
 }

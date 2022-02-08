@@ -26,12 +26,27 @@ namespace xcart.Controllers
             itemService = _itemService;
             db = _db;
         }
-        //get all items 
+        //get all active items 
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> GetAllItems()
+        public async Task<IActionResult> GetAllActiveItems()
         {
-            var items = await itemService.GetAllItems();
+            var items = await itemService.GetAllActiveItems();
+            if (items == null)
+            {
+                return NotFound();
+            }
+            return Ok(items);
+
+        }
+
+        //get all inactive items 
+        [Authorize]
+        [HttpGet]
+        [Route("inactive-items")]
+        public async Task<IActionResult> GetAllInactiveItems()
+        {
+            var items = await itemService.GetAllInactiveItems();
             if (items == null)
             {
                 return NotFound();
