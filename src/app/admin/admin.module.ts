@@ -9,14 +9,17 @@ import { LayoutModule } from 'src/app/shared/layout/layout.module';
 import { ItemFormComponent } from './item-form/item-form.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { AwardHistoryComponent } from './award-history/award-history.component';
-import { AddPointComponent } from './add-point/add-point.component';
 import { AwardComponent } from './award/award.component';
 import { AddAwardComponent } from './award/add-award/add-award.component';
 import { CatalogueComponent } from './catalogue/catalogue.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
-  declarations: [HomeComponent, ItemFormComponent, AwardComponent,EmployeeListComponent, AwardHistoryComponent, AddPointComponent, AddAwardComponent, CatalogueComponent],
+  declarations: [HomeComponent, ItemFormComponent, AwardComponent,EmployeeListComponent, AwardHistoryComponent, AddAwardComponent, CatalogueComponent],
+
+
+
+
 
 
 
@@ -27,7 +30,8 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
     FormsModule,
     Ng2SearchPipeModule,
     HttpClientModule,
-    LayoutModule
+    LayoutModule,
+    NgxPaginationModule
 
   ]
 

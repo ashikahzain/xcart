@@ -6,7 +6,6 @@
         <p>Home</p>
     </button>
 
-
     <div class="container">
         <div class="AwardHistory">
             <div class="heading">
@@ -28,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let emp of adminService.awardHistory |filter:filter">
+                    <tr *ngFor="let emp of adminService.awardHistory | filter:filter  | paginate: {itemsPerPage:7, currentPage: page}">
                         <td> &nbsp; {{emp.AwardId}}</td>
                         <td>{{emp.AwardName}}</td>
                         <td>{{emp.Date | date: 'dd-MM-yyyy'}}</td>
@@ -39,6 +38,10 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="footer" >
+                <!--Pagination should be added here-->
+                <pagination-controls (pageChange)="page=($event)"></pagination-controls>
+            </div>
         </div>
     </div>
 </body>

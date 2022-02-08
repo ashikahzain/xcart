@@ -52,20 +52,28 @@ export class AdminService {
       this.employeePointList = Response as AllEmployeePoints[]);
   }
 
-  getAwardHistory(userId: number) {
-    this.httpClient.get(environment.apiUrl + "/api/employees/awards/" + userId).toPromise().then(Response =>
-      this.awardHistory = Response as AwardHistory[]);
+  getAwardHistory(userId:number){
+    this.httpClient.get(environment.apiUrl+"/api/awardhistory/"+userId).toPromise().then(Response=>
+      this.awardHistory=Response as AwardHistory[]);
   }
 
-  GetEmployee(UserId: number) {
-    this.httpClient.get(environment.apiUrl + "/api/employees/" + UserId).toPromise().then(Response =>
-      this.EmployeeDetails = Response as User);
+  addAwardHistory(award:AwardHistory):Observable<any>{
+     return this.httpClient.post(environment.apiUrl+"/api/awardhistory",award);
+  }
+
+  GetEmployee(UserId:number){
+    this.httpClient.get(environment.apiUrl+"/api/employees/"+UserId).toPromise().then(Response=>
+      this.EmployeeDetails=Response as User);
 
   }
   // Get all Awards
   getAwards(): void {
     this.httpClient.get(environment.apiUrl + '/api/awards').toPromise().then(response =>
       this.awardList = response as Award[]);;
+  }
+  //Add a new award
+  addAward(award: Award): Observable<any> {
+    return this.httpClient.post(environment.apiUrl +'/api/awards', award);
   }
 
   

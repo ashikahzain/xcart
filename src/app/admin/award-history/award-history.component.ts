@@ -11,6 +11,8 @@ export class AwardHistoryComponent implements OnInit {
 
   filter:string;
   userId:number;
+  page: number = 1;
+
   constructor(public adminService:AdminService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {

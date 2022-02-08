@@ -1,7 +1,76 @@
 .container{
     margin-top: 20px;
 }
-h3{
-    padding-top: 20px;
-    padding-bottom: 40px;
+
+.form-heading {
+    position: absolute;
+    width: 246px;
+    height: 51px;
+    margin-left: 37%;
+    margin-top: 2%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 34px;
+    line-height: 40px;
+    display: flex;
+    color: #1f4173;
+}
+
+.form {
+    position: absolute;
+    width: 377px;
+    height: 320px;
+    margin-left: 30%;
+    margin-top: 6%;
+    background: #6b8bb7;
+    box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+.form .form-data {
+    margin: 9% 10%;
+}
+.form label {
+    width: 170px;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    color: #2c2727;
+}
+.form input[type="text"] {
+    width: 273px;
+    height: 47px;
+    background: #ffffff;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+.form input[type="file"] {
+    width: 250px;
+}
+.form button {
+    width: 132px;
+    height: 33px;
+    background: #2d415d;
+    box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border: none;
+    margin:0 7% 0 6%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 23px;
+    color: rgba(255, 255, 255, 0.9);
+}
+.form #cancel {
+    width: 132px;
+    height: 33px;
+    background: #3e597f;
+    box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+.error{
+    color: red;
 }
