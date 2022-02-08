@@ -1,0 +1,94 @@
+.home{
+    position: absolute;
+    width: 11%;
+    height: 8%;
+    left: 6%;
+    top: 15%;
+    background: #F7C02D;
+    border-radius: 5px;
+    border: none;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight:500px;
+    font-size: 21px;
+    line-height: 31px;
+    
+}
+.fa-home{
+    width: 24px;
+    height: 24px;
+    left: calc(50% - 24px/2 - 34px);
+    top: calc(50% - 24px/2);
+    
+}
+.Open:hover{
+    color: hsla(360, 0%, 100%, 1);
+}
+.FullFilled:hover{
+    color: hsla(360, 0%, 100%, 1);
+}
+.All{
+    position: absolute;
+    width: 7%;
+    height: 10%;
+    left: 72%;
+    top: 15%;
+    background: #6B8BB7;
+    border-radius: 12% 0% 0% 12%;
+    border:none;
+    color: white;
+}
+.Open{
+    position: absolute;
+    width: 7%;
+    height: 10%;
+    left: 79%;
+    top: 15%;
+    background: #6B8BB7;
+    border: none;
+    transition: all 0.4s;
+    
+}
+.FullFilled{
+    position: absolute;
+    width: 7%;
+    height: 10%;
+    left: 86%;
+    top: 15%;
+    background: #6B8BB7;
+    border-radius: 0% 12% 12% 0%;
+    border: none;
+    transition: all 0.4s;
+}
+.list-heading h4 {
+    margin: 9% 0% 0% 6%;
+    color: #1f4173;
+}
+.search {
+    display: inline;
+    margin-left: 75%;
+}
+.search input[type="text"] {
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+}
+.fa-search {
+    color: #2d415d;
+}
+.table {
+    margin-top: 1%;
+    margin-left: 6%;
+    width: 85%;
+    border-radius: 20px;
+    text-align: center;
+}
+.form-control{
+    width:90%;
+    margin-left: 8%;
+    background: #FBDD8E;
+}
+#status{
+    background: #72D761;
+
+}
