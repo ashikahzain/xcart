@@ -1,0 +1,102 @@
+.content {
+    margin-left: 20%;
+  }
+  .card {
+    /*border: 1px solid black;*/
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 15%;
+    margin-left: 23%;
+    width: 65%;
+    height: 75%;
+    display: inline-flex;
+  }
+  .card-content {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 2%;
+  }
+  button {
+    width: 5%;
+  }
+  
+  #decrease {
+    border: none;
+    margin-left: 30%;
+  }
+  
+  #decrease:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  #increase {
+    border: none;
+  }
+  
+  #increase:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  #delete {
+    border: none;
+    float: right;
+    margin-right: 5%;
+    background-color:red;
+    width: 8%;
+    height: 8%;
+  }
+  
+  #delete:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  .user-points {
+    position: absolute;
+    width: 20%;
+    height: 75px;
+    margin-left: 70%;
+    margin-top: 5%;
+    background: #72d761;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 140%;
+    font-weight: 500;
+    color: white;
+  }
+  
+  /*
+    .checkout{
+        margin-left: 50%;
+        background-color: #F7C02D;
+        width: 100%;
+        margin-top: 17%;
+        height: 20%;
+        border: none;
+    }
+    */
+  
+  #checkout {
+    margin-left: 78%;
+    margin-top: 10%;
+    width: 12%;
+    height: 50px;
+    border: none;
+    background-color: #f7c02d;
+    font-size: 140%;
+    font-weight: 500;
+    color: #646363;
+    border-radius: 10px;
+  }
+  
+  .check:hover{
+      background-color: #3E597F;
+      color: white;
+  }
+  
+  .points{
+      margin-left: 70%;
+      margin-top: 5%;
+      font-size: 140%;
+  }
