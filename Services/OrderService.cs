@@ -35,6 +35,7 @@ namespace xcart.Services
                                   DateOfOrder = order.DateOfOrder,
                                   DateOfDelivery = Convert.ToDateTime(order.DateOfDelivery),
                                   UserName = user.Name,
+                                  Points = order.Points,
                                   Status = status.Status
                               }
                     ).ToListAsync();
@@ -76,18 +77,26 @@ namespace xcart.Services
             return null;
         }
         #endregion
-
+        
         #region Change the Status of Order
         public async Task ChangeStatus(Order order)
         {
             if (db != null)
             {
+                if (order.StatusDescriptionId == 1)
+                {
+                    order.StatusDescriptionId = 2;
+                    order.DateOfDelivery = DateTime.Now.ToLongDateString();
                     db.Order.Update(order);
+                    await db.SaveChangesAsync();
+                }
+                    //db.Order.Update(order);
                     await db.SaveChangesAsync();
             }
         }
 
         #endregion
+        
 
         #region Get Item Details By Order Id
         public async Task<List<OrderDetailsViewModel>> GetOrderDetailsByOrderId(int id)
@@ -104,9 +113,30 @@ namespace xcart.Services
                               {
                                   Id = order.Id,
                                   Name = item.Name,
-                                  Quantity = orderdetails.Quantity,
-                                  Points = order.Points
+                                  Quantity = orderdetails.Quantity
                               }).ToListAsync();
+            }
+            return null;
+        }
+        #endregion
+
+        #region Get Order By Id
+        public async Task<OrderViewModel> GetOrdersById(int id)
+        {
+            if (db != null)
+            {
+                return await (from order in db.Order
+                              where order.Id == id
+
+                              select new OrderViewModel
+                              {
+                                  Id = order.Id,
+                                  DateOfOrder = order.DateOfOrder,
+                                  DateOfDelivery = Convert.ToDateTime(order.DateOfDelivery),
+                                  Points = order.Points,
+                                  StatusDescriptionId=order.StatusDescriptionId
+                              }
+                    ).FirstOrDefaultAsync();
             }
             return null;
         }

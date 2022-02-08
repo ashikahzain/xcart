@@ -63,8 +63,8 @@ namespace xcart.Services
                               from role in db.Role
 
                               where user.UserName == UserName
-                              where userrole.Role.Id == role.Id
-                              where userrole.User.Id == user.Id
+                              where userrole.RoleId == role.Id
+                              where userrole.UserId == user.Id
 
 
                               select new LoginViewModel
