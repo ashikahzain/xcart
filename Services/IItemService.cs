@@ -10,5 +10,6 @@ namespace xcart.Services
      public interface IItemService
     {
         public Task<List<Item>> GetAllItems();
+        public Task<int> AddItem(ItemViewModel item);
     }
 }

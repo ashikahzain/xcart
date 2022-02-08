@@ -40,5 +40,27 @@ namespace xcart.Controllers
             return Ok(items);
 
         }
+
+        //add item
+        [Authorize]
+        [HttpPost]
+
+        public async Task<IActionResult> AddItem(ItemViewModel item)
+        {
+            //check the validation of body
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var eventId = await itemService.AddItem(item);
+                        return Ok(eventId);
+                }
+                catch (Exception)
+                {
+                    return BadRequest();
+                }
+            }
+            return BadRequest();
+        }
     }
 }

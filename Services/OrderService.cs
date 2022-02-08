@@ -22,18 +22,18 @@ namespace xcart.Services
         public async Task<List<OrderViewModel>> GetAllOrders()
         {
             if (db != null)
-            {               
+            {
                 return await (from order in db.Order
                               from user in db.User
                               from status in db.StatusDescription
                               where order.UserId == user.Id
-                              where order.StatusId == status.Id
+                              where order.StatusDescriptionId == status.Id
 
                               select new OrderViewModel
                               {
                                   Id = order.Id,
                                   DateOfOrder = order.DateOfOrder,
-                                  DateOfDelivery = order.DateOfDelivery,
+                                  DateOfDelivery = Convert.ToDateTime(order.DateOfDelivery),
                                   UserName = user.Name,
                                   Status = status.Status
                               }

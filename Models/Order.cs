@@ -25,15 +25,15 @@ namespace xcart.Models
         public DateTime DateOfOrder { get; set; }
 
         [Column("DateOfDelivery")]
-        public String DateOfDelivery { get; set; }
+        public string DateOfDelivery { get; set; }
 
         [Column("Points")]
         [Required]
         public int Points { get; set; }
 
         
-        [ForeignKey("StatusId")]
-        public int StatusId { get; set; }
+        [ForeignKey("StatusDescriptionId")]
+        public int StatusDescriptionId { get; set; }
         public virtual StatusDescription StatusDescription { get; set; }
     }
 }

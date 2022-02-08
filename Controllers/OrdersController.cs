@@ -36,8 +36,8 @@ namespace xcart.Controllers
             {
                 return NotFound();
             }
-            //return Ok(orders);
-            return Ok(db.Order.FirstOrDefault());
+            return Ok(orders);
+            
         }
 
         //get the top two trending items

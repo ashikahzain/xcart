@@ -15,7 +15,6 @@ namespace xcart.Services
 
         Task<List<AllEmployeePointViewModel>> GetEmployeePoints();
 
-        Task<List<AwardHistoryViewModel>> GetAwardHistory(int UserId);
 
         Task<User> GetEmployeeById(int id);
 

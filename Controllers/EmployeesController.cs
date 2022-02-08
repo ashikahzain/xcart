@@ -74,18 +74,7 @@ namespace xcart.Controllers
 
         }
 
-        //get award history of an employee
-        [HttpGet("awards/{id}")]
-        public async Task<IActionResult> GetAwardHistory(int id)
-        {
-            var awardhistory = await employeeService.GetAwardHistory(id);
-            if (awardhistory == null)
-            {
-                return NotFound();
-            }
-            return Ok(awardhistory);
 
-        }
 
     }
 }

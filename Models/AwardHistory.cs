@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace xcart.Models
 {
-    public class AwardHistory
+    public partial class AwardHistory
     {
+
         [Column("Id")]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,7 +30,7 @@ namespace xcart.Models
         public virtual Award Award { get; set; }
 
         [ForeignKey("PresenteeId")]
-        public int PresenteeId { get; set; }
+        public int? PresenteeId { get; set; }
         public virtual User Presentee  { get; set; }
 
         [Column("Point")]

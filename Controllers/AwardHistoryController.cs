@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using xcart.Models;
+using xcart.Services;
 
 namespace xcart.Controllers
 {
@@ -15,15 +16,21 @@ namespace xcart.Controllers
     {
         XCartDbContext db;
 
-        public AwardHistoryController(XCartDbContext db)
+        IAwardHistoryService awardHistoryService;
+
+        IPointService pointService;
+
+        public AwardHistoryController(XCartDbContext db, IAwardHistoryService awardHistoryService,IPointService pointservice)
         {
             this.db = db;
+            this.awardHistoryService = awardHistoryService;
+            this.pointService = pointservice;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllAwards()
         {
-            var awards = await db.AwardHistory.ToListAsync(); 
+            var awards = await db.AwardHistory.ToListAsync();
             if (awards == null)
             {
                 return NotFound();
@@ -33,16 +40,60 @@ namespace xcart.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddEvent(AwardHistory award)
+        public async Task<IActionResult> AddAwardHistory(AwardHistory award)
         {
-            //--- member function to add patient ---//
-            if (db != null)
+            //check the validation of body
+            if (ModelState.IsValid)
             {
-                await db.AwardHistory.AddAsync(award);
-                await db.SaveChangesAsync();
-                return Ok(award.Id);
+                try
+                {
+                    if (award.Status)
+                    {
+                        var response = pointService.AddPoint(award.Point, award.EmployeeId);
+                        if (response == null)
+                        {
+                            return BadRequest();
+
+                        }
+                    }
+                    else
+                    {
+                        var response = pointService.RemovePoints(award.Point, award.EmployeeId);
+                        if (response == null)
+                        {
+                            return BadRequest();
+
+                        }
+                    }
+                    
+                    var awardId = await awardHistoryService.AddAwardHistory(award);
+                    if (awardId != 0)
+                    {
+                        return Ok(awardId);
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+                catch (Exception)
+                {
+                    return BadRequest();
+                }
             }
-            return null;
+            return BadRequest();
+        }
+
+        //get award history of an employee
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAllAwardHistory(int id)
+        {
+            var awardhistory = await awardHistoryService.GetAwardHistory(id);
+            if (awardhistory == null)
+            {
+                return NotFound();
+            }
+            return Ok(awardhistory);
 
         }
     }
