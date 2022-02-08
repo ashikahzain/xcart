@@ -8,10 +8,11 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { CartComponent } from './cart/cart.component';
+import { OrderComponent } from './order/order.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, ProfileComponent, CartComponent],
+  declarations: [HomeComponent, ProfileComponent, CartComponent, OrderComponent],
   imports: [
     CommonModule,
     EmployeeRoutingModule,
