@@ -121,18 +121,18 @@ namespace xcart.Services
         #endregion
 
         #region Get Order By Id
-        public async Task<OrderViewModel> GetOrdersById(int id)
+        public async Task<Order> GetOrdersById(int id)
         {
             if (db != null)
             {
                 return await (from order in db.Order
                               where order.Id == id
 
-                              select new OrderViewModel
+                              select new Order
                               {
                                   Id = order.Id,
                                   DateOfOrder = order.DateOfOrder,
-                                  DateOfDelivery = Convert.ToDateTime(order.DateOfDelivery),
+                                  DateOfDelivery = order.DateOfDelivery,
                                   Points = order.Points,
                                   StatusDescriptionId=order.StatusDescriptionId
                               }
