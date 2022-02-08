@@ -224,7 +224,6 @@ D:\XCart\xcart\Backend\xcart\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni
 D:\XCart\xcart\Backend\xcart\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\XCart\xcart\Backend\xcart\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\XCart\xcart\Backend\xcart\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.AssemblyReference.cache
 D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.GeneratedMSBuildEditorConfig.editorconfig
 D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.AssemblyInfoInputs.cache
 D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.AssemblyInfo.cs
@@ -237,3 +236,4 @@ D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.RazorTargetAssemblyIn
 D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.dll
 D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.pdb
 D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.genruntimeconfig.cache
+D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.CopyComplete
