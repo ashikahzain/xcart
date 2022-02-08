@@ -11,6 +11,11 @@ namespace xcart.Services
     {
         Task<Point> GetPointsByEmployeeId(int id);
 
+        Point AddPoint(long points,long userid);
+
+        Point RemovePoints(int points, int userid);
+
+
 
     }
 }
