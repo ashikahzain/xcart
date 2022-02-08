@@ -18,5 +18,7 @@ namespace xcart.Services
 
         Task<User> GetEmployeeById(int id);
 
+        Task<List<EmployeeProfileViewModel>> GetEmployeeProfile(int id);
+
     }
 }
