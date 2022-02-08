@@ -23,7 +23,7 @@ namespace xcart.Services
         {
             if (db != null)
             {
-                var list = await db.Award.ToListAsync();
+                var list = await db.Award.Where(i => i.IsActive == true).ToListAsync();
                 return list;
             }
             return null;

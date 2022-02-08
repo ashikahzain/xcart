@@ -96,6 +96,7 @@ namespace xcart.Controllers
         #region Update Award
         [Authorize]
         [HttpPut]
+        [Route("update-award")]
         public async Task<IActionResult> UpdateAward([FromBody] Award model)
         {
             //check the validation of body
@@ -117,7 +118,7 @@ namespace xcart.Controllers
 
         #region Delete Award
         [Authorize]
-        [HttpDelete("{id}")]
+        [Route("delete-award/{id}")]
         public async Task<IActionResult> DeleteAward(int id)
         {
             //Check the validation of body
