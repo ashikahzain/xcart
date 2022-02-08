@@ -35,5 +35,43 @@ namespace xcart.Services
         }
         #endregion
 
+        #region addPoints
+        public  Point AddPoint(long points,long userId)
+        {
+            if (db != null)
+            {
+                var userPoints =  db.Point.SingleOrDefault(x => x.UserId == userId);
+
+                userPoints.CurrentPoints = userPoints.CurrentPoints + points;
+                userPoints.TotalPoints = userPoints.TotalPoints + points;
+
+
+                db.Point.Update(userPoints);
+                 db.SaveChanges();
+
+                return userPoints;
+            }
+            return null;
+        }
+        #endregion
+
+        #region Remove Points
+        public Point RemovePoints(int points, int userId)
+        {
+            if (db != null)
+            {
+                Point userPoints =  db.Point.SingleOrDefault(x => x.UserId == userId);
+                userPoints.CurrentPoints -= points;
+                userPoints.TotalPoints -= points;
+
+                db.Point.Update(userPoints);
+                 db.SaveChanges();
+
+                return userPoints;
+            }
+            return null;
+        }
+        #endregion
+
     }
 }

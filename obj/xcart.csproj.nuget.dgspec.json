@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\XCart\\xcart\\xcart.csproj": {}
+    "D:\\Xcart\\Api\\xcart\\xcart.csproj": {}
   },
   "projects": {
-    "E:\\XCart\\xcart\\xcart.csproj": {
+    "D:\\Xcart\\Api\\xcart\\xcart.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\XCart\\xcart\\xcart.csproj",
+        "projectUniqueName": "D:\\Xcart\\Api\\xcart\\xcart.csproj",
         "projectName": "xcart",
-        "projectPath": "E:\\XCart\\xcart\\xcart.csproj",
-        "packagesPath": "C:\\Users\\ashika.hussain\\.nuget\\packages\\",
-        "outputPath": "E:\\XCart\\xcart\\obj\\",
+        "projectPath": "D:\\Xcart\\Api\\xcart\\xcart.csproj",
+        "packagesPath": "C:\\Users\\sujith.kumar\\.nuget\\packages\\",
+        "outputPath": "D:\\Xcart\\Api\\xcart\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ashika.hussain\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sujith.kumar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,10 +43,6 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.0.0, )"
-            },
-            "Microsoft.AspNetCore.Cors": {
-              "target": "Package",
-              "version": "[2.1.1, )"
             },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
