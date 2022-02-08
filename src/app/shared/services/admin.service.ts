@@ -96,7 +96,7 @@ export class AdminService {
     return this.httpClient.put(environment.apiUrl + '/api/awards/update-award', award);
   }
   deleteAward(id:number):Observable<any>{
-    return this.httpClient.get(environment.apiUrl + '/api/items/delete-award/'+id)
+    return this.httpClient.get(environment.apiUrl + '/api/awards/delete-award/'+id)
   }
 
   // Update Status

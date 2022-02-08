@@ -14,11 +14,14 @@ export class AddAwardComponent implements OnInit {
   awardForm: FormGroup;
   submitted = false;
   Id: number;
+  formTitle = 'Add new Award';
+  buttonTitle='Add Award';
 
   constructor(private formBuilder: FormBuilder, public adminService: AdminService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.awardForm = this.formBuilder.group({
+      Id: 0,
       Name: ['', [Validators.required, ValidateAwardName]],
       Points: ['', [Validators.required, ValidateNumbers]],
       IsActive: true
@@ -27,6 +30,8 @@ export class AddAwardComponent implements OnInit {
     this.Id = this.route.snapshot.params['awardId'];
     console.log(this.Id)
     if (this.Id != null) {
+      this.formTitle = 'Update Award';
+      this.buttonTitle = 'Update';
       //populate form on init
       this.populateAward();
     }
@@ -56,7 +61,7 @@ export class AddAwardComponent implements OnInit {
 
   //POPULATE AWARD TO FORM 
   populateAward() {
-    //get item by id
+    //get award by id
     this.adminService.getAwardbyId(this.Id).subscribe(
       award => {
         this.awardForm.setValue({
@@ -71,7 +76,7 @@ export class AddAwardComponent implements OnInit {
   }
 
 
-  //UPDATING ITEM 
+  //UPDATING AWARD
   updateAward() {
     console.log(this.awardForm.value);
     this.adminService.updateAward(this.awardForm.value).subscribe(
