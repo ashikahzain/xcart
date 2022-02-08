@@ -42,6 +42,29 @@ namespace xcart.Controllers
         }
         #endregion
 
+        #region Get Award by Id
+        [HttpGet("{id}")]
+
+        public async Task<IActionResult> GetAwardById(int id)
+        {
+            try
+            {
+                var award = await awardService.GetAwardById(id);
+                if (award == null)
+                {
+                    return NotFound();
+                }
+                return Ok(award);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+        }
+
+        #endregion
+
         #region Add new Award
         [Authorize]
         [HttpPost]
@@ -73,6 +96,7 @@ namespace xcart.Controllers
         #region Update Award
         [Authorize]
         [HttpPut]
+        [Route("update-award")]
         public async Task<IActionResult> UpdateAward([FromBody] Award model)
         {
             //check the validation of body
@@ -94,7 +118,7 @@ namespace xcart.Controllers
 
         #region Delete Award
         [Authorize]
-        [HttpDelete("{id}")]
+        [Route("delete-award/{id}")]
         public async Task<IActionResult> DeleteAward(int id)
         {
             //Check the validation of body
