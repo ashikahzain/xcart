@@ -42,6 +42,29 @@ namespace xcart.Controllers
         }
         #endregion
 
+        #region Get Award by Id
+        [HttpGet("{id}")]
+
+        public async Task<IActionResult> GetAwardById(int id)
+        {
+            try
+            {
+                var award = await awardService.GetAwardById(id);
+                if (award == null)
+                {
+                    return NotFound();
+                }
+                return Ok(award);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+        }
+
+        #endregion
+
         #region Add new Award
         [Authorize]
         [HttpPost]
