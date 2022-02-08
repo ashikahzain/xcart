@@ -11,7 +11,9 @@ namespace xcart.Services
     {
         public Task<List<OrderViewModel>> GetAllOrders();
         Task<List<Item>> GetTrendingItems();
-        Task ChangeStatus(Order order);
+        Task ChangeStatus(StatusOrderViewModel order);
         Task<List<OrderDetailsViewModel>> GetOrderDetailsByOrderId(int id);
+        Task<Order> GetOrdersById(int id);
+        public Task<List<OrderViewModel>> GetSpecificOrders(int id);
     }
 }

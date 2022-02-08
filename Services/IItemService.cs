@@ -9,7 +9,13 @@ namespace xcart.Services
 {
      public interface IItemService
     {
-        public Task<List<Item>> GetAllItems();
+        public Task<List<Item>> GetAllActiveItems();
+        public Task<List<Item>> GetAllInactiveItems();
         public Task<int> AddItem(ItemViewModel item);
+        public Task<Item> GetItemById(int id);
+        public Task<int> EditItemQuantity(ItemQuantityVm item);
+        public Task<int> DeleteItem(int id);
+        public Task<int> UpdateItem(ItemViewModel item);
+
     }
 }

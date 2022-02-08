@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,12 +26,27 @@ namespace xcart.Controllers
             itemService = _itemService;
             db = _db;
         }
-        //get all items 
+        //get all active items 
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> GetAllItems()
+        public async Task<IActionResult> GetAllActiveItems()
         {
-            var items = await itemService.GetAllItems();
+            var items = await itemService.GetAllActiveItems();
+            if (items == null)
+            {
+                return NotFound();
+            }
+            return Ok(items);
+
+        }
+
+        //get all inactive items 
+        [Authorize]
+        [HttpGet]
+        [Route("inactive-items")]
+        public async Task<IActionResult> GetAllInactiveItems()
+        {
+            var items = await itemService.GetAllInactiveItems();
             if (items == null)
             {
                 return NotFound();
@@ -53,7 +67,7 @@ namespace xcart.Controllers
                 try
                 {
                     var eventId = await itemService.AddItem(item);
-                        return Ok(eventId);
+                    return Ok(eventId);
                 }
                 catch (Exception)
                 {
@@ -62,5 +76,88 @@ namespace xcart.Controllers
             }
             return BadRequest();
         }
+
+        #region Get Item by Id
+        [HttpGet("{id}")]
+
+        public async Task<IActionResult> GetItemById(int id)
+        {
+            try
+            {
+                var item = await itemService.GetItemById(id);
+                if (item == null)
+                {
+                    return NotFound();
+                }
+                return Ok(item);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+        }
+
+        #endregion
+
+        #region Add Item Quantity
+        [HttpPost]
+        [Route("update-stock")]
+
+        public async Task<IActionResult> EditQuantity([FromBody]ItemQuantityVm item)
+        {
+            try
+            {
+                var items = await itemService.EditItemQuantity(item);
+                return Ok(item);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+        }
+
+        #endregion
+
+        #region Delete Item by changing is active status
+        [HttpGet]
+        [Route("delete-item/{id}")]
+        public async Task<IActionResult> DeleteItem(int id)
+        {
+            try
+            {
+                var item = await itemService.DeleteItem(id);
+                return Ok(item);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+        }
+        #endregion
+
+        #region Update Item
+        [HttpPut]
+        [Route("update-item")]
+        public async Task<IActionResult> UpdateItem([FromBody] ItemViewModel item)
+        {
+            //Check the validation of body
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await itemService.UpdateItem(item);
+                    return Ok(item);
+                }
+                catch (Exception)
+                {
+                    return BadRequest();
+                }
+            }
+            return BadRequest();
+        }
+        #endregion
     }
 }

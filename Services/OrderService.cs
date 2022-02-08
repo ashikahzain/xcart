@@ -35,6 +35,7 @@ namespace xcart.Services
                                   DateOfOrder = order.DateOfOrder,
                                   DateOfDelivery = Convert.ToDateTime(order.DateOfDelivery),
                                   UserName = user.Name,
+                                  Points = order.Points,
                                   Status = status.Status
                               }
                     ).ToListAsync();
@@ -78,17 +79,24 @@ namespace xcart.Services
         #endregion
 
         #region Change the Status of Order
-        public async Task ChangeStatus(Order order)
+        public async Task ChangeStatus(StatusOrderViewModel order)
         {
-            if (db != null)
+            var orderdetails = await db.Order.FirstOrDefaultAsync(o => o.Id == order.Id);
+            if (orderdetails.StatusDescriptionId == 1)
             {
-                    db.Order.Update(order);
-                    await db.SaveChangesAsync();
+                var vm = new StatusOrderViewModel
+                {
+                    Id = order.Id,
+                    DateOfDelivery = DateTime.Now.ToLongDateString(),
+                    StatusDescriptionId = 2
+                };
+                vm.MaptoModel(orderdetails);
+                db.SaveChanges();
             }
         }
 
         #endregion
-
+        
         #region Get Item Details By Order Id
         public async Task<List<OrderDetailsViewModel>> GetOrderDetailsByOrderId(int id)
         {
@@ -104,9 +112,59 @@ namespace xcart.Services
                               {
                                   Id = order.Id,
                                   Name = item.Name,
-                                  Quantity = orderdetails.Quantity,
-                                  Points = order.Points
+                                  Quantity = orderdetails.Quantity
                               }).ToListAsync();
+            }
+            return null;
+        }
+        #endregion
+
+        #region Get Order By Id
+        public async Task<Order> GetOrdersById(int id)
+        {
+            if (db != null)
+            {
+                return await (from order in db.Order
+                              where order.Id == id
+
+                              select new Order
+                              {
+                                  Id = order.Id,
+                                  DateOfOrder = order.DateOfOrder,
+                                  DateOfDelivery = order.DateOfDelivery,
+                                  Points = order.Points,
+                                  StatusDescriptionId=order.StatusDescriptionId
+                              }
+                    ).FirstOrDefaultAsync();
+            }
+            return null;
+        }
+
+
+        #endregion
+
+        #region Get Specific Orders
+        public async Task<List<OrderViewModel>> GetSpecificOrders(int id)
+        {
+            if (db != null)
+            {
+                return await (from order in db.Order
+                              from user in db.User
+                              from status in db.StatusDescription
+                              where order.StatusDescriptionId==id
+                              where order.UserId == user.Id
+                              where order.StatusDescriptionId == status.Id
+
+                              select new OrderViewModel
+                              {
+                                  Id = order.Id,
+                                  DateOfOrder = order.DateOfOrder,
+                                  DateOfDelivery = Convert.ToDateTime(order.DateOfDelivery),
+                                  UserName = user.Name,
+                                  Points = order.Points,
+                                  Status = status.Status
+                              }
+                    ).ToListAsync();
             }
             return null;
         }

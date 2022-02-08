@@ -23,12 +23,12 @@ namespace xcart.Services
 
         #region Get All Items
 
-        public async Task<List<Item>> GetAllItems()
+        public async Task<List<Item>> GetAllActiveItems()
         {
             if (db != null)
             {
-                var list = await db.Item.ToListAsync();              
-                return list;
+               var item = await db.Item.Where(i => i.IsActive == true).ToListAsync();
+                return item;
             }
             return null;
         }
@@ -56,8 +56,75 @@ namespace xcart.Services
             }
             return 0 ;
         }
-
         #endregion
+        public async Task<Item> GetItemById(int id)
+        {
+            var item = await db.Item.FirstOrDefaultAsync(i => i.Id == id);
+            if (item == null)
+            {
+                return null;
+            }
+            return item;
+        }
 
+        //Add quantity (stock update)
+        public async Task<int> EditItemQuantity(ItemQuantityVm item)
+        {
+            var itemdetails = await db.Item.FirstOrDefaultAsync(i => i.Id == item.Id);
+            var vm = new ItemQuantityVm
+            {
+                Id = item.Id,
+                Quantity = itemdetails.Quantity + item.Quantity
+            };
+            vm.MaptoModel(itemdetails);
+            db.SaveChanges();
+            return item.Id;
+        }
+
+        //Delete Item (change is active status)
+
+        public async Task<int> DeleteItem(int id)
+        {
+            var itemdetails = await db.Item.FirstOrDefaultAsync(i => i.Id == id);
+            itemdetails.IsActive = false;
+            db.Item.Update(itemdetails);
+            await db.SaveChangesAsync();
+            return id;
+            
+        }
+
+        public async Task<int> UpdateItem(ItemViewModel item)
+        {
+            //member function to update patient
+            if (db != null)
+            {
+                //Convert Base64 Encoded string to Byte Array.
+                byte[] image = Convert.FromBase64String(item.Image);
+                var itemdata = new Item
+                {
+                    Id = item.Id,
+                    Image = image,
+                    Name = item.Name,
+                    Quantity = item.Quantity,
+                    Points = item.Points,
+                    IsActive = item.IsActive
+                };
+                db.Item.Update(itemdata);
+                await db.SaveChangesAsync();
+                return item.Id;
+            }
+            return 0;
+        }
+
+        public async Task<List<Item>> GetAllInactiveItems()
+        {
+
+            if (db != null)
+            {
+                var item = await db.Item.Where(i => i.IsActive == false).ToListAsync();
+                return item;
+            }
+            return null;
+        }
     }
 }
