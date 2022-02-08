@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/shared/services/admin.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { of } from 'rxjs';
-import { Item } from 'src/app/shared/models/item';
-import { DatePipe } from '@angular/common';
+import { Order } from 'src/app/shared/models/order';
 
 
 @Component({
@@ -16,19 +14,24 @@ export class OrderdetailsComponent implements OnInit {
 
   filter:string;
   closeResult:string;
-  datePipe = new DatePipe("en-UK");
-  dateTime:Date;
-
   
   constructor(public adminService:AdminService, private router:Router,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.adminService.getOrder();
-    this.dateTime=new Date();
   }
   AdminHome(){
     this.router.navigateByUrl('admin/home')
+  }
+  All(){
+    this.adminService.getOrder();
+  }
+  Open(){
+    this.adminService.getSpecifiedOrder(1);
+  }
+  FulFilled(){
+    this.adminService.getSpecifiedOrder(2);
   }
 
   open(content,orderId:number) {
@@ -57,52 +60,16 @@ export class OrderdetailsComponent implements OnInit {
     }
   }
 
-  UpdateStatus(orderId:number){
-    if(orderId!=0 || orderId!=null){
-      this.adminService.GetOrderById(orderId).subscribe(
-        data=>{
-          console.log(data.Id);
-          
-          this.adminService.UpdateStatus(data.Id).subscribe(
-            result=>{
-              console.log(result)
-            }
-          )
-          
-        }
-      )
-    }
-
-  }
-
-  //update status
-  /*
-  UpdateStatus(orderId:number){
-    if(orderId!=0 || orderId!=null){
-      this.adminService.GetOrderById(orderId).subscribe(
+  UpdateStatus(order:Order){
+    if(order.Id!=0 || order.Id!=null){
+      this.adminService.ChangeStatus(order).subscribe(
         data=>{
           console.log(data);
-          //console.log(data.Id);
-          data.forEach(item => {
-            console.log(item.StatusDescriptionId);
-            if(item.StatusDescriptionId == 1){
-              
-              console.log("Hi");
-              item.StatusDescriptionId = 2;
-              item.DateOfDelivery = this.dateTime;
-              console.log(item);
-              console.log(data);
-              this.adminService.UpdateStatus(item).subscribe(
-                result=>{
-                  console.log(result);
-                }
-              );
-              //console.log(item);
-            }
-            });
+          location.reload();
+          
         }
       )
     }
+
   }
-*/
 }

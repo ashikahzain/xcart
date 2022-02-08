@@ -77,14 +77,15 @@ export class AdminService {
     return this.httpClient.post(environment.apiUrl + '/api/awards', award);
   }
 
-  //Get Order By Id
-  GetOrderById(orderId: number): Observable<any> {
-    return this.httpClient.get(environment.apiUrl + '/api/orders/GetOrderById/' + orderId);
+  // Update Status
+  ChangeStatus(order: Order): Observable<any> {
+    console.log('Annie')
+    return this.httpClient.put(environment.apiUrl + '/api/orders/change-status', order);
   }
 
-  // Update Status
-  UpdateStatus(orderId: number): Observable<any> {
-    console.log('Annie')
-    return this.httpClient.put(environment.apiUrl + '/api/orders/change-status', orderId);
+  // Get Specified Order
+  getSpecifiedOrder(statusId:number): void {
+    this.httpClient.get(environment.apiUrl + '/api/orders/status/'+statusId).toPromise().then(response =>
+      this.orderList = response as Order[]);
   }
 }
