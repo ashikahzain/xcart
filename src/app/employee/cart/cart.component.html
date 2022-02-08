@@ -1,0 +1,24 @@
+<app-sidemenu></app-sidemenu>
+
+<div id="content" style="border: 1px solid black;">
+    <div class="user-points">
+        <p>Points Remaining
+            <br>{{currentPoints}}
+        </p>
+    </div>
+
+    <div class="card" *ngFor="let cart of cart">
+        <div class="card-content">
+        {{cart?.ItemName}} <!--&nbsp;&nbsp;&nbsp;--> <button id="decrease" (click)="onDecrease()">-</button> &nbsp;
+        {{cart?.Quantity}}&nbsp;&nbsp;&nbsp;&nbsp;<button id="increase">+</button> &nbsp;&nbsp;&nbsp;&nbsp;{{cart.ItemPoints}} &nbsp;Points
+        &nbsp;&nbsp;&nbsp;&nbsp;<button id="delete">x</button>
+    </div>
+   
+    </div>
+    <br>
+    <p class="points">Total Points: </p>
+    <br>
+    <input type="button" id="checkout" class="check" value="Checkout" (click)="onCheckOut()"/>
+
+       
+</div>

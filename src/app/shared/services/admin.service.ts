@@ -6,8 +6,8 @@ import { Item } from '../models/item';
 import { Order } from '../models/order';
 import { OrderDetails } from '../models/OrderDetails'
 import { User } from '../models/user';
-import {AllEmployeePoints} from '../models/AllEmployeePoint';
-import{AwardHistory} from '../models/AwardHistory';
+import { AllEmployeePoints } from '../models/AllEmployeePoint';
+import { AwardHistory } from '../models/AwardHistory';
 
 import { Award } from '../models/award';
 @Injectable({
@@ -32,31 +32,44 @@ export class AdminService {
     this.httpClient.get(environment.apiUrl + '/api/orders').toPromise().then(response =>
       this.orderList = response as Order[]);
   }
-
   getTrendingItems(): Observable<any> {
     return this.httpClient.get(environment.apiUrl + '/api/orders/trending-item');
   }
-
-  //get order details by item id
-  getOrderDetailsByOrderId(orderId: number) {
-    this.httpClient.get(environment.apiUrl + '/api/orders/GetOrderDetails/' + orderId).toPromise().then(response =>
-      this.orderDetails = response as OrderDetails[]);
-  }
-
   addItem(item: Item): Observable<any> {
     return this.httpClient.post(environment.apiUrl + '/api/items/', item);
 
+  }
+  getItembyId(id:number):Observable<any>{
+    return this.httpClient.get(environment.apiUrl + '/api/items/'+id);
+  }
+  updateItem(item:Item):Observable<any>{
+    return this.httpClient.put(environment.apiUrl + '/api/items/update-item', item);
+  }
+  deleteItem(id:number):Observable<any>{
+    return this.httpClient.get(environment.apiUrl + '/api/items/delete-item/'+id)
   }
 
   getAllEmployeesPoints() {
     this.httpClient.get(environment.apiUrl + "/api/employees").toPromise().then(Response =>
       this.employeePointList = Response as AllEmployeePoints[]);
+
+    }
+
+  getAwardHistory(userId:number):Observable<any>{
+    return this.httpClient.get(environment.apiUrl+"/api/awardhistory/"+userId)
+    //.toPromise().then(Response=>
+      //this.awardHistory=Response as AwardHistory[]);
+  //get order details by item id
   }
 
-  getAwardHistory(userId: number) {
-    this.httpClient.get(environment.apiUrl + "/api/awardhistory/" + userId).toPromise().then(Response =>
-      this.awardHistory = Response as AwardHistory[]);
+  getOrderDetailsByOrderId(orderId: number) {
+    this.httpClient.get(environment.apiUrl + '/api/orders/GetOrderDetails/' + orderId).toPromise().then(response =>
+      this.orderDetails = response as OrderDetails[]);
   }
+
+
+
+  
 
   addAwardHistory(award: AwardHistory): Observable<any> {
     return this.httpClient.post(environment.apiUrl + "/api/awardhistory", award);

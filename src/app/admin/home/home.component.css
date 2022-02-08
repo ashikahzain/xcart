@@ -68,6 +68,9 @@ img.item-image {
     align-items: center;
     color: #1f4173;
 }
+a{
+    text-decoration: none;
+}
 .stock {
     width: 80px;
     height: 30px;

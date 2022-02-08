@@ -21,6 +21,36 @@ align-items: center;
 text-align: center;
 color: #2D415D;
 }
+
+.Manage-awards{
+    width: 170px;
+    float: right;
+    margin-right: 10%;
+    font-family: Lato;
+
+}
+#manage{
+    font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 19px;
+margin-left: 10%;
+
+color: #5B4E4E;
+}
+.Max-points{
+
+    margin-left: 50%;
+}
+#points{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height:15px;
+    margin-left: 5%;
+    
+    color: #5B4E4E;
+}
 .heading h4 {
     height: 41px;
     width: 228px;
@@ -51,10 +81,71 @@ color: #2D415D;
 }
 
 .btn{
-    background: #F7C02D;
+    background: #395E91;
     border-radius: 10px;
     padding: 5%;
     border: none;
     color: white;
 }
 
+.btn:hover{
+    background:#F7C02D ;
+    transform: scale(1.1);
+}
+
+.modal{
+    margin-top: 17%;
+}
+
+.select{
+    width: 50%;
+    margin-left: 20%;
+    
+}
+
+.select-award{
+    margin-left: 30%;
+
+}
+
+#confirm{
+    margin-left: 40%;
+    background: #2E63B1;
+    border-radius: 5px;
+    filter: drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.25));
+    font-family: Roboto;
+font-style: normal;
+font-weight:normal;
+font-size: 21px;
+line-height: 31px;
+}
+
+#cancel{
+    background: #C4C4C4;
+    border-radius: 5px;
+    filter: drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.25));
+    font-family: Roboto;
+    font-style: normal;
+    font-weight:normal;
+    font-size: 21px;
+    line-height: 31px;
+}
+
+.warning{
+    margin-left: 27%;
+    margin-top: 2%;
+    color: white;
+    background: #6B8BB7;
+    width: 40%;
+    border-radius: 5px;
+}
+
+.modal-body{
+    background: rgba(57, 94, 145, 0.9);
+box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
+border-radius: 5px;
+}
+
+.select-award{
+    color: white;
+}

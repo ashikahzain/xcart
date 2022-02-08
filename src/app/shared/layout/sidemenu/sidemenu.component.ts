@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -8,9 +9,9 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SidemenuComponent implements OnInit {
 
-  filter:string;
+  filter: string;
 
-  constructor(private authservice: AuthService) { }
+  constructor(private authservice: AuthService, private router: Router) { }
   userName = sessionStorage.getItem('username');
 
   ngOnInit(): void {
@@ -27,5 +28,14 @@ export class SidemenuComponent implements OnInit {
     this.authservice.logout();
   }
 
+
+  moveToProfile() {
+
+    this.router.navigateByUrl('/employee/profile');
+  }
+
+  moveToCart() {
+    this.router.navigateByUrl('/employee/cart');
+  }
 
 }

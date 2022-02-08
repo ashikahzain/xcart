@@ -5,7 +5,10 @@
     <button type="button" class="button">
         <p>Home</p>
     </button>
-
+    
+    <button type="button" class="button" routerLink='/admin/employeeList'>
+        <p>Back</p>
+      </button>
 
     <div class="container">
         <div class="AwardHistory">
@@ -22,19 +25,21 @@
                     <tr>
                         <th>Award ID</th>
                         <th>Award Name</th>
+                        <th>Points</th>
                         <th>Awarded date</th>
-                        <th>Presenter</th>
+                        <th>Awarded By</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let emp of adminService.awardHistory | filter:filter  | paginate: {itemsPerPage:7, currentPage: page}">
+                    <tr *ngFor="let emp of sortedAwardHistory | filter:filter  | paginate: {itemsPerPage:7, currentPage: page}">
                         <td> &nbsp; {{emp.AwardId}}</td>
                         <td>{{emp.AwardName}}</td>
+                        <td>{{emp.Point}}</td>
                         <td>{{emp.Date | date: 'dd-MM-yyyy'}}</td>
                         <td>{{emp.Presenter}}</td>
-                        <td *ngIf="emp.Status">Awarded</td>
-                        <td *ngIf="!emp.Status">Removed</td>
+                        <td *ngIf="emp.Status" >Awarded</td>
+                        <td *ngIf="!emp.Status" style="color: red;">Removed</td>
 
                     </tr>
                 </tbody>
