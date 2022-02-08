@@ -42,8 +42,8 @@ namespace xcart.Services
             {
                 var userPoints =  db.Point.SingleOrDefault(x => x.UserId == userId);
 
-                userPoints.CurrentPoints = userPoints.CurrentPoints + points;
-                userPoints.TotalPoints = userPoints.TotalPoints + points;
+                userPoints.CurrentPoints += points;
+                userPoints.TotalPoints += points;
 
 
                 db.Point.Update(userPoints);

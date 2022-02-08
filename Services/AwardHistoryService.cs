@@ -64,7 +64,8 @@ namespace xcart.Services
                                   AwardName = awardName.Name,
                                   Date = award.Date,
                                   Presenter = user.Name,
-                                  Status = award.Status
+                                  Status = award.Status,
+                                  Point=award.Point
                               }).ToListAsync();
             }
             return null;
