@@ -120,8 +120,35 @@ namespace xcart.Services
             }
             return null;
         }
+
         #endregion
 
+        #region Get Order Details By Employee Id
+        public async Task<List<OrderViewModel>> GetAllOrdersByEmployeeId(int id)
+        {
+            if (db != null)
+            {
+                return await(from order in db.Order
+                             from user in db.User
+                             from status in db.StatusDescription
+                             where user.Id==id
+                             where order.UserId == user.Id
+                             where order.StatusDescriptionId == status.Id
+
+                             select new OrderViewModel
+                             {
+                                 Id = order.Id,
+                                 DateOfOrder = order.DateOfOrder,
+                                 DateOfDelivery = order.DateOfDelivery,
+                                 UserName = user.Name,
+                                 Points = order.Points,
+                                 Status = status.Status
+                             }
+                    ).ToListAsync();
+            }
+            return null;
+        }
+        #endregion
 
     }
 }

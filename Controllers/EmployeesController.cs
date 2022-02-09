@@ -91,6 +91,19 @@ namespace xcart.Controllers
         }
         #endregion
 
+        // get order details by employee id
+        [HttpGet]
+        [Route("OrderByEmpId/{id}")]
+        public async Task<IActionResult> GetAllOrdersByEmployeeId(int id)
+        {
+            var order = await employeeService.GetAllOrdersByEmployeeId(id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+            return Ok(order);
+        }
+
 
 
 
