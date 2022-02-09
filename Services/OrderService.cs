@@ -173,7 +173,7 @@ namespace xcart.Services
         {
             var orderdetails = new Order
             {
-                DateOfOrder = DateTime.Now,
+                DateOfOrder = order.DateOfOrder,
                 UserId=order.UserId,
                 DateOfDelivery=null,
                 StatusDescriptionId=2,
@@ -182,7 +182,7 @@ namespace xcart.Services
             };
            await db.Order.AddAsync(orderdetails);
             await db.SaveChangesAsync();
-            return order.Id;
+            return orderdetails.Id;
         }
         #endregion
     }

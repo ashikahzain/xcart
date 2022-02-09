@@ -20,11 +20,18 @@ namespace xcart.Controllers
 
         XCartDbContext db;
 
+        IPointService pointService;
+
+        ICartService cartservice;
+
         //constructor 
-        public OrdersController(IOrderService _orderService, XCartDbContext _db)
+        public OrdersController(IOrderService _orderService, XCartDbContext _db,IPointService _pointService,ICartService _cartService)
         {
             orderService = _orderService;
             db = _db;
+            pointService = _pointService;
+            cartservice = _cartService;
+            
         }
 
         //get all orders
@@ -121,6 +128,7 @@ namespace xcart.Controllers
                     var c = await orderService.AddOrder(order);
                     if (c > 0)
                     {
+                        var userpoints = pointService.RemovePointsonCheckout(order.Points, order.UserId);
                         return Ok(c);
                     }
                 }
@@ -131,7 +139,15 @@ namespace xcart.Controllers
             }
             return BadRequest();
         }
-#endregion
+        #endregion
+
+        [HttpGet]
+        [Route("quantity-check/{id}")]
+        public async Task<IActionResult> GetQuantity(int id)
+        {
+            var order = await cartservice.CompareQuantity(id);
+            return Ok(order);
+        }
 
     }
 }
