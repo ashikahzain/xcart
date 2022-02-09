@@ -1,4 +1,5 @@
 export class CartViewModel{
+       CartId:number;
        ItemId: number;
        ItemName: string;
        ItemImage: string;

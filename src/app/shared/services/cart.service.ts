@@ -16,4 +16,11 @@ export class CartService {
     return this.httpClient.get(environment.apiUrl+"/api/cart/cart/"+this.userId);
   }
 
+  increaseQuantity(id:number):Observable<any>{
+    return this.httpClient.get(environment.apiUrl+"/api/cart/increase-quantity/"+id);
+  }
+
+  decreaseQuantity(id:number):Observable<any>{
+    return this.httpClient.get(environment.apiUrl+"/api/cart/decrease-quantity/"+id);
+  }
 }
