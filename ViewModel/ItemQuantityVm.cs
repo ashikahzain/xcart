@@ -11,9 +11,9 @@ namespace xcart.ViewModel
         public int Id { get; set; }
         public int Quantity { get; set; }
 
-        public void MaptoModel(Item item)
+        public void MaptoModel(Cart cart)
         {
-            item.Quantity = Quantity;
+            cart.Quantity = Quantity;
         }
     }
 }

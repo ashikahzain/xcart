@@ -67,19 +67,7 @@ namespace xcart.Services
             return item;
         }
 
-        //Add quantity (stock update)
-        public async Task<int> EditItemQuantity(ItemQuantityVm item)
-        {
-            var itemdetails = await db.Item.FirstOrDefaultAsync(i => i.Id == item.Id);
-            var vm = new ItemQuantityVm
-            {
-                Id = item.Id,
-                Quantity = itemdetails.Quantity + item.Quantity
-            };
-            vm.MaptoModel(itemdetails);
-            db.SaveChanges();
-            return item.Id;
-        }
+     
 
         //Delete Item (change is active status)
 
