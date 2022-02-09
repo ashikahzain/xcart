@@ -240,3 +240,4 @@ D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.genruntimeconfig.cach
 D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.CopyComplete
 =======
 >>>>>>> 0222e12a43982651f69f3a0b2f743855c3fc27f6
+D:\Experion\XCart\BackEnd\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.AssemblyReference.cache
