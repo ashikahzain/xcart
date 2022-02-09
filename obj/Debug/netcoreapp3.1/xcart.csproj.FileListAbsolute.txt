@@ -236,5 +236,4 @@ D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.RazorTargetAssemblyIn
 D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.dll
 D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.pdb
 D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.genruntimeconfig.cache
-D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.AssemblyReference.cache
 D:\XCart\xcart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.CopyComplete

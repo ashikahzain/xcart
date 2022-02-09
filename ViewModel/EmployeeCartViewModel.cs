@@ -7,6 +7,7 @@ namespace xcart.ViewModel
 {
     public class EmployeeCartViewModel
     {
+        public long CartId { get; set; }
         public int ItemId { get; set; }
         public string ItemName { get; set; }
         public byte[] ItemImage { get; set; }

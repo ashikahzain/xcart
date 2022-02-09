@@ -100,25 +100,7 @@ namespace xcart.Controllers
 
         #endregion
 
-        #region Add Item Quantity
-        [HttpPost]
-        [Route("update-stock")]
-
-        public async Task<IActionResult> EditQuantity([FromBody]ItemQuantityVm item)
-        {
-            try
-            {
-                var items = await itemService.EditItemQuantity(item);
-                return Ok(item);
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-
-        }
-
-        #endregion
+        
 
         #region Delete Item by changing is active status
         [HttpGet]

@@ -20,6 +20,7 @@ namespace xcart.Services
         
 
 
+
         #region Get Cart By Id
         public async Task<List<EmployeeCartViewModel>> GetCartById(int id)
         {
@@ -39,6 +40,7 @@ namespace xcart.Services
 
                                   select new EmployeeCartViewModel
                                   {
+                                      CartId=cart.Id,
                                       ItemId = item.Id,
                                       ItemName = item.Name,
                                       ItemImage = item.Image,
@@ -52,7 +54,6 @@ namespace xcart.Services
            
         }
         #endregion
-
      
         #region Get all cart by id
         public async Task<List<Cart>> GetAllCartById(int id)
@@ -102,6 +103,35 @@ namespace xcart.Services
 
 
 
+
+        //Add quantity (cart update)
+        public async Task<int> IncreaseQuantity(int id)
+        {
+            var itemdetails = await db.Cart.FirstOrDefaultAsync(i => i.Id == id);
+            var vm = new ItemQuantityVm()
+            {
+                Id = id,
+                Quantity = itemdetails.Quantity + 1
+            };
+            vm.MaptoModel(itemdetails);
+            db.SaveChanges();
+            return id;
+        }
+
+        //DESCREASE QUANTITY
+        public async Task<int> DecreaseQuantity(int id)
+        {
+
+            var itemdetails = await db.Cart.FirstOrDefaultAsync(i => i.Id == id);
+            var vm = new ItemQuantityVm()
+            {
+                Id = id,
+                Quantity = itemdetails.Quantity - 1
+            };
+            vm.MaptoModel(itemdetails);
+            db.SaveChanges();
+            return id;
+        }
 
     }
 }
