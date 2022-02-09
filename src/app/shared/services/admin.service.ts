@@ -22,6 +22,7 @@ export class AdminService {
   awardHistory:AwardHistory[];
   EmployeeDetails:User;
   awardList: Award[];
+  itemList:Item;
 
   constructor(public httpClient: HttpClient) {
 
@@ -109,5 +110,10 @@ export class AdminService {
   getSpecifiedOrder(statusId:number): void {
     this.httpClient.get(environment.apiUrl + '/api/orders/status/'+statusId).toPromise().then(response =>
       this.orderList = response as Order[]);
+  }
+
+  getItembyIdusingpromise(id:number){
+    this.httpClient.get(environment.apiUrl + '/api/items/'+id).toPromise().then(response =>
+      this.itemList = response as Item);;
   }
 }

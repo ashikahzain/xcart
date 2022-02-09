@@ -28,6 +28,9 @@ export class SidemenuComponent implements OnInit {
     this.authservice.logout();
   }
 
+  movetoHome(){
+    this.router.navigateByUrl('/employee/home');
+  }
 
   moveToProfile() {
 
