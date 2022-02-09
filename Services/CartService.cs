@@ -17,6 +17,9 @@ namespace xcart.Services
             this.db = db;
         }
 
+        
+
+
 
         #region Get Cart By Id
         public async Task<List<EmployeeCartViewModel>> GetCartById(int id)
@@ -37,6 +40,7 @@ namespace xcart.Services
 
                                   select new EmployeeCartViewModel
                                   {
+                                      CartId=cart.Id,
                                       ItemId = item.Id,
                                       ItemName = item.Name,
                                       ItemImage = item.Image,
@@ -50,5 +54,84 @@ namespace xcart.Services
            
         }
         #endregion
+     
+        #region Get all cart by id
+        public async Task<List<Cart>> GetAllCartById(int id)
+        {
+            if (db != null)
+            {
+                return await db.Cart.ToListAsync();
+            }
+            return null;
+        }
+        #endregion
+   
+
+        #region Add to Cart
+        public async Task<int> AddToCart(Cart cart)
+        {
+
+            if (db != null)
+            {
+                await db.Cart.AddAsync(cart);
+                await db.SaveChangesAsync();
+                return cart.UserId;
+            }
+            return 0;
+        }
+
+
+
+
+        #endregion
+
+        #region Delete Cart
+        public async Task<Cart> DeleteCart(int id)
+        {
+            if (db != null)
+            {
+                Cart doc = db.Cart.Where(x=>x.Id == id).FirstOrDefault();
+                db.Cart.Remove(doc);
+                await db.SaveChangesAsync(); 
+                return doc;
+            }
+            return null;
+
+        }
+        #endregion
+
+
+
+
+
+        //Add quantity (cart update)
+        public async Task<int> IncreaseQuantity(int id)
+        {
+            var itemdetails = await db.Cart.FirstOrDefaultAsync(i => i.Id == id);
+            var vm = new ItemQuantityVm()
+            {
+                Id = id,
+                Quantity = itemdetails.Quantity + 1
+            };
+            vm.MaptoModel(itemdetails);
+            db.SaveChanges();
+            return id;
+        }
+
+        //DESCREASE QUANTITY
+        public async Task<int> DecreaseQuantity(int id)
+        {
+
+            var itemdetails = await db.Cart.FirstOrDefaultAsync(i => i.Id == id);
+            var vm = new ItemQuantityVm()
+            {
+                Id = id,
+                Quantity = itemdetails.Quantity - 1
+            };
+            vm.MaptoModel(itemdetails);
+            db.SaveChanges();
+            return id;
+        }
+
     }
 }

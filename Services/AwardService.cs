@@ -23,7 +23,7 @@ namespace xcart.Services
         {
             if (db != null)
             {
-                var list = await db.Award.ToListAsync();
+                var list = await db.Award.Where(i => i.IsActive == true).ToListAsync();
                 return list;
             }
             return null;
@@ -42,6 +42,16 @@ namespace xcart.Services
             return 0;
         }
         #endregion
+
+        public async Task<Award> GetAwardById(int id)
+        {
+            var award = await db.Award.FirstOrDefaultAsync(i => i.Id == id);
+            if (award == null)
+            {
+                return null;
+            }
+            return award;
+        }
 
         #region Update Award
         public async Task UpdateAward(Award award)

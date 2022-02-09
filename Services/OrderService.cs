@@ -33,7 +33,7 @@ namespace xcart.Services
                               {
                                   Id = order.Id,
                                   DateOfOrder = order.DateOfOrder,
-                                  DateOfDelivery = Convert.ToDateTime(order.DateOfDelivery),
+                                  DateOfDelivery = order.DateOfDelivery,
                                   UserName = user.Name,
                                   Points = order.Points,
                                   Status = status.Status
@@ -97,7 +97,7 @@ namespace xcart.Services
 
         #endregion
         
-        #region Get Item Details By Order Id
+        #region Get order Details By Order Id
         public async Task<List<OrderDetailsViewModel>> GetOrderDetailsByOrderId(int id)
         {
             if (db != null)
@@ -150,19 +150,19 @@ namespace xcart.Services
             {
                 return await (from order in db.Order
                               from user in db.User
-                              from status in db.StatusDescription
+                              from stat in db.StatusDescription
                               where order.StatusDescriptionId==id
                               where order.UserId == user.Id
-                              where order.StatusDescriptionId == status.Id
+                              where order.StatusDescriptionId == stat.Id
 
                               select new OrderViewModel
                               {
                                   Id = order.Id,
                                   DateOfOrder = order.DateOfOrder,
-                                  DateOfDelivery = Convert.ToDateTime(order.DateOfDelivery),
+                                  DateOfDelivery = order.DateOfDelivery,
                                   UserName = user.Name,
                                   Points = order.Points,
-                                  Status = status.Status
+                                  Status = stat.Status
                               }
                     ).ToListAsync();
             }
