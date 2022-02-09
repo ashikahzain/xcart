@@ -143,10 +143,31 @@ namespace xcart.Controllers
                     return BadRequest();
                 }
             }
-            #endregion
+        #endregion
 
 
+        #region Delete Cart by User Id
 
+        [HttpDelete]
+        [Route("delete-cart/{id}")]
 
+        public async Task<IActionResult> DeleteCartbyUserId(long id)
+        {
+            try
+            {
+                var c = await cartService.DeleteCartbyUserId(id);
+                if (c != null)
+                {
+                    return Ok(c);
+                }
+                return NotFound();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
+        #endregion
+
     }
+}

@@ -12,6 +12,7 @@ namespace xcart.ViewModel
         public string ItemName { get; set; }
         public byte[] ItemImage { get; set; }
         public int Quantity { get; set; }
+        public int TotalQuantity { get; set; }
         public int ItemPoints { get; set; }
         public bool? IsActive { get; set; }
     }

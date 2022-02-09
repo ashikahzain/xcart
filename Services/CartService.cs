@@ -45,6 +45,7 @@ namespace xcart.Services
                                       ItemName = item.Name,
                                       ItemImage = item.Image,
                                       Quantity = cart.Quantity,
+                                      TotalQuantity=item.Quantity,
                                       ItemPoints = item.Points,
                                       IsActive = item.IsActive
                                   }).ToListAsync();
@@ -133,5 +134,42 @@ namespace xcart.Services
             return id;
         }
 
+        public async Task<List<Cart>> DeleteCartbyUserId(long id)
+        {
+            if (db != null)
+            {
+                var doc = await db.Cart.Where(x => x.UserId == id).ToListAsync();
+                foreach (Cart c in doc) {
+                    db.Cart.Remove(c);
+                    await db.SaveChangesAsync();
+                  
+                }
+                return doc;
+                
+            }
+            return null;
+        }
+
+        public async Task<EmployeeCartViewModel> CompareQuantity(long userId)
+        {
+            var c = await (from cart in db.Cart
+                           from item in db.Item
+                           where cart.UserId == userId && item.Id == cart.ItemId
+                           select new EmployeeCartViewModel
+                           {
+                               ItemName =item.Name,
+                               TotalQuantity = item.Quantity,
+                               Quantity =cart.Quantity
+                           }
+                              ).ToListAsync();
+            foreach(EmployeeCartViewModel e in c)
+            {
+                if (e.Quantity > e.TotalQuantity)
+                {
+                    return e;
+                }      
+            }
+            return null;
+        }
     }
 }

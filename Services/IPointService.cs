@@ -15,6 +15,8 @@ namespace xcart.Services
 
         Point RemovePoints(int points, int userid);
 
+        Point RemovePointsonCheckout(int points, int userid);
+
 
 
     }
