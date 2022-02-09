@@ -1,19 +1,19 @@
 <app-navbar></app-navbar>
-<button type="button" class="home" (click)="AdminHome()"><i class="fa fa-home" ></i>HOME</button>
+<button type="button" class="home" (click)="AdminHome()"><i class="fa fa-home"></i>HOME</button>
 <div>
-    <button type="button" class="All" (click)="All()">All</button>
-    <button type="button" class="Open" (click)="Open()">Open</button>
-    <button type="button" class="FullFilled" (click)="FulFilled()">FullFilled</button>
+  <button type="button" class="All" (click)="All()">All</button>
+  <button type="button" class="Open" (click)="Open()">Open</button>
+  <button type="button" class="FullFilled" (click)="FulFilled()">FulFilled</button>
 </div>
 <div class="container">
-<div class="list-heading">
+  <div class="list-heading">
     <h4>Order History</h4>
-</div>
-<div class="search">
-    <input id="navsearch" type="text" placeholder="Search" ngDefaultControl [(ngModel)]="filter" >
+  </div>
+  <div class="search">
+    <input id="navsearch" type="text" placeholder="Search" ngDefaultControl [(ngModel)]="filter">
     <i class="fa fa-search" id="search"></i>
-</div>
-<table class="table" id="table">
+  </div>
+  <table class="table" id="table">
     <thead>
       <tr>
         <th>Order ID</th>
@@ -26,15 +26,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let list of adminService.orderList |filter:filter" >
+      <tr *ngFor="let list of adminService.orderList |filter:filter">
         <td>{{list.Id}}</td>
         <td>{{list.UserName}}</td>
         <td><button type="button" class="form-control" (click)="open(content,list.Id)">View Products</button></td>
         <td>{{list.Points}}</td>
         <td>{{list.DateOfOrder | date: 'dd-MM-yyyy'}}</td>
-        <td>{{list.DateOfDelivery| date: 'dd-MM-yyyy'}}</td>
-        <td><button class="form-control" [ngStyle]="{'background-color':list.Status === 'Fulfilled' ? '#72D761' : '#D11A2A' }"
-          (click)="UpdateStatus(list)">{{list.Status}}</button></td>
+        <td *ngIf="list.DateOfDelivery !== null">{{list.DateOfDelivery | date: 'dd-MM-yyyy'}}</td>
+        <td *ngIf="list.DateOfDelivery === null">Not Delivered</td>
+        <td><button class="form-control"
+            [ngStyle]="{'background-color':list.Status === 'FulFilled' ? '#72D761' : '#D11A2A' }"
+            (click)="UpdateStatus(list)">{{list.Status}}</button></td>
       </tr>
     </tbody>
   </table>
@@ -42,14 +44,14 @@
 
 <!--PopUp-->
 <ng-template #content let-modal>
-	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Order Details</h4>
-		<button type="button" class="close"aria-label="Close" (click)="modal.dismiss('Cross click')">
-			<span aria-hidden="true">×</span>
-		</button>
-	</div>
-	<div class="modal-body">
-		<table class="table" id="popup">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Order Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="table" id="popup">
       <thead>
         <tr>
           <th>Product</th>
@@ -61,13 +63,8 @@
           <td>{{item.Name}}</td>
           <td>{{item.Quantity}}</td>
         </tr>
-        <!--
-        <tr *ngFor="let item of adminService.orderDetails">
-          <th>Total Points</th>
-          <td>{{item.Points}}</td>
-        </tr>-->
       </tbody>
     </table>
     <div></div>
-	</div>
+  </div>
 </ng-template>

@@ -48,7 +48,7 @@
   .wrapper {
       position: fixed;
       display: flex;
-      width: 100%;
+      width: 25%;
       align-items: stretch;
       height: 100vh;
   }

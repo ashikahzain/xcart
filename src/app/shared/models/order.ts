@@ -2,7 +2,7 @@ export class Order {
     Id: number;
     UserName: string;
     DateOfOrder: Date;
-    DateOfDelivery: Date;
+    DateOfDelivery: String;
     Points:number;
     Status: string;
     StatusDescriptionId:number;

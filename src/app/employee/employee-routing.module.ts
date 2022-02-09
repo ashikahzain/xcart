@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
+import { OrderComponent } from './order/order.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: 'employee/home', component: HomeComponent },
-  { path: 'employee/profile', component: ProfileComponent},
-  { path: 'employee/cart', component: CartComponent}
+  { path: 'employee/profile', component: ProfileComponent },
+  { path: 'employee/cart', component: CartComponent },
+  { path: 'employee/order', component: OrderComponent }
 ];
 
 @NgModule({

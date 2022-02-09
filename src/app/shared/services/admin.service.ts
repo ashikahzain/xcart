@@ -89,6 +89,15 @@ export class AdminService {
   addAward(award: Award): Observable<any> {
     return this.httpClient.post(environment.apiUrl + '/api/awards', award);
   }
+  getAwardbyId(id:number):Observable<any>{
+    return this.httpClient.get(environment.apiUrl + '/api/awards/'+id);
+  }
+  updateAward(award:Award):Observable<any>{
+    return this.httpClient.put(environment.apiUrl + '/api/awards/update-award', award);
+  }
+  deleteAward(id:number):Observable<any>{
+    return this.httpClient.get(environment.apiUrl + '/api/awards/delete-award/'+id)
+  }
 
   // Update Status
   ChangeStatus(order: Order): Observable<any> {

@@ -38,4 +38,8 @@ export class SidemenuComponent implements OnInit {
     this.router.navigateByUrl('/employee/cart');
   }
 
+  moveToOrder(){
+    this.router.navigateByUrl('/employee/order');
+  }
+
 }

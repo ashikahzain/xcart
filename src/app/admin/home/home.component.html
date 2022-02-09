@@ -5,21 +5,20 @@
   <div class="card-deck row">
     <div class="card  col-lg-3" (click)="OrderDetails()">
       <div class="card-body text-left">
-        <p class="card-text" >Pending Orders</p>
+        <p class="card-text">Pending Orders</p>
       </div>
       <i class="fa fa-arrow-right fa-lg"></i>
     </div>
-   
-    <div class="card col-lg-3">
+    <div class="card col-lg-3" routerLink='/admin/employeeList'>
       <div class="card-body text-left">
         <p class="card-text">Update Points</p>
-        <button routerLink='/admin/employeeList'></button>
+        <button></button>
       </div>
       <i class="fa fa-arrow-right fa-lg"></i>
     </div>
-    <div class="card col-lg-3" routerLink="/admin/catalogue">
+    <div class="card col-lg-3" routerLink='/admin/catalogue'>
       <div class="card-body text-left">
-        <p class="card-text" >Manage Stock</p>
+        <p class="card-text">Manage Stock</p>
       </div>
       <i class="fa fa-arrow-right fa-lg"></i>
     </div>
@@ -31,7 +30,7 @@
       <div class="list-heading">
         <h4>Latest Orders</h4>
       </div>
-      <div class="search"> 
+      <div class="search">
         <input id="navsearch" type="text" ngDefaultControl [(ngModel)]="filter" placeholder="Search">
         <i class="fa fa-search" id="search"></i>
       </div>
@@ -50,7 +49,8 @@
             <td>{{order.Id}}</td>
             <td>{{order.UserName}}</td>
             <td>{{order.DateOfOrder | date: 'dd-MM-yyyy'}}</td>
-            <td  *ngIf="order.DateOfDelivery!=NULL">{{order.DateOfDelivery| date: 'dd-MM-yyyy'}}</td>
+            <td *ngIf="order.DateOfDelivery !== null">{{order.DateOfDelivery | date: 'dd-MM-yyyy'}}</td>
+            <td *ngIf="order.DateOfDelivery === null">Not Delivered</td>
             <td>{{order.Status}}</td>
 
           </tr>
@@ -61,9 +61,11 @@
     <div class="col-lg-4" id="reward">
       <div class="card" id="trending-item">
         <div class="heading">
-        <span><i class="fa fa-line-chart"></i></span>
-        <span><h4>Trends</h4></span>
-      </div>
+          <span><i class="fa fa-line-chart"></i></span>
+          <span>
+            <h4>Trends</h4>
+          </span>
+        </div>
         <div class="row trending-item">
           <div class="col-lg-6" *ngFor="let trendingitem of trendingItemList ">
             <div class="card item-card">
