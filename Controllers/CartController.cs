@@ -82,6 +82,30 @@ namespace xcart.Controllers
             }
         }
         #endregion
-   
+
+
+        #region Delete Cart
+
+        [HttpDelete]
+        [Route("{id}")]
+
+        public async Task<IActionResult> DeleteCart(int id)
+        {
+            try
+            {
+                var c = await cartService.DeleteCart(id);
+                if (c != null)
+                {
+                    return Ok(c);
+                }
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+        #endregion
+
     }
 }

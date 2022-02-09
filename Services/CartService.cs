@@ -79,8 +79,27 @@ namespace xcart.Services
             return 0;
         }
 
-       
+
+
+
         #endregion
+
+        #region Delete Cart
+        public async Task<Cart> DeleteCart(int id)
+        {
+            if (db != null)
+            {
+                Cart doc = db.Cart.Where(x=>x.Id == id).FirstOrDefault();
+                db.Cart.Remove(doc);
+                await db.SaveChangesAsync(); 
+                return doc;
+            }
+            return null;
+
+        }
+        #endregion
+
+
 
 
 

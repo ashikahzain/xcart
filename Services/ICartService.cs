@@ -15,5 +15,7 @@ namespace xcart.Services
         public Task<List<Cart>> GetAllCartById(int id);
 
         Task<int> AddToCart(Cart cart);
+
+        Task<Cart> DeleteCart(int id);
     }
 }
