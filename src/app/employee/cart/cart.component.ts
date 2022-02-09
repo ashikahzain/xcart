@@ -31,7 +31,7 @@ export class CartComponent implements OnInit {
         data.forEach(item => {
           item.ItemImage = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + item.ItemImage),
             this.totalPoints += item.Quantity * item.ItemPoints;
-          this.itemQuantity.set(item.TotalQuantity, item.Quantity);
+          this.itemQuantity.set(item.ItemId, item.Quantity);
           console.log(this.itemQuantity);
 
         });
@@ -45,22 +45,19 @@ export class CartComponent implements OnInit {
   }
 
 
-/*compareItemQuantity(): number {
-     this.checkQuantity = 1;
+compareItemQuantity() {
      this.itemQuantity.forEach((item, key) => {
-       this.adminService.getItembyIdusingpromise(key).subscribe(
+       this.adminService.getItembyId(key).subscribe(
          data => {
            console.log(data);
            console.log(data.Quantity);
            console.log(item)
            if (data.Quantity < item) {
              this.checkQuantity = 0
-             console.log(this.checkQuantity);
              this.toastr.error(data.Name + " only " + data.Quantity + " left");
            }
-           console.log("true comaprison")
+           console.log("true comparison")
            console.log(this.checkQuantity);
- 
          }
        
        )
@@ -70,8 +67,8 @@ export class CartComponent implements OnInit {
      )
  
    }
-*/
 
+/*
 compareItemQuantity():any{
   this.cartservice.compareQuantity(Number(sessionStorage.getItem('userid'))).subscribe(
     data=>{console.log(data)
@@ -79,6 +76,7 @@ compareItemQuantity():any{
     }
   )
 }
+*/
   onDecrease(id: number) {
     this.cartservice.decreaseQuantity(id).subscribe();
     window.location.reload();
@@ -95,10 +93,11 @@ compareItemQuantity():any{
     }
     window.location.reload();
   }
-
+//on checkout function
   onCheckOut() {
-    var comparisonvariable = this.compareItemQuantity()
-    if (comparisonvariable) {
+   this.compareItemQuantity();
+   console.log(this.checkQuantity);
+    if (this.checkQuantity==1) {
     if (this.totalPoints <= this.currentPoints) {
       if (confirm('Are you sure you want place the order?')) {
         this.order.DateOfDelivery = null,
