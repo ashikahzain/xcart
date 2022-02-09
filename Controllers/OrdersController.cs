@@ -110,5 +110,28 @@ namespace xcart.Controllers
             return Ok(order);
         }
 
+        #region Add to Order
+        [HttpPost]
+        public async Task<IActionResult> AddToOrder([FromBody] Order order)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var c = await orderService.AddOrder(order);
+                    if (c > 0)
+                    {
+                        return Ok(c);
+                    }
+                }
+            }
+            catch
+            {
+                return BadRequest();
+            }
+            return BadRequest();
+        }
+#endregion
+
     }
 }

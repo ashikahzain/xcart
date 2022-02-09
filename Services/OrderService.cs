@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using xcart.Models;
 using xcart.ViewModel;
 
@@ -167,6 +167,13 @@ namespace xcart.Services
                     ).ToListAsync();
             }
             return null;
+        }
+
+        public async Task<long> AddOrder(Order order)
+        {
+           await db.Order.AddAsync(order);
+            await db.SaveChangesAsync();
+            return order.Id;
         }
         #endregion
     }
