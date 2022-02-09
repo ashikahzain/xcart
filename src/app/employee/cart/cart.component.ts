@@ -89,8 +89,6 @@ compareItemQuantity():any{
     window.location.reload();
   }
 
-
-
   deletefromCart(id: number) {
     if (confirm("Do you want to delete this item from cart?")) {
       this.cartservice.deletefromcart(id).subscribe();
