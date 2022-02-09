@@ -17,6 +17,8 @@ namespace xcart.Services
             this.db = db;
         }
 
+        
+
 
 
         #region Get Cart By Id
@@ -52,6 +54,55 @@ namespace xcart.Services
            
         }
         #endregion
+     
+        #region Get all cart by id
+        public async Task<List<Cart>> GetAllCartById(int id)
+        {
+            if (db != null)
+            {
+                return await db.Cart.ToListAsync();
+            }
+            return null;
+        }
+        #endregion
+   
+
+        #region Add to Cart
+        public async Task<int> AddToCart(Cart cart)
+        {
+
+            if (db != null)
+            {
+                await db.Cart.AddAsync(cart);
+                await db.SaveChangesAsync();
+                return cart.UserId;
+            }
+            return 0;
+        }
+
+
+
+
+        #endregion
+
+        #region Delete Cart
+        public async Task<Cart> DeleteCart(int id)
+        {
+            if (db != null)
+            {
+                Cart doc = db.Cart.Where(x=>x.Id == id).FirstOrDefault();
+                db.Cart.Remove(doc);
+                await db.SaveChangesAsync(); 
+                return doc;
+            }
+            return null;
+
+        }
+        #endregion
+
+
+
+
 
         //Add quantity (cart update)
         public async Task<int> IncreaseQuantity(int id)
@@ -82,6 +133,5 @@ namespace xcart.Services
             return id;
         }
 
-     
     }
 }

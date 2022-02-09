@@ -36,23 +36,51 @@ namespace xcart.Controllers
         }
         #endregion
 
-        #region increase Item Quantity
-        [HttpGet]
-        [Route("increase-quantity/{id}")]
+        #region Add to Cart
+       [HttpPost]
 
-        public async Task<IActionResult> IncreaseQuantity(int id)
+       public async Task<IActionResult> AddToCart([FromBody] Cart cart)
         {
             try
             {
-                var items = await cartService.IncreaseQuantity(id);
-                return Ok(id);
+                if (ModelState.IsValid)
+                {
+                    var c = await cartService.AddToCart(cart);
+                    if(c>0)
+                    {
+                        return Ok(cart);
+                    }
+                }
             }
-            catch (Exception)
+            catch
             {
                 return BadRequest();
             }
-
+            return BadRequest();     
         }
+        #endregion
+
+
+        #region Get all cart by id
+        [HttpGet]
+        [Route("getcart/{id}")]
+
+        public async Task<IActionResult> GetUsers(int id)
+        {
+            try
+            {
+                var user = await cartService.GetCartById(id);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                return Ok(user);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+            }
 
         #endregion
 
@@ -74,9 +102,51 @@ namespace xcart.Controllers
 
         }
 
-        #endregion
+            #endregion
+
+            #region Delete Cart
+
+            [HttpDelete]
+            [Route("{id}")]
+
+            public async Task<IActionResult> DeleteCart(int id)
+            {
+                try
+                {
+                    var c = await cartService.DeleteCart(id);
+                    if (c != null)
+                    {
+                        return Ok(c);
+                    }
+                    return NotFound();
+                }
+                catch
+                {
+                    return BadRequest();
+                }
+            }
+            #endregion
+
+            #region increase Item Quantity
+            [HttpGet]
+            [Route("increase-quantity/{id}")]
+
+            public async Task<IActionResult> IncreaseQuantity(int id)
+            {
+                try
+                {
+                    var items = await cartService.IncreaseQuantity(id);
+                    return Ok(id);
+                }
+                catch (Exception)
+                {
+                    return BadRequest();
+                }
+            }
+            #endregion
 
 
-       
+
+
+        }
     }
-}
