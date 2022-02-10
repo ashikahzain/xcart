@@ -12,7 +12,6 @@ namespace xcart.ViewModel
 
         public int Point { get; set; }
         public DateTime Date { get; set; }
-        public int Point { get; set; }
         public string Presenter { get; set; }
 
         public bool Status { get; set; }

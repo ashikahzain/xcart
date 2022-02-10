@@ -28,6 +28,7 @@ namespace xcart.Services
                               from status in db.StatusDescription
                               where order.UserId == user.Id
                               where order.StatusDescriptionId == status.Id
+                              orderby order.DateOfOrder descending
 
                               select new OrderViewModel
                               {
@@ -123,30 +124,6 @@ namespace xcart.Services
         }
         #endregion
 
-        #region Get Order By Id
-        public async Task<Order> GetOrdersById(int id)
-        {
-            if (db != null)
-            {
-                return await (from order in db.Order
-                              where order.Id == id
-
-                              select new Order
-                              {
-                                  Id = order.Id,
-                                  DateOfOrder = order.DateOfOrder,
-                                  DateOfDelivery = order.DateOfDelivery,
-                                  Points = order.Points,
-                                  StatusDescriptionId=order.StatusDescriptionId
-                              }
-                    ).FirstOrDefaultAsync();
-            }
-            return null;
-        }
-
-
-        #endregion
-
         #region Get Specific Orders
         public async Task<List<OrderViewModel>> GetSpecificOrders(int id)
         {
@@ -158,6 +135,7 @@ namespace xcart.Services
                               where order.StatusDescriptionId==id
                               where order.UserId == user.Id
                               where order.StatusDescriptionId == stat.Id
+                              orderby order.DateOfOrder ascending
 
                               select new OrderViewModel
                               {
@@ -180,7 +158,7 @@ namespace xcart.Services
                 DateOfOrder = order.DateOfOrder,
                 UserId=order.UserId,
                 DateOfDelivery=null,
-                StatusDescriptionId=2,
+                StatusDescriptionId=1,
                 Points =order.Points
 
             };

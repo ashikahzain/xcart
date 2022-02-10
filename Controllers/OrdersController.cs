@@ -95,18 +95,7 @@ namespace xcart.Controllers
             return Ok(order);
         }
 
-        //Get Orders By Id
-        [HttpGet]
-        [Route("GetOrderById/{id}")]
-        public async Task<IActionResult> GetOrdersById(int id)
-        {
-            var order = await orderService.GetOrdersById(id);
-            if (order == null)
-            {
-                return NotFound();
-            }
-            return Ok(order);
-        }
+
 
         [HttpGet]
         [Route("Status/{id}")]
@@ -135,7 +124,7 @@ namespace xcart.Controllers
                     if (c > 0)
                     {
                         var userpoints = pointService.RemovePointsonCheckout(order.Points, order.UserId);
-                        //return Ok(c);
+                        return Ok(c);
                     }
 
                     return Ok();
