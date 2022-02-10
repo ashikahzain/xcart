@@ -52,8 +52,9 @@ namespace xcart.Services
                 var itemlist = await (from orderdetails in db.OrderDetails
                                       group orderdetails.Quantity by orderdetails.Item.Id into g
                                       orderby g.Sum() descending
-                                      select g.Key).Take(2).ToListAsync();
+                                      select g.Key).ToListAsync();
                 var trendinglist = new List<Item>();
+                int count = 0;
                 foreach (int itemId in itemlist)
                 {
                     var trendingitem = (from item in db.Item
@@ -68,8 +69,11 @@ namespace xcart.Services
                                             Points = item.Points
                                         }
                                  ).FirstOrDefault();
-                    trendinglist.Add(trendingitem);
-
+                    if (count < 2)
+                    {
+                        trendinglist.Add(trendingitem);
+                        count++;
+                    }
                 }
                 return trendinglist;
 
