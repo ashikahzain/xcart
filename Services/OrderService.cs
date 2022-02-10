@@ -180,7 +180,7 @@ namespace xcart.Services
                 DateOfOrder = order.DateOfOrder,
                 UserId=order.UserId,
                 DateOfDelivery=null,
-                StatusDescriptionId=2,
+                StatusDescriptionId=1,
                 Points =order.Points
 
             };
