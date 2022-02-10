@@ -34,7 +34,10 @@ export class CartService {
   placeOrder(order:Order):Observable<any>{
     return this.httpClient.post(environment.apiUrl + '/api/orders',order);
   }
-
+  
+  placeOrderFromCart(order:Order):Observable<any>{
+    return this.httpClient.post(environment.apiUrl + '/api/orders/cart',order);
+  }
   deletefromCartbyUserId(id:number):Observable<any>{
     return this.httpClient.delete(environment.apiUrl + '/api/cart/delete-cart/'+id);
   }
