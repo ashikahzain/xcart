@@ -156,21 +156,26 @@ namespace xcart.Services
             return id;
         }
 
+        #region Delete Cart by User Id
+
         public async Task<List<Cart>> DeleteCartbyUserId(long id)
         {
             if (db != null)
             {
                 var doc = await db.Cart.Where(x => x.UserId == id).ToListAsync();
-                foreach (Cart c in doc) {
+                foreach (Cart c in doc)
+                {
                     db.Cart.Remove(c);
                     await db.SaveChangesAsync();
-                  
+
                 }
                 return doc;
-                
+
             }
             return null;
         }
+        #endregion
+
 
         public async Task<EmployeeCartViewModel> CompareQuantity(long userId)
         {
