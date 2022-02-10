@@ -46,37 +46,33 @@ export class CartComponent implements OnInit {
 
 
 compareItemQuantity() {
-     this.itemQuantity.forEach((item, key) => {
-       this.adminService.getItembyId(key).subscribe(
-         data => {
-           console.log(data);
-           console.log(data.Quantity);
-           console.log(item)
-           if (data.Quantity < item) {
-             this.checkQuantity = 0
-             this.toastr.error(data.Name + " only " + data.Quantity + " left");
-           }
-           console.log("true comparison")
-           console.log(this.checkQuantity);
-         }
-       
-       )
-  
-     }
- 
-     )
- 
-   }
-
-/*
-compareItemQuantity():any{
-  this.cartservice.compareQuantity(Number(sessionStorage.getItem('userid'))).subscribe(
-    data=>{console.log(data)
-    return data;
+    this.itemQuantity.forEach((item, key) => {
+      this.adminService.getItembyId(key).subscribe(
+        data => {
+          console.log(data);
+          console.log(data.Quantity);
+          console.log(item)
+          if (data.Quantity < item) {
+            this.checkQuantity = 0
+            this.toastr.error(data.Name + " only " + data.Quantity + " left");
+          }
+        }
+      )
     }
-  )
-}
-*/
+
+    )
+
+  }
+
+  /*
+  compareItemQuantity():any{
+    this.cartservice.compareQuantity(Number(sessionStorage.getItem('userid'))).subscribe(
+      data=>{console.log(data)
+      return data;
+      }
+    )
+  }
+  */
   onDecrease(id: number) {
     this.cartservice.decreaseQuantity(id).subscribe();
     window.location.reload();
@@ -95,33 +91,34 @@ compareItemQuantity():any{
     }
     window.location.reload();
   }
-//on checkout function
-  onCheckOut() {
-   this.compareItemQuantity();
-   console.log(this.checkQuantity);
-    if (this.checkQuantity==1) {
-    if (this.totalPoints <= this.currentPoints) {
-      if (confirm('Are you sure you want place the order?')) {
-        this.order.DateOfDelivery = null,
-          this.order.DateOfOrder = new Date().toLocaleDateString(),
-          this.order.Points = this.totalPoints,
-          this.order.StatusDescriptionId = 2,
-          this.order.UserId = Number(sessionStorage.getItem('userid'))
-        console.log(this.order);
-        this.cartservice.placeOrder(this.order).subscribe(data =>
-          console.log(data));
-        this.cartservice.deletefromCartbyUserId(this.order.UserId).subscribe(
-          data => console.log(data)
-        )
+  //on checkout function
+ onCheckOut() {
+  this.compareItemQuantity()
+    console.log(this.checkQuantity);
+    if (this.checkQuantity == 1) {
+      console.log('positive');
+      if (this.totalPoints <= this.currentPoints) {
+        if (confirm('Are you sure you want place the order?')) {
+          this.order.DateOfDelivery = null,
+            this.order.DateOfOrder = new Date().toLocaleDateString(),
+            this.order.Points = this.totalPoints,
+            this.order.StatusDescriptionId = 2,
+            this.order.UserId = Number(sessionStorage.getItem('userid'))
+          console.log(this.order);
+          this.cartservice.placeOrder(this.order).subscribe(data =>
+            console.log(data));
+          this.cartservice.deletefromCartbyUserId(this.order.UserId).subscribe(
+            data => console.log(data)
+          )
+        }
+        window.location.reload();
       }
-      window.location.reload();
+      else {
+        this.toastr.error('Not Enough Points');
+      }
     }
     else {
-      this.toastr.error('Not Enough Points');
+      this.toastr.error('comparison error');
     }
   }
-  else {
-  this.toastr.error('comparison error');
-   }
-   }
 }
