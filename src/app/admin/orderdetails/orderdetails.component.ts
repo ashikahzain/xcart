@@ -19,7 +19,7 @@ export class OrderdetailsComponent implements OnInit {
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.adminService.getOrder();
+    this.adminService.getSpecifiedOrder(1);
   }
   AdminHome(){
     this.router.navigateByUrl('admin/home')
