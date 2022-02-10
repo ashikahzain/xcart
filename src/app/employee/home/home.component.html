@@ -34,7 +34,7 @@
                             <p class="item-outofstock" *ngIf="!item.Quantity">Out of Stock</p>
                         </div>
                         <div class="item-buttons col-lg-6">
-                            <button class="add-cart" [disabled]="!(item.Quantity)"><i
+                            <button class="add-cart" [disabled]="!(item.Quantity)" (click)="addtoCart(item.Id)"><i
                                     class="fa fa-shopping-cart fa-lg menu-cart"></i></button>
                             <button class="buy" [disabled]="!(item.Quantity)">Buy</button>
                         </div>

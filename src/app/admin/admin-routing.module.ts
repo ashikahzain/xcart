@@ -17,7 +17,8 @@ const routes: Routes = [
   { path: 'admin/employeeList', component: EmployeeListComponent },
   { path: 'admin/awardHistory/:UserId', component: AwardHistoryComponent },
   { path: 'admin/award', component: AwardComponent },
-  { path: 'admin/award/add', component: AddAwardComponent },
+  { path: 'admin/award/form', component: AddAwardComponent },
+  { path: 'admin/award/form/:awardId', component: AddAwardComponent },
   {path: 'admin/itemform/:itemId',component:ItemFormComponent},
 
 

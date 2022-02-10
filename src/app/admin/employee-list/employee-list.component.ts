@@ -22,7 +22,6 @@ export class EmployeeListComponent implements OnInit {
   point: number;
   status:boolean;
 
-
   constructor(public adminService: AdminService, private router: Router, private formBuilder: FormBuilder,
     public toastr: ToastrService) { }
 

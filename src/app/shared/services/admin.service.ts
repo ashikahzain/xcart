@@ -22,6 +22,7 @@ export class AdminService {
   awardHistory:AwardHistory[];
   EmployeeDetails:User;
   awardList: Award[];
+  itemList:Item;
 
   constructor(public httpClient: HttpClient) {
 
@@ -89,6 +90,15 @@ export class AdminService {
   addAward(award: Award): Observable<any> {
     return this.httpClient.post(environment.apiUrl + '/api/awards', award);
   }
+  getAwardbyId(id:number):Observable<any>{
+    return this.httpClient.get(environment.apiUrl + '/api/awards/'+id);
+  }
+  updateAward(award:Award):Observable<any>{
+    return this.httpClient.put(environment.apiUrl + '/api/awards/update-award', award);
+  }
+  deleteAward(id:number):Observable<any>{
+    return this.httpClient.get(environment.apiUrl + '/api/awards/delete-award/'+id)
+  }
 
   // Update Status
   ChangeStatus(order: Order): Observable<any> {
@@ -100,5 +110,10 @@ export class AdminService {
   getSpecifiedOrder(statusId:number): void {
     this.httpClient.get(environment.apiUrl + '/api/orders/status/'+statusId).toPromise().then(response =>
       this.orderList = response as Order[]);
+  }
+
+  getItembyIdusingpromise(id:number){
+    this.httpClient.get(environment.apiUrl + '/api/items/'+id).toPromise().then(response =>
+      this.itemList = response as Item);;
   }
 }

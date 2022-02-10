@@ -3,6 +3,8 @@ import { EmployeeService } from 'src/app/shared/services/employee.service'
 import { SidemenuComponent } from 'src/app/shared/layout/sidemenu/sidemenu.component'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Item } from 'src/app/shared/models/item';
+import { Cart } from 'src/app/shared/models/cart';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,8 +15,9 @@ export class HomeComponent implements OnInit {
   filter: string ;
   itemList: Item[];
   currentPoints: number;
+  cart= new Cart();
 
-  constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer) { }
+  constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer,private toastr:ToastrService) { }
   
   ngOnInit(): void {
     this.employeeservice.getItems().subscribe(data => {
@@ -73,6 +76,19 @@ export class HomeComponent implements OnInit {
       b.Quantity - a.Quantity
     );
     console.log(this.itemList);
+  }
+
+  addtoCart(itemId:number){
+    console.log(itemId);
+    this.cart.ItemId=itemId
+    this.cart.Quantity=1
+    this.cart.UserId=Number(sessionStorage.getItem('userid'))
+  this.employeeservice.addtoCart(this.cart).subscribe(
+    data=>
+    console.log(data)
+  )
+  this.toastr.success('added to cart');
+  
   }
 
 }

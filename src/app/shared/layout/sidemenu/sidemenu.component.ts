@@ -28,6 +28,9 @@ export class SidemenuComponent implements OnInit {
     this.authservice.logout();
   }
 
+  movetoHome(){
+    this.router.navigateByUrl('/employee/home');
+  }
 
   moveToProfile() {
 
@@ -36,6 +39,10 @@ export class SidemenuComponent implements OnInit {
 
   moveToCart() {
     this.router.navigateByUrl('/employee/cart');
+  }
+
+  moveToOrder(){
+    this.router.navigateByUrl('/employee/order');
   }
 
 }
