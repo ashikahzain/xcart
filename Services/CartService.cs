@@ -55,7 +55,29 @@ namespace xcart.Services
            
         }
         #endregion
-     
+
+        #region Get Cart By UserId
+
+        public List<Cart> GetCartByUserId(int id)
+        {
+            if (db != null)
+            {
+                return (
+                             from cart in db.Cart
+
+                             where cart.UserId == id
+
+                             select new Cart
+                             {
+                                 ItemId=cart.ItemId,
+                                 Quantity=cart.Quantity
+                             }).ToList();
+            }
+            return null;
+        }
+
+        #endregion
+
         #region Get all cart by id
         public async Task<List<Cart>> GetAllCartById(int id)
         {
@@ -100,10 +122,6 @@ namespace xcart.Services
 
         }
         #endregion
-
-
-
-
 
         //Add quantity (cart update)
         public async Task<int> IncreaseQuantity(int id)

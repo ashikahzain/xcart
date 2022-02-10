@@ -52,8 +52,9 @@ namespace xcart.Services
                 var itemlist = await (from orderdetails in db.OrderDetails
                                       group orderdetails.Quantity by orderdetails.Item.Id into g
                                       orderby g.Sum() descending
-                                      select g.Key).Take(2).ToListAsync();
+                                      select g.Key).ToListAsync();
                 var trendinglist = new List<Item>();
+                int count = 0;
                 foreach (int itemId in itemlist)
                 {
                     var trendingitem = (from item in db.Item
@@ -68,8 +69,11 @@ namespace xcart.Services
                                             Points = item.Points
                                         }
                                  ).FirstOrDefault();
-                    trendinglist.Add(trendingitem);
-
+                    if (count < 2)
+                    {
+                        trendinglist.Add(trendingitem);
+                        count++;
+                    }
                 }
                 return trendinglist;
 
@@ -150,7 +154,7 @@ namespace xcart.Services
             {
                 return await (from order in db.Order
                               from user in db.User
-                              from stat in db.StatusDescription
+                              from stat in db.StatusDescription  
                               where order.StatusDescriptionId==id
                               where order.UserId == user.Id
                               where order.StatusDescriptionId == stat.Id
@@ -184,6 +188,29 @@ namespace xcart.Services
             await db.SaveChangesAsync();
             return orderdetails.Id;
         }
+
+
         #endregion
+
+        public async Task<long> AddOrderdetails(OrderDetails orderDetails)
+        {
+            await db.OrderDetails.AddAsync(orderDetails);
+            await db.SaveChangesAsync();
+            return orderDetails.Id;
+        }
+
+        #region Add Order Details
+        public async Task<int> AddOrderDetails(OrderDetails orderDetails)
+        {
+            if (db != null)
+            {
+                await db.OrderDetails.AddAsync(orderDetails);
+                await db.SaveChangesAsync();
+                return 1;
+            }
+            return 0;
+        }
+        #endregion
+
     }
 }

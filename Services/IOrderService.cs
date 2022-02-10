@@ -16,5 +16,7 @@ namespace xcart.Services
         Task<Order> GetOrdersById(int id);
         public Task<List<OrderViewModel>> GetSpecificOrders(int id);
         public Task<long> AddOrder(Order order);
+        public Task<long> AddOrderdetails(OrderDetails orderDetails);
+        public Task<int> AddOrderDetails(OrderDetails orderDetails);
     }
 }

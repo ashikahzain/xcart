@@ -26,7 +26,7 @@ namespace xcart.Controllers
         }
 
         #region Get Points By Employee Id
-        [Authorize(Roles ="Admin,Employee")]
+        //[Authorize(Roles ="Admin,Employee")]
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetPointsByEmployeeId(int id)
         {
@@ -37,6 +37,20 @@ namespace xcart.Controllers
                     return NotFound();
                 }
                 return Ok(point.CurrentPoints);
+        }
+        #endregion
+
+        #region Get Point Table
+        [HttpGet]
+        public  List<Point> GetPointsByEmployeeId()
+        {
+
+            var point =  db.Point.ToList();
+            if (point == null)
+            {
+                return null;
+            }
+            return point;
         }
         #endregion
     }

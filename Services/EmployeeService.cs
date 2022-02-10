@@ -1,5 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +48,7 @@ namespace xcart.Services
             {
                 return await (from emp in db.User
                               from point in db.Point
-                              where emp.Id == point.UserId
+                              where point.UserId==emp.Id
 
                               select new AllEmployeePointViewModel
                               {
