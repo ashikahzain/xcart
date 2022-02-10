@@ -1,6 +1,6 @@
 .home-button {
     position: absolute;
-    display: inline-flex;
+    display: inline-flex; 
     width: 130px;
     height: 50px;
     margin-left: 10%;
