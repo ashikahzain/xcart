@@ -15,6 +15,7 @@ namespace xcart.Services
         public Task<Item> GetItemById(int id);
         public Task<int> DeleteItem(int id);
         public Task<int> UpdateItem(ItemViewModel item);
+        public Item DescreaseQuantity(int itemid,int quantity);
 
     }
 }

@@ -123,10 +123,6 @@ namespace xcart.Services
         }
         #endregion
 
-
-
-
-
         //Add quantity (cart update)
         public async Task<int> IncreaseQuantity(int id)
         {

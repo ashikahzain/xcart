@@ -24,13 +24,16 @@ namespace xcart.Controllers
 
         ICartService cartservice;
 
+        IItemService itemService;
+
         //constructor 
-        public OrdersController(IOrderService _orderService, XCartDbContext _db,IPointService _pointService,ICartService _cartService)
+        public OrdersController(IOrderService _orderService, XCartDbContext _db,IPointService _pointService,ICartService _cartService,IItemService _itemservice)
         {
             orderService = _orderService;
             db = _db;
             pointService = _pointService;
             cartservice = _cartService;
+            itemService = _itemservice;
             
         }
 
@@ -92,18 +95,7 @@ namespace xcart.Controllers
             return Ok(order);
         }
 
-        //Get Orders By Id
-        [HttpGet]
-        [Route("GetOrderById/{id}")]
-        public async Task<IActionResult> GetOrdersById(int id)
-        {
-            var order = await orderService.GetOrdersById(id);
-            if (order == null)
-            {
-                return NotFound();
-            }
-            return Ok(order);
-        }
+
 
         [HttpGet]
         [Route("Status/{id}")]
@@ -127,26 +119,12 @@ namespace xcart.Controllers
                 {
                     
                     var c = await orderService.AddOrder(order);
-                    var userId = order.UserId;
-                    var itemList = cartservice.GetCartByUserId(userId);
-
-                    foreach (Cart item in itemList)
-                    {
-                        OrderDetails orderDetails = new OrderDetails();
-
-                        orderDetails.OrderId = c;
-                        orderDetails.ItemId = item.ItemId;
-                        orderDetails.Quantity = item.Quantity;
-
-                        int x= await orderService.AddOrderDetails(orderDetails);
-                    }
-
-                    await cartservice.DeleteCartbyUserId(userId);
+                    
 
                     if (c > 0)
                     {
                         var userpoints = pointService.RemovePointsonCheckout(order.Points, order.UserId);
-                        //return Ok(c);
+                        return Ok(c);
                     }
 
                     return Ok();
@@ -182,6 +160,8 @@ namespace xcart.Controllers
                         orderDetails.Quantity = item.Quantity;
 
                         int x = await orderService.AddOrderDetails(orderDetails);
+                        itemService.DescreaseQuantity(item.ItemId, item.Quantity);
+
                     }
 
                     await cartservice.DeleteCartbyUserId(userId);
@@ -211,5 +191,27 @@ namespace xcart.Controllers
             return Ok(order);
         }
 
-    }
+        [HttpPost]
+        [Route("order-details")]
+        public async Task<IActionResult> AddToOrderDetails([FromBody] OrderDetails order)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var c = await orderService.AddOrderdetails(order);
+                    if (c > 0)
+                    {
+                        var itemquantity= itemService.DescreaseQuantity(order.ItemId, order.Quantity);
+                        return Ok(c);
+                    }
+                }
+            }
+            catch
+            {
+                return BadRequest();
+            }
+            return BadRequest();
+        }
+        }
 }
