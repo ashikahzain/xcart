@@ -153,19 +153,21 @@ hr{
 }
 .main-error{
     position: relative;
-    color: red;
-    font-weight: bold;
+    color: rgb(245, 59, 59);
+    font-weight:600;
+
     margin-top: 75%; 
     margin-left: 2em;
 }
 .error-name{
-    color: red;
-    font-weight: bold;
+    color: rgb(245, 59, 59);
+    font-weight:600;
     font-size: 0.8em;
 }
 .error-pass{
-    color: red;
-    font-weight: bold;
+    color: rgb(255, 65, 65);
+    font-weight:600;
+
     font-size: 0.8em;
 }
 
