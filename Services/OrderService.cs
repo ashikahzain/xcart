@@ -150,7 +150,7 @@ namespace xcart.Services
             {
                 return await (from order in db.Order
                               from user in db.User
-                              from stat in db.StatusDescription
+                              from stat in db.StatusDescription  
                               where order.StatusDescriptionId==id
                               where order.UserId == user.Id
                               where order.StatusDescriptionId == stat.Id

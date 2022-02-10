@@ -17,6 +17,9 @@ namespace xcart.Services
             this.db = db;
         }
 
+
+
+
         #region Add Award history
         public async Task<long> AddAwardHistory(AwardHistory award)
         {
@@ -64,10 +67,14 @@ namespace xcart.Services
                                   AwardName = awardName.Name,
                                   Date = award.Date,
                                   Presenter = user.Name,
-                                  Status = award.Status
+                                  Status = award.Status,
+                                  Point=award.Point
                               }).ToListAsync();
             }
             return null;
+
+                   
+
         }
         #endregion
 
