@@ -114,5 +114,19 @@ namespace xcart.Services
             }
             return null;
         }
+
+        public Item DescreaseQuantity(int itemid,int quantity)
+        {
+            if (db != null)
+            {
+                Item item = db.Item.SingleOrDefault(x => x.Id == itemid);
+                item.Quantity -= quantity;
+                db.Item.Update(item);
+                db.SaveChanges();
+
+                return item;
+            }
+            return null;
+        }
     }
 }

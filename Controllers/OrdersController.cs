@@ -24,13 +24,16 @@ namespace xcart.Controllers
 
         ICartService cartservice;
 
+        IItemService itemService;
+
         //constructor 
-        public OrdersController(IOrderService _orderService, XCartDbContext _db,IPointService _pointService,ICartService _cartService)
+        public OrdersController(IOrderService _orderService, XCartDbContext _db,IPointService _pointService,ICartService _cartService,IItemService _itemservice)
         {
             orderService = _orderService;
             db = _db;
             pointService = _pointService;
             cartservice = _cartService;
+            itemService = _itemservice;
             
         }
 
@@ -149,5 +152,27 @@ namespace xcart.Controllers
             return Ok(order);
         }
 
-    }
+        [HttpPost]
+        [Route("order-details")]
+        public async Task<IActionResult> AddToOrderDetails([FromBody] OrderDetails order)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var c = await orderService.AddOrderdetails(order);
+                    if (c > 0)
+                    {
+                        var itemquantity= itemService.DescreaseQuantity(order.ItemId, order.Quantity);
+                        return Ok(c);
+                    }
+                }
+            }
+            catch
+            {
+                return BadRequest();
+            }
+            return BadRequest();
+        }
+        }
 }

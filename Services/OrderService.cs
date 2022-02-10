@@ -188,6 +188,18 @@ namespace xcart.Services
             await db.SaveChangesAsync();
             return orderdetails.Id;
         }
+
+
         #endregion
+
+        public async Task<long> AddOrderdetails(OrderDetails orderDetails)
+        {
+            await db.OrderDetails.AddAsync(orderDetails);
+            await db.SaveChangesAsync();
+            return orderDetails.Id;
+        }
+
+
+
     }
 }
