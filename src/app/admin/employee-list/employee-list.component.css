@@ -1,3 +1,35 @@
+.home-button {
+    display: inline-flex; 
+    width: 130px;
+    height: 50px;
+    margin-left: 10%;
+    margin-top: 2%;
+    background: #f7c02d;
+    border-radius: 5px;
+}
+.home-button:hover{
+    cursor:grab;
+}
+.home-button i {
+    font-size: 24px;
+    padding-left: 10%;
+    padding-top: 10%;
+}
+.home-button h4 {
+    padding-left: 10%;
+    padding-top: 7%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 21px;
+    line-height: 31px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #2d415d;
+}
+
+
 .button{
     width: 130px;
 height: 50px;
@@ -27,8 +59,63 @@ color: #2D415D;
     float: right;
     margin-right: 10%;
     font-family: Lato;
+    display: inline-flex; 
+    width: 200px;
+    height: 50px;
+    margin-top: 2%;
+    background: #f7c02d;
+    border-radius: 5px;
 
 }
+.Manage-awards:hover{
+    cursor:grab;
+}
+
+.Manage-awards i{
+    font-size: 24px;
+    padding-left: 10%;
+    padding-top: 7%;
+}
+
+.Manage-awards h4{
+    padding-left: 8%;
+    padding-top: 5%;
+    font-family: Lato;
+    font-style: normal;
+    font-size: 21px;
+    line-height: 31px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #2d415d;
+}
+
+.point-button{
+    display: inline-flex; 
+    width: 200px;
+    height: 50px;
+    margin-left: 45%;
+    background: #f7c02d;
+    border-radius: 5px;
+}
+
+.point-button:hover{
+    cursor: hand;
+}
+
+.point-button h4{
+    padding-left: 8%;
+    padding-top: 5%;
+    font-family: Lato;
+    font-style: normal;
+    font-size: 21px;
+    line-height: 31px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #2d415d;
+}
+
 #manage{
     font-style: normal;
 font-weight: 500;
