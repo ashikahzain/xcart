@@ -103,11 +103,11 @@ compareItemQuantity() {
             this.order.StatusDescriptionId = 1,
             this.order.UserId = Number(sessionStorage.getItem('userid'))
           console.log(this.order);
-          this.cartservice.placeOrder(this.order).subscribe(data =>
+          this.cartservice.placeOrderFromCart(this.order).subscribe(data =>
             console.log(data));
-          this.cartservice.deletefromCartbyUserId(this.order.UserId).subscribe(
-            data => console.log(data)
-          )
+         // this.cartservice.deletefromCartbyUserId(this.order.UserId).subscribe(
+           // data => console.log(data)
+       //   )
         }
         window.location.reload();
       }
@@ -120,3 +120,4 @@ compareItemQuantity() {
     }
   }
 }
+

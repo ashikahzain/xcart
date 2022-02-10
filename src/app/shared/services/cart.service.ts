@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Cart } from '../models/cart';
 import { Order } from '../models/order';
+import { OrderDetails } from '../models/OrderDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -33,12 +34,19 @@ export class CartService {
   placeOrder(order:Order):Observable<any>{
     return this.httpClient.post(environment.apiUrl + '/api/orders',order);
   }
-
+  
+  placeOrderFromCart(order:Order):Observable<any>{
+    return this.httpClient.post(environment.apiUrl + '/api/orders/cart',order);
+  }
   deletefromCartbyUserId(id:number):Observable<any>{
     return this.httpClient.delete(environment.apiUrl + '/api/cart/delete-cart/'+id);
   }
 
   compareQuantity(id:number):Observable<any>{
     return this.httpClient.get(environment.apiUrl + '/api/orders/quantity-check/'+id);
+  }
+
+  updateOrderDetails(orderdetails:OrderDetails):Observable<any>{
+    return this.httpClient.post(environment.apiUrl + '/api/orders/order-details',orderdetails);
   }
 }

@@ -5,7 +5,7 @@ import { EmployeeRoutingModule } from './employee-routing.module';
 import { HomeComponent } from './home/home.component';
 import { LayoutModule } from '../shared/layout/layout.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
@@ -18,7 +18,8 @@ import { OrderComponent } from './order/order.component';
     EmployeeRoutingModule,
     LayoutModule,
     Ng2SearchPipeModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class EmployeeModule { }
