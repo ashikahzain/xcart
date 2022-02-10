@@ -100,7 +100,7 @@ compareItemQuantity() {
           this.order.DateOfDelivery = null,
             this.order.DateOfOrder = new Date().toLocaleDateString(),
             this.order.Points = this.totalPoints,
-            this.order.StatusDescriptionId = 2,
+            this.order.StatusDescriptionId = 1,
             this.order.UserId = Number(sessionStorage.getItem('userid'))
           console.log(this.order);
           this.cartservice.placeOrder(this.order).subscribe(data =>
