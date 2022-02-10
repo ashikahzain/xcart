@@ -199,7 +199,18 @@ namespace xcart.Services
             return orderDetails.Id;
         }
 
-
+        #region Add Order Details
+        public async Task<int> AddOrderDetails(OrderDetails orderDetails)
+        {
+            if (db != null)
+            {
+                await db.OrderDetails.AddAsync(orderDetails);
+                await db.SaveChangesAsync();
+                return 1;
+            }
+            return 0;
+        }
+        #endregion
 
     }
 }

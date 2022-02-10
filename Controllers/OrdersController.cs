@@ -130,21 +130,7 @@ namespace xcart.Controllers
                 {
                     
                     var c = await orderService.AddOrder(order);
-                    var userId = order.UserId;
-                    var itemList = cartservice.GetCartByUserId(userId);
-
-                    foreach (Cart item in itemList)
-                    {
-                        OrderDetails orderDetails = new OrderDetails();
-
-                        orderDetails.OrderId = c;
-                        orderDetails.ItemId = item.ItemId;
-                        orderDetails.Quantity = item.Quantity;
-
-                        int x= await orderService.AddOrderDetails(orderDetails);
-                    }
-
-                    await cartservice.DeleteCartbyUserId(userId);
+                    
 
                     if (c > 0)
                     {
@@ -185,6 +171,8 @@ namespace xcart.Controllers
                         orderDetails.Quantity = item.Quantity;
 
                         int x = await orderService.AddOrderDetails(orderDetails);
+                        itemService.DescreaseQuantity(item.ItemId, item.Quantity);
+
                     }
 
                     await cartservice.DeleteCartbyUserId(userId);
