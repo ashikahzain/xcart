@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   points: number;
   orderdetails = new OrderDetails()
   availableQuantity: number;
+  orderQuantity: any;
   constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer, private toastr: ToastrService, private formBuilder: FormBuilder, private Cartservice: CartService) { }
 
   ngOnInit(): void {
@@ -68,14 +69,15 @@ export class HomeComponent implements OnInit {
       this.error = "Invalid Input";
       return;
     }
-    if (this.addForm.controls.Quantity.value * this.points < this.currentPoints) {
-      if (this.addForm.controls.Quantity.value < this.availableQuantity) {
+    this.orderQuantity=this.addForm.controls.Quantity.value
+    if (this.orderQuantity * this.points < this.currentPoints) {
+      if (this.orderQuantity < this.availableQuantity) {
         if (this.addForm.valid) {
           //add to orderdetails table
 
           this.order.DateOfDelivery = null,
             this.order.DateOfOrder = new Date().toLocaleDateString(),
-            this.order.Points = this.addForm.controls.Quantity.value * this.points,
+            this.order.Points = this.orderQuantity* this.points,
             this.order.StatusDescriptionId = 1,
             this.order.UserId = Number(sessionStorage.getItem('userid'))
           this.Cartservice.placeOrder(this.order).subscribe(
