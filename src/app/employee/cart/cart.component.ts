@@ -106,11 +106,10 @@ compareItemQuantity() {
         console.log(this.order);
         this.cartservice.placeOrderFromCart(this.order).subscribe(data =>
           console.log(data));
-        //this.cartservice.deletefromCartbyUserId(this.order.UserId).subscribe(
-         // data => console.log(data)
-        //)
       }
+      
     }
+    
     else {
       this.toastr.error('comparison error');
     }
