@@ -168,22 +168,39 @@ namespace xcart.Services
             }
             return null;
         }
+        #endregion
 
+        #region Add Order
         public async Task<long> AddOrder(Order order)
         {
             var orderdetails = new Order
             {
                 DateOfOrder = order.DateOfOrder,
-                UserId=order.UserId,
-                DateOfDelivery=null,
-                StatusDescriptionId=2,
-                Points =order.Points
+                UserId = order.UserId,
+                DateOfDelivery = null,
+                StatusDescriptionId = 1,
+                Points = order.Points
 
             };
-           await db.Order.AddAsync(orderdetails);
+            await db.Order.AddAsync(orderdetails);
             await db.SaveChangesAsync();
             return orderdetails.Id;
         }
         #endregion
+
+        #region Add Order Details
+        public async Task<int> AddOrderDetails(OrderDetails orderDetails)
+        {
+            if (db != null)
+            {
+                 await db.OrderDetails.AddAsync(orderDetails);
+                 await db.SaveChangesAsync();
+                 return  1;
+            }
+            return 0;
+        }
+        #endregion
+
+
     }
 }
