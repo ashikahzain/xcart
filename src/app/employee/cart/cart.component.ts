@@ -46,37 +46,33 @@ export class CartComponent implements OnInit {
 
 
 compareItemQuantity() {
-     this.itemQuantity.forEach((item, key) => {
-       this.adminService.getItembyId(key).subscribe(
-         data => {
-           console.log(data);
-           console.log(data.Quantity);
-           console.log(item)
-           if (data.Quantity < item) {
-             this.checkQuantity = 0
-             this.toastr.error(data.Name + " only " + data.Quantity + " left");
-           }
-           console.log("true comparison")
-           console.log(this.checkQuantity);
-         }
-       
-       )
-  
-     }
- 
-     )
- 
-   }
-
-/*
-compareItemQuantity():any{
-  this.cartservice.compareQuantity(Number(sessionStorage.getItem('userid'))).subscribe(
-    data=>{console.log(data)
-    return data;
+    this.itemQuantity.forEach((item, key) => {
+      this.adminService.getItembyId(key).subscribe(
+        data => {
+          console.log(data);
+          console.log(data.Quantity);
+          console.log(item)
+          if (data.Quantity < item) {
+            this.checkQuantity = 0
+            this.toastr.error(data.Name + " only " + data.Quantity + " left");
+          }
+        }
+      )
     }
-  )
-}
-*/
+
+    )
+
+  }
+
+  /*
+  compareItemQuantity():any{
+    this.cartservice.compareQuantity(Number(sessionStorage.getItem('userid'))).subscribe(
+      data=>{console.log(data)
+      return data;
+      }
+    )
+  }
+  */
   onDecrease(id: number) {
     this.cartservice.decreaseQuantity(id).subscribe();
     window.location.reload();
@@ -114,14 +110,10 @@ compareItemQuantity():any{
          // data => console.log(data)
         //)
       }
-      window.location.reload();
     }
     else {
-      this.toastr.error('Not Enough Points');
+      this.toastr.error('comparison error');
     }
   }
-  else {
-  this.toastr.error('comparison error');
-   }
-   }
+}
 }
