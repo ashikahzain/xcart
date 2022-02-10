@@ -21,7 +21,7 @@
     top: calc(50% - 24px/2);
     
 }
-.Open:hover{
+.All:hover{
     color: hsla(360, 0%, 100%, 1);
 }
 .FullFilled:hover{
@@ -33,10 +33,11 @@
     height: 10%;
     left: 72%;
     top: 15%;
-    background: #6B8BB7;
     border-radius: 12% 0% 0% 12%;
-    border:none;
-    color: white;
+    background: #6B8BB7;
+    border: none;
+    transition: all 0.4s;
+    
 }
 .Open{
     position: absolute;
@@ -46,7 +47,8 @@
     top: 15%;
     background: #6B8BB7;
     border: none;
-    transition: all 0.4s;
+    color: white;
+    
     
 }
 .FullFilled{
@@ -55,8 +57,8 @@
     height: 10%;
     left: 86%;
     top: 15%;
-    background: #6B8BB7;
     border-radius: 0% 12% 12% 0%;
+    background: #6B8BB7;
     border: none;
     transition: all 0.4s;
 }

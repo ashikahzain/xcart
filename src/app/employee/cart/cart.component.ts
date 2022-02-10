@@ -83,29 +83,36 @@ compareItemQuantity() {
     window.location.reload();
   }
 
-
-
   deletefromCart(id: number) {
     if (confirm("Do you want to delete this item from cart?")) {
       this.cartservice.deletefromcart(id).subscribe();
     }
     window.location.reload();
   }
-//on checkout function
-  onCheckOut() {
-   this.compareItemQuantity();
-   console.log(this.checkQuantity);
-    if (this.checkQuantity==1) {
-    if (this.totalPoints <= this.currentPoints) {
-      if (confirm('Are you sure you want place the order?')) {
-        this.order.DateOfDelivery = null,
-          this.order.DateOfOrder = new Date().toLocaleDateString(),
-          this.order.Points = this.totalPoints,
-          this.order.StatusDescriptionId = 2,
-          this.order.UserId = Number(sessionStorage.getItem('userid'))
-        console.log(this.order);
-        this.cartservice.placeOrderFromCart(this.order).subscribe(data =>
-          console.log(data));
+  //on checkout function
+ onCheckOut() {
+  this.compareItemQuantity()
+    console.log(this.checkQuantity);
+    if (this.checkQuantity == 1) {
+      console.log('positive');
+      if (this.totalPoints <= this.currentPoints) {
+        if (confirm('Are you sure you want place the order?')) {
+          this.order.DateOfDelivery = null,
+            this.order.DateOfOrder = new Date().toLocaleDateString(),
+            this.order.Points = this.totalPoints,
+            this.order.StatusDescriptionId = 1,
+            this.order.UserId = Number(sessionStorage.getItem('userid'))
+          console.log(this.order);
+          this.cartservice.placeOrderFromCart(this.order).subscribe(data =>
+            console.log(data));
+         // this.cartservice.deletefromCartbyUserId(this.order.UserId).subscribe(
+           // data => console.log(data)
+       //   )
+        }
+        window.location.reload();
+      }
+      else {
+        this.toastr.error('Not Enough Points');
       }
       
     }
@@ -115,4 +122,4 @@ compareItemQuantity() {
     }
   }
 }
-}
+
