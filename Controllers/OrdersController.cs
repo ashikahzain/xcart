@@ -135,7 +135,7 @@ namespace xcart.Controllers
                     if (c > 0)
                     {
                         var userpoints = pointService.RemovePointsonCheckout(order.Points, order.UserId);
-                        //return Ok(c);
+                        return Ok(c);
                     }
 
                     return Ok();
