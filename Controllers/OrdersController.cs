@@ -128,12 +128,74 @@ namespace xcart.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    
                     var c = await orderService.AddOrder(order);
+                    var userId = order.UserId;
+                    var itemList = cartservice.GetCartByUserId(userId);
+
+                    foreach (Cart item in itemList)
+                    {
+                        OrderDetails orderDetails = new OrderDetails();
+
+                        orderDetails.OrderId = c;
+                        orderDetails.ItemId = item.ItemId;
+                        orderDetails.Quantity = item.Quantity;
+
+                        int x= await orderService.AddOrderDetails(orderDetails);
+                    }
+
+                    await cartservice.DeleteCartbyUserId(userId);
+
                     if (c > 0)
                     {
                         var userpoints = pointService.RemovePointsonCheckout(order.Points, order.UserId);
-                        return Ok(c);
+                        //return Ok(c);
                     }
+
+                    return Ok();
+                }
+           }
+           catch
+           {
+               return BadRequest();
+           }
+            return BadRequest();
+        }
+        #endregion
+
+        #region Add to Order
+        [HttpPost("cart")]
+        public async Task<IActionResult> AddToOrderFromCart([FromBody] Order order)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    var c = await orderService.AddOrder(order);
+                    var userId = order.UserId;
+                    var itemList = cartservice.GetCartByUserId(userId);
+
+                    foreach (Cart item in itemList)
+                    {
+                        OrderDetails orderDetails = new OrderDetails();
+
+                        orderDetails.OrderId = c;
+                        orderDetails.ItemId = item.ItemId;
+                        orderDetails.Quantity = item.Quantity;
+
+                        int x = await orderService.AddOrderDetails(orderDetails);
+                    }
+
+                    await cartservice.DeleteCartbyUserId(userId);
+
+                    if (c > 0)
+                    {
+                        var userpoints = pointService.RemovePointsonCheckout(order.Points, order.UserId);
+                        //return Ok(c);
+                    }
+
+                    return Ok();
                 }
             }
             catch
