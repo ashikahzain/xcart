@@ -49,7 +49,7 @@ namespace xcart.Services
             {
                 return await (from emp in db.User
                               from point in db.Point
-                              where emp.Id == point.Id
+                              where emp.Id == point.UserId
 
                               select new AllEmployeePointViewModel
                               {
