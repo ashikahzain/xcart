@@ -15,6 +15,8 @@ namespace xcart.Services
         Task<Cart> DeleteCart(int id);
         public Task<int> IncreaseQuantity(int id);
         public Task<int> DecreaseQuantity(int id);
+        Task<List<Cart>> DeleteCartbyUserId(long id);
+        public Task<EmployeeCartViewModel> CompareQuantity(long userId);
 
     }
 }

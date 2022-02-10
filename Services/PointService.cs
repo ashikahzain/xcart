@@ -71,7 +71,23 @@ namespace xcart.Services
             }
             return null;
         }
+
+
         #endregion
+
+        public Point RemovePointsonCheckout(int points, int userid)
+        {
+            if (db != null)
+            {
+                Point userPoints = db.Point.SingleOrDefault(x => x.UserId == userid);
+                userPoints.CurrentPoints -= points;
+                db.Point.Update(userPoints);
+                db.SaveChanges();
+
+                return userPoints;
+            }
+            return null;
+        }
 
     }
 }
