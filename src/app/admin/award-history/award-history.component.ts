@@ -10,6 +10,7 @@ import { AdminService } from 'src/app/shared/services/admin.service';
 })
 export class AwardHistoryComponent implements OnInit {
 
+  //Declaring Variables
   filter:string;
   userId:number;
   page: number = 1;
@@ -19,12 +20,19 @@ export class AwardHistoryComponent implements OnInit {
   constructor(public adminService:AdminService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    //Getting userId from Params
     this.userId=this.route.snapshot.params['UserId'];
+
+    //getting awardHistory of the selected employee using UserId
     this.adminService.getAwardHistory(this.userId).subscribe(data=>{
       this.awardHistory = data;
+
+      //Sorting Awardhistory List
       this.sortedAwardHistory=this.awardHistory.sort((a,b)=>
       new Date(b.Date).getTime()- new Date(a.Date).getTime())
     });
+
+    //Getting Employee name using user Id
     this.adminService.GetEmployee(this.userId);
   }
 
