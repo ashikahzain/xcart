@@ -162,7 +162,7 @@ a{
     font-size: large;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 480px) { 
     .card {
         margin-left: 30%;
         margin-bottom: 5%;
