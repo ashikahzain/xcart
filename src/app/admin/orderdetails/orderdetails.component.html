@@ -19,10 +19,10 @@
         <th>Order ID</th>
         <th>Employee Name</th>
         <th>Products</th>
-        <th>Points</th>
-        <th>Date of Order</th>
-        <th>Date of Delivery</th>
-        <th>Status</th>
+        <th id="hide">Points</th>
+        <th id="hide">Date of Order</th>
+        <th id="hide">Date of Delivery</th>
+        <th id="hide1">Status</th>
       </tr>
     </thead>
     <tbody>
@@ -30,11 +30,11 @@
         <td>{{list.Id}}</td>
         <td>{{list.UserName}}</td>
         <td><button type="button" class="form-control" (click)="open(content,list.Id)">View Products</button></td>
-        <td>{{list.Points}}</td>
-        <td>{{list.DateOfOrder | date: 'dd-MM-yyyy'}}</td>
-        <td *ngIf="list.DateOfDelivery !== null">{{list.DateOfDelivery | date: 'dd-MM-yyyy'}}</td>
-        <td *ngIf="list.DateOfDelivery === null">Not Delivered</td>
-        <td><button class="form-control"
+        <td id="hide">{{list.Points}}</td>
+        <td id="hide">{{list.DateOfOrder | date: 'dd-MM-yyyy'}}</td>
+        <td id="hide" *ngIf="list.DateOfDelivery !== null">{{list.DateOfDelivery | date: 'dd-MM-yyyy'}}</td>
+        <td id="hide" *ngIf="list.DateOfDelivery === null">Not Delivered</td>
+        <td id="hide1"><button class="form-control"
             [ngStyle]="{'background-color':list.Status === 'Fulfilled' ? '#72D761' : '#D11A2A' }"
             (click)="UpdateStatus(list)">{{list.Status}}</button></td>
       </tr>

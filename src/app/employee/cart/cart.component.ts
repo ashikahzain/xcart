@@ -125,8 +125,9 @@ export class CartComponent implements OnInit {
           this.cartservice.placeOrderFromCart(this.order).subscribe(data => {
             console.log(data)
           });
-        }
 
+        }
+        window.location.reload();
       }
       this.toastr.success('Redeemed '+ this.totalPoints+ ' Points. Contact HR Department to collect your items.')
     }

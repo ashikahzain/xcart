@@ -232,174 +232,99 @@
     color: white;
 }
 
-row {
-    margin-right: -8px;
-    margin-left: -8px;
-}
-.col,
-.col-1,
-.col-10,
-.col-11,
-.col-12,
-.col-2,
-.col-3,
-.col-4,
-.col-5,
-.col-6,
-.col-7,
-.col-8,
-.col-9,
-.col-auto,
-.col-lg,
-.col-lg-1,
-.col-lg-10,
-.col-lg-11,
-.col-lg-12,
-.col-lg-2,
-.col-lg-3,
-.col-lg-4,
-.col-lg-5,
-.col-lg-6,
-.col-lg-7,
-.col-lg-8,
-.col-lg-9,
-.col-lg-auto,
-.col-md,
-.col-md-1,
-.col-md-10,
-.col-md-11,
-.col-md-12,
-.col-md-2,
-.col-md-3,
-.col-md-4,
-.col-md-5,
-.col-md-6,
-.col-md-7,
-.col-md-8,
-.col-md-9,
-.col-md-auto,
-.col-sm,
-.col-sm-1,
-.col-sm-10,
-.col-sm-11,
-.col-sm-12,
-.col-sm-2,
-.col-sm-3,
-.col-sm-4,
-.col-sm-5,
-.col-sm-6,
-.col-sm-7,
-.col-sm-8,
-.col-sm-9,
-.col-sm-auto,
-.col-xl,
-.col-xl-1,
-.col-xl-10,
-.col-xl-11,
-.col-xl-12,
-.col-xl-2,
-.col-xl-3,
-.col-xl-4,
-.col-xl-5,
-.col-xl-6,
-.col-xl-7,
-.col-xl-8,
-.col-xl-9,
-.col-xl-auto {
-    padding-right: 8px;
-    padding-left: 8px;
+
+@media only screen and (max-width: 480px){
+    .search {
+        margin-left: 40%;
+    }
+    .home-button{
+        margin-left: 1%;
+    }
+    .point-button{
+        margin-left: 10%;
+        width: 30%;
+    }
+    .point-button h4{
+        font-size: 15px;
+        line-height: 20px;
+    }
+    .Manage-awards{
+        width: 20%;
+        float: right;
+        height: 50px;
+    
+    }
+    .Manage-awards i{
+        display: none;
+    }
 }
 
-.card-header {
-    background-color: #f0f3f5;
-    border-bottom: 1px solid #c8ced3;
-    font-size: 13px;
-    font-weight: 600;
-    color: #464646;
-    text-transform: uppercase;
-    padding: 0.75rem 8px;
+@media only screen and (max-width: 600px) and (min-width: 480px){
+    .search {
+        margin-left: 50%;
+    }
+    .home-button{
+        margin-left: 1%;
+    }
+    .point-button{
+        margin-left: 10%;
+        width: 20%;
+    }
+    .point-button h4{
+        font-size: 15px;
+        line-height: 20px;
+    }
+    .Manage-awards{
+        width: 25%;
+        float: right;
+        height: 50px;
+    
+    }
 }
 
-.cnstr-record th {
-    white-space: nowrap;
-    padding: 0.45rem 0.2rem;
-    font-size: 13px;
-    border-bottom-width: 0px !important;
+@media only screen and (max-width: 992px) and (min-width: 600px){
+    .search {
+        margin-left: 50%;
+    }
+    .home-button{
+        margin-left: 1%;
+    }
+    .point-button{
+        margin-left: 8%;
+    }
+
+    .Manage-awards{
+        width: 25%;
+        float: right;
+        height: 50px;
+    
+    }
 }
 
-.cnstr-record thead {
-    background: #f0f3f5;
-}
-.cnstr-record .form-control {
-    font-size: 13px;
-    padding: 0px 0rem 0px 0.2rem;
-    height: calc(2rem + 2px);
+@media only screen and (max-width: 1200px) and (min-width: 994px){
+    .search {
+        margin-left: 70%;
+    }
+
+    .point-button{
+        margin-left: 20%;
+    }
+
+    .Manage-awards{
+        float: right;
+        height: 50px;
+    
+    }
 }
 
-.cnstr-record select.form-control {
-    padding-left: 0.05rem;
-}
+@media only screen and (min-width: 1200px){
+    .point-button{
+        margin-left: 30%;
+    }
 
-.cnstr-record .table td,
-.cnstr-record .table th {
-    vertical-align: middle;
-}
-
-.cnstr-record .table td {
-    padding: 0.3rem;
-}
-
-.cnstr-record .table td h4 {
-    margin: 0px;
-}
-
-.activeTabColor {
-    color: #fff;
-    background-color: #000000;
-}
-.page-item:first-child .page-link {
-    margin-left: 0;
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
-}
-
-.pageColor {
-    position: relative;
-    display: block;
-    padding: 0.5rem 0.75rem;
-    margin-left: -1px;
-    line-height: 1.25;
-    color: white !important;
-    background-color: #0C74EF!important;
-    border: 1px solid #dee2e6;
-}
-
-.notAllowed {
-    position: relative;
-    display: block;
-    padding: 0.5rem 0.75rem;
-    margin-left: -1px;
-    line-height: 1.25;
-    color: #007bff;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    cursor: not-allowed;
-}
-
-.page-link {
-    position: relative;
-    display: block;
-    padding: 0.5rem 0.75rem;
-    margin-left: -1px;
-    line-height: 1.25;
-    color: #BCBCBC;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-   
-}
-
-.page-link:hover{
-    color: #BCBCBC;
-    background-color: rgb(133, 127, 127);
-    cursor: pointer;
+    .Manage-awards{
+        float: right;
+        height: 50px;
+    
+    }
 }
