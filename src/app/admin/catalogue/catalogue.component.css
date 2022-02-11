@@ -6,7 +6,7 @@
   display: inline-flex;
   width: 130px;
   height: 50px;
-  margin-left: 10%;
+  margin-left: 8%;
   margin-top: 2%;
   background: #f7c02d;
   border-radius: 5px;
@@ -41,7 +41,7 @@
   position: absolute;
   width: 160px;
   height: 50px;
-  margin-left: 20%;
+  margin-left: 30%;
   margin-top: 2%;
   background: #4e71a2;
   border-radius: 20px;
@@ -202,58 +202,4 @@ img.item-image {
   padding-top: 4%;
 }
 
-@media only screen and (max-width: 480px) {
-  .add-cart {
-    position: absolute;
-    left: 65%;
-    top: 70%;
-  }
-  .buy {
-    position: absolute;
-    top: 83%;
-    left: 65%;
-  }
-}
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) and (min-width: 480px) {
-  .add-cart {
-    position: absolute;
-    top: 200px;
-  }
-  .buy {
-    position: absolute;
-    top: 240px;
-  }
-}
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 992px) and (min-width: 600px) {
-  .add-cart {
-    position: absolute;
-    top: 200px;
-  }
-  .buy {
-    position: absolute;
-    top: 240px;
-  }
-  .container1 {
-    margin-left: 12%;
-    padding-top: 11%;
-  }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 1200px) and (min-width: 993px) {
-  .add-cart {
-    position: absolute;
-    top: 200px;
-  }
-  .buy {
-    position: absolute;
-    top: 240px;
-  }
-  .container1 {
-    margin-left: 20%;
-    padding-top: 11%;
-  }
-}

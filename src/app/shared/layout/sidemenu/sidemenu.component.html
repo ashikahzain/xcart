@@ -18,17 +18,17 @@
             <h4>{{userName}}</h4>
         </div>
         <ul class="list-unstyled components">
-            <li class="active">
-                <a (click)="movetoHome()"><i class="fa fa-home fa-lg menu-home"></i>Home</a>
+            <li routerLink='/employee/home' routerLinkActive="active">
+                <a><i class="fa fa-home fa-lg menu-home"></i>Home</a>
             </li>
-            <li>
-                <a (click)="moveToOrder()"><i class="fa fa-shopping-bag fa-lg menu-order"></i>Order</a>
+            <li routerLink='/employee/order' routerLinkActive="active">
+                <a  ><i class="fa fa-shopping-bag fa-lg menu-order"></i>Order</a>
             </li>
-            <li>
-                <a (click)="moveToProfile()"><i class="fa fa-user fa-lg menu-profile"></i>Profile</a>
+            <li routerLink='/employee/profile'  routerLinkActive="active">
+                <a ><i class="fa fa-user fa-lg menu-profile"></i>Profile</a>
             </li>
-            <li>
-                <a (click)="moveToCart()"><i class="fa fa-shopping-cart fa-lg menu-cart"></i>Cart</a>
+            <li routerLink='/employee/cart' routerLinkActive="active">
+                <a ><i class="fa fa-shopping-cart fa-lg menu-cart"></i>Cart</a>
             </li>
         </ul>
     </nav>
