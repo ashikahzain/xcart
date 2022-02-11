@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/shared/services/admin.service';
 import { ToastrService } from 'ngx-toastr';
+import { PaginationService } from 'src/app/shared/services/pagination.service';
+import { AllEmployeePoints } from 'src/app/shared/models/AllEmployeePoint';
 
 
 @Component({
@@ -20,18 +22,27 @@ export class EmployeeListComponent implements OnInit {
   presenteeId: number;
   today = new Date().toLocaleDateString();
   point: number;
-  status:boolean;
+  status: boolean;
+  TotalEmployees: number;
+  pagenumber: any = 1;
+  pagesize: number = 2;
+  paginationdata: number;
+  exactPageList: number;
+  pageField: any[];
+  employeePointList: AllEmployeePoints[]
+  pageNo: boolean[] = [];
 
   constructor(public adminService: AdminService, private router: Router, private formBuilder: FormBuilder,
-    public toastr: ToastrService) { }
+    public toastr: ToastrService, public paginationService: PaginationService) { }
 
   ngOnInit(): void {
-    //get the list of employees
-    this.adminService.getAllEmployeesPoints();
 
+    this.pageNo[0] = true;
+    //get all employees points
+    this.getAllEmployees()
     //get award list
     this.adminService.getAwards();
-    
+
     //get the id of Admin
     this.presenteeId = Number(sessionStorage.getItem('userid'));
 
@@ -45,10 +56,18 @@ export class EmployeeListComponent implements OnInit {
       Point: [''],
       Status: ['']
     })
+
+
   }
 
-
-
+  getAllEmployees() {
+    //get the list of employees
+    this.adminService.getAllEmployeesPoints(this.pagenumber, this.pagesize).subscribe(data => {
+      this.employeePointList = data
+      this.getEmployeeCount()
+    }
+    );
+  }
   //get form controls
   get formControls() {
     return this.addForm.controls;
@@ -77,11 +96,11 @@ export class EmployeeListComponent implements OnInit {
       //Displaying message using toastr
       if (this.addForm.get('Status').value) {
         this.toastr.success(this.addForm.get('Point').value + " " + " Point Added Successfully!");
-        window.setTimeout(function(){location.reload()},1000);
+        window.setTimeout(function () { location.reload() }, 1000);
       }
       else {
-        this.toastr.warning(this.addForm.get('Point').value  + " " + "Point Removed Successfully!")
-        window.setTimeout(function(){location.reload()},1000);
+        this.toastr.warning(this.addForm.get('Point').value + " " + "Point Removed Successfully!")
+        window.setTimeout(function () { location.reload() }, 1000);
 
 
       }
@@ -98,7 +117,7 @@ export class EmployeeListComponent implements OnInit {
     this.addForm.controls.EmployeeId.setValue(UserId);
     this.addForm.controls.PresenteeId.setValue(this.presenteeId);
     this.addForm.controls.Status.setValue(status);
-    this.status=status;//setting status as true or false
+    this.status = status;//setting status as true or false
     this.addForm.controls.Date.setValue(this.today);
 
   }
@@ -120,11 +139,44 @@ export class EmployeeListComponent implements OnInit {
   //function to close the modal
   closeModalDialog() {
     this.display = 'none'; //set none css after close dialog
-    this.point=0;
+    this.point = 0;
   }
 
   //Navigate to award history page along with userId of the selected employee
   awardHistory(UserId: number) {
     this.router.navigate(['admin/awardHistory', UserId]);
+  }
+
+
+  getEmployeeCount() {
+    this.adminService.getEmployeeCount().subscribe(data => {
+      this.TotalEmployees = data;
+      this.TotalNumberofPages()
+    });
+
+  }
+  TotalNumberofPages() {
+    this.paginationdata = (this.TotalEmployees / this.pagesize);
+    let tempPageData = this.paginationdata.toFixed();
+    if (Number(tempPageData) < this.paginationdata) {
+      this.exactPageList = Number(tempPageData) + 1;
+      this.paginationService.exactPageList = this.exactPageList;
+    }
+    else {
+      this.exactPageList = Number(tempPageData);
+      this.paginationService.exactPageList = this.exactPageList
+    }
+    this.paginationService.pageOnLoad();
+    this.pageField = this.paginationService.pageField;
+  }
+
+
+  showEmployeesByPageNumber(page, i) {
+    this.employeePointList = [];
+    this.pageNo = [];
+    this.pageNo[i] = true;
+    this.pagenumber = page;
+    this.getAllEmployees();
+
   }
 }

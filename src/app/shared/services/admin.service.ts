@@ -50,9 +50,8 @@ export class AdminService {
     return this.httpClient.get(environment.apiUrl + '/api/items/delete-item/'+id)
   }
 
-  getAllEmployeesPoints() {
-    this.httpClient.get(environment.apiUrl + "/api/employees").toPromise().then(Response =>
-      this.employeePointList = Response as AllEmployeePoints[]);
+  getAllEmployeesPoints(pagenumber:number,pagesize:number):Observable<any> {
+   return this.httpClient.get(environment.apiUrl + "/api/employees/?pagenumber="+pagenumber+'&pagesize='+pagesize);
 
     }
 
@@ -115,5 +114,9 @@ export class AdminService {
   getItembyIdusingpromise(id:number){
     this.httpClient.get(environment.apiUrl + '/api/items/'+id).toPromise().then(response =>
       this.itemList = response as Item);;
+  }
+
+  getEmployeeCount():Observable<any>{
+    return  this.httpClient.get(environment.apiUrl + "/api/employees/employee-count");
   }
 }

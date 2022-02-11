@@ -38,31 +38,18 @@ export class CartComponent implements OnInit {
       }
     );
 
+ 
+
     this.employeeservice.getCurrentPoints().subscribe(
       data => {
         this.currentPoints = data;
       });
+
+  
   }
 
+  
 
-  compareItemQuantity() {
-    this.itemQuantity.forEach((item, key) => {
-      this.adminService.getItembyId(key).subscribe(
-        data => {
-          console.log(data);
-          console.log(data.Quantity);
-          console.log(item)
-          if (data.Quantity < item) {
-            this.checkQuantity = 0
-            this.toastr.error(data.Name + " only " + data.Quantity + " left");
-          }
-        }
-      )
-    }
-
-    )
-
-  }
 
   /*
   compareItemQuantity():any{
@@ -90,40 +77,60 @@ export class CartComponent implements OnInit {
     window.location.reload();
   }
   //on checkout function
-  onCheckOut() {
-    if (this.totalPoints <= this.currentPoints) {
-      this.itemQuantity.forEach((item, key) => {
-        this.adminService.getItembyId(key).subscribe(
-          product => {
-            if (product.Quantity < item) {
-              this.checkQuantity = 0
-              this.toastr.error(product.Name + " only " + product.Quantity + " left");
-            }
+  onCheckOut() : any{
+    var checkout= new Promise<void>((resolve) =>{this.itemQuantity.forEach((item, key) => {
+      this.adminService.getItembyId(key).subscribe(
+        product => {
+          if (product.Quantity < item) {
+            this.checkQuantity = 0
+          
+            this.toastr.error(product.Name + " only " + product.Quantity + " left");
           }
-        )
-      },
-      )
-      this.order.DateOfDelivery = null,
-        this.order.DateOfOrder = new Date().toLocaleDateString(),
-        this.order.Points = this.totalPoints,
-        this.order.StatusDescriptionId = 1,
-        this.order.UserId = Number(sessionStorage.getItem('userid'))
-      console.log(this.order);
-      if (this.checkQuantity == 1) {
-        if (confirm('Are you sure you want place the order?')) {
-          this.cartservice.placeOrderFromCart(this.order).subscribe(data => {
-            console.log(data)
-          });
         }
-
-      }
-      window.location.reload();
-    }
-    else {
-      this.toastr.error('Not Enough Points');
-    }
-
-
+      )
+    },
+    )
+    resolve()
   }
+    )
+    checkout.then((() => {
+      return this.checkQuantity;
+  }))
+  }
+ async onOrder(){
+   this.onCheckOut().then(
+     order=>this.onPlaceOrder(order));
+
+   console.log(this.checkQuantity)
+ }
+onPlaceOrder(Quantity:number){
+  new Promise<void>((resolve) =>{  if(Quantity==1){
+      if (this.totalPoints <= this.currentPoints) {
+        this.order.DateOfDelivery = null,
+          this.order.DateOfOrder = new Date().toLocaleDateString(),
+          this.order.Points = this.totalPoints,
+          this.order.StatusDescriptionId = 1,
+          this.order.UserId = Number(sessionStorage.getItem('userid'))
+        console.log(this.order);
+        if (this.checkQuantity == 1) {
+          if (confirm('Are you sure you want place the order?')) {
+            this.cartservice.placeOrderFromCart(this.order).subscribe(data => {
+              console.log(data)
+            
+            });
+          }
+  
+        }
+        window.location.reload();
+      }
+      else {
+        this.toastr.error('Not Enough Points');
+      }
+    }
+    resolve()
+  }
+
+  )
+}
 }
 
