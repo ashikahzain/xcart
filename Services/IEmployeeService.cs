@@ -13,13 +13,14 @@ namespace xcart.Services
 
         Task<List<User>> GetAllEmployees();
 
-        Task<List<AllEmployeePointViewModel>> GetEmployeePoints();
-
+        Task<List<AllEmployeePointViewModel>> GetEmployeePoints(int pageNumber,int pagesize);
 
         Task<User> GetEmployeeById(int id);
 
         Task<List<EmployeeProfileViewModel>> GetEmployeeProfile(int id);
         public Task<List<OrderViewModel>> GetAllOrdersByEmployeeId(int id);
+
+        public Task<int> GetEmployeeCount();
 
     }
 }

@@ -42,11 +42,12 @@ namespace xcart.Services
         #endregion
 
         #region Get all Employee points
-        public async Task<List<AllEmployeePointViewModel>> GetEmployeePoints()
+        public async Task<List<AllEmployeePointViewModel>> GetEmployeePoints(int pageNumber,int pagesize)
         {
+            
             if (db != null)
             {
-                return await (from emp in db.User
+                var queryResult= await (from emp in db.User
                               from point in db.Point
                               where point.UserId==emp.Id
 
@@ -55,7 +56,9 @@ namespace xcart.Services
                                   UserId = emp.Id,
                                   Name = emp.Name,
                                   CurrentPoints = point.CurrentPoints
-                              }).ToListAsync();
+                              }).Skip(pagesize * (pageNumber-1)).Take(pagesize).ToListAsync();
+               
+                return queryResult;
             }
             return null;
         }
@@ -148,6 +151,16 @@ namespace xcart.Services
                     ).ToListAsync();
             }
             return null;
+        }
+
+
+        #endregion
+
+        #region Get number of Employees
+        public async Task<int> GetEmployeeCount()
+        {
+            var count = await db.User.CountAsync();
+            return count;
         }
         #endregion
 
