@@ -26,7 +26,9 @@ namespace xcart.Controllers
             itemService = _itemService;
             db = _db;
         }
-        //get all active items 
+
+
+        #region get all active items 
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllActiveItems()
@@ -39,8 +41,9 @@ namespace xcart.Controllers
             return Ok(items);
 
         }
+        #endregion
 
-        //get all inactive items 
+        #region get all inactive items 
         [Authorize]
         [HttpGet]
         [Route("inactive-items")]
@@ -54,8 +57,9 @@ namespace xcart.Controllers
             return Ok(items);
 
         }
+        #endregion
 
-        //add item
+        #region add item
         [Authorize]
         [HttpPost]
 
@@ -76,6 +80,7 @@ namespace xcart.Controllers
             }
             return BadRequest();
         }
+        #endregion
 
         #region Get Item by Id
         [HttpGet("{id}")]
@@ -99,8 +104,6 @@ namespace xcart.Controllers
         }
 
         #endregion
-
-        
 
         #region Delete Item by changing is active status
         [HttpGet]

@@ -27,6 +27,7 @@ namespace xcart.Services
         {
             if (db != null)
             {
+                //retrieve data from Item Model where isactive is true
                var item = await db.Item.Where(i => i.IsActive == true).ToListAsync();
                 return item;
             }
@@ -41,13 +42,17 @@ namespace xcart.Services
             {
 
                 //Convert Base64 Encoded string to Byte Array.
-                byte[] image = Convert.FromBase64String(item.Image);      
-                var itemdata = new Item();
-                itemdata.Image = image;
-                itemdata.Name = item.Name;
-                itemdata.Quantity = item.Quantity;
-                itemdata.Points = item.Points;
-                itemdata.IsActive = item.IsActive;
+                byte[] image = Convert.FromBase64String(item.Image);
+                //assign data to a variable
+                var itemdata = new Item
+                {
+                    Image = image,
+                    Name = item.Name,
+                    Quantity = item.Quantity,
+                    Points = item.Points,
+                    IsActive = item.IsActive
+                };
+                //add to database
                 await db.Item.AddAsync(itemdata);
                 await db.SaveChangesAsync();
                 return item.Id;
@@ -57,8 +62,11 @@ namespace xcart.Services
             return 0 ;
         }
         #endregion
+
+        #region get Item by ID
         public async Task<Item> GetItemById(int id)
         {
+            //get item from item table using primary key
             var item = await db.Item.FirstOrDefaultAsync(i => i.Id == id);
             if (item == null)
             {
@@ -67,12 +75,13 @@ namespace xcart.Services
             return item;
         }
 
-     
+        #endregion
 
-        //Delete Item (change is active status)
+        #region Change active status of item 
 
         public async Task<int> DeleteItem(int id)
         {
+            //retrieve item corresponding to the given idea
             var itemdetails = await db.Item.FirstOrDefaultAsync(i => i.Id == id);
             itemdetails.IsActive = false;
             db.Item.Update(itemdetails);
@@ -80,10 +89,12 @@ namespace xcart.Services
             return id;
             
         }
+        #endregion
 
+        #region Update Item 
         public async Task<int> UpdateItem(ItemViewModel item)
         {
-            //member function to update patient
+            //member function to update item
             if (db != null)
             {
                 //Convert Base64 Encoded string to Byte Array.
@@ -97,29 +108,37 @@ namespace xcart.Services
                     Points = item.Points,
                     IsActive = item.IsActive
                 };
+                //update in database
                 db.Item.Update(itemdata);
                 await db.SaveChangesAsync();
                 return item.Id;
             }
             return 0;
         }
+        #endregion
 
+        #region Get all inactive items
         public async Task<List<Item>> GetAllInactiveItems()
         {
 
             if (db != null)
             {
+                //retrieve items from db where isactive value is false
                 var item = await db.Item.Where(i => i.IsActive == false).ToListAsync();
                 return item;
             }
             return null;
         }
+        #endregion
 
+        #region Decrease Quantity of an item
         public Item DescreaseQuantity(int itemid,int quantity)
         {
             if (db != null)
             {
+                //find item in database
                 Item item = db.Item.SingleOrDefault(x => x.Id == itemid);
+                //change quantity
                 item.Quantity -= quantity;
                 db.Item.Update(item);
                 db.SaveChanges();
@@ -128,5 +147,6 @@ namespace xcart.Services
             }
             return null;
         }
+        #endregion
     }
 }

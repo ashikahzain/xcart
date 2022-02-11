@@ -17,13 +17,9 @@ namespace xcart.Controllers
     public class OrdersController : ControllerBase
     {
         IOrderService orderService;
-
         XCartDbContext db;
-
         IPointService pointService;
-
         ICartService cartservice;
-
         IItemService itemService;
 
         //constructor 
@@ -37,79 +33,109 @@ namespace xcart.Controllers
             
         }
 
-        //get all orders
-        //[Authorize]
-        [HttpGet] 
+        #region Get All Orders
+        [Authorize]
+        [HttpGet]
         public async Task<IActionResult> GetOrders()
         {
-            var orders = await orderService.GetAllOrders();
-            if (orders == null)
+            try
             {
-                return NotFound();
+                var orders = await orderService.GetAllOrders();
+                if (orders == null)
+                {
+                    return NotFound();
+                }
+                return Ok(orders);
+                //return Ok(db.Order.FirstOrDefault());
             }
-            return Ok(orders);
-            //return Ok(db.Order.FirstOrDefault());
-            
+            catch
+            {
+                return BadRequest();
+            }
         }
+        #endregion
 
-        //get the top two trending items
+        #region Get top 2 trending items
         [HttpGet]
         [Route("trending-item")]
         public async Task<IActionResult> GetTrendingItems()
         {
-            var orders = await orderService.GetTrendingItems();
-            if (orders == null)
+            try
             {
-                return NotFound();
+                var orders = await orderService.GetTrendingItems();
+                if (orders == null)
+                {
+                    return NotFound();
+                }
+                return Ok(orders);
             }
-            return Ok(orders);
-
+            catch
+            {
+                return BadRequest();
+            }
         }
-        
-        //To change the status of an order
+        #endregion
+
+        #region To change the status of an order
         [HttpPut]
         [Route("Change-Status")]
-        public async Task<IActionResult> ChangeStatus([FromBody]StatusOrderViewModel order)
+        public async Task<IActionResult> ChangeStatus([FromBody] StatusOrderViewModel order)
         {
-                try
-                {
-                    await orderService.ChangeStatus(order);
-                    return Ok();
-                }
-                catch
-                {
-                    return BadRequest();
-                }
+            try
+            {
+                await orderService.ChangeStatus(order);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
-        
-        //To get the Item details by Order Id
+        #endregion
+
+        #region To get the orderdetails by order id
         [HttpGet]
         [Route("GetOrderDetails/{id}")]
         public async Task<IActionResult> GetOrderDetailsByOrderId(int id)
         {
-            var order = await orderService.GetOrderDetailsByOrderId(id);
-            if (order == null)
+            try
             {
-                return NotFound();
+                var order = await orderService.GetOrderDetailsByOrderId(id);
+                if (order == null)
+                {
+                    return NotFound();
+                }
+                return Ok(order);
             }
-            return Ok(order);
+            catch
+            {
+                return BadRequest();
+            }
         }
+        #endregion
 
-
-
+        #region To get orders based on status
         [HttpGet]
         [Route("Status/{id}")]
         public async Task<IActionResult> GetSpecificOrders(int id)
         {
-            var order = await orderService.GetSpecificOrders(id);
-            if (order == null)
+            try
             {
-                return NotFound();
+                var order = await orderService.GetSpecificOrders(id);
+                if (order == null)
+                {
+                    return NotFound();
+                }
+                return Ok(order);
             }
-            return Ok(order);
+            catch
+            {
+                return BadRequest();
+            } 
         }
+        #endregion
 
-        #region Add to Order
+        #region Add to Order from Buy
         [HttpPost]
         public async Task<IActionResult> AddToOrder([FromBody] Order order)
         {
@@ -117,16 +143,14 @@ namespace xcart.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    
+                    //c is assigned with orderid
                     var c = await orderService.AddOrder(order);
-                    
-
                     if (c > 0)
                     {
+                        //to remove points from the current points
                         var userpoints = pointService.RemovePointsonCheckout(order.Points, order.UserId);
                         return Ok(c);
                     }
-
                     return Ok();
                 }
            }
@@ -138,7 +162,7 @@ namespace xcart.Controllers
         }
         #endregion
 
-        #region Add to Order
+        #region Add to Order from Cart
         [HttpPost("cart")]
         public async Task<IActionResult> AddToOrderFromCart([FromBody] Order order)
         {
@@ -146,11 +170,14 @@ namespace xcart.Controllers
             {
                 if (ModelState.IsValid)
                 {
-
+                    //c gets assigned with orderid
                     var c = await orderService.AddOrder(order);
                     var userId = order.UserId;
+                    //itemList is list of cart details corresponding to a userId
                     var itemList = cartservice.GetCartByUserId(userId);
 
+                    //for each item in cart, it gets added to the orderdetails class
+                    //And decrease the total quantity from Item class
                     foreach (Cart item in itemList)
                     {
                         OrderDetails orderDetails = new OrderDetails();
@@ -161,17 +188,14 @@ namespace xcart.Controllers
 
                         int x = await orderService.AddOrderDetails(orderDetails);
                         itemService.DescreaseQuantity(item.ItemId, item.Quantity);
-
                     }
-
                     await cartservice.DeleteCartbyUserId(userId);
-
+                    //Removes used points from current points
                     if (c > 0)
                     {
                         var userpoints = pointService.RemovePointsonCheckout(order.Points, order.UserId);
-                        //return Ok(c);
+                        return Ok(c);
                     }
-
                     return Ok();
                 }
             }
@@ -183,14 +207,28 @@ namespace xcart.Controllers
         }
         #endregion
 
+        #region To compare quantity while buying
         [HttpGet]
         [Route("quantity-check/{id}")]
         public async Task<IActionResult> GetQuantity(int id)
         {
-            var order = await cartservice.CompareQuantity(id);
-            return Ok(order);
+            try
+            {
+                var order = await cartservice.CompareQuantity(id);
+                if (order == null)
+                {
+                    return NotFound();
+                }
+                return Ok(order);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
+        #endregion
 
+        #region To add to orderdetails
         [HttpPost]
         [Route("order-details")]
         public async Task<IActionResult> AddToOrderDetails([FromBody] OrderDetails order)
@@ -199,10 +237,12 @@ namespace xcart.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    //c is assigned with orderdetailsid
                     var c = await orderService.AddOrderdetails(order);
                     if (c > 0)
                     {
-                        var itemquantity= itemService.DescreaseQuantity(order.ItemId, order.Quantity);
+                        //decreases the quantity used from Tota quantity in item class
+                        var itemquantity = itemService.DescreaseQuantity(order.ItemId, order.Quantity);
                         return Ok(c);
                     }
                 }
@@ -213,5 +253,7 @@ namespace xcart.Controllers
             }
             return BadRequest();
         }
-        }
+        #endregion
+
+    }
 }

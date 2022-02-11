@@ -43,6 +43,7 @@ namespace xcart.Services
         }
         #endregion
 
+        #region Get Award by Id
         public async Task<Award> GetAwardById(int id)
         {
             var award = await db.Award.FirstOrDefaultAsync(i => i.Id == id);
@@ -52,6 +53,7 @@ namespace xcart.Services
             }
             return award;
         }
+        #endregion
 
         #region Update Award
         public async Task UpdateAward(Award award)
@@ -64,7 +66,7 @@ namespace xcart.Services
         }
         #endregion
 
-        #region Update Award
+        #region Delete Award
         public async Task DeleteAward(int id)
         {
             Award award = db.Award.FirstOrDefault(aid => aid.Id == id);
