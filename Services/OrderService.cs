@@ -29,7 +29,7 @@ namespace xcart.Services
                               from status in db.StatusDescription
                               where order.UserId == user.Id
                               where order.StatusDescriptionId == status.Id
-                              orderby order.DateOfOrder descending
+                              orderby order.Id descending
 
                               select new OrderViewModel
                               {
@@ -149,7 +149,7 @@ namespace xcart.Services
                               where order.StatusDescriptionId==id
                               where order.UserId == user.Id
                               where order.StatusDescriptionId == stat.Id
-                              orderby order.DateOfOrder ascending
+                              orderby order.Id ascending
 
                               select new OrderViewModel
                               {
