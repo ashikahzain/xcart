@@ -21,9 +21,15 @@ export class CartComponent implements OnInit {
   order = new Order();
   itemQuantity = new Map<number, number>();
   checkQuantity: number = 1;
+  ItemList:Item[]=[];
+
   constructor(public cartservice: CartService, public employeeservice: EmployeeService, private domSanitizer: DomSanitizer, private toastr: ToastrService, private adminService: AdminService) { }
 
   ngOnInit(): void {
+    this.employeeservice.getItems().subscribe(data=>{
+      this.ItemList=data;
+    });
+
     this.cartservice.getAllCart().subscribe(
       data => {
         console.log(data);
@@ -90,25 +96,42 @@ export class CartComponent implements OnInit {
     window.location.reload();
   }
   //on checkout function
-  onCheckOut() {
+  async onCheckOut() {
     if (this.totalPoints <= this.currentPoints) {
+
       this.itemQuantity.forEach((item, key) => {
-        this.adminService.getItembyId(key).subscribe(
+         /*this.adminService.getItembyId(key).subscribe(
           product => {
             if (product.Quantity < item) {
-              this.checkQuantity = 0
+              this.checkQuantity = 0;
+              console.log("inside loop");
+              console.log(this.checkQuantity);
               this.toastr.error(product.Name + " only " + product.Quantity + " left");
             }
           }
-        )
+        )*/
+          //console.log(this.itemQuantity);
+          var Item=this.ItemList.find(x=>x.Id==key);
+          //console.log(Item);
+          if (Item.Quantity < item) {
+            this.checkQuantity = 0;
+            //console.log("inside loop");
+            //console.log(this.checkQuantity);
+            this.toastr.error(Item.Name + " only " + Item.Quantity + " left");
+          }
       },
       )
-      this.order.DateOfDelivery = null,
+      //await new Promise(f => setTimeout(f, 500));
+      
+        this.order.DateOfDelivery = null,
         this.order.DateOfOrder = new Date().toLocaleDateString(),
         this.order.Points = this.totalPoints,
         this.order.StatusDescriptionId = 1,
-        this.order.UserId = Number(sessionStorage.getItem('userid'))
-      console.log(this.order);
+        this.order.UserId = Number(sessionStorage.getItem('userid'));
+
+        console.log(this.order);
+        console.log(this.checkQuantity);
+
       if (this.checkQuantity == 1) {
         if (confirm('Are you sure you want place the order?')) {
           this.cartservice.placeOrderFromCart(this.order).subscribe(data => {
@@ -117,7 +140,7 @@ export class CartComponent implements OnInit {
         }
 
       }
-      window.location.reload();
+      //window.location.reload();
     }
     
     else {

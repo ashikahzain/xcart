@@ -28,8 +28,10 @@ export class AwardHistoryComponent implements OnInit {
       this.awardHistory = data;
 
       //Sorting Awardhistory List
+      //this.sortedAwardHistory=this.awardHistory.sort((a,b)=>
+      //new Date(b.Date).getTime()- new Date(a.Date).getTime())
       this.sortedAwardHistory=this.awardHistory.sort((a,b)=>
-      new Date(b.Date).getTime()- new Date(a.Date).getTime())
+      b.AwardId-a.AwardId)
     });
 
     //Getting Employee name using user Id
