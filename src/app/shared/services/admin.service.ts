@@ -40,7 +40,7 @@ export class AdminService {
     return this.httpClient.post(environment.apiUrl + '/api/items/', item);
 
   }
-  getItembyId(id:number):Observable<any>{
+   getItembyId(id:number):Observable<any>{
     return this.httpClient.get(environment.apiUrl + '/api/items/'+id);
   }
   updateItem(item:Item):Observable<any>{
