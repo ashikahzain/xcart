@@ -10,9 +10,9 @@ namespace xcart.Services
     public interface IOrderService
     {
         public Task<List<OrderViewModel>> GetAllOrders();
-        Task<List<Item>> GetTrendingItems();
-        Task ChangeStatus(StatusOrderViewModel order);
-        Task<List<OrderDetailsViewModel>> GetOrderDetailsByOrderId(int id);
+        public Task<List<Item>> GetTrendingItems();
+        public Task ChangeStatus(StatusOrderViewModel order);
+        public Task<List<OrderDetailsViewModel>> GetOrderDetailsByOrderId(int id);
         public Task<List<OrderViewModel>> GetSpecificOrders(int id);
         public Task<long> AddOrder(Order order);
         public Task<long> AddOrderdetails(OrderDetails orderDetails);
