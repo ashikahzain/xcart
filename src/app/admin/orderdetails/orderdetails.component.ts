@@ -65,7 +65,7 @@ export class OrderdetailsComponent implements OnInit {
       this.adminService.ChangeStatus(order).subscribe(
         data=>{
           console.log(data);
-          location.reload();
+          window.location.reload();
           
         }
       )

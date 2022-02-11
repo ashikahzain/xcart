@@ -1,7 +1,7 @@
 .home{
     position: absolute;
     width: 11%;
-    height: 8%;
+    height: 7%;
     left: 6%;
     top: 15%;
     background: #F7C02D;
@@ -11,15 +11,13 @@
     font-style: normal;
     font-weight:500px;
     font-size: 21px;
-    line-height: 31px;
-    
+    line-height: 31px;   
 }
 .fa-home{
     width: 24px;
     height: 24px;
     left: calc(50% - 24px/2 - 34px);
-    top: calc(50% - 24px/2);
-    
+    top: calc(50% - 24px/2);    
 }
 .All:hover{
     color: hsla(360, 0%, 100%, 1);
@@ -30,31 +28,28 @@
 .All{
     position: absolute;
     width: 7%;
-    height: 10%;
+    height: 8%;
     left: 72%;
     top: 15%;
     border-radius: 12% 0% 0% 12%;
     background: #6B8BB7;
     border: none;
-    transition: all 0.4s;
-    
+    transition: all 0.4s;  
 }
 .Open{
     position: absolute;
     width: 7%;
-    height: 10%;
+    height: 8%;
     left: 79%;
     top: 15%;
     background: #6B8BB7;
     border: none;
-    color: white;
-    
-    
+    color: white;   
 }
 .FullFilled{
     position: absolute;
     width: 7%;
-    height: 10%;
+    height: 8%;
     left: 86%;
     top: 15%;
     border-radius: 0% 12% 12% 0%;
@@ -92,5 +87,159 @@
 }
 #status{
     background: #72D761;
+}
 
+@media only screen and (max-width: 480px) {
+    .home{
+        top: 13%;
+        width: 25%;
+        height: 5%;
+        font-weight:200px;
+        font-size: 13px;
+    }
+    .All{
+        height: 5%;
+        top: 13%;
+        width: 8%;
+        left: 60%;
+        font-weight:200px;
+        font-size: 13px;
+    }
+    .Open{
+        height: 5%;
+        top: 13%;
+        width: 13%;
+        left: 67%;
+        font-weight:200px;
+        font-size: 13px;
+    }
+    .FullFilled{
+        height: 5%;
+        top: 13%;
+        width: 18%;
+        left: 79.5%;
+        font-weight:200px;
+        font-size: 13px;
+    }
+    .list-heading{
+        margin: 17% 0% 0% 0%;
+    }
+    .search {
+        display: inline;
+        margin-left: 68%;
+        font-size: small;
+    }
+    #navsearch{
+        width: 25%;
+    }
+    #hide, #hide1{
+        display: none;
+    }
+    .table{
+        font-size: small;
+    }
+    .form-control{
+        height: 100%;
+        font-size:small;
+    }
+}
+
+@media only screen and (max-width: 601px) and (min-width: 480px) {
+    .home{
+        top: 12%;
+        width: 19%;
+        height: 6%;
+        font-weight:300px;
+        font-size: 18px;
+    }
+    .All{
+        height: 6%;
+        top: 12%;
+        width: 8%;
+        left: 67%
+    }
+    .Open{
+        height: 6%;
+        top: 12%;
+        width: 11%;
+        left: 74%;
+    }
+    .FullFilled{
+        height: 6%;
+        top: 12%;
+        width: 14%;
+        left: 84%;
+    }
+    .list-heading{
+        margin: 15% 0% 0% 0%;
+    }
+    .search {
+        display: inline;
+        margin-left: 72%;
+    }
+    #navsearch{
+        width: 24%;
+    }
+    #hide{
+        display: none;
+    }
+    .form-control{
+        height: 100%;
+        font-size:small;
+    }
+}
+
+@media only screen and (max-width: 992px) and (min-width: 601px) {
+    .home{
+        top: 12%;
+        width: 17%;
+        height: 6%;
+        font-weight:300px;
+        font-size: 18px;
+    }
+    .All{
+        height: 6%;
+        top: 12%;
+        width: 8%;
+        left: 70%
+    }
+    .Open{
+        height: 6%;
+        top: 12%;
+        width: 10%;
+        left: 77%;
+    }
+    .FullFilled{
+        height: 6%;
+        top: 12%;
+        width: 12%;;
+    }
+    .list-heading{
+        margin: 15% 0% 0% 0%;
+    }
+    .search {
+        display: inline;
+        margin-left: 72%;
+    }
+    #navsearch{
+        width: 25%;
+    }
+    #hide{
+        display: none;
+    }
+    .form-control{
+        height: 100%;
+        font-size:small;
+    }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 992px) {
+    .form-control{
+        height: 100%;
+        font-size:small;
+    }
+    .table{
+        width: 95%;
+        margin-left:1%
+    }   
 }
