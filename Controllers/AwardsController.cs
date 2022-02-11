@@ -27,8 +27,8 @@ namespace xcart.Controllers
             db = _db;
         }
 
-        #region Get All Awards
-        //[Authorize]
+        #region Get All Awards /api/awards GET
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllAwards()
         {
@@ -42,7 +42,8 @@ namespace xcart.Controllers
         }
         #endregion
 
-        #region Get Award by Id
+        #region Get Award by Id /api/awards/{id}
+        [Authorize]
         [HttpGet("{id}")]
 
         public async Task<IActionResult> GetAwardById(int id)
@@ -65,7 +66,7 @@ namespace xcart.Controllers
 
         #endregion
 
-        #region Add new Award
+        #region Add new Award /api/awards POST
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddAward([FromBody] Award model)
@@ -93,7 +94,7 @@ namespace xcart.Controllers
         }
         #endregion
 
-        #region Update Award
+        #region Update Award /api/awards/update-award PUT
         [Authorize]
         [HttpPut]
         [Route("update-award")]
@@ -116,7 +117,7 @@ namespace xcart.Controllers
         }
         #endregion
 
-        #region Delete Award
+        #region Delete Award /api/awards/delete-award/{id}
         [Authorize]
         [Route("delete-award/{id}")]
         public async Task<IActionResult> DeleteAward(int id)
