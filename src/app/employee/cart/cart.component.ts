@@ -137,10 +137,11 @@ export class CartComponent implements OnInit {
           this.cartservice.placeOrderFromCart(this.order).subscribe(data => {
             console.log(data)
           });
-        }
 
+        }
+        window.location.reload();
       }
-      //window.location.reload();
+
     }
     
     else {

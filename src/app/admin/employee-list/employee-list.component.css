@@ -236,3 +236,100 @@ border-radius: 5px;
 .select-award{
     color: white;
 }
+
+
+@media only screen and (max-width: 480px){
+    .search {
+        margin-left: 40%;
+    }
+    .home-button{
+        margin-left: 1%;
+    }
+    .point-button{
+        margin-left: 10%;
+        width: 30%;
+    }
+    .point-button h4{
+        font-size: 15px;
+        line-height: 20px;
+    }
+    .Manage-awards{
+        width: 20%;
+        float: right;
+        height: 50px;
+    
+    }
+    .Manage-awards i{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) and (min-width: 480px){
+    .search {
+        margin-left: 50%;
+    }
+    .home-button{
+        margin-left: 1%;
+    }
+    .point-button{
+        margin-left: 10%;
+        width: 20%;
+    }
+    .point-button h4{
+        font-size: 15px;
+        line-height: 20px;
+    }
+    .Manage-awards{
+        width: 25%;
+        float: right;
+        height: 50px;
+    
+    }
+}
+
+@media only screen and (max-width: 992px) and (min-width: 600px){
+    .search {
+        margin-left: 50%;
+    }
+    .home-button{
+        margin-left: 1%;
+    }
+    .point-button{
+        margin-left: 8%;
+    }
+
+    .Manage-awards{
+        width: 25%;
+        float: right;
+        height: 50px;
+    
+    }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 994px){
+    .search {
+        margin-left: 70%;
+    }
+
+    .point-button{
+        margin-left: 20%;
+    }
+
+    .Manage-awards{
+        float: right;
+        height: 50px;
+    
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .point-button{
+        margin-left: 30%;
+    }
+
+    .Manage-awards{
+        float: right;
+        height: 50px;
+    
+    }
+}
