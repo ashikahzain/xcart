@@ -37,7 +37,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let emp of adminService.employeePointList |filter:filter">
+          <tr *ngFor="let emp of employeePointList |filter:filter">
             <td> &nbsp; {{emp.UserId}}</td>
             <td>{{emp.Name}}</td>
             <td>{{emp.CurrentPoints}}</td>
@@ -53,6 +53,25 @@
 
     </div>
 
+  </div>
+
+  <!-- Code by pagination -->
+  <div class="container mw-100">
+    <div class="row">
+      <div class="col-md-3"> </div>
+      <div *ngIf=" TotalEmployees!=0" class="col-md-6">
+        <ul class="pagination justify-content-center">
+          <li *ngFor="let page of pageField;let i=index" class="page-item">
+            <a (click)="showEmployeesByPageNumber(page,i)" [ngClass]="pageNo[i] ? 'pageColor':'page-link'"
+              style=" margin-right: 5px;;margin-top: 5px">{{page}}</a>
+          </li>
+        </ul>
+
+        <div style="text-align: center;">
+          Page {{pagenumber}} of Total page {{paginationService.exactPageList}}
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 

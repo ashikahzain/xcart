@@ -39,36 +39,22 @@ export class CartComponent implements OnInit {
             this.totalPoints += item.Quantity * item.ItemPoints;
           this.itemQuantity.set(item.ItemId, item.Quantity);
           console.log(this.itemQuantity);
-
         });
       }
     );
+
+ 
 
     this.employeeservice.getCurrentPoints().subscribe(
       data => {
         this.currentPoints = data;
       });
+
+  
   }
 
+  
 
-  compareItemQuantity() {
-    this.itemQuantity.forEach((item, key) => {
-      this.adminService.getItembyId(key).subscribe(
-        data => {
-          console.log(data);
-          console.log(data.Quantity);
-          console.log(item)
-          if (data.Quantity < item) {
-            this.checkQuantity = 0
-            this.toastr.error(data.Name + " only " + data.Quantity + " left");
-          }
-        }
-      )
-    }
-
-    )
-
-  }
 
   /*
   compareItemQuantity():any{
@@ -150,5 +136,6 @@ export class CartComponent implements OnInit {
 
 
   }
+    
 }
 
