@@ -50,7 +50,7 @@
             <td>{{order.DateOfOrder | date: 'dd-MM-yyyy'}}</td>
             <td *ngIf="order.DateOfDelivery !== null">{{order.DateOfDelivery | date: 'dd-MM-yyyy'}}</td>
             <td *ngIf="order.DateOfDelivery === null">Not Delivered</td>
-            <td>{{order.Status}}</td>
+            <td [ngStyle]="{'color':order.Status === 'Fulfilled' ? '#72D761' : '#D11A2A' }">{{order.Status}}</td>
 
           </tr>
         </tbody>

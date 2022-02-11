@@ -35,7 +35,7 @@
         <td *ngIf="list.DateOfDelivery !== null">{{list.DateOfDelivery | date: 'dd-MM-yyyy'}}</td>
         <td *ngIf="list.DateOfDelivery === null">Not Delivered</td>
         <td><button class="form-control"
-            [ngStyle]="{'background-color':list.Status === 'FulFilled' ? '#72D761' : '#D11A2A' }"
+            [ngStyle]="{'background-color':list.Status === 'Fulfilled' ? '#72D761' : '#D11A2A' }"
             (click)="UpdateStatus(list)">{{list.Status}}</button></td>
       </tr>
     </tbody>

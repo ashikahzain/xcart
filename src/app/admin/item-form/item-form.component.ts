@@ -17,7 +17,7 @@ export class ItemFormComponent implements OnInit {
   Id: number;
   base64DefaultURL: string;
   imgUrl: string;
-  constructor(private formbuilder: FormBuilder, public adminService: AdminService, private route: ActivatedRoute, private domSanitizer: DomSanitizer,private router:Router) { }
+  constructor(private formbuilder: FormBuilder, public adminService: AdminService, private route: ActivatedRoute, private domSanitizer: DomSanitizer, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -35,7 +35,7 @@ export class ItemFormComponent implements OnInit {
     this.Id = this.route.snapshot.params['itemId'];
     console.log(this.Id)
     if (this.Id != null) {
-      //populate form on init
+      //populate form on init if id is not null value(for editing situations)
       this.populateItem();
     }
   }
@@ -46,15 +46,19 @@ export class ItemFormComponent implements OnInit {
   }
 
 
-//function to change the file added to a base64 url
+  //function to change the file added to a base64 url
   onFileSelected(event) {
+    
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
+      //read from file
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.imgsrc = reader.result as string;
+        //b64 string conversion
         let b64Data = this.imgsrc.split(',', 2)[1];
+        //assigning to image in item form
         this.itemForm.patchValue({
           Image: b64Data
         });
@@ -72,7 +76,7 @@ export class ItemFormComponent implements OnInit {
     this.router.navigate(['admin/catalogue']).then(() => {
       window.location.reload();
     });
-    
+
   }
   //add item
   addItem() {

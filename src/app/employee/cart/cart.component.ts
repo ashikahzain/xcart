@@ -45,7 +45,7 @@ export class CartComponent implements OnInit {
   }
 
 
-compareItemQuantity() {
+  compareItemQuantity() {
     this.itemQuantity.forEach((item, key) => {
       this.adminService.getItembyId(key).subscribe(
         data => {
@@ -90,36 +90,41 @@ compareItemQuantity() {
     window.location.reload();
   }
   //on checkout function
- onCheckOut() {
-  this.compareItemQuantity()
-    console.log(this.checkQuantity);
-    if (this.checkQuantity == 1) {
-      console.log('positive');
-      if (this.totalPoints <= this.currentPoints) {
+  onCheckOut() {
+    if (this.totalPoints <= this.currentPoints) {
+      this.itemQuantity.forEach((item, key) => {
+        this.adminService.getItembyId(key).subscribe(
+          product => {
+            if (product.Quantity < item) {
+              this.checkQuantity = 0
+              this.toastr.error(product.Name + " only " + product.Quantity + " left");
+            }
+          }
+        )
+      },
+      )
+      this.order.DateOfDelivery = null,
+        this.order.DateOfOrder = new Date().toLocaleDateString(),
+        this.order.Points = this.totalPoints,
+        this.order.StatusDescriptionId = 1,
+        this.order.UserId = Number(sessionStorage.getItem('userid'))
+      console.log(this.order);
+      if (this.checkQuantity == 1) {
         if (confirm('Are you sure you want place the order?')) {
-          this.order.DateOfDelivery = null,
-            this.order.DateOfOrder = new Date().toLocaleDateString(),
-            this.order.Points = this.totalPoints,
-            this.order.StatusDescriptionId = 1,
-            this.order.UserId = Number(sessionStorage.getItem('userid'))
-          console.log(this.order);
-          this.cartservice.placeOrderFromCart(this.order).subscribe(data =>
-            console.log(data));
-         // this.cartservice.deletefromCartbyUserId(this.order.UserId).subscribe(
-           // data => console.log(data)
-       //   )
+          this.cartservice.placeOrderFromCart(this.order).subscribe(data => {
+            console.log(data)
+          });
         }
-        window.location.reload();
+
       }
-      else {
-        this.toastr.error('Not Enough Points');
-      }
-      
+      window.location.reload();
     }
     
     else {
-      this.toastr.error('comparison error');
+      this.toastr.error('Not Enough Points');
     }
+
+
   }
 }
 
