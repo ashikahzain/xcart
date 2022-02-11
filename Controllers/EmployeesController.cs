@@ -50,9 +50,10 @@ namespace xcart.Controllers
 
         //get points of all employees
         [HttpGet]
-        public async Task<IActionResult> GetEmployeePoints()
+   
+        public async Task<IActionResult> GetEmployeePoints(int pagenumber,int pagesize)
         {
-            var empPoints = await employeeService.GetEmployeePoints();
+            var empPoints = await employeeService.GetEmployeePoints(pagenumber,pagesize);
             if (empPoints == null)
             {
                 return NotFound();
@@ -104,7 +105,18 @@ namespace xcart.Controllers
             return Ok(order);
         }
 
+        #region Get employee count
 
+        [HttpGet]
+        [Route("employee-count")]
+        public async Task<IActionResult> GetEmployeeCount()
+        {
+            var count = await employeeService.GetEmployeeCount();
+            return Ok(count);
+        }
+
+
+        #endregion
 
 
     }
