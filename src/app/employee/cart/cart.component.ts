@@ -33,7 +33,6 @@ export class CartComponent implements OnInit {
             this.totalPoints += item.Quantity * item.ItemPoints;
           this.itemQuantity.set(item.ItemId, item.Quantity);
           console.log(this.itemQuantity);
-
         });
       }
     );
