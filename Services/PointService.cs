@@ -10,6 +10,8 @@ namespace xcart.Services
 {
     public class PointService : IPointService
     {
+
+        //Dependency Injection
         XCartDbContext db;
 
         public PointService(XCartDbContext db)
@@ -17,7 +19,7 @@ namespace xcart.Services
             this.db = db;
         }
 
-        #region Get Points By Element Id
+        #region Get Points By Employee Id
         public async Task<Point> GetPointsByEmployeeId(int id)
         {
             if (db != null)
@@ -29,25 +31,25 @@ namespace xcart.Services
                               {
                                   Id = point.UserId,
                                   CurrentPoints = point.CurrentPoints
-                              }).FirstOrDefaultAsync();
+                              }).FirstOrDefaultAsync();                 //Returning the entry corresponding to the User Id
             }
             return null;
         }
         #endregion
 
-        #region addPoints
+        #region add Points Corresponding to User Id
         public  Point AddPoint(long points,long userId)
         {
             if (db != null)
             {
-                var userPoints =  db.Point.SingleOrDefault(x => x.UserId == userId);
+                var userPoints =  db.Point.SingleOrDefault(x => x.UserId == userId); //getting Points of an Employee
 
-                userPoints.CurrentPoints += points;
+                userPoints.CurrentPoints += points;     //Updating the points of the employee
                 userPoints.TotalPoints += points;
 
 
-                db.Point.Update(userPoints);
-                 db.SaveChanges();
+                db.Point.Update(userPoints);        
+                db.SaveChanges();
 
                 return userPoints;
             }
@@ -60,12 +62,13 @@ namespace xcart.Services
         {
             if (db != null)
             {
-                Point userPoints =  db.Point.SingleOrDefault(x => x.UserId == userId);
-                userPoints.CurrentPoints -= points;
+                Point userPoints =  db.Point.SingleOrDefault(x => x.UserId == userId); //getting Points of an Employee
+
+                userPoints.CurrentPoints -= points;     //Updating the points of the employee
                 userPoints.TotalPoints -= points;
 
                 db.Point.Update(userPoints);
-                 db.SaveChanges();
+                db.SaveChanges();
 
                 return userPoints;
             }
@@ -75,12 +78,15 @@ namespace xcart.Services
 
         #endregion
 
+        #region Reduce Points on Checkout from cart
         public Point RemovePointsonCheckout(int points, int userid)
         {
             if (db != null)
             {
-                Point userPoints = db.Point.SingleOrDefault(x => x.UserId == userid);
-                userPoints.CurrentPoints -= points;
+                Point userPoints = db.Point.SingleOrDefault(x => x.UserId == userid); //getting Points of an Employee
+
+                userPoints.CurrentPoints -= points;     //Updating the points of the employee
+
                 db.Point.Update(userPoints);
                 db.SaveChanges();
 
@@ -88,6 +94,8 @@ namespace xcart.Services
             }
             return null;
         }
+        #endregion
+
 
     }
 }

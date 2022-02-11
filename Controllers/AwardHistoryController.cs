@@ -14,6 +14,8 @@ namespace xcart.Controllers
     [ApiController]
     public class AwardHistoryController : ControllerBase
     {
+
+        //Dependency Injection
         XCartDbContext db;
 
         IAwardHistoryService awardHistoryService;
@@ -27,6 +29,8 @@ namespace xcart.Controllers
             this.pointService = pointservice;
         }
 
+
+        #region Get All Award List
         [HttpGet]
         public async Task<IActionResult> GetAllAwards()
         {
@@ -38,7 +42,9 @@ namespace xcart.Controllers
             return Ok(awards);
 
         }
+        #endregion
 
+        #region Add to Award History
         [HttpPost]
         public async Task<IActionResult> AddAwardHistory(AwardHistory award)
         {
@@ -47,26 +53,29 @@ namespace xcart.Controllers
             {
                 try
                 {
-                    if (award.Status)
+                    if (award.Status)   //Checking if the Points are to be added  (Status=1:Add,Status=0:Subtract)
                     {
-                        var response = pointService.AddPoint(award.Point, award.EmployeeId);
+                        var response = pointService.AddPoint(award.Point, award.EmployeeId); //Adding the points to point table corresponding Employee
+                        
                         if (response == null)
                         {
                             return BadRequest();
 
                         }
                     }
-                    else
+                    else                //Subtracting Point
                     {
                         var response = pointService.RemovePoints(award.Point, award.EmployeeId);
+
                         if (response == null)
                         {
                             return BadRequest();
 
                         }
                     }
-                    
-                    var awardId = await awardHistoryService.AddAwardHistory(award);
+
+                    var awardId = await awardHistoryService.AddAwardHistory(award);  //Adding Award to Award History table
+
                     if (awardId != 0)
                     {
                         return Ok(awardId);
@@ -83,12 +92,14 @@ namespace xcart.Controllers
             }
             return BadRequest();
         }
+        #endregion
 
-        //get award history of an employee
+        #region Get award history of an employee
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAllAwardHistory(int id)
         {
             var awardhistory = await awardHistoryService.GetAwardHistory(id);
+
             if (awardhistory == null)
             {
                 return NotFound();
@@ -96,5 +107,7 @@ namespace xcart.Controllers
             return Ok(awardhistory);
 
         }
+        #endregion
+
     }
 }
