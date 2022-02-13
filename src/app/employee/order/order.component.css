@@ -1,6 +1,6 @@
 
 .container{
-    margin-left: 12%;
+    margin-left: 15%;
 }
 
 .list-heading h4 {
@@ -9,7 +9,7 @@
 }
 .search {
     display: inline;
-    margin-left: 75%;
+    margin-left: 73%;
 }
 .search input[type="text"] {
     border-top: 0px;
@@ -37,3 +37,74 @@
     min-height: 100vh;
     transition: all 0.3s;
   }
+
+@media only screen and (max-width: 480px) {
+    .list-heading h4 {
+        margin: 20% 0% 0% 10%;
+    }
+    .search{
+        margin-left: 40%;
+    }
+    .table{
+        margin-left: 10%;
+        width: 90%;
+    }
+    .form-control{
+        height: 100%;
+        font-size:small;
+    }
+    #hide{
+        display: none;
+    }
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) and (min-width:480px) {
+    .list-heading h4 {
+        margin: 12% 0% 0% 10%;
+    }
+    .search{
+        margin-left: 55%;
+    }
+    .table{
+        margin-left: 10%;
+        width: 90%;
+    }
+    .form-control{
+        height: 100%;
+        font-size:small;
+    }
+    #hide{
+        display: none;
+    }
+}
+
+/* Large devices (laptops/desktops, between 992px and 600px) */
+@media only screen and (max-width: 992px) and (min-width:600px){
+    .list-heading h4 {
+        margin: 12% 0% 0% 10%;
+    }
+    .search{
+        margin-left: 55%;
+    }
+    .table{
+        margin-left: 10%;
+        width: 90%;
+    }
+    .form-control{
+        height: 100%;
+        font-size:small;
+    }
+    #hide{
+        display: none;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 1200px) and (min-width:993px){
+    .container{
+        margin-left: 17%;
+    }
+    .search{
+        margin-left: 68%;
+    }
+}

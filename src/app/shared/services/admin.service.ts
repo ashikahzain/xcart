@@ -29,9 +29,9 @@ export class AdminService {
   }
 
   // get orders using viewmodel
-  getOrder(): void {
-    this.httpClient.get(environment.apiUrl + '/api/orders').toPromise().then(response =>
-      this.orderList = response as Order[]);
+  getOrder(pagenumber:number,pagesize:number): Observable<any> {
+    return this.httpClient.get(environment.apiUrl + '/api/orders/?pagenumber='+pagenumber+'&pagesize='+pagesize);
+
   }
   getTrendingItems(): Observable<any> {
     return this.httpClient.get(environment.apiUrl + '/api/orders/trending-item');
@@ -106,9 +106,8 @@ export class AdminService {
   }
 
   // Get Specified Order
-  getSpecifiedOrder(statusId:number): void {
-    this.httpClient.get(environment.apiUrl + '/api/orders/status/'+statusId).toPromise().then(response =>
-      this.orderList = response as Order[]);
+  getSpecifiedOrder(statusId:number): Observable<any> {
+     return this.httpClient.get(environment.apiUrl + '/api/orders/status/'+statusId);
   }
 
   getItembyIdusingpromise(id:number){
@@ -118,5 +117,9 @@ export class AdminService {
 
   getEmployeeCount():Observable<any>{
     return  this.httpClient.get(environment.apiUrl + "/api/employees/employee-count");
+  }
+
+  getOrderCount():Observable<any>{
+    return  this.httpClient.get(environment.apiUrl + "/api/orders/order-count");
   }
 }

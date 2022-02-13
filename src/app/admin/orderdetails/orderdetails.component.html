@@ -26,7 +26,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let list of adminService.orderList |filter:filter">
+      <tr *ngFor="let list of orderList |filter:filter">
         <td>{{list.Id}}</td>
         <td>{{list.UserName}}</td>
         <td><button type="button" class="form-control" (click)="open(content,list.Id)">View Products</button></td>
@@ -40,6 +40,25 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+<!-- Code by pagination -->
+<div class="container mw-100">
+  <div class="row">
+    <div class="col-md-3"> </div>
+    <div *ngIf=" TotalOrders!=0" class="col-md-6">
+      <ul class="pagination justify-content-center">
+        <li *ngFor="let page of pageField;let i=index" class="page-item">
+          <a (click)="showOrdersByPageNumber(page,i)" [ngClass]="pageNo[i] ? 'pageColor':'page-link'"
+            style=" margin-right: 5px;;margin-top: 5px">{{page}}</a>
+        </li>
+      </ul>
+
+      <div style="text-align: center;">
+        Page {{pagenumber}} of Total page {{paginationService.exactPageList}}
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--PopUp-->

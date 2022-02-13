@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AdminService } from 'src/app/shared/services/admin.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Order } from 'src/app/shared/models/order';
+import { PaginationService } from 'src/app/shared/services/pagination.service';
 
 
 @Component({
@@ -12,44 +13,109 @@ import { Order } from 'src/app/shared/models/order';
 })
 export class OrderdetailsComponent implements OnInit {
 
-  filter:string;
-  closeResult:string;
-  
-  constructor(public adminService:AdminService, private router:Router,
-    private modalService: NgbModal) { }
+  filter: string;
+  closeResult: string;
+  TotalOrders: number;
+  pagenumber: any = 1;
+  pagesize: number = 4;
+  paginationdata: number;
+  exactPageList: number;
+  pageField: any[];
+  pageNo: boolean[] = [];
+  orderList: Order[];
+
+  constructor(public adminService: AdminService, private router: Router,
+    private modalService: NgbModal, public paginationService: PaginationService) { }
 
   ngOnInit(): void {
-    this.adminService.getSpecifiedOrder(1);
-  }
-  AdminHome(){
-    this.router.navigateByUrl('admin/home')
-  }
-  All(){
-    this.adminService.getOrder();
-  }
-  Open(){
-    this.adminService.getSpecifiedOrder(1);
-  }
-  FulFilled(){
-    this.adminService.getSpecifiedOrder(2);
+    this.pageNo[0] = true;
+    this.GetAllOrders();
+
   }
 
-  open(content,orderId:number) {
-    this.modalService.open(content,
-   {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = 
-         `Dismissed ${this.getDismissReason(reason)}`;
+  GetAllOrders() {
+    this.adminService.getOrder(this.pagenumber, this.pagesize).subscribe(
+      data => {
+        this.orderList = data;
+        this.GetOrderCount();
+      }
+    );
+  }
+  AdminHome() {
+    this.router.navigateByUrl('admin/home')
+  }
+  All() {
+    this.adminService.getOrder(this.pagenumber, this.pagesize).subscribe(
+      data => {
+        this.orderList = data;
+        this.GetOrderCount();
+      }
+    );
+  }
+  Open() {
+    this.adminService.getSpecifiedOrder(1).subscribe(
+      data => {
+        this.orderList = data;
+        this.GetOrderCount();
+      });
+  }
+  FulFilled() {
+    this.adminService.getSpecifiedOrder(2).subscribe(
+      data => {
+        this.orderList = data;
+        this.GetOrderCount();
+      }
+    );
+  }
+
+  GetOrderCount() {
+    this.adminService.getOrderCount().subscribe(data => {
+      this.TotalOrders = data;
+      this.TotalNumberofPages()
     });
+  }
+
+  TotalNumberofPages() {
+    this.paginationdata = (this.TotalOrders / this.pagesize);
+    let tempPageData = this.paginationdata.toFixed();
+    if (Number(tempPageData) < this.paginationdata) {
+      this.exactPageList = Number(tempPageData) + 1;
+      this.paginationService.exactPageList = this.exactPageList;
+    }
+    else {
+      this.exactPageList = Number(tempPageData);
+      this.paginationService.exactPageList = this.exactPageList
+    }
+    this.paginationService.pageOnLoad();
+    this.pageField = this.paginationService.pageField;
+  }
+
+
+  showOrdersByPageNumber(page, i) {
+    this.orderList = [];
+    this.pageNo = [];
+    this.pageNo[i] = true;
+    this.pagenumber = page;
+    this.GetAllOrders();
+
+  }
+
+  open(content, orderId: number) {
+    this.modalService.open(content,
+      { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult =
+          `Dismissed ${this.getDismissReason(reason)}`;
+      });
     console.log(orderId);
-    if(orderId!=0 || orderId!=null){
+    if (orderId != 0 || orderId != null) {
       console.log("Hi");
       this.adminService.getOrderDetailsByOrderId(orderId);
     }
 
   }
-  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -60,13 +126,13 @@ export class OrderdetailsComponent implements OnInit {
     }
   }
 
-  UpdateStatus(order:Order){
-    if(order.Id!=0 || order.Id!=null){
+  UpdateStatus(order: Order) {
+    if (order.Id != 0 || order.Id != null) {
       this.adminService.ChangeStatus(order).subscribe(
-        data=>{
+        data => {
           console.log(data);
           window.location.reload();
-          
+
         }
       )
     }
