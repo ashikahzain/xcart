@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/shared/services/admin.service';
 import { ValidateItemName, ValidateNumbers } from 'src/app/shared/validators/formdatavalidator'
 
@@ -17,7 +18,8 @@ export class ItemFormComponent implements OnInit {
   Id: number;
   base64DefaultURL: string;
   imgUrl: string;
-  constructor(private formbuilder: FormBuilder, public adminService: AdminService, private route: ActivatedRoute, private domSanitizer: DomSanitizer, private router: Router) { }
+  editingmode: boolean=false;
+  constructor(private formbuilder: FormBuilder, public adminService: AdminService, private route: ActivatedRoute, private domSanitizer: DomSanitizer, private router: Router,private toastr:ToastrService) { }
 
   ngOnInit(): void {
 
@@ -35,6 +37,7 @@ export class ItemFormComponent implements OnInit {
     this.Id = this.route.snapshot.params['itemId'];
     console.log(this.Id)
     if (this.Id != null) {
+      this.editingmode=true;
       //populate form on init if id is not null value(for editing situations)
       this.populateItem();
     }
@@ -69,13 +72,12 @@ export class ItemFormComponent implements OnInit {
   onSubmit() {
     if (this.Id != null) {
       this.UpdateItem();
+      this.toastr.success('Item edited successfully');
     }
     else {
       this.addItem();
     }
-    this.router.navigate(['admin/catalogue']).then(() => {
-      window.location.reload();
-    });
+    this.router.navigate(['admin/catalogue'])
 
   }
   //add item

@@ -22,6 +22,7 @@ export class CartComponent implements OnInit {
   itemQuantity = new Map<number, number>();
   checkQuantity: number = 1;
   ItemList:Item[]=[];
+  cartcount: any;
 
   constructor(public cartservice: CartService, public employeeservice: EmployeeService, private domSanitizer: DomSanitizer, private toastr: ToastrService, private adminService: AdminService) { }
 
@@ -34,6 +35,7 @@ export class CartComponent implements OnInit {
       data => {
         console.log(data);
         this.cart = data;
+        this.cartcount=data.length;
         data.forEach(item => {
           item.ItemImage = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + item.ItemImage),
             this.totalPoints += item.Quantity * item.ItemPoints;
@@ -127,7 +129,7 @@ export class CartComponent implements OnInit {
         }
         window.location.reload();
       }
-
+      this.toastr.success('Redeemed '+ this.totalPoints+ ' Points. Contact HR Department to collect your items.')
     }
     
     else {

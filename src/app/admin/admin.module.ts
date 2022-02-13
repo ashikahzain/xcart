@@ -15,6 +15,7 @@ import { AwardComponent } from './award/award.component';
 import { AddAwardComponent } from './award/add-award/add-award.component';
 import { CatalogueComponent } from './catalogue/catalogue.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [HomeComponent, ItemFormComponent, AwardComponent,EmployeeListComponent, AwardHistoryComponent, AddAwardComponent, CatalogueComponent,OrderdetailsComponent,EmployeeListComponent],
@@ -28,7 +29,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     LayoutModule,
     NgbModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ToastrModule
 
   ]
 
