@@ -46,7 +46,6 @@ namespace xcart.Controllers
                     return NotFound();
                 }
                 return Ok(orders);
-                //return Ok(db.Order.FirstOrDefault());
             }
             catch
             {
@@ -96,7 +95,7 @@ namespace xcart.Controllers
         #region To get the orderdetails by order id
         [HttpGet]
         [Route("GetOrderDetails/{id}")]
-        public async Task<IActionResult> GetOrderDetailsByOrderId(int id)
+        public async Task<IActionResult> GetOrderDetailsByOrderId(long id)
         {
             try
             {
@@ -261,11 +260,36 @@ namespace xcart.Controllers
         [Route("order-count")]
         public async Task<IActionResult> GetOrderCount()
         {
-            var count = await orderService.GetOrderCount();
-            return Ok(count);
+            try
+            {
+                var count = await orderService.GetOrderCount();
+                return Ok(count);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+            
         }
 
 
+        #endregion
+
+        #region Get status order count
+        [HttpGet]
+        [Route("order-status-count/{id}")]
+        public async Task<IActionResult> GetStatusCount(int id)
+        {
+            try
+            {
+                var count = await orderService.GetStatusCount(id);
+                return Ok(count);
+            }
+            catch
+            {
+                return BadRequest();
+            }  
+        }
         #endregion
 
     }

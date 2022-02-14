@@ -95,9 +95,9 @@ namespace xcart.Controllers
         // get order details by employee id
         [HttpGet]
         [Route("OrderByEmpId/{id}")]
-        public async Task<IActionResult> GetAllOrdersByEmployeeId(int id)
+        public async Task<IActionResult> GetAllOrdersByEmployeeId(int id, int pagenumber, int pagesize)
         {
-            var order = await employeeService.GetAllOrdersByEmployeeId(id);
+            var order = await employeeService.GetAllOrdersByEmployeeId(id, pagenumber,pagesize);
             if (order == null)
             {
                 return NotFound();
@@ -116,6 +116,16 @@ namespace xcart.Controllers
         }
 
 
+        #endregion
+
+        #region Get Employee Order Count
+        [HttpGet]
+        [Route("employee-order-count/{id}")]
+        public async Task<IActionResult> GetEmployeeOrderCount(int id)
+        {
+            var count = await employeeService.GetEmployeeOrderCount(id);
+            return Ok(count);
+        }
         #endregion
 
 
