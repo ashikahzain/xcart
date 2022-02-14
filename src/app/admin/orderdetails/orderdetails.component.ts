@@ -28,23 +28,16 @@ export class OrderdetailsComponent implements OnInit {
     private modalService: NgbModal, public paginationService: PaginationService) { }
 
   ngOnInit(): void {
+    
     this.pageNo[0] = true;
-    this.GetAllOrders();
+    this.Open();
 
-  }
-
-  GetAllOrders() {
-    this.adminService.getOrder(this.pagenumber, this.pagesize).subscribe(
-      data => {
-        this.orderList = data;
-        this.GetOrderCount();
-      }
-    );
   }
   AdminHome() {
     this.router.navigateByUrl('admin/home')
   }
   All() {
+    this.paginationService.temppage = 0;
     this.adminService.getOrder(this.pagenumber, this.pagesize).subscribe(
       data => {
         this.orderList = data;
@@ -53,17 +46,19 @@ export class OrderdetailsComponent implements OnInit {
     );
   }
   Open() {
+    this.paginationService.temppage = 0;
     this.adminService.getSpecifiedOrder(1).subscribe(
       data => {
         this.orderList = data;
-        this.GetOrderCount();
+        this.GetOrderStatusCount(1);
       });
   }
   FulFilled() {
+    this.paginationService.temppage = 0;
     this.adminService.getSpecifiedOrder(2).subscribe(
       data => {
         this.orderList = data;
-        this.GetOrderCount();
+        this.GetOrderStatusCount(2);
       }
     );
   }
@@ -73,6 +68,13 @@ export class OrderdetailsComponent implements OnInit {
       this.TotalOrders = data;
       this.TotalNumberofPages()
     });
+  }
+
+  GetOrderStatusCount(id:number){
+    this.adminService.getStatusOrderCount(id).subscribe(data=>{
+      this.TotalOrders=data;
+      this.TotalNumberofPages();
+    })
   }
 
   TotalNumberofPages() {
@@ -96,7 +98,7 @@ export class OrderdetailsComponent implements OnInit {
     this.pageNo = [];
     this.pageNo[i] = true;
     this.pagenumber = page;
-    this.GetAllOrders();
+    this.All();
 
   }
 

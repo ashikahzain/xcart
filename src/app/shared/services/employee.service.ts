@@ -43,8 +43,8 @@ export class EmployeeService {
   }
 
   //get order details by employee id
-  getOrderByEmployeeId(id:number): Observable<any>{
-    return this.httpClient.get(environment.apiUrl + '/api/employees/orderdetails/'+id);
+  getOrderByEmployeeId(id:number, pagenumber:number,pagesize:number): Observable<any>{
+    return this.httpClient.get(environment.apiUrl + '/api/employees/OrderByEmpId/'+id + '?pagenumber='+pagenumber+'&pagesize='+pagesize);
   }
 
   getOrderDetailsByOrderId(orderId: number) {
@@ -56,5 +56,8 @@ export class EmployeeService {
     return this.httpClient.post(environment.apiUrl + '/api/cart',cart);
   }
 
+  getEmployeeOrderCount(id:number):Observable<any>{
+    return this.httpClient.get(environment.apiUrl +"/api/employees/employee-order-count/" +id);
+  }
  
 }

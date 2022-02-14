@@ -139,7 +139,6 @@ MEDIA QUERY
 
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
   .card {
-    background-color: blueviolet;
   }
 
   #decrease {
@@ -189,8 +188,9 @@ MEDIA QUERY
   }
 
   #delete {
-    margin-left: 45%;
+    margin-left: 42%;
     margin-top: 1%;
+    width: 15%;
   }
 
   #checkout {
@@ -202,7 +202,7 @@ MEDIA QUERY
 
 @media only screen and (max-width: 600px) and (min-width: 480px) {
   .card {
-    margin-top: 15%;
+    margin-top: 18%;
   }
 
   .user-points {

@@ -231,6 +231,26 @@
 .select-award {
     color: white;
 }
+.pageColor {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: white !important;
+    background-color: #1f4173 !important;
+    border: 1px solid #dee2e6;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
 
 
 @media only screen and (max-width: 480px){
