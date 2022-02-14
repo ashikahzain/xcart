@@ -5,9 +5,9 @@
 
 <!--Status Button-->
 <div>
-  <button type="button" class="All" (click)="All()">All</button>
-  <button type="button" class="Open" (click)="Open()">Open</button>
-  <button type="button" class="FullFilled" (click)="FulFilled()">FulFilled</button>
+  <button type="button" class="All" (click)="All()" [ngClass]="{'active' : all, 'inactive': !all}">All</button>
+  <button type="button" class="Open" (click)="Open()" [ngClass]="{'active' : opened, 'inactive': !opened}">Open</button>
+  <button type="button" class="FullFilled" (click)="FulFilled()" [ngClass]="{'active' : fulfilled, 'inactive': !fulfilled}">FulFilled</button>
 </div>
 
 <div class="container">

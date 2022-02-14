@@ -13,6 +13,7 @@ import { PaginationService } from 'src/app/shared/services/pagination.service';
 })
 export class OrderdetailsComponent implements OnInit {
 
+  //declaring variables
   filter: string;
   closeResult: string;
   TotalOrders: number;
@@ -23,20 +24,31 @@ export class OrderdetailsComponent implements OnInit {
   pageField: any[];
   pageNo: boolean[] = [];
   orderList: Order[];
+  all = false;
+  opened = false;
+  fulfilled = false;
 
   constructor(public adminService: AdminService, private router: Router,
     private modalService: NgbModal, public paginationService: PaginationService) { }
 
   ngOnInit(): void {
-    
-    this.pageNo[0] = true;
-    this.Open();
 
+    this.pageNo[0] = true;
+
+    //Get all orders whose order status is Open
+    this.Open();
   }
+
+  //to navigate to the home page on clicking home button
   AdminHome() {
     this.router.navigateByUrl('admin/home')
   }
+
+  //To get all orders
   All() {
+    this.all = true;
+    this.opened = false;
+    this.fulfilled = false;
     this.paginationService.temppage = 0;
     this.adminService.getOrder(this.pagenumber, this.pagesize).subscribe(
       data => {
@@ -45,7 +57,12 @@ export class OrderdetailsComponent implements OnInit {
       }
     );
   }
+
+  //Get all orders whose order status is Open
   Open() {
+    this.all = false;
+    this.opened = true;
+    this.fulfilled = false;
     this.paginationService.temppage = 0;
     this.adminService.getSpecifiedOrder(1).subscribe(
       data => {
@@ -53,7 +70,12 @@ export class OrderdetailsComponent implements OnInit {
         this.GetOrderStatusCount(1);
       });
   }
+
+  //Get all orders whose order status is Fulfilled
   FulFilled() {
+    this.all = false;
+    this.opened = false;
+    this.fulfilled = true;
     this.paginationService.temppage = 0;
     this.adminService.getSpecifiedOrder(2).subscribe(
       data => {
@@ -63,6 +85,7 @@ export class OrderdetailsComponent implements OnInit {
     );
   }
 
+  //To get the total count of orders
   GetOrderCount() {
     this.adminService.getOrderCount().subscribe(data => {
       this.TotalOrders = data;
@@ -70,9 +93,10 @@ export class OrderdetailsComponent implements OnInit {
     });
   }
 
-  GetOrderStatusCount(id:number){
-    this.adminService.getStatusOrderCount(id).subscribe(data=>{
-      this.TotalOrders=data;
+  //To get the total count of orders based on status
+  GetOrderStatusCount(id: number) {
+    this.adminService.getStatusOrderCount(id).subscribe(data => {
+      this.TotalOrders = data;
       this.TotalNumberofPages();
     })
   }
@@ -102,6 +126,7 @@ export class OrderdetailsComponent implements OnInit {
 
   }
 
+  //For popup
   open(content, orderId: number) {
     this.modalService.open(content,
       { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -128,6 +153,7 @@ export class OrderdetailsComponent implements OnInit {
     }
   }
 
+  //Function to update the status of an order
   UpdateStatus(order: Order) {
     if (order.Id != 0 || order.Id != null) {
       this.adminService.ChangeStatus(order).subscribe(
