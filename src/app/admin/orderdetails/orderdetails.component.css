@@ -61,15 +61,13 @@
     border: none;
     transition: all 0.4s;
 }
-.Open:focus{
-    color: white;
+.active{
+    color:white;
 }
-.All:focus{
-    color: white;
+.inactive{
+    color: black;
 }
-.FullFilled:focus{
-    color: white;
-}
+
 .list-heading h4 {
     margin: 9% 0% 0% 6%;
     color: #1F4173;
@@ -185,7 +183,7 @@ th,td{
 
 @media only screen and (max-width: 601px) and (min-width: 480px) {
     .home{
-        top: 12%;
+        top: 14%;
         width: 19%;
         height: 6%;
         font-weight:300px;
@@ -193,19 +191,19 @@ th,td{
     }
     .All{
         height: 6%;
-        top: 12%;
+        top: 14%;
         width: 8%;
         left: 67%
     }
     .Open{
         height: 6%;
-        top: 12%;
+        top: 14%;
         width: 11%;
         left: 74%;
     }
     .FullFilled{
         height: 6%;
-        top: 12%;
+        top: 14%;
         width: 14%;
         left: 84%;
     }
@@ -230,7 +228,7 @@ th,td{
 
 @media only screen and (max-width: 992px) and (min-width: 601px) {
     .home{
-        top: 12%;
+        top: 14%;
         width: 17%;
         height: 6%;
         font-weight:300px;
@@ -238,19 +236,19 @@ th,td{
     }
     .All{
         height: 6%;
-        top: 12%;
+        top: 14%;
         width: 8%;
         left: 70%
     }
     .Open{
         height: 6%;
-        top: 12%;
+        top: 14%;
         width: 10%;
         left: 77%;
     }
     .FullFilled{
         height: 6%;
-        top: 12%;
+        top: 14%;
         width: 12%;;
     }
     .list-heading{

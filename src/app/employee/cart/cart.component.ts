@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Order } from 'src/app/shared/models/order';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/shared/services/admin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -24,7 +25,7 @@ export class CartComponent implements OnInit {
   ItemList:Item[]=[];
   cartcount: any;
 
-  constructor(public cartservice: CartService, public employeeservice: EmployeeService, private domSanitizer: DomSanitizer, private toastr: ToastrService, private adminService: AdminService) { }
+  constructor(public cartservice: CartService, public employeeservice: EmployeeService, private domSanitizer: DomSanitizer, private toastr: ToastrService, private adminService: AdminService,private router:Router) { }
 
   ngOnInit(): void {
     this.employeeservice.getItems().subscribe(data=>{
@@ -123,14 +124,16 @@ export class CartComponent implements OnInit {
       if (this.checkQuantity == 1) {
         if (confirm('Are you sure you want place the order?')) {
           this.cartservice.placeOrderFromCart(this.order).subscribe(data => {
-            console.log(data)
+            console.log(data);
+         
           });
-          this.toastr.success('Redeemed '+ this.totalPoints+ ' Points. Contact HR Department to collect your items.')
+          this.toastr.success('Redeemed '+ this.totalPoints+ ' Points. Contact HR Department to collect your items.');
+          this.router.navigateByUrl('employee/order')
         }
-        window.location.reload();
+       
+        
       }
-      window.location.reload();
-      
+    
     }
     
     else {

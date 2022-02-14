@@ -23,7 +23,7 @@ export class EmployeeService {
 
   // Get all Items 
   getItems():Observable<any> {
-    return this.httpClient.get(environment.apiUrl + '/api/items');
+    return this.httpClient.get(environment.apiUrl + '/api/items/active-items');
   }
 
   getCurrentPoints():Observable<any>{
