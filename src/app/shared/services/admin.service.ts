@@ -44,7 +44,7 @@ export class AdminService {
     return this.httpClient.get(environment.apiUrl + '/api/items/'+id);
   }
   updateItem(item:Item):Observable<any>{
-    return this.httpClient.put(environment.apiUrl + '/api/items/update-item', item);
+    return this.httpClient.put(environment.apiUrl + '/api/items', item);
   }
   deleteItem(id:number):Observable<any>{
     return this.httpClient.get(environment.apiUrl + '/api/items/delete-item/'+id)

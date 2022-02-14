@@ -25,7 +25,7 @@ export class EmployeeListComponent implements OnInit {
   status: boolean;
   TotalEmployees: number;
   pagenumber: any = 1;
-  pagesize: number = 2;
+  pagesize: number = 10;
   paginationdata: number;
   exactPageList: number;
   pageField: any[];
@@ -39,6 +39,8 @@ export class EmployeeListComponent implements OnInit {
     
     this.paginationService.temppage = 0; 
     this.pageNo[0] = true;
+    this.getEmployeeCount() ;
+    this.paginationService.temppage = 0;  
     //get all employees points
     this.getAllEmployees()
     //get award list
@@ -65,7 +67,7 @@ export class EmployeeListComponent implements OnInit {
     //get the list of employees
     this.adminService.getAllEmployeesPoints(this.pagenumber, this.pagesize).subscribe(data => {
       this.employeePointList = data
-      this.getEmployeeCount()
+      //this.TotalNumberofPages()
     }
     );
   }
@@ -152,7 +154,7 @@ export class EmployeeListComponent implements OnInit {
   getEmployeeCount() {
     this.adminService.getEmployeeCount().subscribe(data => {
       this.TotalEmployees = data;
-      this.TotalNumberofPages()
+     this.TotalNumberofPages()
     });
 
   }

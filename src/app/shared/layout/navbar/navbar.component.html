@@ -1,12 +1,14 @@
-<nav class="navbar navbar-light" style="background-color: #395E91;">
-    <div class="container logo">
-      <img src="/assets/images/logo-home.png" class="xcart-logo" style="height: 45px; width: 145px;">
-    </div>
-    <div class="form-group">
-      <button class="form-control" id="profile" type="button"  (click)="employeeswitch()"><i class="fa fa-user" id="user"></i>Profile
-      </button>
-    </div>
-    <div class="signout">
-      <a (click)="logout()"><i class="fa fa-sign-out fa-lg" id="logout"></i></a>
-    </div>
+<div class="container1">
+  <nav class="navbar navbar-light fixed-top bg-custom">
+      <div class="container-fluid">
+          <a class="navbar-brand"><img class="xcart-nav" src="/assets/images/xlogo-nav.png"></a>
+          <form class="d-flex">
+              <button id="profile" type="button"  (click)="employeeswitch()"><i class="fa fa-user" id="user"></i>Profile
+              </button>
+              <i class="fa fa-sign-out fa-lg" id="logout" (click)="logout()"></i>
+          </form>
+      </div>
   </nav>
+  </div>
+
+ 
