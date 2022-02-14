@@ -122,7 +122,7 @@ export class OrderdetailsComponent implements OnInit {
     this.All();
   }
 
-  //For popup
+  //To open popup
   open(content, orderId: number) {
     this.modalService.open(content,
       { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -138,6 +138,7 @@ export class OrderdetailsComponent implements OnInit {
     }
   }
 
+  //to close the popup
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

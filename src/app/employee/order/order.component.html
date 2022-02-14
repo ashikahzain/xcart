@@ -1,13 +1,19 @@
 <app-sidemenu></app-sidemenu>
 
 <div class="container" id="content">
+
+    <!--Heading-->
     <div class="list-heading">
         <h4>Order History</h4>
     </div>
+
+    <!--Search-->
     <div class="search">
         <input id="navsearch" type="text" placeholder="Search" ngDefaultControl [(ngModel)]="filter">
         <i class="fa fa-search" id="search"></i>
     </div>
+
+    <!--Order List-->
     <table class="table" id="table">
         <thead>
             <tr>
