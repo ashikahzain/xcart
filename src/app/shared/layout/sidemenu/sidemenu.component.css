@@ -29,7 +29,21 @@
   .form-control {
     border-radius: 1em!important;
   }
-  
+  #profile {
+    position: absolute;
+    width: 110px;
+    height: 40px;
+    right: 300px;
+    border: 0.5px solid #fff;
+    background: #2d415d;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
+
+#profile i{
+    margin-right: 4px;
+}
   /* ---------------------------------------------------
       SIDEBAR STYLE
   ----------------------------------------------------- */

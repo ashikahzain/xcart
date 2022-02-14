@@ -16,65 +16,58 @@ export class CatalogueComponent implements OnInit {
   constructor(public employeeservice: EmployeeService, private domSanitizer: DomSanitizer, private router: Router, public adminService: AdminService) { }
 
   ngOnInit(): void {
+    //get all items for catalogue
     this.employeeservice.getItems().subscribe(data => {
-      console.log(this.itemList);
       this.itemList = data
       data.forEach(item => {
         item.Image = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + item.Image)
-        console.log(item.Image);
       });
     });
   }
 
-  //Sorting
+  //sort by point low to high
   sortPointAscending() {
-
     this.itemList.sort((a, b) =>
       a.Points - b.Points
     );
-    console.log(this.itemList);
   }
 
-
+  //sort by point high to low
   sortPointDescending() {
-
     this.itemList.sort((a, b) =>
       b.Points - a.Points
     );
-    console.log(this.itemList);
   }
 
-
+  //sort by availabilty low to high
   sortAvailibilityAscending() {
-
     this.itemList.sort((a, b) =>
       a.Quantity - b.Quantity
     );
-    console.log(this.itemList);
   }
 
-
+  //sort by availabilty high to low
   sortAvailibilityDescending() {
-
     this.itemList.sort((a, b) =>
       b.Quantity - a.Quantity
     );
-    console.log(this.itemList);
   }
 
+  //Edit item navigation to form with id
   edititem(itemId: number) {
     console.log(itemId);
     this.router.navigate(['admin/itemform', itemId]);
 
   }
-
+  
+  //delelte item using id
   deleteitem(itemid: number) {
     if (confirm("This Item will be deleted from the catalogue"))
-    this.adminService.deleteItem(itemid).subscribe(
-      (result) => {
-        window.location.reload()
-      }
-    );
+      this.adminService.deleteItem(itemid).subscribe(
+        (result) => {
+          window.location.reload()
+        }
+      );
   }
 
 }

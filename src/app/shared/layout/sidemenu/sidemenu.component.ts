@@ -13,9 +13,11 @@ export class SidemenuComponent implements OnInit {
 
   constructor(private authservice: AuthService, private router: Router) { }
   userName = sessionStorage.getItem('username');
-
+  role = sessionStorage.getItem('role');
+ 
   ngOnInit(): void {
     console.log(this.userName);
+    console.log(this.role);
   }
   public classToggled = false;
 
@@ -24,10 +26,14 @@ export class SidemenuComponent implements OnInit {
 
   }
 
+  employeeswitch() {
+    this.router.navigateByUrl('admin/home');
+  }
+  
   logout(): void {
     this.authservice.logout();
   }
 
- 
+
 
 }
