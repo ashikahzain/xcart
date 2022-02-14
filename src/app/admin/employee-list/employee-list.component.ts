@@ -36,6 +36,7 @@ export class EmployeeListComponent implements OnInit {
     public toastr: ToastrService, public paginationService: PaginationService) { }
 
   ngOnInit(): void {
+    
     this.paginationService.temppage = 0; 
     this.pageNo[0] = true;
     //get all employees points
