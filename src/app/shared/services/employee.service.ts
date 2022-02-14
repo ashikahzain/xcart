@@ -31,13 +31,15 @@ export class EmployeeService {
     return this.httpClient.get(environment.apiUrl+"/api/points/"+this.id);
   }
 
+  //get most awarded employee
   getMostAwardedEmployee():Observable<any>{
     return this.httpClient.get(environment.apiUrl+"/api/employees/most-awards");
   }
 
+  //getting employee profile details
   getEmployeeProfile():Observable<any>{
     this.id = parseInt(sessionStorage.getItem('userid'));
-    return this.httpClient.get(environment.apiUrl+"/api/employees/employee/"+this.id);
+    return this.httpClient.get(environment.apiUrl+"/api/employees/employees/"+this.id);
   }
 
   //get order details by employee id

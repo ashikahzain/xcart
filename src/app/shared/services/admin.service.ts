@@ -50,8 +50,9 @@ export class AdminService {
     return this.httpClient.get(environment.apiUrl + '/api/items/delete-item/'+id)
   }
 
+  
   getAllEmployeesPoints(pagenumber:number,pagesize:number):Observable<any> {
-   return this.httpClient.get(environment.apiUrl + "/api/employees/?pagenumber="+pagenumber+'&pagesize='+pagesize);
+   return this.httpClient.get(environment.apiUrl + "/api/employees/employee-points/?pagenumber="+pagenumber+'&pagesize='+pagesize);
 
     }
 
