@@ -19,27 +19,46 @@
         <th>Order ID</th>
         <th>Employee Name</th>
         <th>Products</th>
-        <th>Points</th>
-        <th>Date of Order</th>
-        <th>Date of Delivery</th>
-        <th>Status</th>
+        <th id="hide">Points</th>
+        <th id="hide">Date of Order</th>
+        <th id="hide">Date of Delivery</th>
+        <th id="hide1">Status</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let list of adminService.orderList |filter:filter">
+      <tr *ngFor="let list of orderList |filter:filter">
         <td>{{list.Id}}</td>
         <td>{{list.UserName}}</td>
         <td><button type="button" class="form-control" (click)="open(content,list.Id)">View Products</button></td>
-        <td>{{list.Points}}</td>
-        <td>{{list.DateOfOrder | date: 'dd-MM-yyyy'}}</td>
-        <td *ngIf="list.DateOfDelivery !== null">{{list.DateOfDelivery | date: 'dd-MM-yyyy'}}</td>
-        <td *ngIf="list.DateOfDelivery === null">Not Delivered</td>
-        <td><button class="form-control"
+        <td id="hide">{{list.Points}}</td>
+        <td id="hide">{{list.DateOfOrder | date: 'dd-MM-yyyy'}}</td>
+        <td id="hide" *ngIf="list.DateOfDelivery !== null">{{list.DateOfDelivery | date: 'dd-MM-yyyy'}}</td>
+        <td id="hide" *ngIf="list.DateOfDelivery === null">Not Delivered</td>
+        <td id="hide1"><button class="form-control"
             [ngStyle]="{'background-color':list.Status === 'Fulfilled' ? '#72D761' : '#D11A2A' }"
             (click)="UpdateStatus(list)">{{list.Status}}</button></td>
       </tr>
     </tbody>
   </table>
+</div>
+
+<!-- Code by pagination -->
+<div class="container mw-100">
+  <div class="row">
+    <div class="col-md-3"> </div>
+    <div *ngIf=" TotalOrders!=0" class="col-md-6">
+      <ul class="pagination justify-content-center">
+        <li *ngFor="let page of pageField;let i=index" class="page-item">
+          <a (click)="showOrdersByPageNumber(page,i)" [ngClass]="pageNo[i] ? 'pageColor':'page-link'"
+            style=" margin-right: 5px;;margin-top: 5px">{{page}}</a>
+        </li>
+      </ul>
+
+      <div style="text-align: center;">
+        Page {{pagenumber}} of Total page {{paginationService.exactPageList}}
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--PopUp-->

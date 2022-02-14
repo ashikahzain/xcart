@@ -32,7 +32,7 @@
     position: absolute;
     width: 246px;
     height: 51px;
-    margin: 6% 45%;
+    margin: 5% 45%;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
@@ -44,15 +44,15 @@
 
 .form {
     position: absolute;
-    width: 450px;
-    height: 600px;
-    margin: 10% 40%;
+    width: 650px;
+    height: 650px;
+    margin: 10% 30%;
     background: #6b8bb7;
     box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
 }
 .form .form-data {
-    margin: 9% 10%;
+    margin: 5% 10%;
 }
 
 
@@ -72,7 +72,7 @@
     border-radius: 8px;
 }
 .form input[type="file"] {
-    width: 250px;
+    width: 273px;
 }
 
 .form button {
@@ -98,13 +98,22 @@
     border-radius: 5px;
 }
 .imagePreview{
-    height: 50%;
-    width: 50%;
+    height: 120px;
+    width: 120px;
+    max-height: 100px;
+    max-width: 100px;
+    background-color: #3e597f;
+    object-fit:fill;
+    padding: 5px;
+    margin-top: 5px;
+    margin-left: 5%;
 
 }
 .imagePreview img{
-    height: 50%;
-    width: 50%;
+    height: 100%;
+    width: 100%;
+    max-width:120px;
+    max-height: 120px;
 }
 .error{
     color: red;

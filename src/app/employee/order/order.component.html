@@ -13,9 +13,9 @@
             <tr>
                 <th>Order ID</th>
                 <th>Products</th>
-                <th>Points</th>
+                <th id="hide">Points</th>
                 <th>Date of Order</th>
-                <th>Date of Delivery</th>
+                <th id="hide">Date of Delivery</th>
             </tr>
         </thead>
         <tbody>
@@ -23,10 +23,10 @@
                 <td>{{list.Id}}</td>
                 <td><button type="button" class="form-control" (click)="open(content,list.Id)">View Products</button>
                 </td>
-                <td>{{list.Points}}</td>
+                <td id="hide">{{list.Points}}</td>
                 <td>{{list.DateOfOrder | date: 'dd-MM-yyyy'}}</td>
-                <td *ngIf="list.DateOfDelivery !== null">{{list.DateOfDelivery | date: 'dd-MM-yyyy'}}</td>
-                <td *ngIf="list.DateOfDelivery === null">Not Delivered</td>
+                <td *ngIf="list.DateOfDelivery !== null" id="hide">{{list.DateOfDelivery | date: 'dd-MM-yyyy'}}</td>
+                <td *ngIf="list.DateOfDelivery === null" id="hide">Not Delivered</td>
             </tr>
         </tbody>
     </table>

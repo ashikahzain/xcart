@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { Order } from 'src/app/shared/models/order';
 import { OrderDetails } from 'src/app/shared/models/OrderDetails';
+import { NEVER } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
   orderdetails = new OrderDetails()
   availableQuantity: number;
   orderQuantity: any;
+  cartList:number[]=[];
   constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer, private toastr: ToastrService, private formBuilder: FormBuilder, private Cartservice: CartService) { }
 
   ngOnInit(): void {
@@ -41,23 +43,25 @@ export class HomeComponent implements OnInit {
         console.log(item.Image);
       });
       this.employeeservice.getCurrentPoints().subscribe(
-
         data => {
-
-          //console.log("iside ts"+ data);
-
           this.currentPoints = data;
 
         }
 
       );
     });
-
     //modal
     //creating form controls and validations
     this.addForm = this.formBuilder.group({
       Quantity: 1,
     })
+
+    this.Cartservice.getAllCart().subscribe(
+      data=>{
+        data.forEach(item=>
+        this.cartList.push(item.ItemId))
+      }
+    )
   }
 
 
@@ -96,8 +100,7 @@ export class HomeComponent implements OnInit {
 
           //closing modal after adding point
           this.closeModalDialog();
-          this.toastr.success('ORDER ADDED');
-
+          this.toastr.success('Redeemed '+ this.order.Points+ ' Points. Contact HR Department to collect your items.')
           //console.log("added Point");
         }
       }
@@ -165,18 +168,18 @@ export class HomeComponent implements OnInit {
   }
 
   addtoCart(itemId: number) {
+   
+    console.log(this.cartList);
     console.log(itemId);
-    this.cart.ItemId = itemId
-    this.cart.Quantity = 1
-    this.cart.UserId = Number(sessionStorage.getItem('userid'))
-    this.employeeservice.addtoCart(this.cart).subscribe(
-      data =>
-        console.log(data)
-    )
-    this.toastr.success('added to cart');
-
-  }
-
+        this.cart.ItemId = itemId
+        this.cart.Quantity = 1
+        this.cart.UserId = Number(sessionStorage.getItem('userid'))
+        this.employeeservice.addtoCart(this.cart).subscribe(
+          data =>
+            console.log(data)
+        )
+        this.toastr.success('Added to cart');
+      }
 
 
 }
