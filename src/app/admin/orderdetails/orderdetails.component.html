@@ -1,18 +1,28 @@
 <app-navbar></app-navbar>
+
+<!--Home Button-->
 <button type="button" class="home" (click)="AdminHome()"><i class="fa fa-home"></i>HOME</button>
+
+<!--Status Button-->
 <div>
   <button type="button" class="All" (click)="All()">All</button>
   <button type="button" class="Open" (click)="Open()">Open</button>
   <button type="button" class="FullFilled" (click)="FulFilled()">FulFilled</button>
 </div>
+
 <div class="container">
+  <!--Heading-->
   <div class="list-heading">
     <h4>Order History</h4>
   </div>
+
+  <!--Search-->
   <div class="search">
     <input id="navsearch" type="text" placeholder="Search" ngDefaultControl [(ngModel)]="filter">
     <i class="fa fa-search" id="search"></i>
   </div>
+
+  <!--List of Orders-->
   <table class="table" id="table">
     <thead>
       <tr>
@@ -27,7 +37,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let list of orderList |filter:filter">
-        <td>{{list.Id}}</td>
+        <td style="color: #0C74EF;">{{list.Id}}</td>
         <td>{{list.UserName}}</td>
         <td><button type="button" class="form-control" (click)="open(content,list.Id)">View Products</button></td>
         <td id="hide">{{list.Points}}</td>
