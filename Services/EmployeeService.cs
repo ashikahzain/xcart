@@ -137,7 +137,7 @@ namespace xcart.Services
                              where user.Id==id
                              where order.UserId == user.Id
                              where order.StatusDescriptionId == status.Id
-                             orderby order.DateOfOrder descending
+                             orderby order.Id descending
 
                              select new OrderViewModel
                              {
