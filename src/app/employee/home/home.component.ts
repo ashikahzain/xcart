@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { Order } from 'src/app/shared/models/order';
 import { OrderDetails } from 'src/app/shared/models/OrderDetails';
-import { NEVER } from 'rxjs';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -31,10 +31,11 @@ export class HomeComponent implements OnInit {
   orderdetails = new OrderDetails()
   availableQuantity: number;
   orderQuantity: any;
-  cartList:number[]=[];
+  cartList: number[] = [];
   constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer, private toastr: ToastrService, private formBuilder: FormBuilder, private Cartservice: CartService) { }
 
   ngOnInit(): void {
+
     this.employeeservice.getItems().subscribe(data => {
       console.log(this.itemList);
       this.itemList = data
@@ -57,14 +58,26 @@ export class HomeComponent implements OnInit {
     })
 
     this.Cartservice.getAllCart().subscribe(
-      data=>{
-        data.forEach(item=>
-        this.cartList.push(item.ItemId))
+      data => {
+        data.forEach(item => {
+          this.cartList.push(item.ItemId)
+        }
+        );
       }
     )
+
   }
 
+  compareCart(itemId: number): number {
+    console.log("called compare cart");
+    if (this.cartList.indexOf(itemId) < 0) {
+      return 1;
+    }
+    else {
+      return 0;
+    }
 
+  }
   // Model Driven Form - login
   addOrder() {
 
@@ -73,7 +86,7 @@ export class HomeComponent implements OnInit {
       this.error = "Invalid Input";
       return;
     }
-    this.orderQuantity=this.addForm.controls.Quantity.value
+    this.orderQuantity = this.addForm.controls.Quantity.value
     if (this.orderQuantity * this.points < this.currentPoints) {
       if (this.orderQuantity < this.availableQuantity) {
         if (this.addForm.valid) {
@@ -81,7 +94,7 @@ export class HomeComponent implements OnInit {
 
           this.order.DateOfDelivery = null,
             this.order.DateOfOrder = new Date().toLocaleDateString(),
-            this.order.Points = this.orderQuantity* this.points,
+            this.order.Points = this.orderQuantity * this.points,
             this.order.StatusDescriptionId = 1,
             this.order.UserId = Number(sessionStorage.getItem('userid'))
           this.Cartservice.placeOrder(this.order).subscribe(
@@ -100,11 +113,11 @@ export class HomeComponent implements OnInit {
 
           //closing modal after adding point
           this.closeModalDialog();
-          this.toastr.success('Redeemed '+ this.order.Points+ ' Points. Contact HR Department to collect your items.')
+          this.toastr.success('Redeemed ' + this.order.Points + ' Points. Contact HR Department to collect your items.')
           //console.log("added Point");
         }
       }
-      else{
+      else {
         this.toastr.error('Out of Stock')
       }
     }
@@ -168,18 +181,18 @@ export class HomeComponent implements OnInit {
   }
 
   addtoCart(itemId: number) {
-   
-    console.log(this.cartList);
     console.log(itemId);
-        this.cart.ItemId = itemId
-        this.cart.Quantity = 1
-        this.cart.UserId = Number(sessionStorage.getItem('userid'))
-        this.employeeservice.addtoCart(this.cart).subscribe(
-          data =>
-            console.log(data)
-        )
-        this.toastr.success('Added to cart');
-      }
+    this.cart.ItemId = itemId
+    this.cart.Quantity = 1
+    this.cart.UserId = Number(sessionStorage.getItem('userid'))
+    this.employeeservice.addtoCart(this.cart).subscribe(
+      data =>
+        console.log(data)
+    )
+    this.toastr.success('Added to cart');
+    window.setTimeout(function () { location.reload() }, 1000);
+ 
+  }
 
 
 }

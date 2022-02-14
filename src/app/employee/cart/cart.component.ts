@@ -89,28 +89,14 @@ export class CartComponent implements OnInit {
     if (this.totalPoints <= this.currentPoints) {
 
       this.itemQuantity.forEach((item, key) => {
-         /*this.adminService.getItembyId(key).subscribe(
-          product => {
-            if (product.Quantity < item) {
-              this.checkQuantity = 0;
-              console.log("inside loop");
-              console.log(this.checkQuantity);
-              this.toastr.error(product.Name + " only " + product.Quantity + " left");
-            }
-          }
-        )*/
-          //console.log(this.itemQuantity);
           var Item=this.ItemList.find(x=>x.Id==key);
-          //console.log(Item);
           if (Item.Quantity < item) {
             this.checkQuantity = 0;
-            //console.log("inside loop");
-            //console.log(this.checkQuantity);
             this.toastr.error(Item.Name + " only " + Item.Quantity + " left");
           }
       },
       )
-      //await new Promise(f => setTimeout(f, 500));
+
       
         this.order.DateOfDelivery = null,
         this.order.DateOfOrder = new Date().toLocaleDateString(),

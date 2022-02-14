@@ -33,6 +33,8 @@ export class HomeComponent implements OnInit {
     public paginationService: PaginationService) { }
 
   ngOnInit(): void {
+
+    
     //pagination intialisation
     this.pageNo[0] = true;
     this.paginationService.temppage = 0;
@@ -46,7 +48,6 @@ export class HomeComponent implements OnInit {
       this.trendingItemList = data
       data.forEach(item => {
         item.Image = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + item.Image)
-        console.log(item.Image);
       });
     }
     );

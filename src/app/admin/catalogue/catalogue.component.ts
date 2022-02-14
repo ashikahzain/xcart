@@ -16,6 +16,7 @@ export class CatalogueComponent implements OnInit {
   constructor(public employeeservice: EmployeeService, private domSanitizer: DomSanitizer, private router: Router, public adminService: AdminService) { }
 
   ngOnInit(): void {
+    //get all items for catalogue
     this.employeeservice.getItems().subscribe(data => {
       console.log(this.itemList);
       this.itemList = data
@@ -28,7 +29,6 @@ export class CatalogueComponent implements OnInit {
 
   //Sorting
   sortPointAscending() {
-
     this.itemList.sort((a, b) =>
       a.Points - b.Points
     );
@@ -37,7 +37,6 @@ export class CatalogueComponent implements OnInit {
 
 
   sortPointDescending() {
-
     this.itemList.sort((a, b) =>
       b.Points - a.Points
     );
@@ -46,7 +45,6 @@ export class CatalogueComponent implements OnInit {
 
 
   sortAvailibilityAscending() {
-
     this.itemList.sort((a, b) =>
       a.Quantity - b.Quantity
     );
@@ -55,19 +53,19 @@ export class CatalogueComponent implements OnInit {
 
 
   sortAvailibilityDescending() {
-
     this.itemList.sort((a, b) =>
       b.Quantity - a.Quantity
     );
     console.log(this.itemList);
   }
 
+  //Edit item navigation to form with id
   edititem(itemId: number) {
     console.log(itemId);
     this.router.navigate(['admin/itemform', itemId]);
 
   }
-
+//delelte item using id
   deleteitem(itemid: number) {
     if (confirm("This Item will be deleted from the catalogue"))
     this.adminService.deleteItem(itemid).subscribe(
