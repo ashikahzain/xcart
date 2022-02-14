@@ -27,6 +27,12 @@
     text-align: center;
     color: #2d415d;
 }
+#content {
+    width: 100%;
+    padding:4% 0% 0% 0%;
+    min-height: 100vh;
+    transition: all 0.3s;
+  }
 
 .form-heading {
     position: absolute;

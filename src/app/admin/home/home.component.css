@@ -1,14 +1,14 @@
 body {
     background: #eaecee;
     font-family: Roboto;
-    height: 100vh;
+    padding: 1% 0;
 }
 
-.heading{
+.heading {
     display: inline-flex;
     margin-left: 6%;
 }
-.heading span{
+.heading span {
     height: 51px;
     font-family: Roboto;
     font-style: normal;
@@ -19,45 +19,59 @@ body {
     align-items: center;
     color: #1f4173;
 }
-.heading span h4{
+.heading span h4 {
     margin-left: 5%;
     margin-bottom: 10%;
 }
 .card {
-    margin-left: 6%;
+    margin: 3% 4% 0 4%;
+    width: 440px;
     background: #ecb626;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     color: white;
     font-weight: 400;
     border: none;
-    font-size: 24px;
-   
+    font-size: 22px;
+}
+
+.menu-card {
+    height: 105px;
 }
 .card-deck {
-    width: 100%;
+    margin: 0% 2%;
 }
-#trending-item{
-    padding-bottom: 10%;
-    padding-top: 5%; 
+.img-size {
+    width: 156px;
+    height: 171px;
+    min-width: 156px;
+    min-height: 141px;
+}
+.trending-item {
+    margin: 0% 2%;
 }
 .item-card {
     width: 156px;
-    height: 100%;
+    height: 215px;
     background: #c1c6ce;
     border-radius: 5px;
+    margin-left: 8%;
+    margin-top: 8%;
 }
 img.item-image {
     width: 100%;
-    height: 110%;
+    height: 100%;
+    max-width: 156px;
+    max-height: 171px;
     margin: 0;
     padding: 0;
     object-fit: fill;
 }
+
 .item-name {
     width: 105px;
     height: 23px;
-    margin-left: 5%;
+    margin-left: 10%;
     margin-top: 6%;
     font-family: Roboto;
     font-style: normal;
@@ -68,17 +82,20 @@ img.item-image {
     align-items: center;
     color: #1f4173;
 }
-a{
+a {
     text-decoration: none;
 }
 .stock {
-    width: 80px;
+    display: flex;
+    width: 116px;
     height: 30px;
-    float: right;
     font-size: 14px;
     background: #f00b0c;
     border-radius: 5px;
-    padding-left: 5px;
+    margin-left: 38px;
+    margin-top: 10px;
+    padding-left: 28px;
+    padding-top: 3px;
 }
 .card-lower {
     margin-left: 6%;
@@ -109,8 +126,8 @@ a{
     color: #1f4173;
 }
 .latest-orders {
-    margin-left: 3%;
-    margin-top: 5px;
+    margin: 0% 4%;
+    padding: 1% 0px;
 }
 .order-list {
     background-color: #fff;
@@ -118,9 +135,23 @@ a{
     border-radius: 20px;
 }
 .table {
-    margin-top: 20px;
-    top: 250px;
+    margin-top: 18px;
     border-radius: 20px;
+}
+.table th {
+    font-size: 16px;
+    line-height: 19px;
+    align-items: center;
+    text-align: center;
+    color: #1f4173;
+}
+
+.table td {
+    font-size: 16px;
+    line-height: 19px;
+    align-items: center;
+    text-align: center;
+    color: #1f4173;
 }
 
 .search {
@@ -136,20 +167,27 @@ a{
 .fa-search {
     color: #2d415d;
 }
+.reward-card{
+    width: 440px;
+}
 #reward-employee {
     font-family: Roboto;
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
     line-height: 28px;
-
     background-color: white;
     color: #1f4173;
+
 }
 #trending-item {
     background-color: white;
     color: black;
+    width: 430px;
+    padding-bottom: 10%;
+    padding-top: 5%;
 }
+
 #empdetail {
     text-align: left;
     margin-left: 5%;
@@ -162,7 +200,28 @@ a{
     font-size: large;
 }
 
-@media only screen and (max-width: 480px) { 
+.pageColor {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: white !important;
+    background-color: #1f4173 !important;
+    border: 1px solid #dee2e6;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+@media only screen and (max-width: 480px) {
     .card {
         margin-left: 30%;
         margin-bottom: 5%;
@@ -188,11 +247,10 @@ a{
 
 @media only screen and (max-width: 600px) and (min-width: 480px) {
     .card {
-        margin-left: 50%;
-        margin-bottom: 5%;
+        margin: 2% 10%;
     }
     .card-deck {
-        width: 50%;
+        width: 60%;
     }
 
     .search {
@@ -207,17 +265,11 @@ a{
 }
 
 @media only screen and (max-width: 992px) and (min-width: 600px) {
-    .card {
-        margin-left: 55%;
-        margin-bottom: 5%;
-    }
-    .card-deck {
-        width: 40%;
-    }
+
 
     .order-list {
-        margin-left: 10%;
-        max-width: 90%;
+        margin-left: 3%;
+        max-width: 100%;
     }
 
     .search {
@@ -229,6 +281,11 @@ a{
     .card-lower {
         margin-top: 2%;
         margin-left: 15%;
+    }
+
+    #trending-item{
+        margin-top: 5%;
+        width: 100%;
     }
 }
 
