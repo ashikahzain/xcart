@@ -30,6 +30,7 @@ namespace xcart.Services
                               from status in db.StatusDescription
                               where order.UserId == user.Id
                               where order.StatusDescriptionId == status.Id
+                              //&& order.DateOfOrder> DateTime.Now.AddDays(-1)
                               orderby order.Id descending
 
                               select new OrderViewModel
