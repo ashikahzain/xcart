@@ -6,10 +6,9 @@
   margin-top: 10%;
 }
 .card {
-  /*border: 1px solid black;*/
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin-left: 23%;
-  margin-top: 2%;
+  margin-top: 5%;
   width: 65%;
   height: 75%;
   display: inline-flex;
@@ -25,7 +24,6 @@
 
 #decrease {
   border: none;
-  margin-left: 30%;
 }
 
 #decrease:hover {
@@ -44,15 +42,13 @@
 
 #delete {
   border: none;
-  float: right;
-  margin-right: 5%;
+  margin-left: 5%;
   background-color: red;
+  color: white;
   width: 8%;
-  height: 8%;
 }
 
 #delete:hover {
-  background-color: black;
   color: white;
 }
 
@@ -74,20 +70,11 @@
   height: 100%;
   width: 100%;
 }
-/*
-    .checkout{
-        margin-left: 50%;
-        background-color: #F7C02D;
-        width: 100%;
-        margin-top: 17%;
-        height: 20%;
-        border: none;
-    }
-    */
 
 #checkout {
   margin-left: 78%;
   margin-top: 10%;
+  margin-bottom: 5%;
   width: 12%;
   height: 50px;
   border: none;
@@ -122,4 +109,139 @@
   font-weight: 500;
   color: white;
   padding-top: 20px;
+}
+
+#iname {
+  margin-left: 5%;
+}
+
+#buset {
+  margin-left: 5%;
+  padding-left: 0%;
+}
+
+#poi {
+  margin-left: 5%;
+}
+
+/*
+--------------------------------------------------------
+MEDIA QUERY
+--------------------------------------------------------
+@media only screen and (max-width: 1200px) and (min-width: 992px) {
+  .navigation-buttons{
+      float: right;
+      margin-right: 0;
+      margin-left: auto;
+  }
+}
+*/
+
+@media only screen and (max-width: 1200px) and (min-width: 992px) {
+  .card {
+    background-color: blueviolet;
+  }
+
+  #decrease {
+    margin-left: 1%;
+  }
+
+  #delete {
+    border: none;
+    margin-left: 5%;
+    background-color: red;
+    color: white;
+    width: 8%;
+  }
+}
+
+@media only screen and (max-width: 992px) and (min-width: 600px) {
+  .card {
+    margin-top: 15%;
+    margin-left: 30%;
+  }
+
+  .user-points {
+    font-size: 100%;
+    margin-top: 10%;
+  }
+  #iname {
+    text-align: center;
+    width: 90%;
+    margin-top: 1%;
+  }
+
+  #img {
+    width: 50%;
+    height: 50%;
+    margin-left: 20%;
+  }
+
+  #buset {
+    margin-top: 1%;
+    width: 90%;
+  }
+
+  #poi {
+    text-align: center;
+    width: 90%;
+    margin-top: 1%;
+  }
+
+  #delete {
+    margin-left: 45%;
+    margin-top: 1%;
+  }
+
+  #checkout {
+    margin-bottom: 2%;
+    width: 20%;
+    font-size: 120%;
+  }
+}
+
+@media only screen and (max-width: 600px) and (min-width: 480px) {
+  .card {
+    margin-top: 15%;
+  }
+
+  .user-points {
+    font-size: 100%;
+    margin-top: 10%;
+  }
+
+  #img {
+    width: 50%;
+    height: 50%;
+    margin-left: 20%;
+  }
+
+  #iname {
+    text-align: center;
+    width: 75%;
+    margin-top: 1%;
+  }
+
+  #buset {
+    margin-top: 1%;
+    width: 75%;
+  }
+
+  #poi {
+    text-align: center;
+    width: 75%;
+    margin-top: 1%;
+  }
+
+  #delete {
+    margin-left: 35%;
+    margin-top: 1%;
+    width: 20%;
+  }
+
+  #checkout {
+    margin-bottom: 2%;
+    width: 20%;
+    font-size: 120%;
+  }
 }
