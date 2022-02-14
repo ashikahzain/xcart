@@ -25,7 +25,7 @@ export class EmployeeListComponent implements OnInit {
   status: boolean;
   TotalEmployees: number;
   pagenumber: any = 1;
-  pagesize: number = 2;
+  pagesize: number = 3;
   paginationdata: number;
   exactPageList: number;
   pageField: any[];
@@ -154,7 +154,7 @@ export class EmployeeListComponent implements OnInit {
       this.TotalNumberofPages()
     });
 
-  }
+  } 
   TotalNumberofPages() {
     this.paginationdata = (this.TotalEmployees / this.pagesize);
     let tempPageData = this.paginationdata.toFixed();
