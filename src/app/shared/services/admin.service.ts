@@ -122,4 +122,7 @@ export class AdminService {
   getOrderCount():Observable<any>{
     return  this.httpClient.get(environment.apiUrl + "/api/orders/order-count");
   }
+  getStatusOrderCount(id:number):Observable<any>{
+    return this.httpClient.get(environment.apiUrl +"/api/orders/order-status-count/" +id);
+  }
 }
