@@ -4,6 +4,8 @@
         <a  (click)="toggleField()" class="bars2"><i class="fa fa-bars" id="bars"></i></a>
         <a class="navbar-brand"><img class="xcart-nav" src="/assets/images/xlogo-nav.png"></a>
         <form class="d-flex">
+            <button id="profile" type="button" *ngIf="role=='Admin'" (click)="employeeswitch()"> <i class="fa fa-user" id="user"></i>Profile
+            </button>
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="filter" name="filter">
             <i class="fa fa-sign-out fa-lg" id="logout" (click)="logout()"></i>
         </form>

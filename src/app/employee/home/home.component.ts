@@ -1,11 +1,11 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeService } from 'src/app/shared/services/employee.service'
 import { SidemenuComponent } from 'src/app/shared/layout/sidemenu/sidemenu.component'
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Item } from 'src/app/shared/models/item';
 import { Cart } from 'src/app/shared/models/cart';
 import { ToastrService } from 'ngx-toastr';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { Order } from 'src/app/shared/models/order';
 import { OrderDetails } from 'src/app/shared/models/OrderDetails';
@@ -36,27 +36,26 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
+    //get all items 
     this.employeeservice.getItems().subscribe(data => {
-      console.log(this.itemList);
       this.itemList = data
       data.forEach(item => {
         item.Image = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + item.Image)
-        console.log(item.Image);
       });
       this.employeeservice.getCurrentPoints().subscribe(
         data => {
           this.currentPoints = data;
-
         }
-
       );
     });
+
     //modal
     //creating form controls and validations
     this.addForm = this.formBuilder.group({
       Quantity: 1,
     })
 
+    //get items already added to the cart
     this.Cartservice.getAllCart().subscribe(
       data => {
         data.forEach(item => {
@@ -68,17 +67,17 @@ export class HomeComponent implements OnInit {
 
   }
 
+  //compare cart and items
   compareCart(itemId: number): number {
-    console.log("called compare cart");
     if (this.cartList.indexOf(itemId) < 0) {
       return 1;
     }
     else {
       return 0;
     }
-
   }
-  // Model Driven Form - login
+
+  // Model Driven Form - to buy item directly
   addOrder() {
 
     //if data is invalid
@@ -86,12 +85,16 @@ export class HomeComponent implements OnInit {
       this.error = "Invalid Input";
       return;
     }
+
+    //assigning quantity entered
     this.orderQuantity = this.addForm.controls.Quantity.value
+    //comparing total order points to points remaining
     if (this.orderQuantity * this.points < this.currentPoints) {
+      //comparing total order quantity to remaining quantity
       if (this.orderQuantity < this.availableQuantity) {
         if (this.addForm.valid) {
-          //add to orderdetails table
 
+          //add to orderdetails table
           this.order.DateOfDelivery = null,
             this.order.DateOfOrder = new Date().toLocaleDateString(),
             this.order.Points = this.orderQuantity * this.points,
@@ -103,18 +106,12 @@ export class HomeComponent implements OnInit {
               this.orderdetails.ItemId = this.itemid,
                 this.orderdetails.Quantity = Number(this.addForm.controls.Quantity.value),
                 this.orderdetails.OrderId = this.OrderId
-              console.log(this.orderdetails)
-              this.Cartservice.updateOrderDetails(this.orderdetails).subscribe(item => {
-                console.log(item);
-              });
+              this.Cartservice.updateOrderDetails(this.orderdetails).subscribe();
             }
           );
-
-
-          //closing modal after adding point
+          //closing modal after placing order
           this.closeModalDialog();
           this.toastr.success('Redeemed ' + this.order.Points + ' Points. Contact HR Department to collect your items.')
-          //console.log("added Point");
         }
       }
       else {
@@ -124,76 +121,57 @@ export class HomeComponent implements OnInit {
     else {
       this.toastr.error("Not enough points")
     }
-
-
   }
 
   //Function to open modal
   openAddModal(itemId: number, points: number, quantity: number) {
     //Set block css
     this.display = 'block'
-    console.log(this.addForm.value)
     this.itemid = itemId,
       this.points = points,
       this.availableQuantity = quantity
   }
 
-
-
   //function to close the modal
   closeModalDialog() {
     this.display = 'none'; //set none css after close dialog
   }
+
   //Sorting
   sortPointAscending() {
-
     this.itemList.sort((a, b) =>
       a.Points - b.Points
     );
-    console.log(this.itemList);
   }
 
-
   sortPointDescending() {
-
     this.itemList.sort((a, b) =>
       b.Points - a.Points
     );
-    console.log(this.itemList);
   }
 
-
   sortAvailibilityAscending() {
-
     this.itemList.sort((a, b) =>
       a.Quantity - b.Quantity
     );
-    console.log(this.itemList);
   }
 
-
   sortAvailibilityDescending() {
-
     this.itemList.sort((a, b) =>
       b.Quantity - a.Quantity
     );
-    console.log(this.itemList);
   }
 
+  //adding a product to cart
   addtoCart(itemId: number) {
-    console.log(itemId);
     this.cart.ItemId = itemId
     this.cart.Quantity = 1
     this.cart.UserId = Number(sessionStorage.getItem('userid'))
-    this.employeeservice.addtoCart(this.cart).subscribe(
-      data =>
-        console.log(data)
-    )
+    this.employeeservice.addtoCart(this.cart).subscribe()
     this.toastr.success('Added to cart');
     window.setTimeout(function () { location.reload() }, 1000);
- 
-  }
 
+  }
 
 }
 

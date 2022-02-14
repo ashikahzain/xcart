@@ -33,9 +33,9 @@ export class ItemFormComponent implements OnInit {
       IsActive: true
     }
     )
+
     //get Id from the route
     this.Id = this.route.snapshot.params['itemId'];
-    console.log(this.Id)
     if (this.Id != null) {
       this.editingmode = true;
       //populate form on init if id is not null value(for editing situations)
@@ -67,6 +67,7 @@ export class ItemFormComponent implements OnInit {
       };
     }
   }
+
   //on submit function
   onSubmit() {
     if (this.Id != null) {
@@ -77,16 +78,14 @@ export class ItemFormComponent implements OnInit {
       this.addItem();
       this.toastr.success('Item added successfully');
     }
-      this.router.navigate(['/admin/catalogue']);
+    this.router.navigate(['/admin/catalogue']);
   }
 
   //add item
   addItem() {
-    console.log(this.itemForm.value);
-    this.adminService.addItem(this.itemForm.value).subscribe(
-      (result) => console.log(result)
-    );
+    this.adminService.addItem(this.itemForm.value).subscribe();
   }
+
   //POPULATE ITEM TO FORM 
   populateItem() {
     //get item by id
@@ -105,14 +104,12 @@ export class ItemFormComponent implements OnInit {
         });
       },
       error => console.log(error)
-
     );
   }
 
 
   //Updating Item details
   UpdateItem() {
-    console.log(this.itemForm.value);
     this.adminService.updateItem(this.itemForm.value).subscribe()
   }
 
