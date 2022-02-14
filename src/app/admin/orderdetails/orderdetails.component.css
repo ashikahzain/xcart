@@ -1,24 +1,35 @@
-.home{
+/* ---------------------------------------------------
+      CONTENT STYLE
+  ----------------------------------------------------- */
+.home-button {
     position: absolute;
-    width: 11%;
-    height: 7%;
-    left: 6%;
-    top: 15%;
-    background: #F7C02D;
+    display: inline-flex;
+    width: 130px;
+    height: 50px;
+    margin-left: 8%;
+    top: 12%;
+    background: #f7c02d;
     border-radius: 5px;
-    border: none;
+  }
+  
+  .home-button i {
+    font-size: 24px;
+    padding-left: 10%;
+    padding-top: 10%;
+  }
+  .home-button h4 {
+    padding-left: 10%;
+    padding-top: 7%;
     font-family: Roboto;
     font-style: normal;
-    font-weight:500px;
+    font-weight: bold;
     font-size: 21px;
-    line-height: 31px;   
-}
-.fa-home{
-    width: 24px;
-    height: 24px;
-    left: calc(50% - 24px/2 - 34px);
-    top: calc(50% - 24px/2);    
-}
+    line-height: 31px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #2d415d;
+  }
 .All:hover{
     color: hsla(360, 0%, 100%, 1);
 }
@@ -34,7 +45,7 @@
     width: 7%;
     height: 8%;
     left: 72%;
-    top: 15%;
+    top: 12%;
     border-radius: 12% 0% 0% 12%;
     background: #6B8BB7;
     border: none;
@@ -45,7 +56,7 @@
     width: 7%;
     height: 8%;
     left: 79%;
-    top: 15%;
+    top: 12%;
     background: #6B8BB7;
     border: none;
      
@@ -55,7 +66,7 @@
     width: 7%;
     height: 8%;
     left: 86%;
-    top: 15%;
+    top: 12%;
     border-radius: 0% 12% 12% 0%;
     background: #6B8BB7;
     border: none;
@@ -69,7 +80,7 @@
 }
 
 .list-heading h4 {
-    margin: 9% 0% 0% 6%;
+    margin: 15% 0% 0% 6%;
     color: #1F4173;
 }
 .search {
@@ -89,7 +100,7 @@
 .table {
     margin-top: 1%;
     margin-left: 6%;
-    width: 85%;
+    width: 90%;
     border-radius: 20px;
     text-align: center;
 }
@@ -125,41 +136,47 @@ th,td{
     background-color: #fff;
     border: 1px solid #dee2e6;
 }
-
+  /* ---------------------------------------------------
+      MEDIAQUERIES
+  ----------------------------------------------------- */
 @media only screen and (max-width: 480px) {
-    .home{
-        top: 13%;
-        width: 25%;
-        height: 5%;
-        font-weight:200px;
-        font-size: 13px;
+    .home-button{
+        height: 40px;
+        width: 100px;
+    }
+    .home-button i {
+        font-size: 20px;
+        padding-top: 8%;
+    }
+    .home-button h4{
+        font-size: 16px;
     }
     .All{
-        height: 5%;
-        top: 13%;
+        height: 7%;
+        top: 12%;
         width: 8%;
         left: 60%;
         font-weight:200px;
         font-size: 13px;
     }
     .Open{
-        height: 5%;
-        top: 13%;
+        height: 7%;
+        top: 12%;
         width: 13%;
         left: 67%;
         font-weight:200px;
         font-size: 13px;
     }
     .FullFilled{
-        height: 5%;
-        top: 13%;
+        height: 7%;
+        top: 12%;
         width: 18%;
         left: 79.5%;
         font-weight:200px;
         font-size: 13px;
     }
     .list-heading{
-        margin: 17% 0% 0% 0%;
+        margin: 45% 0% 0% 0%;
     }
     .search {
         display: inline;
@@ -179,36 +196,43 @@ th,td{
         height: 100%;
         font-size:small;
     }
+    .pageColor{
+        font-size:x-small;
+    }
 }
 
 @media only screen and (max-width: 601px) and (min-width: 480px) {
-    .home{
-        top: 14%;
-        width: 19%;
-        height: 6%;
-        font-weight:300px;
-        font-size: 18px;
+    .home-button{
+        height: 43px;
+        width: 120px;
+    }
+    .home-button i {
+        font-size: 22px;
+        padding-top: 8.5%;
+    }
+    .home-button h4{
+        font-size: 20px;
     }
     .All{
-        height: 6%;
-        top: 14%;
+        height: 8%;
+        top: 12%;
         width: 8%;
         left: 67%
     }
     .Open{
-        height: 6%;
-        top: 14%;
+        height: 8%;
+        top: 12%;
         width: 11%;
         left: 74%;
     }
     .FullFilled{
-        height: 6%;
-        top: 14%;
+        height: 8%;
+        top: 12%;
         width: 14%;
         left: 84%;
     }
     .list-heading{
-        margin: 15% 0% 0% 0%;
+        margin: 30% 0% 0% 0%;
     }
     .search {
         display: inline;
@@ -224,35 +248,37 @@ th,td{
         height: 100%;
         font-size:small;
     }
+    .pageColor{
+        font-size: smaller;
+    }
 }
 
 @media only screen and (max-width: 992px) and (min-width: 601px) {
-    .home{
-        top: 14%;
-        width: 17%;
-        height: 6%;
-        font-weight:300px;
-        font-size: 18px;
+    .home-button{
+        height: 48px;
+    }
+    .home-button i {
+        font-size: 23px;
     }
     .All{
-        height: 6%;
-        top: 14%;
+        height: 8%;
+        top: 12%;
         width: 8%;
         left: 70%
     }
     .Open{
-        height: 6%;
-        top: 14%;
+        height: 8%;
+        top: 12%;
         width: 10%;
         left: 77%;
     }
     .FullFilled{
-        height: 6%;
-        top: 14%;
+        height: 8%;
+        top: 12%;
         width: 12%;;
     }
     .list-heading{
-        margin: 15% 0% 0% 0%;
+        margin: 25% 0% 0% 0%;
     }
     .search {
         display: inline;
@@ -268,6 +294,9 @@ th,td{
         height: 100%;
         font-size:small;
     }
+    .pageColor{
+        font-size: smaller;
+    }
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
@@ -279,4 +308,7 @@ th,td{
         width: 95%;
         margin-left:1%
     }   
+    .pageColor{
+        font-size: small;
+    }
 }
