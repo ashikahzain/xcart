@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace xcart.Services
         }
 
         #region Get all Orders
-        public async Task<List<OrderViewModel>> GetAllOrders()
+        public async Task<List<OrderViewModel>> GetAllOrders(int pageNumber, int pagesize)
         {
             if (db != null)
             {
@@ -29,7 +30,7 @@ namespace xcart.Services
                               from status in db.StatusDescription
                               where order.UserId == user.Id
                               where order.StatusDescriptionId == status.Id
-                              orderby order.DateOfOrder descending
+                              orderby order.Id descending
 
                               select new OrderViewModel
                               {
@@ -39,7 +40,7 @@ namespace xcart.Services
                                   UserName = user.Name,
                                   Points = order.Points,
                                   Status = status.Status
-                              }).ToListAsync();
+                              }).Skip(pagesize * (pageNumber - 1)).Take(pagesize).ToListAsync();
             }
             return null;
         }
@@ -149,7 +150,7 @@ namespace xcart.Services
                               where order.StatusDescriptionId==id
                               where order.UserId == user.Id
                               where order.StatusDescriptionId == stat.Id
-                              orderby order.DateOfOrder ascending
+                              orderby order.Id ascending
 
                               select new OrderViewModel
                               {
@@ -159,13 +160,10 @@ namespace xcart.Services
                                   UserName = user.Name,
                                   Points = order.Points,
                                   Status = stat.Status
-                              }
-                    ).ToListAsync();
+                              }).ToListAsync();
             }
             return null;
         }
-
-
         #endregion
 
         #region Add Order
@@ -209,6 +207,14 @@ namespace xcart.Services
                 return 1;
             }
             return 0;
+        }
+        #endregion
+
+        #region Get number of Orders
+        public async Task<int> GetOrderCount()
+        {
+            var count = await db.Order.CountAsync();
+            return count;
         }
         #endregion
 

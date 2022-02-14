@@ -36,11 +36,11 @@ namespace xcart.Controllers
         #region Get All Orders
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> GetOrders()
+        public async Task<IActionResult> GetOrders(int pagenumber, int pagesize)
         {
             try
             {
-                var orders = await orderService.GetAllOrders();
+                var orders = await orderService.GetAllOrders(pagenumber, pagesize);
                 if (orders == null)
                 {
                     return NotFound();
@@ -253,6 +253,19 @@ namespace xcart.Controllers
             }
             return BadRequest();
         }
+        #endregion
+
+        #region Get order count
+
+        [HttpGet]
+        [Route("order-count")]
+        public async Task<IActionResult> GetOrderCount()
+        {
+            var count = await orderService.GetOrderCount();
+            return Ok(count);
+        }
+
+
         #endregion
 
     }
