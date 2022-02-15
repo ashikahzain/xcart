@@ -39,7 +39,7 @@ export class EmployeeService {
   //getting employee profile details
   getEmployeeProfile():Observable<any>{
     this.id = parseInt(sessionStorage.getItem('userid'));
-    return this.httpClient.get(environment.apiUrl+"/api/employees/employees/"+this.id);
+    return this.httpClient.get(environment.apiUrl+"/api/employees/employee/"+this.id);
   }
 
   //get order details by employee id
