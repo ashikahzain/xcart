@@ -10,10 +10,9 @@ namespace xcart.Services
 {
     public class PointService : IPointService
     {
-
-        //Dependency Injection
         XCartDbContext db;
 
+        //Constructor
         public PointService(XCartDbContext db)
         {
             this.db = db;

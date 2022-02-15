@@ -14,14 +14,11 @@ namespace xcart.Controllers
     [ApiController]
     public class AwardHistoryController : ControllerBase
     {
-
-        //Dependency Injection
         XCartDbContext db;
-
         IAwardHistoryService awardHistoryService;
-
         IPointService pointService;
 
+        //Constructor
         public AwardHistoryController(XCartDbContext db, IAwardHistoryService awardHistoryService,IPointService pointservice)
         {
             this.db = db;
@@ -34,12 +31,20 @@ namespace xcart.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAwards()
         {
-            var awards = await db.AwardHistory.ToListAsync();
-            if (awards == null)
+            try
             {
-                return NotFound();
+                var awards = await db.AwardHistory.ToListAsync();
+                if (awards == null)
+                {
+                    return NotFound();
+                }
+                return Ok(awards);
             }
-            return Ok(awards);
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
 
         }
         #endregion
@@ -59,7 +64,7 @@ namespace xcart.Controllers
                         
                         if (response == null)
                         {
-                            return BadRequest();
+                            return BadRequest("Points not added");
 
                         }
                     }
@@ -69,7 +74,7 @@ namespace xcart.Controllers
 
                         if (response == null)
                         {
-                            return BadRequest();
+                            return BadRequest("Points not removed");
 
                         }
                     }
@@ -82,12 +87,12 @@ namespace xcart.Controllers
                     }
                     else
                     {
-                        return NotFound();
+                        return NotFound("Award history not added");
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    return BadRequest();
+                    return BadRequest(ex.Message);
                 }
             }
             return BadRequest();
@@ -98,13 +103,21 @@ namespace xcart.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAllAwardHistory(int id)
         {
-            var awardhistory = await awardHistoryService.GetAwardHistory(id);
-
-            if (awardhistory == null)
+            try
             {
-                return NotFound();
+                var awardhistory = await awardHistoryService.GetAwardHistory(id);
+
+                if (awardhistory == null)
+                {
+                    return NotFound("Award history of employee not found");
+                }
+                return Ok(awardhistory);
             }
-            return Ok(awardhistory);
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
 
         }
         #endregion
