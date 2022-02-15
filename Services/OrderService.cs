@@ -68,6 +68,7 @@ namespace xcart.Services
                 {
                     var trendingitem = (from item in db.Item
                                         where item.Id == itemId
+                                        where item.IsActive==true
                                         select new Item
                                         {
                                             Id = itemId,
@@ -81,8 +82,12 @@ namespace xcart.Services
                     //Appending only 2 items to trendinglist
                     if (count < 2)
                     {
-                        trendinglist.Add(trendingitem);
-                        count++;
+                        if (trendingitem!=null)
+                        {
+                            trendinglist.Add(trendingitem);
+                            count++;
+                        }
+
                     }
                 }
                 return trendinglist;

@@ -60,7 +60,6 @@ namespace xcart.Controllers
         }
         #endregion
 
-
         #region Get all cart by id
         [HttpGet]
         [Route("getcart/{id}")]
@@ -104,7 +103,7 @@ namespace xcart.Controllers
 
             #endregion
 
-            #region Delete Cart
+        #region Delete Cart
 
             [HttpDelete]
             [Route("{id}")]
@@ -127,7 +126,7 @@ namespace xcart.Controllers
             }
             #endregion
 
-            #region increase Item Quantity
+        #region increase Item Quantity
             [HttpGet]
             [Route("increase-quantity/{id}")]
 
@@ -144,7 +143,6 @@ namespace xcart.Controllers
                 }
             }
         #endregion
-
 
         #region Delete Cart by User Id
 

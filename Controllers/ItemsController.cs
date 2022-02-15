@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using xcart.Models;
 using xcart.Services;
@@ -42,6 +43,8 @@ namespace xcart.Controllers
             }
             return Ok(items);
 
+
+
         }
         #endregion
 
@@ -51,13 +54,13 @@ namespace xcart.Controllers
         [Route("inactive-items")]
         public async Task<IActionResult> GetAllInactiveItems()
         {
-            var items = await itemService.GetAllInactiveItems();
-            if (items == null)
-            {
-                return NotFound();
-            }
-            return Ok(items);
-
+                var items = await itemService.GetAllInactiveItems();
+                if (items == null)
+                {
+                    return NotFound();
+                }
+                return Ok(items);
+      
         }
         #endregion
 
@@ -114,7 +117,11 @@ namespace xcart.Controllers
         {
             try
             {
-                var item = await itemService.DeleteItem(id);
+                var item = await itemService.DeleteItem(id);  
+                if (item == 0)
+                {
+                    return NotFound();
+                }
                 return Ok(item);
             }
             catch (Exception)

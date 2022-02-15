@@ -15,11 +15,10 @@ namespace xcart.Controllers
     public class AwardHistoryController : ControllerBase
     {
         XCartDbContext db;
-
         IAwardHistoryService awardHistoryService;
-
         IPointService pointService;
 
+        //Constructor
         public AwardHistoryController(XCartDbContext db, IAwardHistoryService awardHistoryService,IPointService pointservice)
         {
             this.db = db;
@@ -27,18 +26,30 @@ namespace xcart.Controllers
             this.pointService = pointservice;
         }
 
+
+        #region Get All Award List
         [HttpGet]
         public async Task<IActionResult> GetAllAwards()
         {
-            var awards = await db.AwardHistory.ToListAsync();
-            if (awards == null)
+            try
             {
-                return NotFound();
+                var awards = await db.AwardHistory.ToListAsync();
+                if (awards == null)
+                {
+                    return NotFound();
+                }
+                return Ok(awards);
             }
-            return Ok(awards);
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
 
         }
+        #endregion
 
+        #region Add to Award History
         [HttpPost]
         public async Task<IActionResult> AddAwardHistory(AwardHistory award)
         {
@@ -47,54 +58,69 @@ namespace xcart.Controllers
             {
                 try
                 {
-                    if (award.Status)
+                    if (award.Status)   //Checking if the Points are to be added  (Status=1:Add,Status=0:Subtract)
                     {
-                        var response = pointService.AddPoint(award.Point, award.EmployeeId);
+                        var response = pointService.AddPoint(award.Point, award.EmployeeId); //Adding the points to point table corresponding Employee
+                        
                         if (response == null)
                         {
-                            return BadRequest();
+                            return BadRequest("Points not added");
 
                         }
                     }
-                    else
+                    else                //Subtracting Point
                     {
                         var response = pointService.RemovePoints(award.Point, award.EmployeeId);
+
                         if (response == null)
                         {
-                            return BadRequest();
+                            return BadRequest("Points not removed");
 
                         }
                     }
-                    
-                    var awardId = await awardHistoryService.AddAwardHistory(award);
+
+                    var awardId = await awardHistoryService.AddAwardHistory(award);  //Adding Award to Award History table
+
                     if (awardId != 0)
                     {
                         return Ok(awardId);
                     }
                     else
                     {
-                        return NotFound();
+                        return NotFound("Award history not added");
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    return BadRequest();
+                    return BadRequest(ex.Message);
                 }
             }
             return BadRequest();
         }
+        #endregion
 
-        //get award history of an employee
+        #region Get award history of an employee
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAllAwardHistory(int id)
         {
-            var awardhistory = await awardHistoryService.GetAwardHistory(id);
-            if (awardhistory == null)
+            try
             {
-                return NotFound();
+                var awardhistory = await awardHistoryService.GetAwardHistory(id);
+
+                if (awardhistory == null)
+                {
+                    return NotFound("Award history of employee not found");
+                }
+                return Ok(awardhistory);
             }
-            return Ok(awardhistory);
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
 
         }
+        #endregion
+
     }
 }

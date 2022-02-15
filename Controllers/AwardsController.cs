@@ -35,7 +35,7 @@ namespace xcart.Controllers
             var awards = await awardService.GetAllAwards();
             if (awards == null)
             {
-                return NotFound();
+                return NotFound("No active awards");
             }
             return Ok(awards);
 
@@ -53,7 +53,7 @@ namespace xcart.Controllers
                 var award = await awardService.GetAwardById(id);
                 if (award == null)
                 {
-                    return NotFound();
+                    return NotFound("No award with the given Id");
                 }
                 return Ok(award);
             }
@@ -87,10 +87,10 @@ namespace xcart.Controllers
                 }
                 catch (Exception)
                 {
-                    return BadRequest();
+                    return BadRequest("Valid Data expected");
                 }
             }
-            return BadRequest();
+            return BadRequest("Valid Data expected"); 
         }
         #endregion
 
@@ -110,7 +110,7 @@ namespace xcart.Controllers
                 }
                 catch (Exception)
                 {
-                    return BadRequest();
+                    return BadRequest("Valid Data expected");
                 }
             }
             return BadRequest();
@@ -132,7 +132,7 @@ namespace xcart.Controllers
                 }
                 catch (Exception)
                 {
-                    return BadRequest();
+                    return BadRequest("No award with the given Id");
                 }
             }
             return BadRequest();

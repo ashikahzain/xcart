@@ -17,8 +17,5 @@ namespace xcart.Services
 
         //public User ValidateUser(string UserName, string password);
 
-
-
-
     }
 }
