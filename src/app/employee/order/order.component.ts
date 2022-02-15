@@ -39,9 +39,7 @@ export class OrderComponent implements OnInit {
   GetEmployeeOrder() {
     this.employeeService.getOrderByEmployeeId(this.UserId, this.pagenumber, this.pagesize).subscribe(
       data => {
-        console.log(data);
         this.orderList = data;
-        console.log(data);
         this.GetEmployeeOrderCount();
       });
   }
