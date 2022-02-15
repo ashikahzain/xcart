@@ -52,7 +52,7 @@ export class AdminService {
   }
   //get points of all employees
   getAllEmployeesPoints(pagenumber: number, pagesize: number): Observable<any> {
-    return this.httpClient.get(environment.apiUrl + "/api/employees/employee-points/?pagenumber=" + pagenumber + '&pagesize=' + pagesize);
+    return this.httpClient.get(environment.apiUrl + "/api/employees/?pagenumber=" + pagenumber + '&pagesize=' + pagesize);
   }
   //get award history of an employee using user id
   getAwardHistory(userId: number): Observable<any> {
@@ -108,8 +108,8 @@ export class AdminService {
   }
 
   // Get Specified Order
-  getSpecifiedOrder(statusId: number): Observable<any> {
-    return this.httpClient.get(environment.apiUrl + '/api/orders/status/' + statusId);
+  getSpecifiedOrder(statusId: number,pagenumber: number, pagesize: number): Observable<any> {
+    return this.httpClient.get(environment.apiUrl + '/api/orders/status/' + statusId+'?pagenumber=' + pagenumber + '&pagesize=' + pagesize);
   }
 
 //get total number of employees

@@ -23,9 +23,9 @@ export class OrderdetailsComponent implements OnInit {
   pageField: any[];
   pageNo: boolean[] = [];
   orderList: Order[];
-  all = false;
-  opened = false;
-  fulfilled = false;
+  all:boolean= false;
+  opened:boolean = false;
+  fulfilled:boolean = false;
 
   constructor(public adminService: AdminService, private router: Router,
     private modalService: NgbModal, public paginationService: PaginationService) { }
@@ -62,7 +62,7 @@ export class OrderdetailsComponent implements OnInit {
     this.opened = true;
     this.fulfilled = false;
     this.paginationService.temppage = 0;
-    this.adminService.getSpecifiedOrder(1).subscribe(
+    this.adminService.getSpecifiedOrder(1,this.pagenumber, this.pagesize).subscribe(
       data => {
         this.orderList = data;
         this.GetOrderStatusCount(1);
@@ -75,7 +75,7 @@ export class OrderdetailsComponent implements OnInit {
     this.opened = false;
     this.fulfilled = true;
     this.paginationService.temppage = 0;
-    this.adminService.getSpecifiedOrder(2).subscribe(
+    this.adminService.getSpecifiedOrder(2,this.pagenumber, this.pagesize).subscribe(
       data => {
         this.orderList = data;
         this.GetOrderStatusCount(2);
@@ -114,12 +114,28 @@ export class OrderdetailsComponent implements OnInit {
   }
 
 
-  showOrdersByPageNumber(page, i) {
+  showOrdersByPageNumberAll(page, i) {
     this.orderList = [];
     this.pageNo = [];
     this.pageNo[i] = true;
     this.pagenumber = page;
     this.All();
+  }
+
+  showOrdersByPageNumberOpen(page,i){
+    this.orderList = [];
+    this.pageNo = [];
+    this.pageNo[i] = true;
+    this.pagenumber = page;
+    this.Open();
+  }
+
+  showOrdersByPageNumberFulfilled(page,i){
+    this.orderList = [];
+    this.pageNo = [];
+    this.pageNo[i] = true;
+    this.pagenumber = page;
+    this.FulFilled();
   }
 
   //To open popup
