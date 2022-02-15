@@ -9,15 +9,17 @@ namespace xcart.Services
 {
     public interface IPointService
     {
-        Task<Point> GetPointsByEmployeeId(int id);
+        Task<Point> GetPointsByEmployeeId(long id);
 
         Point AddPoint(long points,long userid);
 
-        Point RemovePoints(int points, int userid);
+        Point RemovePoints(int points, long userid);
 
-        Point RemovePointsonCheckout(int points, int userid);
+        Point RemovePointsonCheckout(int points, long userid);
 
+        Task<int> GetPointLimit();
 
+        Task<int> UpdatePointLimit(PointLimit pointLimit);
 
     }
 }

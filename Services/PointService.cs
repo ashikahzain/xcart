@@ -19,7 +19,7 @@ namespace xcart.Services
         }
 
         #region Get Points By Employee Id
-        public async Task<Point> GetPointsByEmployeeId(int id)
+        public async Task<Point> GetPointsByEmployeeId(long id)
         {
             if (db != null)
             {
@@ -57,7 +57,7 @@ namespace xcart.Services
         #endregion
 
         #region Remove Points
-        public Point RemovePoints(int points, int userId)
+        public Point RemovePoints(int points, long userId)
         {
             if (db != null)
             {
@@ -78,7 +78,7 @@ namespace xcart.Services
         #endregion
 
         #region Reduce Points on Checkout from cart
-        public Point RemovePointsonCheckout(int points, int userid)
+        public Point RemovePointsonCheckout(int points, long userid)
         {
             if (db != null)
             {
@@ -93,8 +93,24 @@ namespace xcart.Services
             }
             return null;
         }
+
+
         #endregion
 
+        #region Get Point limit
+        public async Task<int> GetPointLimit()
+        {
+            var pointLimit = await db.PointLimit.FirstOrDefaultAsync();
+            return pointLimit.Point;
+        }
+
+        public async Task<int> UpdatePointLimit(PointLimit pointLimit)
+        {
+           db.PointLimit.Update(pointLimit);
+          await  db.SaveChangesAsync();
+            return pointLimit.Point;
+        }
+        #endregion
 
     }
 }

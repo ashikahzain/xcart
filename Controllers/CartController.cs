@@ -25,7 +25,7 @@ namespace xcart.Controllers
         #region Get Cart By Id
         [HttpGet]
         [Route("cart/{id}")]
-        public async Task<IActionResult> GetCartById(int id)
+        public async Task<IActionResult> GetCartById(long id)
         {
             var cart = await cartService.GetCartById(id);
             if (cart == null)
@@ -60,11 +60,11 @@ namespace xcart.Controllers
         }
         #endregion
 
-        #region Get all cart by id
+      /*  #region Get all cart by id
         [HttpGet]
         [Route("getcart/{id}")]
 
-        public async Task<IActionResult> GetUsers(int id)
+        public async Task<IActionResult> GetCartByUserId(int id)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace xcart.Controllers
             }
             }
 
-        #endregion
+        #endregion*/
 
         #region increase Item Quantity
         [HttpGet]

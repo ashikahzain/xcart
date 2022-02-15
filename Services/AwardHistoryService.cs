@@ -44,7 +44,7 @@ namespace xcart.Services
         #endregion
 
         #region Get Award History of an Employee using UserId
-        public async Task<List<AwardHistoryViewModel>> GetAwardHistory(int UserId)
+        public async Task<List<AwardHistoryViewModel>> GetAwardHistory(long UserId)
         {
             if (db != null)
             {

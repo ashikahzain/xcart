@@ -26,7 +26,7 @@ namespace xcart.Controllers
 
         #region Get Points By Employee Id
         [HttpGet("{Id}")]
-        public async Task<IActionResult> GetPointsByEmployeeId(int id)
+        public async Task<IActionResult> GetPointsByEmployeeId(long id)
         {
             try
             {
@@ -68,6 +68,49 @@ namespace xcart.Controllers
             }
 
         }
+        #endregion
+
+        #region Get Point Limit
+        [HttpGet]
+        [Route("point-limit")]
+        public async Task<IActionResult> GetPointLimit()
+        {
+            try
+            {
+                var pointlimit = await pointService.GetPointLimit();
+
+                if (pointlimit == 0)
+                {
+                    return NotFound("No Point Limit");
+                }
+                return Ok(pointlimit);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+        #endregion
+
+        #region Get Point Limit
+        [HttpPut]
+        [Route("point-limit")]
+        public async Task<IActionResult> UpdatePointLimit(PointLimit pointLimit)
+        {
+            try
+            {
+                var pointlimit = await pointService.UpdatePointLimit(pointLimit);
+                return Ok(pointlimit);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
         #endregion
     }
 
