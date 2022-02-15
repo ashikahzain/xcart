@@ -28,8 +28,8 @@ namespace xcart.Services
             if (db != null)
             {
                 //retrieve data from Item Model where isactive is true
-               var item = await db.Item.Where(i => i.IsActive == true).ToListAsync();
-              
+                var item = await db.Item.Where(i => i.IsActive == true).ToListAsync();
+                return item;
             }
             return null;
         }
