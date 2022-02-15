@@ -116,11 +116,11 @@ namespace xcart.Controllers
         #region To get orders based on status
         [HttpGet]
         [Route("Status/{id}")]
-        public async Task<IActionResult> GetSpecificOrders(int id)
+        public async Task<IActionResult> GetSpecificOrders(int id, int pagenumber, int pagesize)
         {
             try
             {
-                var order = await orderService.GetSpecificOrders(id);
+                var order = await orderService.GetSpecificOrders(id, pagenumber, pagesize);
                 if (order == null)
                 {
                     return NotFound("No orders found for this status");
