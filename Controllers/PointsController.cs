@@ -15,10 +15,9 @@ namespace xcart.Controllers
     public class PointsController : ControllerBase
     {
         IPointService pointService;
-
         XCartDbContext db;
 
-        //constructor 
+        //Constructor
         public PointsController(IPointService _pointService, XCartDbContext _db)
         {
             pointService = _pointService;
@@ -26,17 +25,25 @@ namespace xcart.Controllers
         }
 
         #region Get Points By Employee Id
-        //[Authorize(Roles ="Admin,Employee")]
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetPointsByEmployeeId(int id)
         {
-            
+            try
+            {
                 var point = await pointService.GetPointsByEmployeeId(id);
+
                 if (point == null)
                 {
-                    return NotFound();
+                    return NotFound("Points of employee not found");
                 }
                 return Ok(point.CurrentPoints);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+
         }
         #endregion
 
@@ -44,13 +51,22 @@ namespace xcart.Controllers
         [HttpGet]
         public  List<Point> GetPointsByEmployeeId()
         {
-
-            var point =  db.Point.ToList();
-            if (point == null)
+            try
             {
-                return null;
+                var point = db.Point.ToList();
+
+                if (point == null)
+                {
+                    return null;
+                }
+                return point;
             }
-            return point;
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
         #endregion
     }
