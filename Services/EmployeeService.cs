@@ -127,7 +127,7 @@ namespace xcart.Services
         #endregion
 
         #region Get Order Details By Employee Id
-        public async Task<List<OrderViewModel>> GetAllOrdersByEmployeeId(int id)
+        public async Task<List<OrderViewModel>> GetAllOrdersByEmployeeId(int id, int pageNumber, int pagesize)
         {
             if (db != null)
             {
@@ -137,7 +137,7 @@ namespace xcart.Services
                              where user.Id==id
                              where order.UserId == user.Id
                              where order.StatusDescriptionId == status.Id
-                             orderby order.DateOfOrder descending
+                             orderby order.Id descending
 
                              select new OrderViewModel
                              {
@@ -148,7 +148,7 @@ namespace xcart.Services
                                  Points = order.Points,
                                  Status = status.Status
                              }
-                    ).ToListAsync();
+                    ).Skip(pagesize * (pageNumber - 1)).Take(pagesize).ToListAsync();
             }
             return null;
         }
@@ -164,5 +164,12 @@ namespace xcart.Services
         }
         #endregion
 
+        #region Get Employee Order Count
+        public async Task<int> GetEmployeeOrderCount(int id)
+        {
+            var count = await db.Order.Where(o => o.UserId == id).CountAsync();
+            return count;
+        }
+        #endregion
     }
 }

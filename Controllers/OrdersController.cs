@@ -43,10 +43,9 @@ namespace xcart.Controllers
                 var orders = await orderService.GetAllOrders(pagenumber, pagesize);
                 if (orders == null)
                 {
-                    return NotFound();
+                    return NotFound("No Orders found in database");
                 }
                 return Ok(orders);
-                //return Ok(db.Order.FirstOrDefault());
             }
             catch
             {
@@ -65,7 +64,7 @@ namespace xcart.Controllers
                 var orders = await orderService.GetTrendingItems();
                 if (orders == null)
                 {
-                    return NotFound();
+                    return NotFound("No trending items found");
                 }
                 return Ok(orders);
             }
@@ -95,15 +94,15 @@ namespace xcart.Controllers
 
         #region To get the orderdetails by order id
         [HttpGet]
-        [Route("GetOrderDetails/{id}")]
-        public async Task<IActionResult> GetOrderDetailsByOrderId(int id)
+        [Route("{id}/order-details")]
+        public async Task<IActionResult> GetOrderDetailsByOrderId(long id)
         {
             try
             {
                 var order = await orderService.GetOrderDetailsByOrderId(id);
                 if (order == null)
                 {
-                    return NotFound();
+                    return NotFound("No items found for that particular order Id");
                 }
                 return Ok(order);
             }
@@ -124,7 +123,7 @@ namespace xcart.Controllers
                 var order = await orderService.GetSpecificOrders(id);
                 if (order == null)
                 {
-                    return NotFound();
+                    return NotFound("No orders found for this status");
                 }
                 return Ok(order);
             }
@@ -207,27 +206,6 @@ namespace xcart.Controllers
         }
         #endregion
 
-        #region To compare quantity while buying
-        [HttpGet]
-        [Route("quantity-check/{id}")]
-        public async Task<IActionResult> GetQuantity(int id)
-        {
-            try
-            {
-                var order = await cartservice.CompareQuantity(id);
-                if (order == null)
-                {
-                    return NotFound();
-                }
-                return Ok(order);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-        }
-        #endregion
-
         #region To add to orderdetails
         [HttpPost]
         [Route("order-details")]
@@ -241,7 +219,7 @@ namespace xcart.Controllers
                     var c = await orderService.AddOrderdetails(order);
                     if (c > 0)
                     {
-                        //decreases the quantity used from Tota quantity in item class
+                        //decreases the quantity used from Total quantity in item class
                         var itemquantity = itemService.DescreaseQuantity(order.ItemId, order.Quantity);
                         return Ok(c);
                     }
@@ -261,11 +239,41 @@ namespace xcart.Controllers
         [Route("order-count")]
         public async Task<IActionResult> GetOrderCount()
         {
-            var count = await orderService.GetOrderCount();
-            return Ok(count);
+            try
+            {
+                var count = await orderService.GetOrderCount();
+                if (count == 0)
+                {
+                    return NotFound("No orders found");
+                }
+                return Ok(count);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
+        #endregion
 
-
+        #region Get status order count
+        [HttpGet]
+        [Route("{id}/order-status-count")]
+        public async Task<IActionResult> GetStatusCount(int id)
+        {
+            try
+            {
+                var count = await orderService.GetStatusCount(id);
+                if (count == 0)
+                {
+                    return NotFound("No orders found for that status");
+                }
+                return Ok(count);
+            }
+            catch
+            {
+                return BadRequest();
+            }  
+        }
         #endregion
 
     }

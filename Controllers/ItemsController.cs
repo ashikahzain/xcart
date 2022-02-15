@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using xcart.Models;
 using xcart.Services;
@@ -31,12 +32,14 @@ namespace xcart.Controllers
         #region get all active items 
         [Authorize]
         [HttpGet]
+        [Route("active-items")]
+
         public async Task<IActionResult> GetAllActiveItems()
         {
             var items = await itemService.GetAllActiveItems();
             if (items == null)
             {
-                return NotFound();
+                return NotFound("No active items");
             }
             return Ok(items);
 
@@ -49,13 +52,19 @@ namespace xcart.Controllers
         [Route("inactive-items")]
         public async Task<IActionResult> GetAllInactiveItems()
         {
-            var items = await itemService.GetAllInactiveItems();
-            if (items == null)
+            try
             {
-                return NotFound();
+                var items = await itemService.GetAllInactiveItems();
+                if (items == null)
+                {
+                    return NotFound("No inactive items");
+                }
+                return Ok(items);
             }
-            return Ok(items);
-
+            catch
+            {
+                return BadRequest();
+            }
         }
         #endregion
 
@@ -75,10 +84,10 @@ namespace xcart.Controllers
                 }
                 catch (Exception)
                 {
-                    return BadRequest();
+                    return BadRequest("Valid Data expected");
                 }
             }
-            return BadRequest();
+            return BadRequest("Valid Data expected");
         }
         #endregion
 
@@ -92,7 +101,7 @@ namespace xcart.Controllers
                 var item = await itemService.GetItemById(id);
                 if (item == null)
                 {
-                    return NotFound();
+                    return NotFound("No item with Id");
                 }
                 return Ok(item);
             }
@@ -112,7 +121,11 @@ namespace xcart.Controllers
         {
             try
             {
-                var item = await itemService.DeleteItem(id);
+                var item = await itemService.DeleteItem(id);  
+                if (item == 0)
+                {
+                    return NotFound("No item with the given Id");
+                }
                 return Ok(item);
             }
             catch (Exception)
@@ -125,7 +138,6 @@ namespace xcart.Controllers
 
         #region Update Item
         [HttpPut]
-        [Route("update-item")]
         public async Task<IActionResult> UpdateItem([FromBody] ItemViewModel item)
         {
             //Check the validation of body
@@ -138,7 +150,7 @@ namespace xcart.Controllers
                 }
                 catch (Exception)
                 {
-                    return BadRequest();
+                    return BadRequest("Valid Data expected");
                 }
             }
             return BadRequest();

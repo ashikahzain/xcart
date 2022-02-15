@@ -10,7 +10,6 @@ namespace xcart.Services
     public interface ICartService
     {
         public Task<List<EmployeeCartViewModel>> GetCartById(int id);
-
         public List<Cart> GetCartByUserId(int id);
         public Task<List<Cart>> GetAllCartById(int id);
         Task<int> AddToCart(Cart cart);
@@ -18,7 +17,6 @@ namespace xcart.Services
         public Task<int> IncreaseQuantity(int id);
         public Task<int> DecreaseQuantity(int id);
         Task<List<Cart>> DeleteCartbyUserId(long id);
-        public Task<EmployeeCartViewModel> CompareQuantity(long userId);
 
     }
 }

@@ -24,7 +24,7 @@ namespace xcart.Controllers
             db = _db;
         }
 
-        //Get All Employees
+        #region Get All employees
         [HttpGet("all")]
         public async Task<IActionResult> GetAllEmployees()
         {
@@ -35,8 +35,9 @@ namespace xcart.Controllers
             }
             return Ok(employees);
         }
+        #endregion
 
-        //get Employee By Id
+        #region Get Employee By ID
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEmployeeById(int id)
         {
@@ -47,8 +48,9 @@ namespace xcart.Controllers
             }
             return Ok(employees);
         }
+        #endregion
 
-        //get points of all employees
+        #region Get Points of all Employees
         [HttpGet]
    
         public async Task<IActionResult> GetEmployeePoints(int pagenumber,int pagesize)
@@ -60,8 +62,9 @@ namespace xcart.Controllers
             }
             return Ok(empPoints);
         }
+        #endregion
 
-        //get employee with most points
+        #region Get Most Rewarded Employee
         [HttpGet]
         [Route("most-awards")]
         public async Task<IActionResult> GetMostAwardedEmployee()
@@ -74,12 +77,13 @@ namespace xcart.Controllers
             return Ok(orders);
 
         }
+        #endregion
 
-        #region Get Employee By Id
+        #region Get Employee Profile By Id
 
         //Get employee by id : GET Method : https://localhost:44396/api/employees/employee/2
         [HttpGet]
-        [Route("employee/{id}")]
+        [Route("employee-profile/{id}")]
 
         public async Task<IActionResult> GetEmployeeProfile(int id)
         {
@@ -92,18 +96,19 @@ namespace xcart.Controllers
         }
         #endregion
 
-        // get order details by employee id
+        #region Get Order Details by employee id
         [HttpGet]
-        [Route("OrderByEmpId/{id}")]
-        public async Task<IActionResult> GetAllOrdersByEmployeeId(int id)
+        [Route("{id}/orders")]
+        public async Task<IActionResult> GetAllOrdersByEmployeeId(int id, int pagenumber, int pagesize)
         {
-            var order = await employeeService.GetAllOrdersByEmployeeId(id);
+            var order = await employeeService.GetAllOrdersByEmployeeId(id, pagenumber,pagesize);
             if (order == null)
             {
                 return NotFound();
             }
             return Ok(order);
         }
+        #endregion
 
         #region Get employee count
 
@@ -116,6 +121,16 @@ namespace xcart.Controllers
         }
 
 
+        #endregion
+
+        #region Get Employee Order Count
+        [HttpGet]
+        [Route("{id}/order-count")]
+        public async Task<IActionResult> GetEmployeeOrderCount(int id)
+        {
+            var count = await employeeService.GetEmployeeOrderCount(id);
+            return Ok(count);
+        }
         #endregion
 
 

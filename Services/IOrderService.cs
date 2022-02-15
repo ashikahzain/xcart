@@ -12,11 +12,12 @@ namespace xcart.Services
         public Task<List<OrderViewModel>> GetAllOrders(int pageNumber, int pagesize);
         public Task<List<Item>> GetTrendingItems();
         public Task ChangeStatus(StatusOrderViewModel order);
-        public Task<List<OrderDetailsViewModel>> GetOrderDetailsByOrderId(int id);
+        public Task<List<OrderDetailsViewModel>> GetOrderDetailsByOrderId(long id);
         public Task<List<OrderViewModel>> GetSpecificOrders(int id);
         public Task<long> AddOrder(Order order);
         public Task<long> AddOrderdetails(OrderDetails orderDetails);
         public Task<int> AddOrderDetails(OrderDetails orderDetails);
         public Task<int> GetOrderCount();
+        public Task<int> GetStatusCount(int id);
     }
 }

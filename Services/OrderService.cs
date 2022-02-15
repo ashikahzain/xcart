@@ -30,6 +30,7 @@ namespace xcart.Services
                               from status in db.StatusDescription
                               where order.UserId == user.Id
                               where order.StatusDescriptionId == status.Id
+                              //&& order.DateOfOrder> DateTime.Now.AddDays(-1)
                               orderby order.Id descending
 
                               select new OrderViewModel
@@ -118,7 +119,7 @@ namespace xcart.Services
         #endregion
         
         #region Get order Details By Order Id
-        public async Task<List<OrderDetailsViewModel>> GetOrderDetailsByOrderId(int id)
+        public async Task<List<OrderDetailsViewModel>> GetOrderDetailsByOrderId(long id)
         {
             if (db != null)
             {
@@ -218,7 +219,19 @@ namespace xcart.Services
         #region Get number of Orders
         public async Task<int> GetOrderCount()
         {
+            //to count the number of orders
             var count = await db.Order.CountAsync();
+            return count;
+        }
+
+
+        #endregion
+
+        #region Get number of status Order
+        public async Task<int> GetStatusCount(int id)
+        {
+            //to count the number of orders based on statusdescription id
+            var count = await db.Order.Where(o => o.StatusDescriptionId == id).CountAsync();
             return count;
         }
         #endregion
