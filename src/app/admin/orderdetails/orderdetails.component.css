@@ -116,7 +116,9 @@ th,td{
 #status{
     background: #72D761;
 }
-
+.opened{
+    color: #fff;
+}
 .pageColor {
     position: relative;
     display: block;

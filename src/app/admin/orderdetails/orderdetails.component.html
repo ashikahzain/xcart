@@ -50,6 +50,7 @@
         <td id="hide" *ngIf="list.DateOfDelivery === null">Not Delivered</td>
         <td id="hide1"><button class="form-control"
             [ngStyle]="{'background-color':list.Status === 'Fulfilled' ? '#72D761' : '#D11A2A' }"
+            [ngClass]="list.Status === 'Fulfilled' ? 'fulfill' : 'opened'"
             (click)="UpdateStatus(list)">{{list.Status}}</button></td>
       </tr>
     </tbody>
@@ -63,19 +64,19 @@
     <div *ngIf=" TotalOrders!=0" class="col-md-6">
       <ul class="pagination justify-content-center">
         <div *ngIf="all">
-          <li *ngFor="let page of pageField;let i=index" class="page-item">
+          <li *ngFor="let page of pageField;let i=index" class="page-item pull-left " style="margin-right: 5px;">
             <a (click)="showOrdersByPageNumberAll(page,i)" [ngClass]="pageNo[i] ? 'pageColor':'page-link'"
               style=" margin-right: 5px;;margin-top: 5px">{{page}}</a>
           </li>
         </div>
         <div *ngIf="opened">
-          <li *ngFor="let page of pageField;let i=index" class="page-item">
+          <li *ngFor="let page of pageField;let i=index" class="page-item pull-left">
             <a (click)="showOrdersByPageNumberOpen(page,i)" [ngClass]="pageNo[i] ? 'pageColor':'page-link'"
               style=" margin-right: 5px;;margin-top: 5px">{{page}}</a>
           </li>
         </div>
         <div *ngIf="fulfilled">
-          <li *ngFor="let page of pageField;let i=index" class="page-item">
+          <li *ngFor="let page of pageField;let i=index" class="page-item pull-left">
             <a (click)="showOrdersByPageNumberFulfilled(page,i)" [ngClass]="pageNo[i] ? 'pageColor':'page-link'"
               style=" margin-right: 5px;;margin-top: 5px">{{page}}</a>
           </li>

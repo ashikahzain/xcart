@@ -25,22 +25,25 @@ export class EmployeeListComponent implements OnInit {
   status: boolean;
   TotalEmployees: number;
   pagenumber: any = 1;
-  pagesize: number = 10;
+  pagesize: number = 2;
   paginationdata: number;
   exactPageList: number;
   pageField: any[];
   employeePointList: AllEmployeePoints[]
   pageNo: boolean[] = [];
+  pointLimit: number;
+  pointlimitForm: FormGroup;
+  display1: string;
 
   constructor(public adminService: AdminService, private router: Router, private formBuilder: FormBuilder,
     public toastr: ToastrService, public paginationService: PaginationService) { }
 
   ngOnInit(): void {
-    
-    this.paginationService.temppage = 0; 
+
+    this.paginationService.temppage = 0;
     this.pageNo[0] = true;
-    this.getEmployeeCount() ;
-    this.paginationService.temppage = 0;  
+    this.getEmployeeCount();
+    this.paginationService.temppage = 0;
     //get all employees points
     this.getAllEmployees()
     //get award list
@@ -60,6 +63,17 @@ export class EmployeeListComponent implements OnInit {
       Status: ['']
     })
 
+    //getPoint limit
+    this.adminService.getPointLimit().subscribe(
+      data => this.pointLimit = data
+    )
+
+    //modal
+    //form for adding  pointlimit
+    this.pointlimitForm = this.formBuilder.group({
+      Id: 1,
+      Point: 0,
+    })
 
   }
 
@@ -141,7 +155,8 @@ export class EmployeeListComponent implements OnInit {
 
   //function to close the modal
   closeModalDialog() {
-    this.display = 'none'; //set none css after close dialog
+    this.display = 'none';
+    this.display1 = 'none' //set none css after close dialog
     this.point = 0;
   }
 
@@ -154,7 +169,7 @@ export class EmployeeListComponent implements OnInit {
   getEmployeeCount() {
     this.adminService.getEmployeeCount().subscribe(data => {
       this.TotalEmployees = data;
-     this.TotalNumberofPages()
+      this.TotalNumberofPages()
     });
 
   }
@@ -181,5 +196,29 @@ export class EmployeeListComponent implements OnInit {
     this.pagenumber = page;
     this.getAllEmployees();
 
+  }
+
+  openPointLimitmodal() {
+    this.display1 = 'block'; //Set block css
+    this.pointlimitForm.controls.Point.setValue(this.pointLimit);
+
+  }
+  updatePointLimit() {
+
+    //if data is invalid
+    if (this.pointlimitForm.invalid) {
+      this.error = "Invalid Input";
+      return;
+    }
+    if (this.pointlimitForm.valid) {
+      console.log(this.pointlimitForm.value);
+      this.adminService.addPointLimit(this.pointlimitForm.value).subscribe(data => console.log(data));
+      this.closeModalDialog();
+      //getPoint limit
+      this.adminService.getPointLimit().subscribe(
+        data => this.pointLimit = data
+      )
+
+    }
   }
 }

@@ -5,10 +5,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Item } from 'src/app/shared/models/item';
 import { Cart } from 'src/app/shared/models/cart';
 import { ToastrService } from 'ngx-toastr';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { Order } from 'src/app/shared/models/order';
 import { OrderDetails } from 'src/app/shared/models/OrderDetails';
+import { AdminService } from 'src/app/shared/services/admin.service';
 
 @Component({
   selector: 'app-home',
@@ -32,27 +33,17 @@ export class HomeComponent implements OnInit {
   availableQuantity: number;
   orderQuantity: any;
   cartList: number[] = [];
-  constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer, private toastr: ToastrService, private formBuilder: FormBuilder, private Cartservice: CartService) { }
+  pointLimit: any;
+  constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer, private toastr: ToastrService, private formBuilder: FormBuilder, private Cartservice: CartService,private adminService:AdminService) { }
 
   ngOnInit(): void {
 
-    //get all items 
-    this.employeeservice.getItems().subscribe(data => {
-      this.itemList = data
-      data.forEach(item => {
-        item.Image = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + item.Image)
-      });
-      this.employeeservice.getCurrentPoints().subscribe(
-        data => {
-          this.currentPoints = data;
-        }
-      );
-    });
 
+    this.getItemsandCurrentpoints();
     //modal
     //creating form controls and validations
     this.addForm = this.formBuilder.group({
-      Quantity: 1,
+      Quantity: [1, [Validators.required, Validators.min(1)]],
     })
 
     //get items already added to the cart
@@ -64,6 +55,25 @@ export class HomeComponent implements OnInit {
         );
       }
     )
+//get point limit
+    this.adminService.getPointLimit().subscribe(
+      data=>this.pointLimit=data
+    )
+
+  }
+
+  getItemsandCurrentpoints() {
+    this.employeeservice.getItems().subscribe(data => {
+      this.itemList = data
+      data.forEach(item => {
+        item.Image = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + item.Image)
+      });
+      this.employeeservice.getCurrentPoints().subscribe(
+        data => {
+          this.currentPoints = data;
+        }
+      );
+    });
 
   }
 
@@ -89,9 +99,10 @@ export class HomeComponent implements OnInit {
     //assigning quantity entered
     this.orderQuantity = this.addForm.controls.Quantity.value
     //comparing total order points to points remaining
-    if (this.orderQuantity * this.points < this.currentPoints) {
+    if(this.pointLimit>=this.orderQuantity*this.points){
+    if (this.orderQuantity * this.points <= this.currentPoints) {
       //comparing total order quantity to remaining quantity
-      if (this.orderQuantity < this.availableQuantity) {
+      if (this.orderQuantity <= this.availableQuantity) {
         if (this.addForm.valid) {
 
           //add to orderdetails table
@@ -106,12 +117,18 @@ export class HomeComponent implements OnInit {
               this.orderdetails.ItemId = this.itemid,
                 this.orderdetails.Quantity = Number(this.addForm.controls.Quantity.value),
                 this.orderdetails.OrderId = this.OrderId
-              this.Cartservice.updateOrderDetails(this.orderdetails).subscribe();
+              console.log(this.orderdetails);
+              this.Cartservice.updateOrderDetails(this.orderdetails).subscribe(
+                (result) => console.log(result)
+              )
+
+
             }
           );
           //closing modal after placing order
           this.closeModalDialog();
-          this.toastr.success('Redeemed ' + this.order.Points + ' Points. Contact HR Department to collect your items.')
+          this.toastr.success('Redeemed ' + this.order.Points + ' Points. Contact HR Department to collect your items.');
+          window.setTimeout(function () { location.reload() }, 1000);
         }
       }
       else {
@@ -121,6 +138,10 @@ export class HomeComponent implements OnInit {
     else {
       this.toastr.error("Not enough points")
     }
+  }
+  else{
+    this.toastr.error("Point Limit Exceeded")
+  }
   }
 
   //Function to open modal
