@@ -144,7 +144,7 @@ namespace xcart.Services
         #endregion
 
         #region Get Specific Orders
-        public async Task<List<OrderViewModel>> GetSpecificOrders(int id)
+        public async Task<List<OrderViewModel>> GetSpecificOrders(int id, int pageNumber, int pagesize)
         {
             if (db != null)
             {
@@ -166,7 +166,7 @@ namespace xcart.Services
                                   UserName = user.Name,
                                   Points = order.Points,
                                   Status = stat.Status
-                              }).ToListAsync();
+                              }).Skip(pagesize * (pageNumber - 1)).Take(pagesize).ToListAsync();
             }
             return null;
         }
