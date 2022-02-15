@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-lg-2" id="buset">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-4 inline change-button"> <button id="decrease"
-                                (click)="onDecrease(cart.CartId)">-</button>
+                                (click)="onDecrease(cart.CartId)" [disabled]="cart.Quantity<2">-</button>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-4 inline" id="qtt">
                             <h6>{{cart?.Quantity}}</h6>

@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Order } from 'src/app/shared/models/order';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/shared/services/admin.service';
 
 @Component({
   selector: 'app-cart',
@@ -22,10 +23,11 @@ export class CartComponent implements OnInit {
   checkQuantity: number = 1;
   ItemList: Item[] = [];
   cartcount: any;
+  pointLimit: any;
 
   constructor(public cartservice: CartService, public employeeservice: EmployeeService,
     private domSanitizer: DomSanitizer, private toastr: ToastrService,
-    private router: Router
+    private router: Router,private adminService:AdminService
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +52,10 @@ export class CartComponent implements OnInit {
     this.employeeservice.getCurrentPoints().subscribe((data) => {
       this.currentPoints = data;
     });
+
+    this.adminService.getPointLimit().subscribe(
+      data=>this.pointLimit=data
+    )
   }
 
   onDecrease(id: number) {
@@ -70,6 +76,7 @@ export class CartComponent implements OnInit {
   }
 
   async onCheckOut() {
+    if(this.totalPoints<=this.pointLimit){
     if (this.totalPoints <= this.currentPoints) {
       this.itemQuantity.forEach((item, key) => {
           var Item=this.ItemList.find(x=>x.Id==key);
@@ -103,5 +110,9 @@ export class CartComponent implements OnInit {
     } else {
       this.toastr.error('Not Enough Points');
     }
+  }
+  else{
+    this.toastr.error("Point limit exceeded");
+  }
   }
 }

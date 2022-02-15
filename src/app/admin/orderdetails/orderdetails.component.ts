@@ -167,6 +167,7 @@ export class OrderdetailsComponent implements OnInit {
 
   //Function to update the status of an order
   UpdateStatus(order: Order) {
+    if(confirm("Are you sure you want to change the status to fulfilled?")){
     if (order.Id != 0 || order.Id != null) {
       this.adminService.ChangeStatus(order).subscribe(
         data => {
@@ -174,5 +175,6 @@ export class OrderdetailsComponent implements OnInit {
           window.location.reload();
         });
     }
+  }
   }
 }

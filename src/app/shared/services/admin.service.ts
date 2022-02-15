@@ -8,7 +8,7 @@ import { OrderDetails } from '../models/OrderDetails'
 import { User } from '../models/user';
 import { AllEmployeePoints } from '../models/AllEmployeePoint';
 import { AwardHistory } from '../models/AwardHistory';
-
+import { PointLimit } from '../models/pointlimit';
 import { Award } from '../models/award';
 @Injectable({
   providedIn: 'root'
@@ -108,11 +108,11 @@ export class AdminService {
   }
 
   // Get Specified Order
-  getSpecifiedOrder(statusId: number,pagenumber: number, pagesize: number): Observable<any> {
-    return this.httpClient.get(environment.apiUrl + '/api/orders/status/' + statusId+'?pagenumber=' + pagenumber + '&pagesize=' + pagesize);
+  getSpecifiedOrder(statusId: number, pagenumber: number, pagesize: number): Observable<any> {
+    return this.httpClient.get(environment.apiUrl + '/api/orders/status/' + statusId + '?pagenumber=' + pagenumber + '&pagesize=' + pagesize);
   }
 
-//get total number of employees
+  //get total number of employees
   getEmployeeCount(): Observable<any> {
     return this.httpClient.get(environment.apiUrl + "/api/employees/employee-count");
   }
@@ -121,9 +121,19 @@ export class AdminService {
   getOrderCount(): Observable<any> {
     return this.httpClient.get(environment.apiUrl + "/api/orders/order-count");
   }
-  
+
   //number of orders in open and fulfilled
   getStatusOrderCount(id: number): Observable<any> {
-    return this.httpClient.get(environment.apiUrl + "/api/orders/" + id+ '/order-status-count');
+    return this.httpClient.get(environment.apiUrl + "/api/orders/" + id + '/order-status-count');
+  }
+
+  //Point Limit
+  getPointLimit(): Observable<any> {
+    return this.httpClient.get(environment.apiUrl + "/api/points/point-limit");
+  }
+
+  //add point limit
+  addPointLimit(pointlimit: PointLimit): Observable<any> {
+    return this.httpClient.put(environment.apiUrl + "/api/points/point-limit", pointlimit);
   }
 }
