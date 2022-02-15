@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./award.component.css']
 })
 export class AwardComponent implements OnInit {
-
+  page: number = 1;
   constructor(public adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
@@ -22,7 +22,7 @@ export class AwardComponent implements OnInit {
   }
 
   deleteAward(awardId: number) {
-    if (confirm("This Item will be deleted from the catalogue"))
+    if (confirm("This Item will be deleted from the awards"))
     this.adminService.deleteAward(awardId).subscribe(
       (result) => {
         window.location.reload()

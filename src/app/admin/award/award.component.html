@@ -1,8 +1,15 @@
 <body>
     <app-navbar></app-navbar>
+    <div id="content">
     <div class="container">
-        <a href="/admin/home" class="btn btn-warning"><i class="fa fa-home fa-lg menu-home"></i>Home</a>
-        <a href="/admin/award/form" class="btn btn-award">Add Award +</a>
+      <div class="home-button" routerLink='/admin/home'>
+        <i class="fa fa-home"></i>
+        <h4>HOME</h4>
+      </div>
+      <div class="point-button" routerLink='/admin/award/form'>
+        <h4>Add Award +</h4>
+      </div>
+
         <h3>Manage Awards</h3>
         <table class="table">
             <thead>
@@ -15,15 +22,20 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let award of adminService.awardList">
+              <tr *ngFor="let award of adminService.awardList| paginate: {itemsPerPage:7, currentPage: page}">
                 <th scope="row">{{award.Id}}</th>
                 <td>{{award.Name}}</td>
                 <td>{{award.Points}}</td>
-                <td><button (click)="editAward(award.Id)" class="btn btn-warning btn-sm">Edit</button></td>
-                <td><button (click)="deleteAward(award.Id)" class="btn btn-danger btn-sm">Delete</button></td>
+                <td><button (click)="editAward(award.Id)" class="btn btn-warning">Edit</button></td>
+                <td><button (click)="deleteAward(award.Id)" class="btn btn-danger">Delete</button></td>
               </tr>
             </tbody>
           </table>
+
+          <div class="footer" >
+            <!--Pagination should be added here-->
+            <pagination-controls (pageChange)="page=($event)"></pagination-controls>
+        </div>
     </div>
-    
+  </div>
 </body>
