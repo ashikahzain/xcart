@@ -168,26 +168,6 @@ namespace xcart.Services
             return null;
         }
 
-        public async Task<EmployeeCartViewModel> CompareQuantity(long userId)
-        {
-            var c = await (from cart in db.Cart
-                           from item in db.Item
-                           where cart.UserId == userId && item.Id == cart.ItemId
-                           select new EmployeeCartViewModel
-                           {
-                               ItemName =item.Name,
-                               TotalQuantity = item.Quantity,
-                               Quantity =cart.Quantity
-                           }
-                              ).ToListAsync();
-            foreach(EmployeeCartViewModel e in c)
-            {
-                if (e.Quantity > e.TotalQuantity)
-                {
-                    return e;
-                }      
-            }
-            return null;
-        }
+       
     }
 }

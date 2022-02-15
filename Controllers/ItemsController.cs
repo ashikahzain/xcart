@@ -31,6 +31,8 @@ namespace xcart.Controllers
         #region get all active items 
         [Authorize]
         [HttpGet]
+        [Route("active-items")]
+
         public async Task<IActionResult> GetAllActiveItems()
         {
             var items = await itemService.GetAllActiveItems();
@@ -125,7 +127,6 @@ namespace xcart.Controllers
 
         #region Update Item
         [HttpPut]
-        [Route("update-item")]
         public async Task<IActionResult> UpdateItem([FromBody] ItemViewModel item)
         {
             //Check the validation of body
