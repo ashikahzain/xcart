@@ -19,19 +19,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.employeeservice.getEmployeeProfile().subscribe(
       data => {
-        console.log("Before assigning");
-        console.log(this.EmployeeById);
-        console.log(data);
-        /*
-        data.forEach(item =>{
-          item.Image = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' +item.Image);
-        })
-        */
-        //data.Image = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' +data.Image);
-        this.image=data.Image;
+        this.image = data.Image;
         this.EmployeeById = data;
-        console.log("After assigning");
-        console.log(this.EmployeeById);
       });
   }
 
