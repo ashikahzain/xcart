@@ -2,31 +2,24 @@
 
 <div id="content">
    <div class="profile">
-      
-      <div class="profile-content" *ngFor="let item of EmployeeById">   <!--*ngFor="let item of EmployeeById"-->
-          <!--<div class="image">
-           <img [src]="item.Image">
-            <br>
-            
-         </div>-->
+      <div class="profile-content" *ngFor="let item of EmployeeById">
          <br>
          <img src="{{item.Image}}">
          <br>
-         
          <div class="profile-data">
             <b id="user">USER PROFILE</b>
-         <br>
-         <br>
-         <b>Name</b> : {{item.Name}}
-         <br>
-         <b>Points Remaining</b> : {{item.CurrentPoints}}
-         <br>
-         <b>Gender</b> : {{item.Gender}}
-         <br>
-         <b>Job Title</b> : {{item.JobTitleName}}
-         <br>
-         <b>Department</b> : {{item.DepartmentName}}
-      </div>
+            <br>
+            <br>
+            <b>Name</b> : {{item.Name}}
+            <br>
+            <b>Points Remaining</b> : {{item.CurrentPoints}}
+            <br>
+            <b>Gender</b> : {{item.Gender}}
+            <br>
+            <b>Job Title</b> : {{item.JobTitleName}}
+            <br>
+            <b>Department</b> : {{item.DepartmentName}}
+         </div>
       </div>
    </div>
 </div>
