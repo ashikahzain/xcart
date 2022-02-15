@@ -52,7 +52,7 @@ export class AdminService {
   }
   //get points of all employees
   getAllEmployeesPoints(pagenumber: number, pagesize: number): Observable<any> {
-    return this.httpClient.get(environment.apiUrl + "/api/employees/?pagenumber=" + pagenumber + '&pagesize=' + pagesize);
+    return this.httpClient.get(environment.apiUrl + "/api/employees?pagenumber=" + pagenumber + '&pagesize=' + pagesize);
   }
   //get award history of an employee using user id
   getAwardHistory(userId: number): Observable<any> {
