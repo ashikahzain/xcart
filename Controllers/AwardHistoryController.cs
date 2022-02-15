@@ -101,7 +101,7 @@ namespace xcart.Controllers
 
         #region Get award history of an employee
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAllAwardHistory(int id)
+        public async Task<IActionResult> GetAllAwardHistory(long id)
         {
             try
             {

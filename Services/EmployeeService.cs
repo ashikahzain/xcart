@@ -18,7 +18,7 @@ namespace xcart.Services
         }
 
         #region Get employee by UserId
-        public async Task<User> GetEmployeeById(int id)
+        public async Task<User> GetEmployeeById(long id)
         {
             var emp = await db.User.FirstOrDefaultAsync(emp => emp.Id == id);
             if (emp == null)
@@ -87,7 +87,7 @@ namespace xcart.Services
         #endregion
 
         #region Get Employee Profile
-        public async Task<List<EmployeeProfileViewModel>> GetEmployeeProfile(int id)
+        public async Task<List<EmployeeProfileViewModel>> GetEmployeeProfile(long id)
         {
             if (db != null)
             {
@@ -127,7 +127,7 @@ namespace xcart.Services
         #endregion
 
         #region Get Order Details By Employee Id
-        public async Task<List<OrderViewModel>> GetAllOrdersByEmployeeId(int id, int pageNumber, int pagesize)
+        public async Task<List<OrderViewModel>> GetAllOrdersByEmployeeId(long id, int pageNumber, int pagesize)
         {
             if (db != null)
             {

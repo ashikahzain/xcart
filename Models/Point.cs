@@ -16,7 +16,7 @@ namespace xcart.Models
         public long Id { get; set; }
 
         [ForeignKey("UserId")]
-        public int UserId { get; set; }
+        public long UserId { get; set; }
         public virtual User User { get; set; }
 
         [Column("TotalPoints")]

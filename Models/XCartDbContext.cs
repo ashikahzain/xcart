@@ -29,6 +29,7 @@ namespace xcart.Models
         public DbSet<Item> Item { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Cart> Cart { get; set; }
+        public DbSet<PointLimit> PointLimit { get; set; }
 
 
     }

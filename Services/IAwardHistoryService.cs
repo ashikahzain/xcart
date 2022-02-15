@@ -9,7 +9,7 @@ namespace xcart.Services
 {
     public interface IAwardHistoryService
     {
-        Task<List<AwardHistoryViewModel>> GetAwardHistory(int UserId);
+        Task<List<AwardHistoryViewModel>> GetAwardHistory(long UserId);
 
         Task<List<AwardHistory>> GetAllAwardHistory();
 

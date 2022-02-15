@@ -39,7 +39,7 @@ namespace xcart.Controllers
 
         #region Get Employee By ID
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetEmployeeById(int id)
+        public async Task<IActionResult> GetEmployeeById(long id)
         {
             var employees = await employeeService.GetEmployeeById(id);
             if (employees == null)
@@ -85,7 +85,7 @@ namespace xcart.Controllers
         [HttpGet]
         [Route("employee-profile/{id}")]
 
-        public async Task<IActionResult> GetEmployeeProfile(int id)
+        public async Task<IActionResult> GetEmployeeProfile(long id)
         {
             var employee = await employeeService.GetEmployeeProfile(id);
             if (employee == null)
@@ -99,7 +99,7 @@ namespace xcart.Controllers
         #region Get Order Details by employee id
         [HttpGet]
         [Route("{id}/orders")]
-        public async Task<IActionResult> GetAllOrdersByEmployeeId(int id, int pagenumber, int pagesize)
+        public async Task<IActionResult> GetAllOrdersByEmployeeId(long id, int pagenumber, int pagesize)
         {
             var order = await employeeService.GetAllOrdersByEmployeeId(id, pagenumber,pagesize);
             if (order == null)

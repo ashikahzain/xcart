@@ -7,23 +7,17 @@ using System.Threading.Tasks;
 
 namespace xcart.Models
 {
-    public class UserRole
+    public class PointLimit
     {
         [Column("Id")]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
-       
-        [ForeignKey("UserId")]
-        public long UserId { get; set; }
-        public virtual User User { get; set; }
-      
+        [Column("Point")]
+        [Required]
+        public int Point { get; set; }
 
-        [ForeignKey("RoleId")]
-        public int RoleId { get; set; }
-        public virtual Role Role { get; set; }
-        
     }
 }
