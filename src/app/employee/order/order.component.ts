@@ -12,6 +12,7 @@ import { EmployeeService } from 'src/app/shared/services/employee.service';
 })
 export class OrderComponent implements OnInit {
 
+  //declaring variables
   filter: string;
   closeResult: string;
   UserId: number;
@@ -32,27 +33,25 @@ export class OrderComponent implements OnInit {
     this.pageNo[0] = true;
     this.UserId = Number(sessionStorage.getItem('userid'));
     this.GetEmployeeOrder();
-
-
-
   }
 
+  //Get all the order of a particular User
   GetEmployeeOrder() {
-    this.employeeService.getOrderByEmployeeId(this.UserId,this.pagenumber, this.pagesize).subscribe(
+    this.employeeService.getOrderByEmployeeId(this.UserId, this.pagenumber, this.pagesize).subscribe(
       data => {
         console.log(data);
         this.orderList = data;
         console.log(data);
         this.GetEmployeeOrderCount();
-      }
-    );
+      });
   }
 
+  //Get the count of orders of a user
   GetEmployeeOrderCount() {
     this.employeeService.getEmployeeOrderCount(this.UserId).subscribe(data => {
       this.TotalOrders = data;
       this.TotalNumberofPages();
-    })
+    });
   }
 
   TotalNumberofPages() {
@@ -70,16 +69,15 @@ export class OrderComponent implements OnInit {
     this.pageField = this.paginationService.pageField;
   }
 
-
   showOrdersByPageNumber(page, i) {
     this.orderList = [];
     this.pageNo = [];
     this.pageNo[i] = true;
     this.pagenumber = page;
     this.GetEmployeeOrder();
-
   }
 
+  //to open the poup
   open(content, orderId: number) {
     this.modalService.open(content,
       { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -88,15 +86,14 @@ export class OrderComponent implements OnInit {
         this.closeResult =
           `Dismissed ${this.getDismissReason(reason)}`;
       });
-
     console.log(orderId);
     if (orderId != 0 || orderId != null) {
       console.log("Hi");
       this.employeeService.getOrderDetailsByOrderId(orderId);
     }
-
   }
 
+  //to close the popup
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -106,6 +103,4 @@ export class OrderComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
-
 }

@@ -26,6 +26,7 @@ export class EmployeeService {
     return this.httpClient.get(environment.apiUrl + '/api/items/active-items');
   }
 
+  //get current points of logged in user
   getCurrentPoints():Observable<any>{
     this.id = parseInt(sessionStorage.getItem('userid'));
     return this.httpClient.get(environment.apiUrl+"/api/points/"+this.id);
@@ -39,25 +40,28 @@ export class EmployeeService {
   //getting employee profile details
   getEmployeeProfile():Observable<any>{
     this.id = parseInt(sessionStorage.getItem('userid'));
-    return this.httpClient.get(environment.apiUrl+"/api/employees/employees/"+this.id);
+    return this.httpClient.get(environment.apiUrl+"/api/employees/employee-profile/"+this.id);
   }
 
-  //get order details by employee id
+  //get order list by employee id
   getOrderByEmployeeId(id:number, pagenumber:number,pagesize:number): Observable<any>{
-    return this.httpClient.get(environment.apiUrl + '/api/employees/OrderByEmpId/'+id + '?pagenumber='+pagenumber+'&pagesize='+pagesize);
+    return this.httpClient.get(environment.apiUrl + '/api/employees/'+id +'/orders/?pagenumber='+pagenumber+'&pagesize='+pagesize);
   }
 
+  //get order details by order id
   getOrderDetailsByOrderId(orderId: number) {
-    this.httpClient.get(environment.apiUrl + '/api/orders/GetOrderDetails/' + orderId).toPromise().then(response =>
+    this.httpClient.get(environment.apiUrl + '/api/orders/' + orderId +'/order-details').toPromise().then(response =>
       this.orderDetails = response as OrderDetails[]);
   }
 
+  //add item to cart
   addtoCart(cart: Cart){
     return this.httpClient.post(environment.apiUrl + '/api/cart',cart);
   }
 
+  //number of orders by an employee
   getEmployeeOrderCount(id:number):Observable<any>{
-    return this.httpClient.get(environment.apiUrl +"/api/employees/employee-order-count/" +id);
+    return this.httpClient.get(environment.apiUrl +"/api/employees/" +id+'/order-count');
   }
  
 }

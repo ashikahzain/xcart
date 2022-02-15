@@ -37,21 +37,23 @@ export class HomeComponent implements OnInit {
     this.pageNo[0] = true;
     this.paginationService.temppage = 0;
     this.GetAllOrders();
+
     //the most rewarded employee
     this.employeeservice.getMostAwardedEmployee().subscribe(data => {
       this.employee = data;
     });
+
     //get top 2 trending items
     this.adminService.getTrendingItems().subscribe(data => {
       this.trendingItemList = data
       data.forEach(item => {
         item.Image = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + item.Image)
-        console.log(item.Image);
       });
     }
     );
   }
-//get all orders by pagination
+
+  //get all orders by pagination
   GetAllOrders() {
     this.adminService.getOrder(this.pagenumber, this.pagesize).subscribe(
       data => {
@@ -60,14 +62,15 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-//total number of orders
+  //total number of orders
   GetOrderCount() {
     this.adminService.getOrderCount().subscribe(data => {
       this.TotalOrders = data;
       this.TotalNumberofPages()
     });
   }
-//number of pages
+  
+  //number of pages
   TotalNumberofPages() {
     this.paginationdata = (this.TotalOrders / this.pagesize);
     let tempPageData = this.paginationdata.toFixed();
@@ -83,7 +86,7 @@ export class HomeComponent implements OnInit {
     this.pageField = this.paginationService.pageField;
   }
 
-//pagination function 
+  //pagination function 
   showOrdersByPageNumber(page, i) {
     this.orderList = [];
     this.pageNo = [];

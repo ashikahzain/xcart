@@ -1,13 +1,19 @@
 <app-sidemenu></app-sidemenu>
 
 <div class="container" id="content">
+
+    <!--Heading-->
     <div class="list-heading">
         <h4>Order History</h4>
     </div>
+
+    <!--Search-->
     <div class="search">
         <input id="navsearch" type="text" placeholder="Search" ngDefaultControl [(ngModel)]="filter">
         <i class="fa fa-search" id="search"></i>
     </div>
+
+    <!--Order List-->
     <table class="table" id="table">
         <thead>
             <tr>
@@ -35,21 +41,21 @@
 <!-- Code by pagination -->
 <div class="container mw-100">
     <div class="row">
-      <div class="col-md-3"> </div>
-      <div *ngIf=" TotalOrders!=0" class="col-md-6">
-        <ul class="pagination justify-content-center">
-          <li *ngFor="let page of pageField;let i=index" class="page-item">
-            <a (click)="showOrdersByPageNumber(page,i)" [ngClass]="pageNo[i] ? 'pageColor':'page-link'"
-              style=" margin-right: 5px;;margin-top: 5px">{{page}}</a>
-          </li>
-        </ul>
-  
-        <div style="text-align: center;">
-          Page {{pagenumber}} of Total page {{paginationService.exactPageList}}
+        <div class="col-md-3"> </div>
+        <div *ngIf=" TotalOrders!=0" class="col-md-6">
+            <ul class="pagination justify-content-center">
+                <li *ngFor="let page of pageField;let i=index" class="page-item">
+                    <a (click)="showOrdersByPageNumber(page,i)" [ngClass]="pageNo[i] ? 'pageColor':'page-link'"
+                        style=" margin-right: 5px;;margin-top: 5px">{{page}}</a>
+                </li>
+            </ul>
+
+            <div style="text-align: center;">
+                Page {{pagenumber}} of Total page {{paginationService.exactPageList}}
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
 <!--PopUp-->
 <ng-template #content let-modal>

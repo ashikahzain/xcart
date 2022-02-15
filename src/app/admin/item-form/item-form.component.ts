@@ -18,8 +18,8 @@ export class ItemFormComponent implements OnInit {
   Id: number;
   base64DefaultURL: string;
   imgUrl: string;
-  editingmode: boolean=false;
-  constructor(private formbuilder: FormBuilder, public adminService: AdminService, private route: ActivatedRoute, private domSanitizer: DomSanitizer, private router: Router,private toastr:ToastrService) { }
+  editingmode: boolean = false;
+  constructor(private formbuilder: FormBuilder, public adminService: AdminService, private route: ActivatedRoute, private domSanitizer: DomSanitizer, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -33,11 +33,11 @@ export class ItemFormComponent implements OnInit {
       IsActive: true
     }
     )
+
     //get Id from the route
     this.Id = this.route.snapshot.params['itemId'];
-    console.log(this.Id)
     if (this.Id != null) {
-      this.editingmode=true;
+      this.editingmode = true;
       //populate form on init if id is not null value(for editing situations)
       this.populateItem();
     }
@@ -51,7 +51,6 @@ export class ItemFormComponent implements OnInit {
 
   //function to change the file added to a base64 url
   onFileSelected(event) {
-    
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
@@ -68,6 +67,7 @@ export class ItemFormComponent implements OnInit {
       };
     }
   }
+
   //on submit function
   onSubmit() {
     if (this.Id != null) {
@@ -76,18 +76,17 @@ export class ItemFormComponent implements OnInit {
     }
     else {
       this.addItem();
+      this.toastr.success('Item added successfully');
     }
-    this.router.navigate(['admin/catalogue'])
-
+    this.router.navigate(['/admin/catalogue']);
   }
+
   //add item
   addItem() {
-    console.log(this.itemForm.value);
-    this.adminService.addItem(this.itemForm.value).subscribe(
-      (result) => console.log(result)
-    );
+    this.adminService.addItem(this.itemForm.value).subscribe();
   }
-  //PUPULATE ITEM TO FORM 
+
+  //POPULATE ITEM TO FORM 
   populateItem() {
     //get item by id
     this.adminService.getItembyId(this.Id).subscribe(
@@ -105,19 +104,13 @@ export class ItemFormComponent implements OnInit {
         });
       },
       error => console.log(error)
-
     );
   }
 
 
-  //UPDATING ITEM 
+  //Updating Item details
   UpdateItem() {
-    console.log(this.itemForm.value);
-    this.adminService.updateItem(this.itemForm.value).subscribe(
-      (result) => {
-        console.log(result);
-      }
-    )
+    this.adminService.updateItem(this.itemForm.value).subscribe()
   }
 
 

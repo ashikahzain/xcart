@@ -5,7 +5,6 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Order } from 'src/app/shared/models/order';
 import { PaginationService } from 'src/app/shared/services/pagination.service';
 
-
 @Component({
   selector: 'app-orderdetails',
   templateUrl: './orderdetails.component.html',
@@ -54,8 +53,7 @@ export class OrderdetailsComponent implements OnInit {
       data => {
         this.orderList = data;
         this.GetOrderCount();
-      }
-    );
+      });
   }
 
   //Get all orders whose order status is Open
@@ -81,8 +79,7 @@ export class OrderdetailsComponent implements OnInit {
       data => {
         this.orderList = data;
         this.GetOrderStatusCount(2);
-      }
-    );
+      });
   }
 
   //To get the total count of orders
@@ -98,7 +95,7 @@ export class OrderdetailsComponent implements OnInit {
     this.adminService.getStatusOrderCount(id).subscribe(data => {
       this.TotalOrders = data;
       this.TotalNumberofPages();
-    })
+    });
   }
 
   TotalNumberofPages() {
@@ -123,10 +120,9 @@ export class OrderdetailsComponent implements OnInit {
     this.pageNo[i] = true;
     this.pagenumber = page;
     this.All();
-
   }
 
-  //For popup
+  //To open popup
   open(content, orderId: number) {
     this.modalService.open(content,
       { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -140,9 +136,9 @@ export class OrderdetailsComponent implements OnInit {
       console.log("Hi");
       this.adminService.getOrderDetailsByOrderId(orderId);
     }
-
   }
 
+  //to close the popup
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -160,10 +156,7 @@ export class OrderdetailsComponent implements OnInit {
         data => {
           console.log(data);
           window.location.reload();
-
-        }
-      )
+        });
     }
-
   }
 }

@@ -72,14 +72,16 @@ export class CartComponent implements OnInit {
   async onCheckOut() {
     if (this.totalPoints <= this.currentPoints) {
       this.itemQuantity.forEach((item, key) => {
-        var Item = this.ItemList.find((x) => x.Id == key);
-        if (Item.Quantity < item) {
-          this.checkQuantity = 0;
-          this.toastr.error(Item.Name + ' only ' + Item.Quantity + ' left');
-        }
-      });
+          var Item=this.ItemList.find(x=>x.Id==key);
+          if (Item.Quantity < item) {
+            this.checkQuantity = 0;
+            this.toastr.error(Item.Name + " only " + Item.Quantity + " left");
+          }
+      },
+      )
 
-      this.order.DateOfDelivery = null,
+      
+        this.order.DateOfDelivery = null,
         this.order.DateOfOrder = new Date().toLocaleDateString(),
         this.order.Points = this.totalPoints,
         this.order.StatusDescriptionId = 1,
