@@ -43,7 +43,7 @@ namespace xcart.Controllers
                 var orders = await orderService.GetAllOrders(pagenumber, pagesize);
                 if (orders == null)
                 {
-                    return NotFound();
+                    return NotFound("No Orders found in database");
                 }
                 return Ok(orders);
             }
@@ -64,7 +64,7 @@ namespace xcart.Controllers
                 var orders = await orderService.GetTrendingItems();
                 if (orders == null)
                 {
-                    return NotFound();
+                    return NotFound("No trending items found");
                 }
                 return Ok(orders);
             }
@@ -102,7 +102,7 @@ namespace xcart.Controllers
                 var order = await orderService.GetOrderDetailsByOrderId(id);
                 if (order == null)
                 {
-                    return NotFound();
+                    return NotFound("No items found for that particular order Id");
                 }
                 return Ok(order);
             }
@@ -123,7 +123,7 @@ namespace xcart.Controllers
                 var order = await orderService.GetSpecificOrders(id);
                 if (order == null)
                 {
-                    return NotFound();
+                    return NotFound("No orders found for this status");
                 }
                 return Ok(order);
             }
@@ -206,7 +206,6 @@ namespace xcart.Controllers
         }
         #endregion
 
-
         #region To add to orderdetails
         [HttpPost]
         [Route("order-details")]
@@ -243,16 +242,17 @@ namespace xcart.Controllers
             try
             {
                 var count = await orderService.GetOrderCount();
+                if (count == 0)
+                {
+                    return NotFound("No orders found");
+                }
                 return Ok(count);
             }
             catch
             {
                 return BadRequest();
             }
-            
         }
-
-
         #endregion
 
         #region Get status order count
@@ -263,6 +263,10 @@ namespace xcart.Controllers
             try
             {
                 var count = await orderService.GetStatusCount(id);
+                if (count == 0)
+                {
+                    return NotFound("No orders found for that status");
+                }
                 return Ok(count);
             }
             catch
