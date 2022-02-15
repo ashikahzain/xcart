@@ -94,7 +94,7 @@ namespace xcart.Controllers
 
         #region To get the orderdetails by order id
         [HttpGet]
-        [Route("GetOrderDetails/{id}")]
+        [Route("{id}/order-details")]
         public async Task<IActionResult> GetOrderDetailsByOrderId(long id)
         {
             try
@@ -206,26 +206,6 @@ namespace xcart.Controllers
         }
         #endregion
 
-        #region To compare quantity while buying
-        [HttpGet]
-        [Route("quantity-check/{id}")]
-        public async Task<IActionResult> GetQuantity(int id)
-        {
-            try
-            {
-                var order = await cartservice.CompareQuantity(id);
-                if (order == null)
-                {
-                    return NotFound();
-                }
-                return Ok(order);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-        }
-        #endregion
 
         #region To add to orderdetails
         [HttpPost]
@@ -240,7 +220,7 @@ namespace xcart.Controllers
                     var c = await orderService.AddOrderdetails(order);
                     if (c > 0)
                     {
-                        //decreases the quantity used from Tota quantity in item class
+                        //decreases the quantity used from Total quantity in item class
                         var itemquantity = itemService.DescreaseQuantity(order.ItemId, order.Quantity);
                         return Ok(c);
                     }
@@ -277,7 +257,7 @@ namespace xcart.Controllers
 
         #region Get status order count
         [HttpGet]
-        [Route("order-status-count/{id}")]
+        [Route("{id}/order-status-count")]
         public async Task<IActionResult> GetStatusCount(int id)
         {
             try

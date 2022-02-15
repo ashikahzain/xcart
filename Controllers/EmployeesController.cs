@@ -79,7 +79,7 @@ namespace xcart.Controllers
 
         //Get employee by id : GET Method : https://localhost:44396/api/employees/employee/2
         [HttpGet]
-        [Route("employee/{id}")]
+        [Route("employee-profile/{id}")]
 
         public async Task<IActionResult> GetEmployeeProfile(int id)
         {
@@ -94,7 +94,7 @@ namespace xcart.Controllers
 
         // get order details by employee id
         [HttpGet]
-        [Route("OrderByEmpId/{id}")]
+        [Route("{id}/orders")]
         public async Task<IActionResult> GetAllOrdersByEmployeeId(int id, int pagenumber, int pagesize)
         {
             var order = await employeeService.GetAllOrdersByEmployeeId(id, pagenumber,pagesize);
@@ -120,7 +120,7 @@ namespace xcart.Controllers
 
         #region Get Employee Order Count
         [HttpGet]
-        [Route("employee-order-count/{id}")]
+        [Route("{id}/order-count")]
         public async Task<IActionResult> GetEmployeeOrderCount(int id)
         {
             var count = await employeeService.GetEmployeeOrderCount(id);
