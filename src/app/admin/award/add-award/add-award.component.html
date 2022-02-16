@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="submit-button">
-                <button type="submit">{{buttonTitle}}</button>
+                <button type="submit" [disabled]="!awardForm.valid">{{buttonTitle}}</button>
                 <button type="submit" id="cancel">Cancel</button>
             </div>
         </form>

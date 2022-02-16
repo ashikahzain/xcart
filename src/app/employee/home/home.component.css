@@ -43,6 +43,28 @@
 .dropdown .dropdown-menu .dropdown-item {
   color: white;
 }
+.point-limit {
+  position: absolute;
+  width: 160px;
+  height: 63px;
+  left: 500px;
+  top: 71px;
+  background: #d7c561;
+  border-radius: 10px;
+}
+.point-limit p{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #fefbf0;
+  padding-left: 20px;
+  padding-top: 5px;
+}
 .user-points {
   position: absolute;
   width: 231px;

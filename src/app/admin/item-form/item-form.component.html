@@ -64,10 +64,10 @@
             </div>
 
 
-            <div class="submit-button">
-                <button type="submit">Submit</button>
-                <button id="cancel" routerLink='/admin/catalogue'>Cancel</button>
-            </div>
+        <div class="submit-button">
+            <button type="submit"  [disabled]="!itemForm.valid">Submit</button>
+            <button id="cancel" routerLink='/admin/catalogue'>Cancel</button>
+        </div>
 
         </form>
     </div>
