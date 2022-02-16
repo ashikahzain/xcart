@@ -5,12 +5,7 @@ h3 {
     padding-top: 20px;
     padding-bottom: 40px;
 }
-.btn-award {
-    margin-left: 80%;
-  
-    
-    width: 20%;
-}
+
 #content {
     width: 100%;
     margin: 4% 0% 0% 0%;
@@ -46,11 +41,15 @@ h3 {
     text-align: center;
     color: #2d415d;
 }
+
+#back{
+    margin-left: 70%;
+}
 .point-button {
     display: inline-flex;
     width: 200px;
     height: 50px;
-    margin-left: 55%;
+    margin-left: 45%;
     background-color: #72d761;
     border-color: #72d761;
     border-radius: 5px;
@@ -70,6 +69,9 @@ h3 {
     display: flex;
     align-items: center;
     text-align: center;
+}
+.manage-award{
+    display: flex;
 }
 
 th {

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/shared/models/user';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,11 @@ export class AuthService {
     console.log('Attempt authenticate and authorize :');
     console.log(user);
     return this.httpClient.post(environment.apiUrl + '/api/login', user);
+  }
+
+  //get all roles api
+  getallRoles():Observable<any>{
+    return this.httpClient.get(environment.apiUrl + '/api/login/roles');
   }
   // logout
   public logout(): void {
