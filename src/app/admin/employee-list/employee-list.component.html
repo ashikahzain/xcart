@@ -2,78 +2,77 @@
   <app-navbar></app-navbar>
 
   <br>
-<div id="content">
-  <div class="home-button" routerLink='/admin/home'>
-    <i class="fa fa-home"></i>
-    <h4>HOME</h4>
-  </div>
-  <div class="point-button" (click)="openPointLimitmodal()">
-    <h4>Current Point Limit : {{pointLimit}}</h4>
-  </div>
-  <div class="Manage-awards" routerLink='/admin/award'>
-    <i class="fa fa-tasks"></i>
-    <h4>Manage Awards</h4>
-  </div>
+  <div id="content">
+    <div class="home-button" routerLink='/admin/home'>
+      <i class="fa fa-home"></i>
+      <h4>HOME</h4>
+    </div>
+    <div class="point-button" (click)="openPointLimitmodal()">
+      <h4>Current Point Limit : {{pointLimit}}</h4>
+    </div>
+    <div class="Manage-awards" routerLink='/admin/award'>
+      <i class="fa fa-tasks"></i>
+      <h4>Manage Awards</h4>
+    </div>
 
-</div>
-  <div class="container">
-    <div class="EmployeeList">
-      <div class="heading">
-        <h4>Employee List</h4>
+    <div class="container">
+      <div class="EmployeeList">
+        <div class="heading">
+          <h4>Employee List</h4>
+        </div>
+        <div class="search">
+          <input id="navsearch" type="text" ngDefaultControl [(ngModel)]="filter" placeholder="Search">
+          <i class="fa fa-search" id="search"></i>
+        </div>
+
+        <table class="table" id="table">
+          <thead>
+            <tr>
+              <th>Employee ID</th>
+              <th>Employee Name</th>
+              <th>Available Points</th>
+              <th>Edit Points</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let emp of employeePointList |filter:filter">
+              <td> &nbsp; {{emp.UserId}}</td>
+              <td>{{emp.Name}}</td>
+              <td>{{emp.CurrentPoints}}</td>
+              <td><button class="btn btn-sm " (click)="openAddModal(emp.UserId,1)">+</button> &nbsp;
+                <button class="btn btn-sm " (click)="openAddModal(emp.UserId,0)">--</button>
+              </td>
+              <td><button class="btn btn-primary" (click)="awardHistory(emp.UserId)">view history</button></td>
+
+            </tr>
+
+          </tbody>
+        </table>
+
       </div>
-      <div class="search">
-        <input id="navsearch" type="text" ngDefaultControl [(ngModel)]="filter" placeholder="Search">
-        <i class="fa fa-search" id="search"></i>
-      </div>
-
-      <table class="table" id="table">
-        <thead>
-          <tr>
-            <th>Employee ID</th>
-            <th>Employee Name</th>
-            <th>Available Points</th>
-            <th>Edit Points</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let emp of employeePointList |filter:filter">
-            <td> &nbsp; {{emp.UserId}}</td>
-            <td>{{emp.Name}}</td>
-            <td>{{emp.CurrentPoints}}</td>
-            <td><button class="btn btn-sm " (click)="openAddModal(emp.UserId,1)">+</button> &nbsp;
-              <button class="btn btn-sm " (click)="openAddModal(emp.UserId,0)">--</button>
-            </td>
-            <td><button class="btn btn-primary" (click)="awardHistory(emp.UserId)">view history</button></td>
-
-          </tr>
-
-        </tbody>
-      </table>
 
     </div>
 
-  </div>
+    <!-- Code by pagination -->
+    <div class="container mw-100">
+      <div class="row">
+        <div class="col-md-3"> </div>
+        <div *ngIf=" TotalEmployees!=0" class="col-md-6">
+          <ul class="pagination justify-content-center">
+            <li *ngFor="let page of pageField;let i=index" class="page-item">
+              <a (click)="showEmployeesByPageNumber(page,i)" [ngClass]="pageNo[i] ? 'pageColor':'page-link'"
+                style=" margin-right: 5px;;margin-top: 5px">{{page}}</a>
+            </li>
+          </ul>
 
-  <!-- Code by pagination -->
-  <div class="container mw-100">
-    <div class="row">
-      <div class="col-md-3"> </div>
-      <div *ngIf=" TotalEmployees!=0" class="col-md-6">
-        <ul class="pagination justify-content-center">
-          <li *ngFor="let page of pageField;let i=index" class="page-item">
-            <a (click)="showEmployeesByPageNumber(page,i)" [ngClass]="pageNo[i] ? 'pageColor':'page-link'"
-              style=" margin-right: 5px;;margin-top: 5px">{{page}}</a>
-          </li>
-        </ul>
-
-        <div style="text-align: center;">
+          <!--<div style="text-align: center;">
           Page {{pagenumber}} of Total page {{paginationService.exactPageList}}
+        </div>-->
         </div>
       </div>
     </div>
   </div>
-
 </body>
 
 <!-- modal -->
@@ -145,9 +144,9 @@
       <div class="modal-body">
         <form [formGroup]="pointlimitForm" (ngSubmit)="updatePointLimit()">
           <div>
-              <label>PointLimit</label>
+            <label>PointLimit</label>
             <input type="number" class="textbox" name="Point" placeholder="Point Limit" formControlName="Point"
-              class="form-control" >
+              class="form-control">
           </div>
 
 
@@ -155,7 +154,8 @@
           <div class="row">
 
             <div class="col-lg-6">
-              <input type="submit" class="btn btn-info btn-lg" id="confirm" value="Confirm" [disabled]="!pointlimitForm.valid">
+              <input type="submit" class="btn btn-info btn-lg" id="confirm" value="Confirm"
+                [disabled]="!pointlimitForm.valid">
             </div>
             <!-- modal-footer -->
             <div class="col-lg-6">
