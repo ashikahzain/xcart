@@ -20,10 +20,7 @@ export class AuthService {
     return this.httpClient.post(environment.apiUrl + '/api/login', user);
   }
 
-  //get all roles api
-  getallRoles():Observable<any>{
-    return this.httpClient.get(environment.apiUrl + '/api/login/roles');
-  }
+    
   // logout
   public logout(): void {
     localStorage.clear();
