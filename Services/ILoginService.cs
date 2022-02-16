@@ -15,7 +15,7 @@ namespace xcart.Services
 
         public Task<List<LoginViewModel>> GetByUserName(string UserName);
 
-        //public User ValidateUser(string UserName, string password);
+        public Task<List<Role>> GetRoles();
 
     }
 }

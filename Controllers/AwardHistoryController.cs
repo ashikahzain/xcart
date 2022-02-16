@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -28,6 +29,7 @@ namespace xcart.Controllers
 
 
         #region Get All Award List
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllAwards()
         {
@@ -50,6 +52,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Add to Award History
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddAwardHistory(AwardHistory award)
         {
@@ -100,6 +103,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Get award history of an employee
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAllAwardHistory(long id)
         {

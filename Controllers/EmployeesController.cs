@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace xcart.Controllers
         }
 
         #region Get All employees
+        [Authorize]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllEmployees()
         {
@@ -38,6 +40,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Get Employee By ID
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEmployeeById(long id)
         {
@@ -51,6 +54,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Get Points of all Employees
+        [Authorize]
         [HttpGet]
    
         public async Task<IActionResult> GetEmployeePoints(int pagenumber,int pagesize)
@@ -65,6 +69,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Get Most Rewarded Employee
+        [Authorize]
         [HttpGet]
         [Route("most-awards")]
         public async Task<IActionResult> GetMostAwardedEmployee()
@@ -82,6 +87,7 @@ namespace xcart.Controllers
         #region Get Employee Profile By Id
 
         //Get employee by id : GET Method : https://localhost:44396/api/employees/employee/2
+        [Authorize]
         [HttpGet]
         [Route("employee-profile/{id}")]
 
@@ -97,6 +103,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Get Order Details by employee id
+        [Authorize]
         [HttpGet]
         [Route("{id}/orders")]
         public async Task<IActionResult> GetAllOrdersByEmployeeId(long id, int pagenumber, int pagesize)
@@ -111,7 +118,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Get employee count
-
+        [Authorize]
         [HttpGet]
         [Route("employee-count")]
         public async Task<IActionResult> GetEmployeeCount()
@@ -124,6 +131,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Get Employee Order Count
+        [Authorize]
         [HttpGet]
         [Route("{id}/order-count")]
         public async Task<IActionResult> GetEmployeeOrderCount(int id)

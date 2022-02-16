@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace xcart.Controllers
         }
 
         #region Get Cart By Id
+        [Authorize]
         [HttpGet]
         [Route("cart/{id}")]
         public async Task<IActionResult> GetCartById(long id)
@@ -37,7 +39,8 @@ namespace xcart.Controllers
         #endregion
 
         #region Add to Cart
-       [HttpPost]
+        [Authorize]
+        [HttpPost]
 
        public async Task<IActionResult> AddToCart([FromBody] Cart cart)
         {
@@ -60,30 +63,8 @@ namespace xcart.Controllers
         }
         #endregion
 
-      /*  #region Get all cart by id
-        [HttpGet]
-        [Route("getcart/{id}")]
-
-        public async Task<IActionResult> GetCartByUserId(int id)
-        {
-            try
-            {
-                var user = await cartService.GetCartById(id);
-                if (user == null)
-                {
-                    return NotFound();
-                }
-                return Ok(user);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-            }
-
-        #endregion*/
-
         #region increase Item Quantity
+        [Authorize]
         [HttpGet]
         [Route("decrease-quantity/{id}")]
 
@@ -101,11 +82,11 @@ namespace xcart.Controllers
 
         }
 
-            #endregion
+        #endregion
 
         #region Delete Cart
-
-            [HttpDelete]
+        [Authorize]
+        [HttpDelete]
             [Route("{id}")]
 
             public async Task<IActionResult> DeleteCart(int id)
@@ -124,10 +105,11 @@ namespace xcart.Controllers
                     return BadRequest();
                 }
             }
-            #endregion
+        #endregion
 
         #region increase Item Quantity
-            [HttpGet]
+        [Authorize]
+        [HttpGet]
             [Route("increase-quantity/{id}")]
 
             public async Task<IActionResult> IncreaseQuantity(int id)
@@ -145,7 +127,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Delete Cart by User Id
-
+        [Authorize]
         [HttpDelete]
         [Route("delete-cart/{id}")]
 

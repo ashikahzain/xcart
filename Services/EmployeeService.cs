@@ -72,10 +72,11 @@ namespace xcart.Services
                 //join User and Point
                 return await(from user in db.User
                              from point in db.Point
+                             where user.Id == point.UserId
                              orderby point.TotalPoints descending
                              select new MostAwardedEmployeeViewModel
                              {
-                                 Id = point.User.Id,
+                                 Id = point.UserId,
                                  Name = user.Name,
                                  TotalPoints = point.TotalPoints
                              }).FirstOrDefaultAsync();
