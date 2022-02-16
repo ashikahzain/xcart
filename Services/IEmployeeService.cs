@@ -15,10 +15,10 @@ namespace xcart.Services
 
         Task<List<AllEmployeePointViewModel>> GetEmployeePoints(int pageNumber,int pagesize);
 
-        Task<User> GetEmployeeById(int id);
+        Task<User> GetEmployeeById(long id);
 
-        Task<List<EmployeeProfileViewModel>> GetEmployeeProfile(int id);
-        public Task<List<OrderViewModel>> GetAllOrdersByEmployeeId(int id, int pageNumber, int pagesize);
+        Task<List<EmployeeProfileViewModel>> GetEmployeeProfile(long id);
+        public Task<List<OrderViewModel>> GetAllOrdersByEmployeeId(long id, int pageNumber, int pagesize);
 
         public Task<int> GetEmployeeCount();
         public Task<int> GetEmployeeOrderCount(int id);

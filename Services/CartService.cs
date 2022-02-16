@@ -22,7 +22,7 @@ namespace xcart.Services
 
 
         #region Get Cart By Id
-        public async Task<List<EmployeeCartViewModel>> GetCartById(int id)
+        public async Task<List<EmployeeCartViewModel>> GetCartById(long id)
         {
            
                 if (db != null)
@@ -58,7 +58,7 @@ namespace xcart.Services
 
         #region Get Cart By UserId
 
-        public List<Cart> GetCartByUserId(int id)
+        public List<Cart> GetCartByUserId(long id)
         {
             if (db != null)
             {
@@ -91,7 +91,7 @@ namespace xcart.Services
    
 
         #region Add to Cart
-        public async Task<int> AddToCart(Cart cart)
+        public async Task<long> AddToCart(Cart cart)
         {
 
             if (db != null)

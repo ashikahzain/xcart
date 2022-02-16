@@ -9,10 +9,10 @@ namespace xcart.Services
 {
     public interface ICartService
     {
-        public Task<List<EmployeeCartViewModel>> GetCartById(int id);
-        public List<Cart> GetCartByUserId(int id);
+        public Task<List<EmployeeCartViewModel>> GetCartById(long id);
+        public List<Cart> GetCartByUserId(long id);
         public Task<List<Cart>> GetAllCartById(int id);
-        Task<int> AddToCart(Cart cart);
+        Task<long> AddToCart(Cart cart);
         Task<Cart> DeleteCart(int id);
         public Task<int> IncreaseQuantity(int id);
         public Task<int> DecreaseQuantity(int id);

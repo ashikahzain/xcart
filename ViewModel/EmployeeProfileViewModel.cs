@@ -7,7 +7,7 @@ namespace xcart.ViewModel
 {
     public class EmployeeProfileViewModel
     {
-        public int Id { get; set; }                                 //user table
+        public long Id { get; set; }                                 //user table
         public string Name { get; set; }                            //user table
         public string Gender { get; set; }                          //user table
         public string Email { get; set; }                           //user table

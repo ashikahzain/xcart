@@ -39,9 +39,11 @@ namespace xcart.Controllers
             var items = await itemService.GetAllActiveItems();
             if (items == null)
             {
-                return NotFound("No active items");
+                return NotFound();
             }
             return Ok(items);
+
+
 
         }
         #endregion
@@ -52,19 +54,13 @@ namespace xcart.Controllers
         [Route("inactive-items")]
         public async Task<IActionResult> GetAllInactiveItems()
         {
-            try
-            {
                 var items = await itemService.GetAllInactiveItems();
                 if (items == null)
                 {
-                    return NotFound("No inactive items");
+                    return NotFound();
                 }
                 return Ok(items);
-            }
-            catch
-            {
-                return BadRequest();
-            }
+      
         }
         #endregion
 
@@ -84,10 +80,10 @@ namespace xcart.Controllers
                 }
                 catch (Exception)
                 {
-                    return BadRequest("Valid Data expected");
+                    return BadRequest();
                 }
             }
-            return BadRequest("Valid Data expected");
+            return BadRequest();
         }
         #endregion
 
@@ -101,7 +97,7 @@ namespace xcart.Controllers
                 var item = await itemService.GetItemById(id);
                 if (item == null)
                 {
-                    return NotFound("No item with Id");
+                    return NotFound();
                 }
                 return Ok(item);
             }
@@ -124,7 +120,7 @@ namespace xcart.Controllers
                 var item = await itemService.DeleteItem(id);  
                 if (item == 0)
                 {
-                    return NotFound("No item with the given Id");
+                    return NotFound();
                 }
                 return Ok(item);
             }
@@ -150,7 +146,7 @@ namespace xcart.Controllers
                 }
                 catch (Exception)
                 {
-                    return BadRequest("Valid Data expected");
+                    return BadRequest();
                 }
             }
             return BadRequest();

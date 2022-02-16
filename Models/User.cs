@@ -13,7 +13,7 @@ namespace xcart.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Column("Name")]
         [Required]

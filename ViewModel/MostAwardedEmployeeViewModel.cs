@@ -7,7 +7,7 @@ namespace xcart.ViewModel
 {
     public class MostAwardedEmployeeViewModel
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         public long TotalPoints { get; set; }
     }
