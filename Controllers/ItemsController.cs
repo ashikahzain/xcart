@@ -39,7 +39,7 @@ namespace xcart.Controllers
             var items = await itemService.GetAllActiveItems();
             if (items == null)
             {
-                return NotFound();
+                return NotFound("no active items");
             }
             return Ok(items);
 
@@ -88,6 +88,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Get Item by Id
+        [Authorize]
         [HttpGet("{id}")]
 
         public async Task<IActionResult> GetItemById(int id)
@@ -111,6 +112,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Delete Item by changing is active status
+        [Authorize]
         [HttpGet]
         [Route("delete-item/{id}")]
         public async Task<IActionResult> DeleteItem(int id)
@@ -133,6 +135,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Update Item
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> UpdateItem([FromBody] ItemViewModel item)
         {

@@ -17,9 +17,6 @@ namespace xcart.Services
             this.db = db;
         }
 
-        
-
-
 
         #region Get Cart By Id
         public async Task<List<EmployeeCartViewModel>> GetCartById(long id)
@@ -27,10 +24,6 @@ namespace xcart.Services
            
                 if (db != null)
                 {
-                    /*
-                    var cart = await db.Cart.ToListAsync();
-                    return cart;
-                    */
                     return await (from item in db.Item
                                   from cart in db.Cart
 
@@ -89,7 +82,6 @@ namespace xcart.Services
         }
         #endregion
    
-
         #region Add to Cart
         public async Task<long> AddToCart(Cart cart)
         {
@@ -123,6 +115,7 @@ namespace xcart.Services
         }
         #endregion
 
+        #region Increase Quantity on cart
         //Add quantity (cart update)
         public async Task<int> IncreaseQuantity(int id)
         {
@@ -136,7 +129,9 @@ namespace xcart.Services
             db.SaveChanges();
             return id;
         }
+        #endregion
 
+        #region Decrease Quantity on cart
         //DESCREASE QUANTITY
         public async Task<int> DecreaseQuantity(int id)
         {
@@ -151,6 +146,7 @@ namespace xcart.Services
             db.SaveChanges();
             return id;
         }
+        #endregion
 
         #region Delete Cart by User Id
 

@@ -77,6 +77,8 @@ namespace xcart.Services
             }
             return null;
         }
+
+     
         #endregion
 
         #region Validate User
@@ -91,6 +93,18 @@ namespace xcart.Services
                     return user;
                 }
                 return null;
+            }
+            return null;
+        }
+        #endregion
+
+        #region Get all Roles
+        public async  Task<List<Role>> GetRoles()
+        {
+            if (db != null)
+            {
+                var roles = await db.Role.ToListAsync();
+                return roles;
             }
             return null;
         }
