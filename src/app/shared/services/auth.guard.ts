@@ -7,18 +7,24 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+  userRole:number
+  expectedRole:string[]=[]
   constructor (private authService:AuthService,private router:Router){}
   canActivate(
     next: ActivatedRouteSnapshot): boolean {
+       //get all roles
+ 
       //expected role vs current role
       //routes            //login
-      const expectedRole = next.data.role;
-      const currentRole = localStorage.getItem('role');
+      this.expectedRole = next.data.role;
+      let currentRole = sessionStorage.getItem('role');
+    
       //check the condition
-      if (currentRole !== expectedRole) {
+
+      if (!this.expectedRole.includes(currentRole)) {
         this.router.navigateByUrl('login');
+        this.authService.logout()
         return false;
-  
       }
       return true;
   }
