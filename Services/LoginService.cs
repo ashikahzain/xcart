@@ -98,16 +98,6 @@ namespace xcart.Services
         }
         #endregion
 
-        #region Get all Roles
-        public async  Task<List<Role>> GetRoles()
-        {
-            if (db != null)
-            {
-                var roles = await db.Role.ToListAsync();
-                return roles;
-            }
-            return null;
-        }
-        #endregion
+        
     }
 }

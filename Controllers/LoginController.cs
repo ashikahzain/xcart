@@ -53,20 +53,6 @@ namespace xcart.Controllers
 
         }
 
-        #region Get all roles
-        [Authorize]
-        [HttpGet]
-        [Route("roles")]
-
-        public async Task<IActionResult> GetRoles()
-        {
-            var roles = await login.GetRoles();
-            if(roles == null)
-            {
-                return NotFound();
-            }
-            return Ok(roles);
-        }
-        #endregion
+       
     }
 }
