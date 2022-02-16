@@ -32,9 +32,15 @@ export class HomeComponent implements OnInit {
   availableQuantity: number;
   orderQuantity: any;
   cartList:number[]=[];
+  cartItemList:Item[]=[];
+
+
   constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer, private toastr: ToastrService, private formBuilder: FormBuilder, private Cartservice: CartService) { }
 
   ngOnInit(): void {
+
+
+
     this.employeeservice.getItems().subscribe(data => {
       console.log(this.itemList);
       this.itemList = data
@@ -58,10 +64,16 @@ export class HomeComponent implements OnInit {
 
     this.Cartservice.getAllCart().subscribe(
       data=>{
-        data.forEach(item=>
-        this.cartList.push(item.ItemId))
+        console.log("data"+data);
+        this.cartItemList=data;
+        console.log(this.cartItemList[0].Id);
+        //data.forEach(item=>
+        //this.cartList.push(item.ItemId));
+        
       }
+      
     )
+    console.log("Cart List"+this.cartList)
   }
 
 
