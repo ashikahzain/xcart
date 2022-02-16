@@ -1,18 +1,32 @@
 <app-navbar></app-navbar>
-<button type="button" class="home" (click)="AdminHome()"><i class="fa fa-home"></i>HOME</button>
-<div>
-  <button type="button" class="All" (click)="All()">All</button>
-  <button type="button" class="Open" (click)="Open()">Open</button>
-  <button type="button" class="FullFilled" (click)="FulFilled()">FulFilled</button>
+
+<!--Home Button-->
+<div class="home-button" routerLink='/admin/home'>
+  <i class="fa fa-home"></i>
+  <h4>HOME</h4>
 </div>
+
+<!--Status Button-->
+<div>
+  <button type="button" class="All" (click)="All()" [ngClass]="{'active' : all, 'inactive': !all}">All</button>
+  <button type="button" class="Open" (click)="Open()" [ngClass]="{'active' : opened, 'inactive': !opened}">Open</button>
+  <button type="button" class="FullFilled" (click)="FulFilled()"
+    [ngClass]="{'active' : fulfilled, 'inactive': !fulfilled}">FulFilled</button>
+</div>
+
 <div class="container">
+  <!--Heading-->
   <div class="list-heading">
     <h4>Order History</h4>
   </div>
+
+  <!--Search-->
   <div class="search">
     <input id="navsearch" type="text" placeholder="Search" ngDefaultControl [(ngModel)]="filter">
     <i class="fa fa-search" id="search"></i>
   </div>
+
+  <!--List of Orders-->
   <table class="table" id="table">
     <thead>
       <tr>
@@ -27,7 +41,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let list of orderList |filter:filter">
-        <td>{{list.Id}}</td>
+        <td style="color: #0C74EF;">{{list.Id}}</td>
         <td>{{list.UserName}}</td>
         <td><button type="button" class="form-control" (click)="open(content,list.Id)">View Products</button></td>
         <td id="hide">{{list.Points}}</td>
@@ -36,6 +50,7 @@
         <td id="hide" *ngIf="list.DateOfDelivery === null">Not Delivered</td>
         <td id="hide1"><button class="form-control"
             [ngStyle]="{'background-color':list.Status === 'Fulfilled' ? '#72D761' : '#D11A2A' }"
+            [ngClass]="list.Status === 'Fulfilled' ? 'fulfill' : 'opened'"
             (click)="UpdateStatus(list)">{{list.Status}}</button></td>
       </tr>
     </tbody>
@@ -43,17 +58,30 @@
 </div>
 
 <!-- Code by pagination -->
-<div class="container mw-100">
+  <div class="container mw-100">
   <div class="row">
     <div class="col-md-3"> </div>
     <div *ngIf=" TotalOrders!=0" class="col-md-6">
       <ul class="pagination justify-content-center">
-        <li *ngFor="let page of pageField;let i=index" class="page-item">
-          <a (click)="showOrdersByPageNumber(page,i)" [ngClass]="pageNo[i] ? 'pageColor':'page-link'"
-            style=" margin-right: 5px;;margin-top: 5px">{{page}}</a>
-        </li>
+        <div *ngIf="all">
+          <li *ngFor="let page of pageField;let i=index" class="page-item pull-left " style="margin-right: 5px;">
+            <a (click)="showOrdersByPageNumberAll(page,i)" [ngClass]="pageNo[i] ? 'pageColor':'page-link'"
+              style=" margin-right: 5px;margin-top: 5px">{{page}}</a>
+          </li>
+        </div>
+        <div *ngIf="opened">
+          <li *ngFor="let page of pageField;let i=index" class="page-item pull-left">
+            <a (click)="showOrdersByPageNumberOpen(page,i)" [ngClass]="pageNo[i] ? 'pageColor':'page-link'"
+              style=" margin-right: 5px;margin-top: 5px">{{page}}</a>
+          </li>
+        </div>
+        <div *ngIf="fulfilled">
+          <li *ngFor="let page of pageField;let i=index" class="page-item pull-left">
+            <a (click)="showOrdersByPageNumberFulfilled(page,i)" [ngClass]="pageNo[i] ? 'pageColor':'page-link'"
+              style=" margin-right: 5px;margin-top: 5px">{{page}}</a>
+          </li>
+        </div>
       </ul>
-
       <div style="text-align: center;">
         Page {{pagenumber}} of Total page {{paginationService.exactPageList}}
       </div>

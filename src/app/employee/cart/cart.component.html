@@ -1,6 +1,7 @@
 <app-sidemenu></app-sidemenu>
 
 <div id="content" style="border: 1px solid black;">
+
     <div class="user-points">
         <p>Points Remaining
             <br>{{currentPoints}}
@@ -10,26 +11,28 @@
     <ng-template #thenTemplate>
         <div class="cart-content">
             <div class="card" *ngFor="let cart of cart">
-                <div class="card-content row">
-                    <div class="image col-lg-1">
+                <div class="card-content row" id="crdrow">
+                    <div class="image col-lg-1" id="img">
                         <img [src]="cart.ItemImage" alt="">
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-2" id="iname">
                         <h6>{{cart?.ItemName}} </h6>
                     </div>
-                    <div class="col-lg-2 row">
-                        <div class="col-lg-4 change-button"> <button id="decrease"
-                                (click)="onDecrease(cart.CartId)">-</button>
+                    <div class="col-lg-2" id="buset">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-4 inline change-button"> <button id="decrease"
+                                (click)="onDecrease(cart.CartId)" [disabled]="cart.Quantity<2">-</button>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-4 inline" id="qtt">
                             <h6>{{cart?.Quantity}}</h6>
                         </div>
-                        <div class="col-lg-4 change-button"><button id="increase"
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-4 inline change-button"><button id="increase"
                                 (click)="onIncrease(cart.CartId)">+</button>
                         </div>
                     </div>
-                    <div class="col-lg-3"> {{cart.ItemPoints}} Points</div>
-                    <button id="delete" (click)="deletefromCart(cart.CartId)">X</button>
+                    <div class="col-lg-3" id="poi"> {{cart.ItemPoints}} Points</div>
+                    <button id="delete" (click)="deletefromCart(cart.CartId)">
+                        <i class="fa fa-trash-o fa-lg menu-cart"></i>
+                    </button>
                 </div>
 
             </div>

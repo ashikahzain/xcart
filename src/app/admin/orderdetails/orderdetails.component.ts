@@ -5,7 +5,6 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Order } from 'src/app/shared/models/order';
 import { PaginationService } from 'src/app/shared/services/pagination.service';
 
-
 @Component({
   selector: 'app-orderdetails',
   templateUrl: './orderdetails.component.html',
@@ -13,6 +12,7 @@ import { PaginationService } from 'src/app/shared/services/pagination.service';
 })
 export class OrderdetailsComponent implements OnInit {
 
+  //declaring variables
   filter: string;
   closeResult: string;
   TotalOrders: number;
@@ -23,55 +23,78 @@ export class OrderdetailsComponent implements OnInit {
   pageField: any[];
   pageNo: boolean[] = [];
   orderList: Order[];
+  all:boolean= false;
+  opened:boolean = false;
+  fulfilled:boolean = false;
 
   constructor(public adminService: AdminService, private router: Router,
     private modalService: NgbModal, public paginationService: PaginationService) { }
 
   ngOnInit(): void {
+
     this.pageNo[0] = true;
-    this.GetAllOrders();
 
+    //Get all orders whose order status is Open
+    this.Open();
   }
 
-  GetAllOrders() {
-    this.adminService.getOrder(this.pagenumber, this.pagesize).subscribe(
-      data => {
-        this.orderList = data;
-        this.GetOrderCount();
-      }
-    );
-  }
+  //to navigate to the home page on clicking home button
   AdminHome() {
     this.router.navigateByUrl('admin/home')
   }
+
+  //To get all orders
   All() {
+    this.all = true;
+    this.opened = false;
+    this.fulfilled = false;
+    this.paginationService.temppage = 0;
     this.adminService.getOrder(this.pagenumber, this.pagesize).subscribe(
-      data => {
-        this.orderList = data;
-        this.GetOrderCount();
-      }
-    );
-  }
-  Open() {
-    this.adminService.getSpecifiedOrder(1).subscribe(
       data => {
         this.orderList = data;
         this.GetOrderCount();
       });
   }
-  FulFilled() {
-    this.adminService.getSpecifiedOrder(2).subscribe(
+
+  //Get all orders whose order status is Open
+  Open() {
+    this.all = false;
+    this.opened = true;
+    this.fulfilled = false;
+    this.paginationService.temppage = 0;
+    this.adminService.getSpecifiedOrder(1,this.pagenumber, this.pagesize).subscribe(
       data => {
         this.orderList = data;
-        this.GetOrderCount();
-      }
-    );
+        this.GetOrderStatusCount(1);
+      });
   }
 
+  //Get all orders whose order status is Fulfilled
+  FulFilled() {
+    this.all = false;
+    this.opened = false;
+    this.fulfilled = true;
+    this.paginationService.temppage = 0;
+    this.adminService.getSpecifiedOrder(2,this.pagenumber, this.pagesize).subscribe(
+      data => {
+        this.orderList = data;
+        this.GetOrderStatusCount(2);
+      });
+  }
+
+  //To get the total count of orders
   GetOrderCount() {
     this.adminService.getOrderCount().subscribe(data => {
       this.TotalOrders = data;
       this.TotalNumberofPages()
+    });
+  }
+
+  //To get the total count of orders based on status
+  GetOrderStatusCount(id: number) {
+    this.adminService.getStatusOrderCount(id).subscribe(data => {
+      this.TotalOrders = data;
+      this.TotalNumberofPages();
     });
   }
 
@@ -91,15 +114,31 @@ export class OrderdetailsComponent implements OnInit {
   }
 
 
-  showOrdersByPageNumber(page, i) {
+  showOrdersByPageNumberAll(page, i) {
     this.orderList = [];
     this.pageNo = [];
     this.pageNo[i] = true;
     this.pagenumber = page;
-    this.GetAllOrders();
-
+    this.All();
   }
 
+  showOrdersByPageNumberOpen(page,i){
+    this.orderList = [];
+    this.pageNo = [];
+    this.pageNo[i] = true;
+    this.pagenumber = page;
+    this.Open();
+  }
+
+  showOrdersByPageNumberFulfilled(page,i){
+    this.orderList = [];
+    this.pageNo = [];
+    this.pageNo[i] = true;
+    this.pagenumber = page;
+    this.FulFilled();
+  }
+
+  //To open popup
   open(content, orderId: number) {
     this.modalService.open(content,
       { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -113,9 +152,9 @@ export class OrderdetailsComponent implements OnInit {
       console.log("Hi");
       this.adminService.getOrderDetailsByOrderId(orderId);
     }
-
   }
 
+  //to close the popup
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -126,16 +165,16 @@ export class OrderdetailsComponent implements OnInit {
     }
   }
 
+  //Function to update the status of an order
   UpdateStatus(order: Order) {
+    if(confirm("Are you sure you want to change the status to fulfilled?")){
     if (order.Id != 0 || order.Id != null) {
       this.adminService.ChangeStatus(order).subscribe(
         data => {
           console.log(data);
           window.location.reload();
-
-        }
-      )
+        });
     }
-
+  }
   }
 }

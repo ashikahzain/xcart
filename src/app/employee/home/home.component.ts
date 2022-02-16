@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeService } from 'src/app/shared/services/employee.service'
 import { SidemenuComponent } from 'src/app/shared/layout/sidemenu/sidemenu.component'
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Item } from 'src/app/shared/models/item';
 import { Cart } from 'src/app/shared/models/cart';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { Order } from 'src/app/shared/models/order';
 import { OrderDetails } from 'src/app/shared/models/OrderDetails';
-import { NEVER } from 'rxjs';
+import { AdminService } from 'src/app/shared/services/admin.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -31,53 +32,62 @@ export class HomeComponent implements OnInit {
   orderdetails = new OrderDetails()
   availableQuantity: number;
   orderQuantity: any;
-  cartList:number[]=[];
-  cartItemList:Item[]=[];
-
-
-  constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer, private toastr: ToastrService, private formBuilder: FormBuilder, private Cartservice: CartService) { }
+  cartList: number[] = [];
+  pointLimit: any;
+  constructor(public employeeservice: EmployeeService, public sidemenu: SidemenuComponent, private domSanitizer: DomSanitizer, private toastr: ToastrService, private formBuilder: FormBuilder, private Cartservice: CartService,private adminService:AdminService) { }
 
   ngOnInit(): void {
 
 
+    this.getItemsandCurrentpoints();
+    //modal
+    //creating form controls and validations
+    this.addForm = this.formBuilder.group({
+      Quantity: [1, [Validators.required, Validators.min(1)]],
+    })
 
+    //get items already added to the cart
+    this.Cartservice.getAllCart().subscribe(
+      data => {
+        data.forEach(item => {
+          this.cartList.push(item.ItemId)
+        }
+        );
+      }
+    )
+//get point limit
+    this.adminService.getPointLimit().subscribe(
+      data=>this.pointLimit=data
+    )
+
+  }
+
+  getItemsandCurrentpoints() {
     this.employeeservice.getItems().subscribe(data => {
-      console.log(this.itemList);
       this.itemList = data
       data.forEach(item => {
         item.Image = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + item.Image)
-        console.log(item.Image);
       });
       this.employeeservice.getCurrentPoints().subscribe(
         data => {
           this.currentPoints = data;
-
         }
-
       );
     });
-    //modal
-    //creating form controls and validations
-    this.addForm = this.formBuilder.group({
-      Quantity: 1,
-    })
 
-    this.Cartservice.getAllCart().subscribe(
-      data=>{
-        console.log("data"+data);
-        this.cartItemList=data;
-        console.log(this.cartItemList[0].Id);
-        //data.forEach(item=>
-        //this.cartList.push(item.ItemId));
-        
-      }
-      
-    )
-    console.log("Cart List"+this.cartList)
   }
 
+  //compare cart and items
+  compareCart(itemId: number): number {
+    if (this.cartList.indexOf(itemId) < 0) {
+      return 1;
+    }
+    else {
+      return 0;
+    }
+  }
 
-  // Model Driven Form - login
+  // Model Driven Form - to buy item directly
   addOrder() {
 
     //if data is invalid
@@ -85,15 +95,20 @@ export class HomeComponent implements OnInit {
       this.error = "Invalid Input";
       return;
     }
-    this.orderQuantity=this.addForm.controls.Quantity.value
-    if (this.orderQuantity * this.points < this.currentPoints) {
-      if (this.orderQuantity < this.availableQuantity) {
-        if (this.addForm.valid) {
-          //add to orderdetails table
 
+    //assigning quantity entered
+    this.orderQuantity = this.addForm.controls.Quantity.value
+    //comparing total order points to points remaining
+    if(this.pointLimit>=this.orderQuantity*this.points){
+    if (this.orderQuantity * this.points <= this.currentPoints) {
+      //comparing total order quantity to remaining quantity
+      if (this.orderQuantity <= this.availableQuantity) {
+        if (this.addForm.valid) {
+
+          //add to orderdetails table
           this.order.DateOfDelivery = null,
             this.order.DateOfOrder = new Date().toLocaleDateString(),
-            this.order.Points = this.orderQuantity* this.points,
+            this.order.Points = this.orderQuantity * this.points,
             this.order.StatusDescriptionId = 1,
             this.order.UserId = Number(sessionStorage.getItem('userid'))
           this.Cartservice.placeOrder(this.order).subscribe(
@@ -102,97 +117,82 @@ export class HomeComponent implements OnInit {
               this.orderdetails.ItemId = this.itemid,
                 this.orderdetails.Quantity = Number(this.addForm.controls.Quantity.value),
                 this.orderdetails.OrderId = this.OrderId
-              console.log(this.orderdetails)
-              this.Cartservice.updateOrderDetails(this.orderdetails).subscribe(item => {
-                console.log(item);
-              });
+              console.log(this.orderdetails);
+              this.Cartservice.updateOrderDetails(this.orderdetails).subscribe(
+                (result) => console.log(result)
+              )
+
+
             }
           );
-
-
-          //closing modal after adding point
+          //closing modal after placing order
           this.closeModalDialog();
-          this.toastr.success('Redeemed '+ this.order.Points+ ' Points. Contact HR Department to collect your items.')
-          //console.log("added Point");
+          this.toastr.success('Redeemed ' + this.order.Points + ' Points. Contact HR Department to collect your items.');
+          window.setTimeout(function () { location.reload() }, 1000);
         }
       }
-      else{
+      else {
         this.toastr.error('Out of Stock')
       }
     }
     else {
       this.toastr.error("Not enough points")
     }
-
-
+  }
+  else{
+    this.toastr.error("Point Limit Exceeded")
+  }
   }
 
   //Function to open modal
   openAddModal(itemId: number, points: number, quantity: number) {
     //Set block css
     this.display = 'block'
-    console.log(this.addForm.value)
     this.itemid = itemId,
       this.points = points,
       this.availableQuantity = quantity
   }
 
-
-
   //function to close the modal
   closeModalDialog() {
     this.display = 'none'; //set none css after close dialog
   }
+
   //Sorting
   sortPointAscending() {
-
     this.itemList.sort((a, b) =>
       a.Points - b.Points
     );
-    console.log(this.itemList);
   }
 
-
   sortPointDescending() {
-
     this.itemList.sort((a, b) =>
       b.Points - a.Points
     );
-    console.log(this.itemList);
   }
 
-
   sortAvailibilityAscending() {
-
     this.itemList.sort((a, b) =>
       a.Quantity - b.Quantity
     );
-    console.log(this.itemList);
   }
 
-
   sortAvailibilityDescending() {
-
     this.itemList.sort((a, b) =>
       b.Quantity - a.Quantity
     );
-    console.log(this.itemList);
   }
 
+  //adding a product to cart
   addtoCart(itemId: number) {
-   
-    console.log(this.cartList);
-    console.log(itemId);
-        this.cart.ItemId = itemId
-        this.cart.Quantity = 1
-        this.cart.UserId = Number(sessionStorage.getItem('userid'))
-        this.employeeservice.addtoCart(this.cart).subscribe(
-          data =>
-            console.log(data)
-        )
-        this.toastr.success('Added to cart');
-      }
+    this.cart.ItemId = itemId
+    this.cart.Quantity = 1
+    this.cart.UserId = Number(sessionStorage.getItem('userid'))
+    this.employeeservice.addtoCart(this.cart).subscribe()
+    this.toastr.success('Added to cart');
+    window.setTimeout(function () { location.reload() }, 1000);
 
+  }
 
 }
 

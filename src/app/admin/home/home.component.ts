@@ -17,38 +17,43 @@ import { PaginationService } from 'src/app/shared/services/pagination.service';
 export class HomeComponent implements OnInit {
   filter: string;
   employee: MostAwarded;
-  trendingItemList:Item;
+  trendingItemList: Item;
+  orderList: Order[];
   TotalOrders: number;
   pagenumber: any = 1;
-  pagesize: number = 4;
+  pagesize: number = 6;
   paginationdata: number;
   exactPageList: number;
   pageField: any[];
   pageNo: boolean[] = [];
-  orderList: Order[];
+
 
   constructor(public adminService: AdminService, private authservice: AuthService,
-    public employeeservice: EmployeeService,private domSanitizer:DomSanitizer,private router:Router,
-    public paginationService:PaginationService) { }
+    public employeeservice: EmployeeService, private domSanitizer: DomSanitizer, private router: Router,
+    public paginationService: PaginationService) { }
 
   ngOnInit(): void {
+    //pagination intialisation
     this.pageNo[0] = true;
+    this.paginationService.temppage = 0;
     this.GetAllOrders();
 
+    //the most rewarded employee
     this.employeeservice.getMostAwardedEmployee().subscribe(data => {
       this.employee = data;
     });
 
-    this.adminService.getTrendingItems().subscribe(data=>{
-      this.trendingItemList=data
+    //get top 2 trending items
+    this.adminService.getTrendingItems().subscribe(data => {
+      this.trendingItemList = data
       data.forEach(item => {
         item.Image = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + item.Image)
-        console.log(item.Image);
       });
     }
-      );
+    );
   }
 
+  //get all orders by pagination
   GetAllOrders() {
     this.adminService.getOrder(this.pagenumber, this.pagesize).subscribe(
       data => {
@@ -57,14 +62,15 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-
+  //total number of orders
   GetOrderCount() {
     this.adminService.getOrderCount().subscribe(data => {
       this.TotalOrders = data;
       this.TotalNumberofPages()
     });
   }
-
+  
+  //number of pages
   TotalNumberofPages() {
     this.paginationdata = (this.TotalOrders / this.pagesize);
     let tempPageData = this.paginationdata.toFixed();
@@ -80,7 +86,7 @@ export class HomeComponent implements OnInit {
     this.pageField = this.paginationService.pageField;
   }
 
-
+  //pagination function 
   showOrdersByPageNumber(page, i) {
     this.orderList = [];
     this.pageNo = [];
@@ -88,13 +94,6 @@ export class HomeComponent implements OnInit {
     this.pagenumber = page;
     this.GetAllOrders();
 
-  }
-
-  OrderDetails(){
-    this.router.navigateByUrl('admin/orderdetails');
-  }
-  toEmployeeList(){
-    this.router.navigateByUrl('/admin/employeeList')
   }
 
 }

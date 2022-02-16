@@ -1,7 +1,11 @@
+/* ---------------------------------------------------
+      CONTENT STYLE
+  ----------------------------------------------------- */
 
-.container{
+#content {
+    width: 100%;
     margin-left: 15%;
-}
+  }
 
 .list-heading h4 {
     margin: 9% 0% 0% 6%;
@@ -37,7 +41,29 @@
     min-height: 100vh;
     transition: all 0.3s;
   }
-
+  .pageColor {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: white !important;
+    background-color: #1f4173 !important;
+    border: 1px solid #dee2e6;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+  /* ---------------------------------------------------
+      MEDIAQUERIES
+  ----------------------------------------------------- */
 @media only screen and (max-width: 480px) {
     .list-heading h4 {
         margin: 20% 0% 0% 10%;

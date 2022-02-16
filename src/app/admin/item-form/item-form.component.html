@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-
+<div id="content">
 <div class="home-button" routerLink='/admin/home'>
     <i class="fa fa-home"></i>
     <h4>HOME</h4>
@@ -53,7 +53,7 @@
                 <div *ngIf="editingmode==false">
                 <div class="col-lg-5 " >
                     <input type="file" class="form-control" id="image" placeholder="Upload Image"
-                        (change)=onFileSelected($event) autocomplete="off" required
+                        (change)=onFileSelected($event) autocomplete="off" required accept="image/png, image/jpeg"
                         [attr.disabled]="editingmode ? '' : null">
                 </div>
                 </div>
@@ -70,4 +70,5 @@
         </div>
 
     </form>
+</div>
 </div>

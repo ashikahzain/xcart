@@ -30,11 +30,11 @@
                             <h6 class="item-name">{{item.Name}}</h6>
                             <p class="item-points">Points: {{item.Points}}</p>
 
-                            <p class="item-availability" *ngIf="item.Quantity">Available:{{item.Quantity}}</p>
+                            <p class="item-availability" *ngIf="item.Quantity ">Available:{{item.Quantity}}</p>
                             <p class="item-outofstock" *ngIf="!item.Quantity">Out of Stock</p>
                         </div>
                         <div class="item-buttons col-lg-6">
-                            <button class="add-cart" [disabled]="!(item.Quantity)" (click)="addtoCart(item.Id)"><i
+                            <button class="add-cart" [disabled]=" !compareCart(item.Id) || !(item.Quantity)" (click)="addtoCart(item.Id)"><i
                                     class="fa fa-shopping-cart fa-lg menu-cart"></i></button>
                             <button class="buy" [disabled]="!(item.Quantity)" (click)="openAddModal(item.Id,item.Points,item.Quantity)">Buy</button>
                         </div>
@@ -59,11 +59,11 @@
           <form [formGroup]="addForm" (ngSubmit)="addOrder()">
             <div>
                 <label>Quantity</label>
-              <input type="text" class="textbox" name="Quantity" placeholder="Quantity" formControlName="Quantity"
-                class="form-control" >
+              <input type="number" class="textbox" name="Quantity" placeholder="Quantity" formControlName="Quantity"
+                class="form-control" min="1">
             </div>
 
-  
+
             <br>
             <div class="row">
   

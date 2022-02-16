@@ -1,14 +1,91 @@
-.container{
+.container {
     margin-top: 20px;
 }
-h3{
+h3 {
     padding-top: 20px;
     padding-bottom: 40px;
 }
-.btn-award{
+.btn-award {
     margin-left: 80%;
-    background-color: #72D761;
-    border-color: #72D761;
+  
+    
+    width: 20%;
+}
+#content {
+    width: 100%;
+    margin: 4% 0% 0% 0%;
+    transition: all 0.3s;
+}
+
+.home-button {
+    display: inline-flex;
+    width: 130px;
+    height: 50px;
+    margin-top: 2%;
+    background: #f7c02d;
+    border-radius: 5px;
+}
+.home-button:hover {
+    cursor: grab;
+}
+.home-button i {
+    font-size: 24px;
+    padding-left: 10%;
+    padding-top: 10%;
+}
+.home-button h4 {
+    padding-left: 10%;
+    padding-top: 7%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 21px;
+    line-height: 31px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #2d415d;
+}
+.point-button {
+    display: inline-flex;
+    width: 200px;
+    height: 50px;
+    margin-left: 55%;
+    background-color: #72d761;
+    border-color: #72d761;
+    border-radius: 5px;
     color: white;
     border-radius: 1.5em;
+}
+.point-button:hover {
+    cursor: hand;
+}
+
+.point-button h4 {
+    padding-left: 20%;
+    padding-top: 4%;
+    font-style: normal;
+    font-size: 21px;
+    line-height: 31px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+th {
+    color: #1f4173;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+table {
+    text-align: center;
+}
+
+td .btn {
+    width: 70%;
+    height: 35px;
+    border-radius: 5px;
 }

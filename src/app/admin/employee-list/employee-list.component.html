@@ -2,19 +2,19 @@
   <app-navbar></app-navbar>
 
   <br>
-
-  <div class="home-button" routerLink='/admin/home'>
-    <i class="fa fa-home"></i>
-    <h4>HOME</h4>
+  <div id="content">
+    <div class="home-button" routerLink='/admin/home'>
+      <i class="fa fa-home"></i>
+      <h4>HOME</h4>
+    </div>
+    <div class="point-button" (click)="openPointLimitmodal()">
+      <h4>Current Point Limit {{pointLimit}}</h4>
+    </div>
+    <div class="Manage-awards" routerLink='/admin/award'>
+      <i class="fa fa-tasks"></i>
+      <h4>Manage Awards</h4>
+    </div>
   </div>
-  <div class="point-button" routerLink='/admin/home'>
-    <h4>Current Point Limit</h4>
-  </div>
-  <div class="Manage-awards" routerLink='/admin/award'>
-    <i class="fa fa-tasks"></i>
-    <h4>Manage Awards</h4>
-  </div>
-
 
   <div class="container">
     <div class="EmployeeList">
@@ -67,12 +67,13 @@
           </li>
         </ul>
 
-        <div style="text-align: center;">
+        <!--<div style="text-align: center;">
           Page {{pagenumber}} of Total page {{paginationService.exactPageList}}
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
+
 </body>
 
 <!-- modal -->
@@ -117,6 +118,45 @@
 
             <div class="col-lg-6">
               <input type="submit" class="btn btn-info btn-lg" id="confirm" value="Confirm" [disabled]="!addForm.valid">
+            </div>
+            <!-- modal-footer -->
+            <div class="col-lg-6">
+              <button type="button" class="btn btn-info btn-lg" id="cancel" (click)="closeModalDialog()">Cancel</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<!-- modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display1}">
+  <!-- modal-dialog -->
+  <div class="modal-dialog" role="document">
+    <!-- modal-content -->
+    <div class="modal-content">
+
+      <!-- modal-body -->
+      <div class="modal-body">
+        <form [formGroup]="pointlimitForm" (ngSubmit)="updatePointLimit()">
+          <div>
+            <label>PointLimit</label>
+            <input type="number" class="textbox" name="Point" placeholder="Point Limit" formControlName="Point"
+              class="form-control">
+          </div>
+
+
+          <br>
+          <div class="row">
+
+            <div class="col-lg-6">
+              <input type="submit" class="btn btn-info btn-lg" id="confirm" value="Confirm"
+                [disabled]="!pointlimitForm.valid">
             </div>
             <!-- modal-footer -->
             <div class="col-lg-6">

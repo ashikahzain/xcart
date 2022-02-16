@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/shared/services/admin.service';
-import {ValidateAwardName, ValidateNumbers} from 'src/app/shared/validators/formdatavalidator'
+import { ValidateAwardName, ValidateNumbers } from 'src/app/shared/validators/formdatavalidator'
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -10,13 +10,13 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./add-award.component.css']
 })
 export class AddAwardComponent implements OnInit {
-  
+
   awardForm: FormGroup;
   submitted = false;
   Id: number;
   formTitle = 'Add new Award';
-  buttonTitle='Add Award';
-
+  buttonTitle = 'Add Award';
+  editingmode: boolean = false;
   constructor(private formBuilder: FormBuilder, public adminService: AdminService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -30,6 +30,7 @@ export class AddAwardComponent implements OnInit {
     this.Id = this.route.snapshot.params['awardId'];
     console.log(this.Id)
     if (this.Id != null) {
+      this.editingmode = true
       this.formTitle = 'Update Award';
       this.buttonTitle = 'Update';
       //populate form on init

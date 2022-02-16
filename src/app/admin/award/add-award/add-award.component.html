@@ -1,6 +1,10 @@
 <app-navbar></app-navbar>
+<div id="content">
 <div class="container">
-    <a href="/admin/home" class="btn btn-warning"><i class="fa fa-home fa-lg menu-home"></i>Home</a>
+    <div class="home-button" routerLink='/admin/home'>
+        <i class="fa fa-home"></i>
+        <h4>HOME</h4>
+      </div>
 
     <div class="form-heading">
         <h3>{{ formTitle }}</h3>
@@ -10,7 +14,7 @@
             <div class="form-data" id="Name">
                 <label for="Name">Name</label>
                 <input type="text" class="form-control" placeholder="Enter name of Award" formControlName="Name"
-                    autocomplete="off" required>
+                    autocomplete="off" required [attr.disabled]="editingmode ? '' : null">
                 <div *ngIf="(awardForm.get('Name').dirty || awardForm.get('Name').touched)" class="error">
                     <div *ngIf="awardForm.get('Name').invalid">Only alphabets allowed.</div>
                     <div *ngIf="awardForm.get('Name').errors?.required"> Required.</div>
@@ -31,4 +35,5 @@
             </div>
         </form>
     </div>
+</div>
 </div>
