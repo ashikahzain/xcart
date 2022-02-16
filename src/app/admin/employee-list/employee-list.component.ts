@@ -25,7 +25,7 @@ export class EmployeeListComponent implements OnInit {
   status: boolean;
   TotalEmployees: number;
   pagenumber: any = 1;
-  pagesize: number = 2;
+  pagesize: number = 4;
   paginationdata: number;
   exactPageList: number;
   pageField: any[];
