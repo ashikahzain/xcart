@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   isSubmitted = false;
   error = '';
   jwtResponse: any = new JwtResponse;
-  role: String[] = []
+
   constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -66,12 +66,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('username', this.jwtResponse.UserName);
             sessionStorage.setItem('role', this.jwtResponse.RoleName);
             sessionStorage.setItem('userid', this.jwtResponse.UserId);
-            //get all roles
-            this.authService.getallRoles().subscribe(data => {
-              data.forEach(role =>
-                this.role.push(role.Name))
-            })
-            console.log(this.role);
+         
             console.log(this.jwtResponse.RoleName);
             if (this.jwtResponse.RoleName === 'Admin') {
               this.router.navigateByUrl('/admin/home');
