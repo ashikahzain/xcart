@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Item } from 'src/app/shared/models/item';
 import { AdminService } from 'src/app/shared/services/admin.service';
+import { ConfirmationDialogService } from 'src/app/shared/services/confirmation-dialogue.service';
 import { EmployeeService } from 'src/app/shared/services/employee.service';
 
 @Component({
@@ -13,7 +14,8 @@ import { EmployeeService } from 'src/app/shared/services/employee.service';
 export class CatalogueComponent implements OnInit {
   itemList: Item[];
   filter: string;
-  constructor(public employeeservice: EmployeeService, private domSanitizer: DomSanitizer, private router: Router, public adminService: AdminService) { }
+  constructor(public employeeservice: EmployeeService, private domSanitizer: DomSanitizer, private router: Router, public adminService: AdminService,
+              private confirmationDialogService:ConfirmationDialogService) { }
 
   ngOnInit(): void {
     //get all items for catalogue
@@ -62,12 +64,24 @@ export class CatalogueComponent implements OnInit {
   
   //delelte item using id
   deleteitem(itemid: number) {
-    if (confirm("This Item will be deleted from the catalogue"))
-      this.adminService.deleteItem(itemid).subscribe(
-        (result) => {
-          window.location.reload()
+    //if (confirm("This Item will be deleted from the catalogue"))
+     
+
+      this.confirmationDialogService.confirm('Are You Sure', 'Do you really want to Delete the Item?','Delete','Cancel')
+      .then((confirmed) => {
+        if(confirmed){
+          console.log('User confirmed:', confirmed);
+          this.adminService.deleteItem(itemid).subscribe(
+            (result) => {
+              window.location.reload()
+            }
+          );
         }
-      );
+        else{
+          console.log('User confirmed:', confirmed);
+        }
+      })
+      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
 
 }

@@ -16,6 +16,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ConfirmationDialogService } from './shared/services/confirmation-dialogue.service';
 
 
 
@@ -44,10 +45,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserAnimationsModule,
     Ng2SearchPipeModule,
     FormsModule,
-    NgbModule,
- 
-  ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},SidemenuComponent],
+    NgbModule
+  ],    
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},SidemenuComponent,ConfirmationDialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

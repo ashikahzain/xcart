@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
     //the most rewarded employee
     this.employeeservice.getMostAwardedEmployee().subscribe(data => {
       this.employee = data;
+      console.log(data);
     });
 
     //get top 2 trending items

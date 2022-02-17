@@ -52,7 +52,7 @@ export class ItemFormComponent implements OnInit {
   //function to change the file added to a base64 url
   onFileSelected(event) {
     const reader = new FileReader();
-    if (event.target.files && event.target.files.length) {
+    if (event.target.files && event.target.files.length) { 
       const [file] = event.target.files;
       //read from file
       reader.readAsDataURL(file);
@@ -78,9 +78,7 @@ export class ItemFormComponent implements OnInit {
       this.addItem();
       this.toastr.success('Item added successfully');
     }
-    this.router.navigate(['/admin/catalogue']).then(() => {
-      location.reload();
-    });
+    this.router.navigate(['/admin/catalogue']);
   }
 
   //add item
