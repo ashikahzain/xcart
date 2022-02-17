@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('username', this.jwtResponse.UserName);
             sessionStorage.setItem('role', this.jwtResponse.RoleName);
             sessionStorage.setItem('userid', this.jwtResponse.UserId);
-
+         
             console.log(this.jwtResponse.RoleName);
             if (this.jwtResponse.RoleName === 'Admin') {
               this.router.navigateByUrl('/admin/home');

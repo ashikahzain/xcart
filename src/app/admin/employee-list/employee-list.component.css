@@ -106,12 +106,12 @@
 }
 
 .point-button h4 {
-    padding-left: 8%;
-    padding-top: 5%;
+    padding-left: 4%;
+    padding-top: 4%;
     font-family: Lato;
     font-style: normal;
-    font-size: 21px;
-    line-height: 31px;
+    font-size: 18px;
+    line-height: 28px;
     display: flex;
     align-items: center;
     text-align: center;

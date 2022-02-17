@@ -8,18 +8,19 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { AwardHistoryComponent } from './award-history/award-history.component';
 import { AddAwardComponent } from './award/add-award/add-award.component';
 import { CatalogueComponent } from './catalogue/catalogue.component';
+import { AuthGuard } from '../shared/services/auth.guard';
 
 const routes: Routes = [
-  { path: 'admin/home', component: HomeComponent },
-  { path: 'admin/catalogue', component: CatalogueComponent },
-  { path: 'admin/orderdetails', component: OrderdetailsComponent },
-  { path: 'admin/itemform', component: ItemFormComponent },
-  { path: 'admin/employeeList', component: EmployeeListComponent },
-  { path: 'admin/awardHistory/:UserId', component: AwardHistoryComponent },
-  { path: 'admin/award', component: AwardComponent },
-  { path: 'admin/award/form', component: AddAwardComponent },
-  { path: 'admin/award/form/:awardId', component: AddAwardComponent },
-  {path: 'admin/itemform/:itemId',component:ItemFormComponent},
+  { path: 'admin/home', component: HomeComponent , canActivate: [AuthGuard], data: { role: ['Admin'] }},
+  { path: 'admin/catalogue', component: CatalogueComponent, canActivate: [AuthGuard], data: { role: ['Admin'] } },
+  { path: 'admin/orderdetails', component: OrderdetailsComponent, canActivate: [AuthGuard], data: { role: ['Admin'] } },
+  { path: 'admin/itemform', component: ItemFormComponent , canActivate: [AuthGuard], data: { role: ['Admin'] }},
+  { path: 'admin/employeeList', component: EmployeeListComponent, canActivate: [AuthGuard], data: { role: ['Admin'] } },
+  { path: 'admin/awardHistory/:UserId', component: AwardHistoryComponent, canActivate: [AuthGuard], data: { role: ['Admin'] } },
+  { path: 'admin/award', component: AwardComponent , canActivate: [AuthGuard], data: { role: ['Admin'] }},
+  { path: 'admin/award/form', component: AddAwardComponent , canActivate: [AuthGuard], data: { role: ['Admin'] }},
+  { path: 'admin/award/form/:awardId', component: AddAwardComponent , canActivate: [AuthGuard], data: { role: ['Admin'] }},
+  {path: 'admin/itemform/:itemId',component:ItemFormComponent, canActivate: [AuthGuard], data: { role: ['Admin'] }},
 
 
 ];
