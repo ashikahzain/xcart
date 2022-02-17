@@ -78,9 +78,7 @@ export class ItemFormComponent implements OnInit {
       this.addItem();
       this.toastr.success('Item added successfully');
     }
-    this.router.navigate(['/admin/catalogue']).then(() => {
-      location.reload();
-    });
+    this.router.navigate(['/admin/catalogue']);
   }
 
   //add item

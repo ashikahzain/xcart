@@ -40,7 +40,7 @@
                 autocomplete="off" required>
             <div *ngIf="(itemForm.get('Quantity').dirty || itemForm.get('Quantity').touched)" class="error">
                 <div *ngIf="itemForm.get('Quantity').invalid">Only numbers allowed</div>
-                <div *ngIf="itemForm.get('Name').errors?.required"> Required.</div>
+                <div *ngIf="itemForm.get('Quantity').errors?.required"> Required.</div>
             </div>
             <div *ngIf="(itemForm.get('Quantity').dirty || itemForm.get('Quantity').touched) && itemForm.get('Quantity').errors?.required"
                 class="error">

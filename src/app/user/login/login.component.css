@@ -73,12 +73,12 @@ hr{
 .crederror1{
     position: absolute;
     margin-left: 10%;
-    margin-top: 70px;
+    margin-top: 100px;
 }
 .crederror2{
     position: absolute;
     margin-left: 10%;
-    margin-top: 170px;
+    margin-top: 230px;
 }
 .form-control{
     width: 90%;
@@ -155,9 +155,8 @@ hr{
     position: relative;
     color: rgb(245, 59, 59);
     font-weight:600;
-
-    margin-top: 75%; 
-    margin-left: 2em;
+    margin-top: 80%; 
+    margin-left: 2.5em;
 }
 .error-name{
     color: rgb(245, 59, 59);
