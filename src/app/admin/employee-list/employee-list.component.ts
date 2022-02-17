@@ -46,6 +46,7 @@ export class EmployeeListComponent implements OnInit {
     this.paginationService.temppage = 0;
     //get all employees points
     this.getAllEmployees()
+
     //get award list
     this.adminService.getAwards();
 
@@ -85,6 +86,7 @@ export class EmployeeListComponent implements OnInit {
     }
     );
   }
+
   //get form controls
   get formControls() {
     return this.addForm.controls;
@@ -93,14 +95,12 @@ export class EmployeeListComponent implements OnInit {
 
   // Model Driven Form - login
   addPoint() {
-    //console.log(this.addForm.value);
-
     //if data is invalid
     if (this.addForm.invalid) {
       this.error = "Invalid Input";
       return;
     }
-
+    //If data is Valid
     if (this.addForm.valid) {
       //add to award history table
       this.adminService.addAwardHistory(this.addForm.value).subscribe(data => {
@@ -118,10 +118,7 @@ export class EmployeeListComponent implements OnInit {
       else {
         this.toastr.warning(this.addForm.get('Point').value + " " + "Point Removed Successfully!")
         window.setTimeout(function () { location.reload() }, 1000);
-
-
       }
-      //console.log("added Point");
     }
 
   }
@@ -142,12 +139,10 @@ export class EmployeeListComponent implements OnInit {
   //checking changes in select function
   onChange(val) {
 
-    console.log("clicked");
-    console.log(val);
-
     //getting point of the selected award
     let award = this.adminService.awardList.find(i => i.Id == val);
     this.point = Number(award.Points);
+
     //setting that point to the form
     this.addForm.controls.Point.setValue(this.point);
 
@@ -165,14 +160,15 @@ export class EmployeeListComponent implements OnInit {
     this.router.navigate(['admin/awardHistory', UserId]);
   }
 
-
+  //getting the count of data
   getEmployeeCount() {
     this.adminService.getEmployeeCount().subscribe(data => {
       this.TotalEmployees = data;
       this.TotalNumberofPages()
     });
-
   }
+
+  //Calculating total number of pages required
   TotalNumberofPages() {
     this.paginationdata = (this.TotalEmployees / this.pagesize);
     let tempPageData = this.paginationdata.toFixed();
@@ -188,14 +184,13 @@ export class EmployeeListComponent implements OnInit {
     this.pageField = this.paginationService.pageField;
   }
 
-
+  
   showEmployeesByPageNumber(page, i) {
     this.employeePointList = [];
     this.pageNo = [];
     this.pageNo[i] = true;
     this.pagenumber = page;
     this.getAllEmployees();
-
   }
 
   openPointLimitmodal() {

@@ -6,9 +6,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
-  declarations: [NavbarComponent, SidemenuComponent],
+  declarations: [NavbarComponent, SidemenuComponent, ConfirmationDialogComponent],
   imports: [
     CommonModule,
     LayoutRoutingModule,
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
   exports: [
     NavbarComponent,
     SidemenuComponent,
+    ConfirmationDialogComponent
   ]
 })
 export class LayoutModule { }

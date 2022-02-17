@@ -50,7 +50,7 @@
         <div class="form-data" id="image-div">
             <label for="Image">Image</label>
             <div class="row">
-                <div *ngIf="editingmode==false">
+                <div *ngIf="editingmode==false"> 
                 <div class="col-lg-5 " >
                     <input type="file" class="form-control" id="image" placeholder="Upload Image"
                         (change)=onFileSelected($event) autocomplete="off" required accept="image/png, image/jpeg"

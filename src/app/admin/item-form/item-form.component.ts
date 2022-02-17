@@ -52,7 +52,7 @@ export class ItemFormComponent implements OnInit {
   //function to change the file added to a base64 url
   onFileSelected(event) {
     const reader = new FileReader();
-    if (event.target.files && event.target.files.length) {
+    if (event.target.files && event.target.files.length) { 
       const [file] = event.target.files;
       //read from file
       reader.readAsDataURL(file);
