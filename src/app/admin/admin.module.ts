@@ -30,7 +30,8 @@ import { ToastrModule } from 'ngx-toastr';
     LayoutModule,
     NgbModule,
     NgxPaginationModule,
-    ToastrModule
+    ToastrModule,
+    NgbModule
 
   ]
 

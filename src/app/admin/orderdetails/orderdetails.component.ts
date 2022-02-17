@@ -4,6 +4,7 @@ import { AdminService } from 'src/app/shared/services/admin.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Order } from 'src/app/shared/models/order';
 import { PaginationService } from 'src/app/shared/services/pagination.service';
+import { ConfirmationDialogService } from 'src/app/shared/services/confirmation-dialogue.service';
 
 @Component({
   selector: 'app-orderdetails',
@@ -28,7 +29,8 @@ export class OrderdetailsComponent implements OnInit {
   fulfilled:boolean = false;
 
   constructor(public adminService: AdminService, private router: Router,
-    private modalService: NgbModal, public paginationService: PaginationService) { }
+    private modalService: NgbModal, public paginationService: PaginationService,
+    private confirmationDialogService:ConfirmationDialogService ) { }
 
   ngOnInit(): void {
 
@@ -167,14 +169,32 @@ export class OrderdetailsComponent implements OnInit {
 
   //Function to update the status of an order
   UpdateStatus(order: Order) {
-    if(confirm("Are you sure you want to change the status to fulfilled?")){
-    if (order.Id != 0 || order.Id != null) {
-      this.adminService.ChangeStatus(order).subscribe(
-        data => {
-          console.log(data);
-          window.location.reload();
-        });
+  //   if(confirm("Are you sure you want to change the status to fulfilled?")){
+  //   if (order.Id != 0 || order.Id != null) {
+  //     this.adminService.ChangeStatus(order).subscribe(
+  //       data => {
+  //         console.log(data);
+  //         window.location.reload();
+  //       });
+  //   }
+  // }
+  this.confirmationDialogService.confirm('Are You Sure', 'Do you really want to change the Status to Fulfilled?','Ok','Cancel')
+  .then((confirmed) => {
+    if(confirmed){
+      if (order.Id != 0 || order.Id != null) {
+        this.adminService.ChangeStatus(order).subscribe(
+          data => {
+            console.log(data);
+            window.location.reload();
+          });
+      }
     }
+    else{
+      console.log('User confirmed:', confirmed);
+    }
+  })
+  .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+
   }
-  }
+
 }
