@@ -103,14 +103,16 @@ namespace xcart.Services
             var pointLimit = await db.PointLimit.FirstOrDefaultAsync();
             return pointLimit.Point;
         }
+        #endregion
 
+        #region Update Point Limit
         public async Task<int> UpdatePointLimit(PointLimit pointLimit)
         {
            db.PointLimit.Update(pointLimit);
           await  db.SaveChangesAsync();
             return pointLimit.Point;
         }
-        #endregion
 
+        #endregion
     }
 }

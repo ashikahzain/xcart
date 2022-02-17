@@ -55,6 +55,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Get top 2 trending items
+        [Authorize]
         [HttpGet]
         [Route("trending-item")]
         public async Task<IActionResult> GetTrendingItems()
@@ -76,6 +77,7 @@ namespace xcart.Controllers
         #endregion
 
         #region To change the status of an order
+        [Authorize]
         [HttpPut]
         [Route("Change-Status")]
         public async Task<IActionResult> ChangeStatus([FromBody] StatusOrderViewModel order)
@@ -93,6 +95,7 @@ namespace xcart.Controllers
         #endregion
 
         #region To get the orderdetails by order id
+        [Authorize]
         [HttpGet]
         [Route("{id}/order-details")]
         public async Task<IActionResult> GetOrderDetailsByOrderId(long id)
@@ -114,6 +117,7 @@ namespace xcart.Controllers
         #endregion
 
         #region To get orders based on status
+        [Authorize]
         [HttpGet]
         [Route("Status/{id}")]
         public async Task<IActionResult> GetSpecificOrders(int id, int pagenumber, int pagesize)
@@ -135,6 +139,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Add to Order from Buy
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddToOrder([FromBody] Order order)
         {
@@ -162,6 +167,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Add to Order from Cart
+        [Authorize]
         [HttpPost("cart")]
         public async Task<IActionResult> AddToOrderFromCart([FromBody] Order order)
         {
@@ -207,6 +213,7 @@ namespace xcart.Controllers
         #endregion
 
         #region To add to orderdetails
+        [Authorize]
         [HttpPost]
         [Route("order-details")]
         public async Task<IActionResult> AddToOrderDetails([FromBody] OrderDetails order)
@@ -234,7 +241,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Get order count
-
+        [Authorize]
         [HttpGet]
         [Route("order-count")]
         public async Task<IActionResult> GetOrderCount()
@@ -256,6 +263,7 @@ namespace xcart.Controllers
         #endregion
 
         #region Get status order count
+        [Authorize]
         [HttpGet]
         [Route("{id}/order-status-count")]
         public async Task<IActionResult> GetStatusCount(int id)

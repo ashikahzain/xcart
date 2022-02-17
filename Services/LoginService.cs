@@ -77,6 +77,8 @@ namespace xcart.Services
             }
             return null;
         }
+
+     
         #endregion
 
         #region Validate User
@@ -95,5 +97,7 @@ namespace xcart.Services
             return null;
         }
         #endregion
+
+        
     }
 }

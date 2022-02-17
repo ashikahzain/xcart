@@ -59,7 +59,7 @@ namespace xcart.Services
                                       orderby g.Sum() descending
                                       select g.Key).ToListAsync();
 
-                //object of Item class
+                //list of objects of Item class
                 var trendinglist = new List<Item>();
                 int count = 0;
 
