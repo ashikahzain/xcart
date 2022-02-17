@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/shared/services/admin.service';
 
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -72,6 +73,7 @@ export class CartComponent implements OnInit {
     if (confirm('Do you want to delete this item from cart?')) {
       this.cartservice.deletefromcart(id).subscribe();
     }
+    
     window.location.reload();
   }
 

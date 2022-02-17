@@ -19,9 +19,17 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
+
+
+
+
+
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -36,7 +44,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserAnimationsModule,
     Ng2SearchPipeModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+ 
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},SidemenuComponent],
   bootstrap: [AppComponent]

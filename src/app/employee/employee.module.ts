@@ -11,6 +11,7 @@ import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
 
 
+
 @NgModule({
   declarations: [HomeComponent, ProfileComponent, CartComponent, OrderComponent],
   imports: [
@@ -19,7 +20,8 @@ import { OrderComponent } from './order/order.component';
     LayoutModule,
     Ng2SearchPipeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+   
   ]
 })
 export class EmployeeModule { }
