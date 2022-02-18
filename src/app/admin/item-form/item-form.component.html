@@ -17,47 +17,11 @@
             <div class="form-data" id="Name">
                 <label for="Name">Name</label>
 
-            <input type="text" class="form-control" placeholder="Enter name of Item" formControlName="Name"
-                autocomplete="off" required [attr.disabled]="editingmode ? '' : null">
-            <div *ngIf="(itemForm.get('Name').dirty || itemForm.get('Name').touched)" class="error">
-                <div *ngIf="itemForm.get('Name').invalid">Only alphabets allowed.</div>
-                <div *ngIf="itemForm.get('Name').errors?.required"> Required.</div>
-            </div>
-        </div>
-        <div class="form-data" id="Points">
-            <label for="Points">Points</label>
-            <input type="text" class="form-control" placeholder="Enter points of Item" formControlName="Points"
-                autocomplete="off" required>
-            <div *ngIf="(itemForm.get('Points').dirty || itemForm.get('Points').touched)" class="error">
-                <div *ngIf="itemForm.get('Points').invalid">Only numbers allowed</div>
-                <div *ngIf="itemForm.get('Points').errors?.required"> Required.</div>
-            </div>
-
-        </div>
-        <div class="form-data" id="Quantity">
-            <label for="Quantity">Quantity</label>
-            <input type="text" class="form-control" placeholder="Enter Quantity of Item" formControlName="Quantity"
-                autocomplete="off" required>
-            <div *ngIf="(itemForm.get('Quantity').dirty || itemForm.get('Quantity').touched)" class="error">
-                <div *ngIf="itemForm.get('Quantity').invalid">Only numbers allowed</div>
-                <div *ngIf="itemForm.get('Quantity').errors?.required"> Required.</div>
-            </div>
-     
-        </div>
-        <div class="form-data" id="image-div">
-            <label for="Image">Image</label>
-            <div class="row">
-                <div *ngIf="editingmode==false"> 
-                <div class="col-lg-5 " >
-                    <input type="file" class="form-control" id="image" placeholder="Upload Image"
-                        (change)=onFileSelected($event) autocomplete="off" required accept="image/png, image/jpeg"
-                        [attr.disabled]="editingmode ? '' : null">
-                            <div *ngIf="itemForm.get('Image').errors?.required" class="error"> Required.</div>
-
-                </div>
-                </div>
-                <div class="imagePreview col-lg-4">
-                    <img [src]="imgsrc" alt="imagepreview" onerror="this.src='/assets/images/preview.jfif'">
+                <input type="text" class="form-control" placeholder="Enter name of Item" formControlName="Name"
+                    autocomplete="off" required [attr.disabled]="editingmode ? '' : null">
+                <div *ngIf="(itemForm.get('Name').dirty || itemForm.get('Name').touched)" class="error">
+                    <div *ngIf="itemForm.get('Name').invalid">Only alphabets allowed.</div>
+                    <div *ngIf="itemForm.get('Name').errors?.required"> Required.</div>
                 </div>
             </div>
             <div class="form-data" id="Points">
@@ -78,10 +42,7 @@
                     <div *ngIf="itemForm.get('Quantity').invalid">Only numbers allowed</div>
                     <div *ngIf="itemForm.get('Quantity').errors?.required"> Required.</div>
                 </div>
-                <div *ngIf="(itemForm.get('Quantity').dirty || itemForm.get('Quantity').touched) && itemForm.get('Quantity').errors?.required"
-                    class="error">
-                    Required.
-                </div>
+
             </div>
             <div class="form-data" id="image-div">
                 <label for="Image">Image</label>
@@ -91,19 +52,21 @@
                             <input type="file" class="form-control" id="image" placeholder="Upload Image"
                                 (change)=onFileSelected($event) autocomplete="off" required
                                 accept="image/png, image/jpeg" [attr.disabled]="editingmode ? '' : null">
+                            <div *ngIf="itemForm.get('Image').errors?.required" class="error"> Required.</div>
+
                         </div>
                     </div>
                     <div class="imagePreview col-lg-4">
                         <img [src]="imgsrc" alt="imagepreview" onerror="this.src='/assets/images/preview.jfif'">
                     </div>
                 </div>
-
+            </div>
 
                 <div class="submit-button">
                     <button type="submit" [disabled]="!itemForm.valid">Submit</button>
                     <button id="cancel" routerLink='/admin/catalogue'>Cancel</button>
                 </div>
-            </div>
+            
 
         </form>
     </div>
