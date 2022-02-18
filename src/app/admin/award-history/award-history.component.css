@@ -37,11 +37,15 @@
 
 #back{
     float: right;
-    margin-right: 5%;
+    margin-right: 10%;
 }
 
 .AwardHistory{
-    margin-top: 3%;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-top: 4%;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 .heading h4 {
@@ -54,7 +58,7 @@
 }
 .search {
     display: inline;
-    margin-left: 70%;
+    margin-left: 80%; 
     overflow: hidden;
 }
 .search input[type="text"] {
