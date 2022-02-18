@@ -43,13 +43,13 @@ h3 {
 }
 
 #back{
-    margin-left: 70%;
+    margin-left: 76%;
 }
 .point-button {
     display: inline-flex;
     width: 200px;
     height: 50px;
-    margin-left: 45%;
+    margin-left: 63%;
     background-color: #72d761;
     border-color: #72d761;
     border-radius: 5px;
@@ -72,6 +72,7 @@ h3 {
 }
 .manage-award{
     display: flex;
+    margin-top: 2%;
 }
 
 th {
