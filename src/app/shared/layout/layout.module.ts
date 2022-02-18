@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -7,6 +8,7 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [NavbarComponent, SidemenuComponent, ConfirmationDialogComponent],
@@ -14,7 +16,9 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     CommonModule,
     LayoutRoutingModule,
     Ng2SearchPipeModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+  
   ],
   exports: [
     NavbarComponent,

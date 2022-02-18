@@ -20,9 +20,17 @@ import { ConfirmationDialogService } from './shared/services/confirmation-dialog
 
 
 
+
+
+
+
+
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+   
   ],
   imports: [
     BrowserModule,
