@@ -1,25 +1,30 @@
 <app-sidemenu></app-sidemenu>
 
-<div id="content">
-   <div class="profile">
-      <div class="profile-content" *ngFor="let item of EmployeeById">
-         <br>
+<!--*ngFor="let item of EmployeeById"
+ <img src="{{item.Image}}">
+-->
+<div class="content">
+   <div class="flex-container" *ngFor="let item of EmployeeById">
+      <div class="flex-child" id="image">
          <img src="{{item.Image}}">
+      </div>
+      <div class="flex-child" id="details">
+         {{item.Name}}
          <br>
-         <div class="profile-data">
-            <b id="user">USER PROFILE</b>
-            <br>
-            <br>
-            <b>Name</b> : {{item.Name}}
-            <br>
-            <b>Points Remaining</b> : {{item.CurrentPoints}}
-            <br>
-            <b>Gender</b> : {{item.Gender}}
-            <br>
-            <b>Job Title</b> : {{item.JobTitleName}}
-            <br>
-            <b>Department</b> : {{item.DepartmentName}}
-         </div>
+         {{item.Email}}
+         <br>
+
+         {{item.Gender}}
+         <br>
+         {{item.JobTitleName}}
+         <br>
+         {{item.Contact}}
+         <br>
+         Points : {{item.CurrentPoints}}
+         <br>
+         {{item.DepartmentName}}, {{item.LocationName}}
+         <br>
+
       </div>
    </div>
 </div>
