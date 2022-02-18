@@ -141,7 +141,7 @@ export class EmployeeListComponent implements OnInit {
 
     //getting point of the selected award
     let award = this.adminService.awardList.find(i => i.Id == val);
-    this.point = Number(award.Points);
+    this.point = Number(award.Points); 
 
     //setting that point to the form
     this.addForm.controls.Point.setValue(this.point);
@@ -152,7 +152,6 @@ export class EmployeeListComponent implements OnInit {
   closeModalDialog() {
     this.display = 'none';
     this.display1 = 'none' //set none css after close dialog
-    this.point = 0;
   }
 
   //Navigate to award history page along with userId of the selected employee
