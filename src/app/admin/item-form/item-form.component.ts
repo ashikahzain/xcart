@@ -27,7 +27,7 @@ export class ItemFormComponent implements OnInit {
     this.itemForm = this.formbuilder.group({
       Id: 0,
       Name: ['', [Validators.required, ValidateItemName]],
-      Image: '',
+      Image: ['',[Validators.required]],
       Quantity: ['', [Validators.required, ValidateNumbers]],
       Points: ['', [Validators.required, ValidateNumbers]],
       IsActive: true

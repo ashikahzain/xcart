@@ -1,11 +1,6 @@
 <app-sidemenu></app-sidemenu>
 
-<div id="content" style="border: 1px solid black;">
-    <div class="point-limit">
-        <p>You can spend
-            <br>{{pointLimit}}
-        </p>
-    </div>
+<div id="content" >
     <div class="user-points">
         <p>Points Remaining
             <br>{{currentPoints}}
@@ -16,13 +11,13 @@
         <div class="cart-content">
             <div class="card" *ngFor="let cart of cart">
                 <div class="card-content row" id="crdrow">
-                    <div class="image col-lg-1" id="img">
+                    <div class="image col-lg-2" id="img">
                         <img [src]="cart.ItemImage" alt="">
                     </div>
-                    <div class="col-lg-2" id="iname">
+                    <div class="col-lg-2 item-details" id="iname">
                         <h6>{{cart?.ItemName}} </h6>
                     </div>
-                    <div class="col-lg-2" id="buset">
+                    <div class="col-lg-2 item-details" id="buset">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-4 inline change-button"> <button id="decrease"
                                 (click)="onDecrease(cart.CartId)" [disabled]="cart.Quantity<2">-</button>
                         </div>
@@ -33,18 +28,15 @@
                                 (click)="onIncrease(cart.CartId)">+</button>
                         </div>
                     </div>
-                    <div class="col-lg-3" id="poi"> {{cart.ItemPoints}} Points</div>
-                    
-                    <button id="delete" (click)="deletefromCart(cart.CartId)">
+                    <div class="col-lg-2 item-details" id="poi" > {{cart.ItemPoints}} Points</div>
+                   <div class="col-lg-2 item-details"><button id="delete" (click)="deletefromCart(cart.CartId)">
                         <i class="fa fa-trash-o fa-lg menu-cart"></i>
-                    </button>
-
+                    </button></div> 
                 </div>
 
             </div>
             <br>
             <p class="points">Total Points:{{totalPoints}} </p>
-            <br>
             <input type="button" id="checkout" class="check" value="Checkout" (click)="onCheckOut()" />
 
 

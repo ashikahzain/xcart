@@ -152,6 +152,13 @@
       padding-left: 30px !important;
       background: #8EA6C8;
   }
+
+  .sidebar-footer{
+      
+      margin-top: 120%;
+      text-align: center;
+      color: #071d3b;
+  }
   
   /* ---------------------------------------------------
       MEDIAQUERIES
