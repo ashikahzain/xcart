@@ -178,7 +178,7 @@ export class OrderdetailsComponent implements OnInit {
   //       });
   //   }
   // }
-  this.confirmationDialogService.confirm('Are You Sure', 'Do you really want to change the Status to Fulfilled?','Ok','Cancel')
+  this.confirmationDialogService.confirm('Confirmation', 'Are you sure the order was delivered?','Ok','Cancel')
   .then((confirmed) => {
     if(confirmed){
       if (order.Id != 0 || order.Id != null) {
