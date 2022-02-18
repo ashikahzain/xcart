@@ -1,4 +1,4 @@
-<body class="backdrop">
+<body [ngClass]="display=='block'?'backdrop':''">
   <app-navbar></app-navbar>
 
   <br>
@@ -7,50 +7,48 @@
       <i class="fa fa-home"></i>
       <h4>HOME</h4>
     </div>
-    <div class="point-button" (click)="openPointLimitmodal()">
-      <h4>Current Point Limit : {{pointLimit}}</h4>
+    <div class="point-button" (click)="openPointLimitmodal()" >
+      <h4>Point Limit : {{pointLimit}}</h4>
+      <i class="fa fa-edit" ></i>
     </div>
     <div class="Manage-awards" routerLink='/admin/award'>
       <i class="fa fa-tasks"></i>
       <h4>Manage Awards</h4>
     </div>
 
-    <div class="container">
-      <div class="EmployeeList">
-        <div class="heading">
-          <h4>Employee List</h4>
-        </div>
-        <div class="search">
-          <input id="navsearch" type="text" ngDefaultControl [(ngModel)]="filter" placeholder="Search">
-          <i class="fa fa-search" id="search"></i>
-        </div>
-
-        <table class="table" id="table">
-          <thead>
-            <tr>
-              <th>Employee ID</th>
-              <th>Employee Name</th>
-              <th>Available Points</th>
-              <th>Edit Points</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let emp of employeePointList |filter:filter">
-              <td> &nbsp; {{emp.UserId}}</td>
-              <td>{{emp.Name}}</td>
-              <td>{{emp.CurrentPoints}}</td>
-              <td><button class="btn btn-sm " (click)="openAddModal(emp.UserId,1)">+</button> &nbsp;
-                <button class="btn btn-sm " (click)="openAddModal(emp.UserId,0)">--</button>
-              </td>
-              <td><button class="btn btn-primary" (click)="awardHistory(emp.UserId)">view history</button></td>
-
-            </tr>
-
-          </tbody>
-        </table>
-
+    <div class="EmployeeList">
+      <div class="heading">
+        <h4>Employee List</h4>
       </div>
+      <div class="search">
+        <input id="navsearch" type="text" ngDefaultControl [(ngModel)]="filter" placeholder="Search">
+        <i class="fa fa-search" id="search"></i>
+      </div>
+
+      <table class="table" id="table">
+        <thead>
+          <tr>
+            <th>Employee ID</th>
+            <th>Employee Name</th>
+            <th>Available Points</th>
+            <th>Edit Points</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of employeePointList |filter:filter">
+            <td> &nbsp; {{emp.UserId}}</td>
+            <td>{{emp.Name}}</td>
+            <td>{{emp.CurrentPoints}}</td>
+            <td><button class="btn btn-sm " (click)="openAddModal(emp.UserId,1)">+</button> &nbsp;
+              <button class="btn btn-sm " (click)="openAddModal(emp.UserId,0)">--</button>
+            </td>
+            <td><button class="btn btn-primary" (click)="awardHistory(emp.UserId)">view history</button></td>
+
+          </tr>
+
+        </tbody>
+      </table>
 
     </div>
 
@@ -75,7 +73,7 @@
   </div>
 </body>
 
-<!-- modal -->
+<!-- modal for Adding/Removing Point-->
 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
   <!-- modal-dialog -->
   <div class="modal-dialog" role="document">
@@ -84,8 +82,8 @@
 
       <!-- modal-body -->
       <div class="modal-body">
-        <form [formGroup]="addForm" (ngSubmit)="addPoint()">
-          <span class="select-award"> Select Award</span>
+        <form [formGroup]="addForm" (ngSubmit)="addPoint()" class="form">
+          <h4 class="select-award"> Select Award</h4>
           <br>
           <select class="form-control select" name="AwardId" formControlName="AwardId"
             (change)="onChange($event.target.value)">
@@ -93,22 +91,7 @@
               {{award.Name}} </option>
 
           </select>
-          <div>
-            <input type="text" class="textbox" name="EmployeeId" placeholder="EmployeeId" class="form-control"
-              formControlName="EmployeeId" hidden>
-          </div>
-          <div>
-            <input type="text" class="textbox" name="PresenteeId" placeholder="PresenteeId" class="form-control"
-              formControlName="PresenteeId" hidden>
-          </div>
-          <div>
-            <input type="text" class="textbox" name="Point" placeholder="Point" formControlName="Point"
-              class="form-control" hidden>
-          </div>
-          <div>
-            <input type="number" class="textbox" name="Status" placeholder="Status" formControlName="Status"
-              class="form-control" hidden>
-          </div>
+          
           <p *ngIf="status && point" class="warning">{{point}} points will be added</p>
           <p *ngIf="!status && point" class="warning">{{point}} points will be removed</p>
 
@@ -133,7 +116,7 @@
 </div>
 
 
-<!-- modal -->
+<!-- modal for point Limit-->
 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display1}">
   <!-- modal-dialog -->
   <div class="modal-dialog" role="document">
@@ -144,8 +127,9 @@
       <div class="modal-body">
         <form [formGroup]="pointlimitForm" (ngSubmit)="updatePointLimit()">
           <div>
-            <label>PointLimit</label>
-            <input type="number" class="textbox" name="Point" placeholder="Point Limit" formControlName="Point"
+            <h4 id="Point-limit">PointLimit</h4>
+            <br>
+            <input type="number" id="point-limit-input" name="Point" placeholder="Point Limit" formControlName="Point"
               class="form-control">
           </div>
 
