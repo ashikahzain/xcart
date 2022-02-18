@@ -90,8 +90,11 @@ MEDIA QUERIES
   margin-left: 30%;
   margin-top: 10%;
   display: flex;
-  background-image: linear-gradient(to right, #2f3747, #4286f4);
+  background-image: linear-gradient(to right, #4B79A1, #283E51);
   box-shadow: 5px 10px 5px #cecece;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-left: 3%;
 }
 body {
   background-color: rgb(167, 50, 50);
@@ -113,7 +116,7 @@ body {
   padding-left: 10%;
   padding-bottom: 6%;
   padding-top: 4%;
-  line-height: 175%;
+  line-height: 190%;
 }
 
 img {
