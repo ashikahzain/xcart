@@ -41,7 +41,7 @@
   position: absolute;
   width: 160px;
   height: 50px;
-  margin-left: 30%;
+  margin-left: 25%;
   margin-top: 2%;
   background: #4e71a2;
   border-radius: 20px;
@@ -88,19 +88,19 @@
   margin-bottom: 6%;
 }
 .add-button button {
-  width: 224px;
-  height: 50px;
-  margin-left: 60%;
+  width: 204px;
+  height: 40px;
+  margin-left: 78%;
   margin-top: 2%;
   border: none;
-  background: #72d761;
+  background: #7bd16c;
   border-radius: 20px;
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
-  font-size: 21px;
+  font-size: 19px;
   line-height: 31px;
-  padding-left: 4%;
+  padding-left: 3.5%;
   display: flex;
   align-items: center;
   text-align: center;
@@ -109,7 +109,7 @@
 .add-button i {
   width: 24px;
   height: 24px;
-  padding: 2px 22px;
+  padding: 2px 16px;
   float: right;
 }
 .isDisabled {

@@ -72,11 +72,12 @@ export class CartComponent implements OnInit {
 
   deletefromCart(id: number) {
 
-    this.confirmationDialogService.confirm('Are You Sure', 'Do you really want to Remove the Item From Cart?','Remove','Cancel')
+    this.confirmationDialogService.confirm('Remove Item', 'Are you sure you want to remove this item from cart?','Remove','Cancel')
     .then((confirmed) => {
       if(confirmed){
         console.log('User confirmed:', confirmed);
         this.cartservice.deletefromcart(id).subscribe();
+        window.location.reload();
       }
       else{
         console.log('User confirmed:', confirmed);

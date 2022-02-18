@@ -42,10 +42,7 @@
                 <div *ngIf="itemForm.get('Quantity').invalid">Only numbers allowed</div>
                 <div *ngIf="itemForm.get('Quantity').errors?.required"> Required.</div>
             </div>
-            <div *ngIf="(itemForm.get('Quantity').dirty || itemForm.get('Quantity').touched) && itemForm.get('Quantity').errors?.required"
-                class="error">
-                Required.
-            </div>
+     
         </div>
         <div class="form-data" id="image-div">
             <label for="Image">Image</label>
@@ -55,6 +52,8 @@
                     <input type="file" class="form-control" id="image" placeholder="Upload Image"
                         (change)=onFileSelected($event) autocomplete="off" required accept="image/png, image/jpeg"
                         [attr.disabled]="editingmode ? '' : null">
+                            <div *ngIf="itemForm.get('Image').errors?.required" class="error"> Required.</div>
+
                 </div>
                 </div>
                 <div class="imagePreview col-lg-4">

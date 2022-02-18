@@ -67,7 +67,7 @@ export class CatalogueComponent implements OnInit {
     //if (confirm("This Item will be deleted from the catalogue"))
      
 
-      this.confirmationDialogService.confirm('Are You Sure', 'Do you really want to Delete the Item?','Delete','Cancel')
+      this.confirmationDialogService.confirm('Delete item.', 'Are you sure you want to remove this item from catalogue?','Delete','Cancel')
       .then((confirmed) => {
         if(confirmed){
           console.log('User confirmed:', confirmed);
