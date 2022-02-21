@@ -15,6 +15,8 @@ namespace xcart.Services
 
         public Task<List<LoginViewModel>> GetByUserName(string UserName);
 
+        public Task<LoginViewModel> GetbyEmailId(string email);
+
 
     }
 }

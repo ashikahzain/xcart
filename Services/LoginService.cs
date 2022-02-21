@@ -50,6 +50,7 @@ namespace xcart.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
         #endregion
 
         #region Get User-Role 
@@ -98,6 +99,33 @@ namespace xcart.Services
         }
         #endregion
 
-        
+        #region Get user by email id
+
+        public async Task<LoginViewModel> GetbyEmailId(string email)
+        {
+            if (db != null)
+            {
+               return await(from user in db.User
+                                 from userrole in db.UserRole
+                                 from role in db.Role
+
+                                 where user.Email == email
+                                 where userrole.RoleId == role.Id
+                                 where userrole.UserId == user.Id
+
+
+                                 select new LoginViewModel
+                                 {
+                                     UserId = user.Id,
+                                     UserName = user.Name,
+                                     RoleName = role.Name
+                                 }
+                    ).FirstOrDefaultAsync();
+            }
+            return null;
+        }
+        #endregion
+
+
     }
 }

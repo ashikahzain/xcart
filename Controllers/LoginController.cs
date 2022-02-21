@@ -52,7 +52,28 @@ namespace xcart.Controllers
             return BadRequest();
 
         }
+        //authenticate user by email id
+        [ApiKeyService]
+        [HttpGet]
+        public async Task<IActionResult> microsoftlogin(string email)
+        {
+            IActionResult response = Unauthorized();
+            var userdetails = await login.GetbyEmailId(email);
+            if(userdetails == null)
+            {
+                return response;
+            }
+            var tokenString = login.GenerateJWTToken(userdetails);
+            response = Ok(new
+            {
+                UserId = userdetails.UserId,
+                Token = tokenString,
+                UserName = userdetails.UserName,
+                RoleName = userdetails.RoleName
+            });
+            return response;
 
+        }
        
     }
 }
