@@ -6,9 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { MsalService } from '@azure/msal-angular';
 import { AuthenticationResult } from '@azure/msal-browser';
-import { BehaviorSubject } from 'rxjs';
-import { MicrosoftUser } from 'src/app/shared/models/MicrosoftUser';
-import { Subscription, Observable } from 'rxjs';
+
 
 
 @Component({
@@ -19,16 +17,15 @@ import { Subscription, Observable } from 'rxjs';
 export class LoginComponent implements OnInit {
 
   // declare variables
-  name: any;
+
   loginForm: FormGroup;
   isSubmitted = false;
   error = '';
   jwtResponse: any = new JwtResponse;
-  public userSubject=new BehaviorSubject<any>(MicrosoftUser);
 
   constructor(private formBuilder: FormBuilder, private router: Router,
-     private authService: AuthService, private msalService:MsalService
-     ) { }
+    private authService: AuthService, private msalService: MsalService
+  ) { }
 
   ngOnInit(): void {
     // FormGroup Declaration
@@ -76,7 +73,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('username', this.jwtResponse.UserName);
             sessionStorage.setItem('role', this.jwtResponse.RoleName);
             sessionStorage.setItem('userid', this.jwtResponse.UserId);
-         
+
             console.log(this.jwtResponse.RoleName);
             if (this.jwtResponse.RoleName === 'Admin') {
               this.router.navigateByUrl('/admin/home');
@@ -98,33 +95,47 @@ export class LoginComponent implements OnInit {
 
   microsoftlogin() {
 
-   
-
     this.msalService.loginPopup().subscribe((response: AuthenticationResult) => {
-
       this.msalService.instance.setActiveAccount(response.account);
-
-   
-
-    let details = {
+      let details = {
 
         username: response.account.username,
-
         token: response.accessToken
 
-    }
+      }
+      this.authService.getbyEmailId(details.username).subscribe(
+        data=>{console.log(data)
+          // token with role and username
+          this.jwtResponse = data;
 
-    localStorage.setItem('user', JSON.stringify(details));
+          // either local/session
+          sessionStorage.setItem('jwtToken', this.jwtResponse.Token);
+          const token = sessionStorage.getItem('jwtToken');
 
-      this.userSubject.next(details);
+          if (this.jwtResponse.Token != null) {
+            // logged as Admin
+            console.log('Successfully logged in');
+            // storing in localStorage/sessionStorage
+            localStorage.setItem('username', this.jwtResponse.UserName);
+            sessionStorage.setItem('username', this.jwtResponse.UserName);
+            sessionStorage.setItem('role', this.jwtResponse.RoleName);
+            sessionStorage.setItem('userid', this.jwtResponse.UserId);
 
-      localStorage.setItem('saleslog',"true");
+            console.log(this.jwtResponse.RoleName);
+            if (this.jwtResponse.RoleName === 'Admin') {
+              this.router.navigateByUrl('/admin/home');
+            }
+            else if (this.jwtResponse.RoleName === 'Employee') {
+              this.router.navigateByUrl('/employee/home');
+            }
+          }
+          else {
+            this.error = 'Sorry Not allowed. Invalid authorization';
+          }}
 
-     
+      );
 
-      this.router.navigateByUrl('/admin/home');
 
-      console.log('response', response);
 
     })
 

@@ -60,12 +60,12 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
     //MsalModule
     MsalModule.forRoot( new PublicClientApplication({
       auth: {
-        clientId: '7ba99d7d-07e6-4379-a781-3556e835a6fc', // This is your client ID
-        authority: 'f8cdef31-a31e-4b4a-93e4-5f571e91255a', // This is your tenant ID
+        clientId: 'ef740363-2127-46d1-8d99-a6399a69f1a7', // This is your client ID
+        authority: 'https://login.microsoftonline.com/13ec0e67-00c5-44c4-8bdb-52adb4a2feae', // This is your tenant ID
         redirectUri: 'http://localhost:4200'// This is your redirect URI
       },
       cache: {
-        cacheLocation: 'localStorage',
+        cacheLocation: 'sessionStorage',
         storeAuthStateInCookie: isIE, // Set to true for Internet Explorer 11
       }
     }), {
