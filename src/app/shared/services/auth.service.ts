@@ -20,7 +20,10 @@ export class AuthService {
     return this.httpClient.post(environment.apiUrl + '/api/login', user);
   }
 
-    
+    //get by email id
+    getbyEmailId(email:string):Observable<any>{
+      return this.httpClient.get(environment.apiUrl+ '/api/login?email='+email);
+    }
   // logout
   public logout(): void {
     localStorage.clear();
