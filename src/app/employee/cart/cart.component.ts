@@ -107,7 +107,7 @@ export class CartComponent implements OnInit {
         this.order.UserId = Number(sessionStorage.getItem('userid'));
 
       if (this.checkQuantity == 1) {
-          this.confirmationDialogService.confirm('Are You Sure?', 'Do you really want to Checkout from cart?','Checkout','Cancel')
+          this.confirmationDialogService.confirm('Checkout', 'Are you sure you want to place the order?','Checkout','Cancel')
           .then((confirmed) => {
             if(confirmed){
               console.log('User confirmed:', confirmed);
