@@ -138,8 +138,6 @@ export class OrderdetailsComponent implements OnInit {
     this.FulFilled();
   }
 
-  
-
   //To open popup
   open(content, orderId: number) {
     this.modalService.open(content,
