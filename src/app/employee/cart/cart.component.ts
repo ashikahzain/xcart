@@ -8,6 +8,8 @@ import { Order } from 'src/app/shared/models/order';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/shared/services/admin.service';
+import { ConfirmationDialogService } from 'src/app/shared/services/confirmation-dialogue.service';
+
 
 @Component({
   selector: 'app-cart',
@@ -27,7 +29,8 @@ export class CartComponent implements OnInit {
 
   constructor(public cartservice: CartService, public employeeservice: EmployeeService,
     private domSanitizer: DomSanitizer, private toastr: ToastrService,
-    private router: Router,private adminService:AdminService
+    private router: Router,private adminService:AdminService,
+    private confirmationDialogService:ConfirmationDialogService
   ) { }
 
   ngOnInit(): void {
@@ -69,10 +72,19 @@ export class CartComponent implements OnInit {
   }
 
   deletefromCart(id: number) {
-    if (confirm('Do you want to delete this item from cart?')) {
-      this.cartservice.deletefromcart(id).subscribe();
-    }
-    window.location.reload();
+
+    this.confirmationDialogService.confirm('Remove Item', 'Are you sure you want to remove this item from cart?','Remove','Cancel')
+    .then((confirmed) => {
+      if(confirmed){
+        console.log('User confirmed:', confirmed);
+        this.cartservice.deletefromcart(id).subscribe();
+        window.location.reload();
+      }
+      else{
+        console.log('User confirmed:', confirmed);
+      }
+    })
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
 
   async onCheckOut() {
@@ -95,17 +107,26 @@ export class CartComponent implements OnInit {
         this.order.UserId = Number(sessionStorage.getItem('userid'));
 
       if (this.checkQuantity == 1) {
-        if (confirm('Are you sure you want place the order?')) {
-          this.cartservice.placeOrderFromCart(this.order).subscribe((data) => {
-            console.log(data);
-          });
-          this.toastr.success(
-            'Redeemed ' +
-            this.totalPoints +
-            ' Points. Contact HR Department to collect your items.'
-          );
-          this.router.navigateByUrl('employee/order');
-        }
+          this.confirmationDialogService.confirm('Are You Sure?', 'Do you really want to Checkout from cart?','Checkout','Cancel')
+          .then((confirmed) => {
+            if(confirmed){
+              console.log('User confirmed:', confirmed);
+              this.cartservice.placeOrderFromCart(this.order).subscribe((data) => {
+                console.log(data);
+              });
+              this.toastr.success(
+                'Redeemed ' +
+                this.totalPoints +
+                ' Points. Contact HR Department to collect your items.'
+              );
+              this.router.navigateByUrl('employee/order');
+            }
+            else{
+              console.log('User confirmed:', confirmed);
+            }
+          })
+          .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+
       }
     } else {
       this.toastr.error('Not Enough Points');

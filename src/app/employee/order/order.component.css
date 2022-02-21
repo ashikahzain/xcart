@@ -30,6 +30,10 @@
     border-radius: 20px;
     text-align: center;
 }
+
+th,td{
+    color: #1F4173;
+}
 .form-control{
     width:90%;
     margin-left: 8%;

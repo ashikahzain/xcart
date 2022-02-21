@@ -13,11 +13,6 @@
             <li><a class="dropdown-item" (click)="sortAvailibilityAscending()">Quantity:Low to High</a></li>
         </ul>
     </div>
-    <div class="point-limit">
-      <p>You can spend
-          <br>{{pointLimit}}
-      </p>
-  </div>
     <div class="user-points">
         <p>Points Remaining
             <br>{{currentPoints}}
@@ -72,12 +67,12 @@
             <br>
             <div class="row">
   
-              <div class="col-lg-6">
-                <input type="submit" class="btn btn-info btn-lg" id="confirm" value="Confirm" [disabled]="!addForm.valid">
+              <div class="col-lg-3">
+                <input type="submit" class="btn btn-info btn-md" id="confirm" value="Confirm" [disabled]="!addForm.valid">
               </div>
               <!-- modal-footer -->
-              <div class="col-lg-6">
-                <button type="button" class="btn btn-info btn-lg" id="cancel" (click)="closeModalDialog()">Cancel</button>
+              <div class="col-lg-3">
+                <button type="button" class="btn btn-info btn-md" id="cancel" (click)="closeModalDialog()">Cancel</button>
               </div>
             </div>
   

@@ -1,3 +1,7 @@
+.backdrop{
+    opacity: 70%;
+}
+
 #content {
     width: 100%;
     margin:2% 0% 0% 0%;
@@ -93,16 +97,14 @@
 
 .point-button {
     display: inline-flex;
-    width: 200px;
+    width: 12%;
     height: 50px;
-    margin-left: 40%;
-    margin-top: 2%;
     background: #f7c02d;
     border-radius: 5px;
 }
 
 .point-button:hover {
-    cursor: hand;
+    cursor: grab;
 }
 
 .point-button h4 {
@@ -116,6 +118,10 @@
     align-items: center;
     text-align: center;
     color: #2d415d;
+}
+.point-button i{
+    margin-top: 10%;
+    margin-left: 5%;
 }
 
 #manage {
@@ -139,10 +145,11 @@
 
     color: #5b4e4e;
 }
+
+
 .heading h4 {
     height: 41px;
     width: 228px;
-    margin: 1em 1em 0em 1em;
     left: 10px;
     top: 9px;
     border-radius: nullpx;
@@ -151,7 +158,6 @@
 .search {
     display: inline;
     margin-left: 80%;
-    overflow: hidden;
 }
 .search input[type="text"] {
     border-top: 0px;
@@ -164,8 +170,11 @@
 
 .EmployeeList {
     background-color: #fff;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
+    margin-top: 4%;
+    padding-left: 10%;
+    padding-right: 10%;
+
 }
 
 .btn {
@@ -187,15 +196,17 @@
 
 .select {
     width: 50%;
-    margin-left: 20%;
+    margin-left: 23%;
 }
 
 .select-award {
     margin-left: 30%;
+    margin-bottom: 2%;
+    color: white;
 }
 
 #confirm {
-    margin-left: 40%;
+    margin-left: 50%;
     background: #2e63b1;
     border-radius: 5px;
     filter: drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.25));
@@ -226,10 +237,11 @@ th {
 
 table {
     text-align: center;
+    margin-top: 3%;
 }
 
 .warning {
-    margin-left: 25%;
+    margin-left: 28%;
     margin-top: 2%;
     color: white;
     background: #6b8bb7;
@@ -243,9 +255,10 @@ table {
     border-radius: 5px;
 }
 
-.select-award {
-    color: white;
+.form{
+    margin-left: 5%;
 }
+
 .pageColor {
     position: relative;
     display: block;
@@ -267,7 +280,29 @@ table {
     border: 1px solid #dee2e6;
 }
 
-@media only screen and (max-width: 480px) {
+th{
+    color: #1F4173;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 500; 
+    font-size: 20px;
+
+}
+#point-limit-input{
+    width: 60%;
+    margin-left: 20%;
+}
+
+#Point-limit{
+    color: white;
+    margin-left: 35%;
+}
+
+/*
+Media Queries for making the page responsive
+*/
+
+@media only screen and (max-width: 480px){
     .search {
         margin-left: 40%;
     }

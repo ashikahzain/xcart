@@ -1,47 +1,28 @@
-.content {
-  margin-left: 20%;
+#content {
+  width: 100%;
+  padding: 1%;
+  min-height: 100vh;
+  transition: all 0.3s;
 }
-
 .cart-content {
   margin-top: 10%;
 }
-.point-limit {
-  position: absolute;
-  width: 160px;
-  height: 63px;
-  left: 500px;
-  top: 71px;
-  background: #d7c561;
-  border-radius: 10px;
-}
-.point-limit p{
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 29px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #fefbf0;
-  padding-left: 20px;
-  padding-top: 5px;
-}
+
 .card {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-left: 23%;
-  margin-top: 5%;
-  width: 65%;
-  height: 75%;
+  box-shadow: 0px 4px 4px rgba(46, 45, 45, 0.25);
+  margin-left: 28%;
+  margin-top: 3%;
+  width: 55%;
+  height: 50%;
   display: inline-flex;
 }
 .card-content {
-  margin-top: 5%;
-  margin-bottom: 5%;
-  margin-left: 2%;
+  margin-top: 2%;
+  margin-bottom: 3%;
+  margin-left: 7%;
 }
 .change-button {
-  width: 20%;
+  width: 50px;
 }
 
 #decrease {
@@ -49,7 +30,11 @@
 }
 
 #decrease:hover {
-  background-color: rgb(104, 99, 99);
+  background-color: black;
+  color: white;
+}
+#decrease:disabled:hover{
+  background-color: #a5a4a4;
   color: white;
 }
 
@@ -64,10 +49,11 @@
 
 #delete {
   border: none;
-  margin-left: 5%;
   background-color: red;
   color: white;
-  width: 8%;
+  width: 70px;
+  height: 35px;
+  border-radius: 2px
 }
 
 #delete:hover {
@@ -76,27 +62,47 @@
 
 .user-points {
   position: absolute;
-  width: 20%;
-  height: 75px;
-  margin-left: 70%;
-  margin-top: 5%;
+  width: 216px;
+  height: 63px;
+  margin-left: 68%;
+  top: 71px;
   background: #72d761;
   border-radius: 10px;
-  text-align: center;
-  font-size: 140%;
-  font-weight: 500;
-  color: white;
 }
-
+.user-points p {
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  left: 18px;
+  top: 9px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #fefbf0;
+  padding-left: 18px;
+}
+.image{
+  height: 70px;
+  width: 130px;
+  max-width: 130px;
+  max-height: 90px;
+}
 .image img {
   height: 100%;
   width: 100%;
 }
-
+.item-details{
+  margin-top: 3%;
+}
 #checkout {
-  margin-left: 78%;
-  margin-top: 10%;
-  margin-bottom: 5%;
+  margin-left: 71%;
+  margin-top: 3%;
+  margin-bottom: 3%;
   width: 12%;
   height: 50px;
   border: none;
@@ -114,8 +120,10 @@
 
 .points {
   margin-left: 70%;
-  margin-top: 5%;
+  margin-top: 3%;
   font-size: 140%;
+  color: #3e597f;
+  font-weight: 500;
 }
 
 .empty-cart {
@@ -134,34 +142,22 @@
 }
 
 #iname {
-  margin-left: 5%;
+  margin-left: 2%;
 }
 
 #buset {
-  margin-left: 5%;
   padding-left: 0%;
 }
 
 #poi {
-  margin-left: 5%;
+  margin-left: 2%;
 }
 
 .inline {
   float: left;
 }
 
-/*
---------------------------------------------------------
-MEDIA QUERY
---------------------------------------------------------
-@media only screen and (max-width: 1200px) and (min-width: 992px) {
-  .navigation-buttons{
-      float: right;
-      margin-right: 0;
-      margin-left: auto;
-  }
-}
-*/
+
 
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
 
@@ -218,7 +214,6 @@ MEDIA QUERY
   }
 
   #checkout {
-    margin-bottom: 2%;
     width: 20%;
     font-size: 120%;
   }
@@ -269,3 +264,7 @@ MEDIA QUERY
     font-size: 120%;
   }
 }
+
+
+
+

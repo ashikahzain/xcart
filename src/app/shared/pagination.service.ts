@@ -11,7 +11,7 @@ export class PaginationService {
 
   // On page load 
 
-  pageOnLoad() { 
+  pageOnLoad() {
     if (this.temppage == 0) {
       this.pageField = [];
       for (var a = 0; a < this.exactPageList; a++) {
@@ -20,5 +20,4 @@ export class PaginationService {
       }
     }
   }
- 
 }

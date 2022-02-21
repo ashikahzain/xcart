@@ -1,80 +1,129 @@
-#content {
-  width: 100%;
-  padding: 1%;
-  min-height: 100vh;
-  transition: all 0.3s;
-}
-
-.profile {
-  position: fixed;
-  width: 65%;
-  height: 75%;
-  margin-left: 22%;
-  margin-bottom: 1%;
-  margin-top: 6%;
-  background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-img {
-  width: 20%;
-  height: 20%;
-  margin-left: 38%;
-  margin-top: 2%;
-}
-.profile-content {
-}
-
-.profile-data {
-  margin-bottom: 1%;
-  font-size: 1.2em;
-  width: 65%;
-  margin-left: 19%;
-  margin-top: 3%;
-  padding-left: 20%;
-  margin-bottom: 10%;
-  height: 100%;
-}
-
-#user {
-  margin-left: 9%;
-  margin-bottom: 20%;
-}
-
 /*
 ------------------------------------
 MEDIA QUERIES
 ------------------------------------
 */
-
-@media only screen and (max-height: 600px) and (min-height: 510px) {
-  .profile-data {
-    font-size: 90%;
+@media only screen and (max-width: 1200px) and (min-width: 992px) {
+  .flex-container {
+    font-size: 80%;
   }
 
   img {
-    width: 20%;
-    height: 20%;
+    width: 80%;
   }
 }
 
-@media only screen and (max-height: 509px) and (min-height: 440px) {
-  .profile-data {
-    font-size: 75%;
+@media only screen and (max-width: 992px) and (min-width: 600px) {
+  .flex-container {
+    font-size: 70%;
+    background-color: green;
   }
 
   img {
-    width: 17%;
-    height: 17%;
+    width: 80%;
   }
 }
 
-@media only screen and (max-height: 439px) {
-  .profile-data {
+@media only screen and (max-width: 600px) and (min-width: 480px) {
+  .flex-container {
     font-size: 60%;
+    background-color: yellow;
   }
 
   img {
-    width: 14%;
-    height: 14%;
+    width: 80%;
   }
+  .flex-child {
+    line-height: 200%;
+  }
+}
+
+@media only screen and (max-width: 480px) and (min-width: 380px) {
+  .flex-container {
+    border: 3px solid black;
+    font-size: 40%;
+    background-color: white;
+    margin-left: 20%;
+  }
+
+  #details {
+    font-size: 40%;
+  }
+
+  .content {
+    margin-left: 50%;
+  }
+
+  img {
+    width: 80%;
+    border: 3px solid black;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .flex-container {
+    font-size: 40%;
+    background-color: white;
+    margin-left: 20%;
+  }
+  .content {
+    margin-left: 50%;
+  }
+
+  img {
+    width: 80%;
+  }
+}
+
+.content {
+  width: 100%;
+  padding: 1%;
+  min-height: 100vh;
+  transition: all 0.3s;
+  border: 1px solid black;
+  background-image: linear-gradient(to right, #fff7f7, #ecf4ff);
+}
+
+.flex-container {
+  /* border: 3px solid black; */
+  width: 50%;
+  margin-left: 30%;
+  margin-top: 10%;
+  display: flex;
+  background-image: linear-gradient(to right, #4B79A1, #283E51);
+  box-shadow: 5px 10px 5px #cecece;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-left: 3%;
+}
+body {
+  background-color: rgb(167, 50, 50);
+}
+
+.flex-child {
+  font-family: Georgia, Times, serif;
+  color: aliceblue;
+  width: 50%;
+  height: 200%;
+  float: left;
+  /* border: 2px solid red; */
+  line-height: 175%;
+  font-size: 160%;
+}
+
+#details {
+  margin-left: 3%;
+  padding-left: 10%;
+  padding-bottom: 6%;
+  padding-top: 4%;
+  line-height: 190%;
+}
+
+img {
+  padding-left: 3%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  width: 100%;
+  height: 150%;
+  border-radius: 50%;
 }
