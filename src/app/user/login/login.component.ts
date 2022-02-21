@@ -4,6 +4,12 @@ import { JwtResponse } from 'src/app/shared/models/jwtresponse';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { MsalService } from '@azure/msal-angular';
+import { AuthenticationResult } from '@azure/msal-browser';
+import { BehaviorSubject } from 'rxjs';
+import { MicrosoftUser } from 'src/app/shared/models/MicrosoftUser';
+import { Subscription, Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-login',
@@ -13,12 +19,16 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class LoginComponent implements OnInit {
 
   // declare variables
+  name: any;
   loginForm: FormGroup;
   isSubmitted = false;
   error = '';
   jwtResponse: any = new JwtResponse;
+  public userSubject=new BehaviorSubject<any>(MicrosoftUser);
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router,
+     private authService: AuthService, private msalService:MsalService
+     ) { }
 
   ngOnInit(): void {
     // FormGroup Declaration
@@ -84,6 +94,40 @@ export class LoginComponent implements OnInit {
           }
         );
     }
+  }
+
+  microsoftlogin() {
+
+   
+
+    this.msalService.loginPopup().subscribe((response: AuthenticationResult) => {
+
+      this.msalService.instance.setActiveAccount(response.account);
+
+   
+
+    let details = {
+
+        username: response.account.username,
+
+        token: response.accessToken
+
+    }
+
+    localStorage.setItem('user', JSON.stringify(details));
+
+      this.userSubject.next(details);
+
+      localStorage.setItem('saleslog',"true");
+
+     
+
+      this.router.navigateByUrl('/admin/home');
+
+      console.log('response', response);
+
+    })
+
   }
 
 }
