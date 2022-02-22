@@ -13,18 +13,19 @@ namespace xcart.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiKeyService]
     public class LoginController : ControllerBase
     {
         //Dependency Injection - Login Service
         ILoginService login;
-
+        
         public LoginController(ILoginService _login)
         {
             login = _login;
         }
 
         //Authenticate user POST Method
-        [ApiKeyService]
+        //[ApiKeyService]
         [HttpPost]
 
         public async Task<IActionResult> Login([FromBody] LoginViewModel user)
@@ -52,7 +53,28 @@ namespace xcart.Controllers
             return BadRequest();
 
         }
+        //authenticate user by email id
+        //[ApiKeyService]
+        [HttpGet]
+        public async Task<IActionResult> microsoftlogin(string email)
+        {
+            IActionResult response = Unauthorized();
+            var userdetails = await login.GetbyEmailId(email);
+            if(userdetails == null)
+            {
+                return response;
+            }
+            var tokenString = login.GenerateJWTToken(userdetails);
+            response = Ok(new
+            {
+                UserId = userdetails.UserId,
+                Token = tokenString,
+                UserName = userdetails.UserName,
+                RoleName = userdetails.RoleName
+            });
+            return response;
 
+        }
        
     }
 }

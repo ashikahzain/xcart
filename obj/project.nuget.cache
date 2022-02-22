@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fvXjaC6+uZFtZrwu0Su0ESj53af9oxDWlDcKbIvX6FHKgIWeaTxMRbZrmNRFbkWgclArT1Cp0UUYywjL0F6lHg==",
+  "dgSpecHash": "vBzUllbPCxTwj7CjiPr9YjBUnqi+aXvLxgxfda2NbkX3I2BN9fPMMHiFIEeU7ss9ljPpZRqd83N1/nHzhH3Mng==",
   "success": true,
   "projectFilePath": "D:\\XCart\\Backend\\xcart\\xcart.csproj",
   "expectedPackageFiles": [
@@ -38,6 +38,8 @@
     "C:\\Users\\haizon.cruz\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\haizon.cruz\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
     "C:\\Users\\haizon.cruz\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "C:\\Users\\haizon.cruz\\.nuget\\packages\\nlog\\4.6.8\\nlog.4.6.8.nupkg.sha512",
+    "C:\\Users\\haizon.cruz\\.nuget\\packages\\nlog.extensions.logging\\1.6.2\\nlog.extensions.logging.1.6.2.nupkg.sha512",
     "C:\\Users\\haizon.cruz\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\haizon.cruz\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\haizon.cruz\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

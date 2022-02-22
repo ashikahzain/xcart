@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,24 +22,29 @@ namespace xcart.Controllers
 
         XCartDbContext db;
 
+        ILoggerService logger;
+
         //constructor 
-        public ItemsController(IItemService _itemService, XCartDbContext _db)
+        public ItemsController(IItemService _itemService, XCartDbContext _db, ILoggerService _logger)  
         {
             itemService = _itemService;
             db = _db;
+            logger = _logger;
         }
 
 
         #region get all active items 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         [Route("active-items")]
 
         public async Task<IActionResult> GetAllActiveItems()
         {
+            logger.LogInfo("Get All Active items hit");
             var items = await itemService.GetAllActiveItems();
             if (items == null)
             {
+               
                 return NotFound("no active items");
             }
             return Ok(items);
@@ -49,12 +55,13 @@ namespace xcart.Controllers
         #endregion
 
         #region get all inactive items 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         [Route("inactive-items")]
         public async Task<IActionResult> GetAllInactiveItems()
         {
-                var items = await itemService.GetAllInactiveItems();
+            logger.LogInfo("Get All InActive items hit");
+            var items = await itemService.GetAllInactiveItems();
                 if (items == null)
                 {
                     return NotFound();
@@ -80,6 +87,7 @@ namespace xcart.Controllers
                 }
                 catch (Exception)
                 {
+                    //logger.LogError("Error encountered");
                     return BadRequest();
                 }
             }
@@ -95,6 +103,7 @@ namespace xcart.Controllers
         {
             try
             {
+                //logger.LogError("Bad Request Error");
                 var item = await itemService.GetItemById(id);
                 if (item == null)
                 {
@@ -104,6 +113,7 @@ namespace xcart.Controllers
             }
             catch (Exception)
             {
+                
                 return BadRequest();
             }
 
