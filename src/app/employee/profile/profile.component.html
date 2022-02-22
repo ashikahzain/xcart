@@ -3,7 +3,8 @@
 <!--*ngFor="let item of EmployeeById"
  <img src="{{item.Image}}">
 -->
-<div class="content">
+
+<!-- <div class="content">
    <div class="flex-container" *ngFor="let item of EmployeeById">
       <div class="flex-child" id="image">
          <img src="{{item.Image}}">
@@ -27,4 +28,29 @@
 
       </div>
    </div>
+</div> -->
+<div id="content">
+<div class="container" *ngFor="let item of EmployeeById">
+   <div class="row main">
+   <div class="image col-lg-2">
+      <img src="{{item.Image}}">
+   </div>
+   <div class="name col-lg-8 text-center">
+      <h4 id="fullname">{{item.Name}}</h4>
+      <h6>Remaining Points: {{item.CurrentPoints}}</h6>
+   </div>
+</div>
+<div class="row sub-main">
+   <div class="name col-lg-5">
+      <h6> Email : {{item.Email}}</h6>
+      <h6> Gender :  {{item.Gender}}</h6>
+      <h6> Contact : {{item.Contact}}</h6>
+   </div>
+   <div class="name col-lg-3">
+      <h6>Title : {{item.JobTitleName}}</h6>
+<h6>Department : {{item.DepartmentName}}</h6>
+<h6> Location : {{item.LocationName}}</h6>
+   </div>
+</div>
+</div>
 </div>
