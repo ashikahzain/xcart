@@ -13,6 +13,7 @@ namespace xcart.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiKeyService]
     public class LoginController : ControllerBase
     {
         //Dependency Injection - Login Service
@@ -24,7 +25,6 @@ namespace xcart.Controllers
         }
 
         //Authenticate user POST Method
-        [ApiKeyService]
         [HttpPost]
 
         public async Task<IActionResult> Login([FromBody] LoginViewModel user)
@@ -53,7 +53,6 @@ namespace xcart.Controllers
 
         }
         //authenticate user by email id
-        [ApiKeyService]
         [HttpGet]
         public async Task<IActionResult> microsoftlogin(string email)
         {
