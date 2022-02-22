@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~10.0.5",
     "@angular/platform-browser-dynamic": "~10.0.5",
     "@angular/router": "~10.0.5",
+    "@azure/msal": "^1.4.5",
     "@azure/msal-angular": "^2.1.1",
     "@azure/msal-browser": "^2.22.0",
     "@ng-bootstrap/ng-bootstrap": "^8.0.4",

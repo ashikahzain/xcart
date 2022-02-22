@@ -34,7 +34,7 @@
                 </thead>
                 <tbody>
                     <tr
-                        *ngFor="let emp of sortedAwardHistory | filter:filter  | paginate: {itemsPerPage:7, currentPage: page}">
+                        *ngFor="let emp of sortedAwardHistory | filter:filter  | paginate: {itemsPerPage:5, currentPage: page}">
                         <td> &nbsp; {{emp.AwardId}}</td>
                         <td>{{emp.AwardName}}</td>
                         <td>{{emp.Point}}</td>

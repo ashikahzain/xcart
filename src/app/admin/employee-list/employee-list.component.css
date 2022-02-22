@@ -12,7 +12,7 @@
     display: inline-flex;
     width: 130px;
     height: 50px;
-    margin-left: 10%;
+    margin-left: 13%;
     margin-top: 2%;
     background: #f7c02d;
     border-radius: 5px;
@@ -63,7 +63,7 @@
 .Manage-awards {
     width: 170px;
     float: right;
-    margin-right: 10%;
+    margin-right: 13%;
     font-family: Lato;
     display: inline-flex;
     width: 200px;
@@ -77,9 +77,9 @@
 }
 
 .Manage-awards i {
-    font-size: 24px;
+    font-size: 20px;
     padding-left: 10%;
-    padding-top: 7%;
+    padding-top: 8%;
 }
 
 .Manage-awards h4 {
@@ -97,7 +97,7 @@
 
 .point-button {
     display: inline-flex;
-    width: 12%;
+    width: 14%;
     height: 50px;
     background: #f7c02d;
     border-radius: 5px;
@@ -112,16 +112,17 @@
     padding-top: 4%;
     font-family: Lato;
     font-style: normal;
-    font-size: 18px;
-    line-height: 28px;
+    font-size: 21px;
+    line-height: 31px;
     display: flex;
     align-items: center;
     text-align: center;
     color: #2d415d;
 }
 .point-button i{
-    margin-top: 10%;
+    margin-top: 7%;
     margin-left: 5%;
+    font-size: 20px;
 }
 
 #manage {
@@ -172,8 +173,8 @@
     background-color: #fff;
     border-radius: 20px;
     margin-top: 4%;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 13%;
+    padding-right: 13%;
 
 }
 
