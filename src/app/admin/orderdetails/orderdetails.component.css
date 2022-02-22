@@ -8,7 +8,6 @@
     display: inline-flex;
     width: 130px;
     height: 50px;
-    margin-left: 18%;
     top: 12%;
     background: #f7c02d;
     border-radius: 5px;
@@ -48,7 +47,7 @@
     position: absolute;
     width: 7%;
     height: 8%;
-    left: 65%;
+    left: 66%;
     top: 12%;
     border-radius: 12% 0% 0% 12%;
     background: #6B8BB7;
@@ -59,7 +58,7 @@
     position: absolute;
     width: 7%;
     height: 8%;
-    left: 70%;
+    left: 71%;
     top: 12%;
     background: #6B8BB7;
     border: none;
@@ -69,7 +68,7 @@
     position: absolute;
     width: 7%;
     height: 8%;
-    left: 76%;
+    left: 77%;
     top: 12%;
     border-radius: 0% 12% 12% 0%;
     background: #6B8BB7;
@@ -85,13 +84,13 @@
     font-weight: 600;
 }
 
-.list-heading h4 {
-    margin: 17% 0% 0% 6%;
+.list-heading h3 {
+    margin: 17% 0% 0% 0%;
     color: #1F4173;
 }
 .search {
     display: inline;
-    margin-left: 77%;
+    margin-left: 79%;
 }
 .search input[type="text"] {
     border-top: 0px;
@@ -105,12 +104,16 @@
 }
 .table {
     margin-top: 2%;
-    margin-left: 6%;
-    width: 90%;
+    width: 100%;
     border-radius: 20px;
     text-align: center;
 }
-th,td{
+th{
+    color: #1F4173;
+    font-weight: 500;
+    font-size: 20px;
+}
+td{
     color: #1F4173;
 }
 
@@ -272,26 +275,27 @@ th,td{
     .All{
         height: 8%;
         top: 12%;
-        width: 8%;
-        left: 70%
+        width: 6%;
+        left: 62%
     }
     .Open{
         height: 8%;
         top: 12%;
-        width: 10%;
-        left: 77%;
+        width: 9%;
+        left: 67%;
     }
     .FullFilled{
         height: 8%;
         top: 12%;
-        width: 12%;;
+        width: 12%;
+        left: 75%;
     }
     .list-heading{
         margin: 25% 0% 0% 0%;
     }
     .search {
         display: inline;
-        margin-left: 72%;
+        margin-left: 71%;
     }
     #navsearch{
         width: 25%;
@@ -319,5 +323,9 @@ th,td{
     }   
     .pageColor{
         font-size: small;
+    }
+    .search {
+        display: inline;
+        margin-left: 72%;
     }
 }
