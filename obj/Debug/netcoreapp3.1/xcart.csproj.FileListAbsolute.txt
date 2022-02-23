@@ -201,3 +201,7 @@ D:\XCart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.genruntimeconfig.cache
 D:\XCart\Backend\xcart\bin\Debug\netcoreapp3.1\Nlog.config
 D:\XCart\Backend\xcart\bin\Debug\netcoreapp3.1\NLog.dll
 D:\XCart\Backend\xcart\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\Nlog.config
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\NLog.dll
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
+D:\Experion\XCart\BackEnd\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.CopyComplete
