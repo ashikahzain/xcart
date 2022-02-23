@@ -26,7 +26,7 @@ namespace xcart.Controllers
         }
 
         #region Get All employees
-        [Authorize]
+        //[Authorize]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllEmployees()
         {
