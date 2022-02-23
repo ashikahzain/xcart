@@ -46,6 +46,7 @@ namespace xcart
             services.AddScoped<IAwardHistoryService, AwardHistoryService>();
             services.AddScoped<IPointService, PointService>();
             services.AddScoped<ICartService, CartService>();
+            services.AddScoped<ILoggerService, LoggerService>();
 
             //Adding Authentication
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
