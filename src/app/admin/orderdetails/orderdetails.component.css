@@ -2,11 +2,10 @@
       CONTENT STYLE
   ----------------------------------------------------- */
 .home-button {
-    position: absolute;
+    position: fixed;
     display: inline-flex;
     width: 130px;
     height: 50px;
-    margin-left: 18%;
     top: 12%;
     background: #f7c02d;
     border-radius: 5px;
@@ -43,10 +42,10 @@
     color: hsla(360, 0%, 100%, 1);
 }
 .All{
-    position: absolute;
+    position: fixed;
     width: 7%;
     height: 8%;
-    left: 65%;
+    left: 67%;
     top: 12%;
     border-radius: 12% 0% 0% 12%;
     background: #6B8BB7;
@@ -54,20 +53,20 @@
     transition: all 0.4s;  
 }
 .Open{
-    position: absolute;
+    position: fixed;
     width: 7%;
     height: 8%;
-    left: 70%;
+    left: 72%;
     top: 12%;
     background: #6B8BB7;
     border: none;
      
 }
 .FullFilled{
-    position: absolute;
+    position: fixed;
     width: 7%;
     height: 8%;
-    left: 76%;
+    left: 78%;
     top: 12%;
     border-radius: 0% 12% 12% 0%;
     background: #6B8BB7;
@@ -84,12 +83,15 @@
 }
 
 .list-heading h4 {
-    margin: 17% 0% 0% 6%;
+    position: fixed;
+    margin: 12% 0% 0% 0%;
     color: #1F4173;
 }
 .search {
+    position: fixed;
     display: inline;
-    margin-left: 77%;
+    margin-left: 55%;
+    margin-top: 12%;
 }
 .search input[type="text"] {
     border-top: 0px;
@@ -102,9 +104,9 @@
     color: #2d415d;
 }
 .table {
-    margin-top: 2%;
-    margin-left: 6%;
-    width: 90%;
+    position: fixed;
+    margin-top: 15%;
+    width: 70%;
     border-radius: 20px;
     text-align: center;
 }
@@ -122,6 +124,11 @@ th,td{
 }
 .opened{
     color: #fff;
+}
+.row{
+    position: fixed;
+    top: 84%;
+    width: 100%;
 }
 .pageColor {
     position: relative;
@@ -183,11 +190,12 @@ th,td{
         font-size: 13px;
     }
     .list-heading{
-        margin: 45% 0% 0% 0%;
+        margin: 25% 0% 0% 0%;
     }
     .search {
         display: inline;
-        margin-left: 68%;
+        margin-left: 60%;
+        width: 50%;
         font-size: small;
     }
     #navsearch{
@@ -198,6 +206,8 @@ th,td{
     }
     .table{
         font-size: small;
+        top: 17%;
+        width: 90%;
     }
     .form-control{
         height: 100%;
@@ -205,6 +215,9 @@ th,td{
     }
     .pageColor{
         font-size:x-small;
+    }
+    .row{
+        top:88%
     }
 }
 
@@ -224,36 +237,44 @@ th,td{
         height: 8%;
         top: 12%;
         width: 8%;
-        left: 67%
+        left: 63%
     }
     .Open{
         height: 8%;
         top: 12%;
         width: 11%;
-        left: 74%;
+        left: 70%;
     }
     .FullFilled{
         height: 8%;
         top: 12%;
         width: 14%;
-        left: 84%;
+        left: 80%;
     }
     .list-heading{
-        margin: 30% 0% 0% 0%;
+        margin: 15% 0% 0% 0%;
     }
     .search {
         display: inline;
-        margin-left: 72%;
+        margin-left: 70%;
+        width: 50%;
     }
     #navsearch{
         width: 24%;
     }
+    .table{
+        width: 85%;
+        top: 15%;
+    }  
     #hide{
         display: none;
     }
     .form-control{
         height: 100%;
         font-size:small;
+    }
+    .row{
+        top:93%
     }
     .pageColor{
         font-size: smaller;
@@ -270,14 +291,14 @@ th,td{
     .All{
         height: 8%;
         top: 12%;
-        width: 8%;
-        left: 70%
+        width: 5%;
+        left: 66%
     }
     .Open{
         height: 8%;
         top: 12%;
-        width: 10%;
-        left: 77%;
+        width: 8%;
+        left: 71%;
     }
     .FullFilled{
         height: 8%;
@@ -285,21 +306,29 @@ th,td{
         width: 12%;;
     }
     .list-heading{
-        margin: 25% 0% 0% 0%;
+        margin: 10% 0% 0% 0%;
     }
     .search {
         display: inline;
-        margin-left: 72%;
+        margin-left: 55%;
+        width: 50%;
     }
     #navsearch{
         width: 25%;
     }
+    .table{
+        width: 70%;
+        top: 10%;
+    }  
     #hide{
         display: none;
     }
     .form-control{
         height: 100%;
         font-size:small;
+    }
+    .row{
+        top:90%
     }
     .pageColor{
         font-size: smaller;
@@ -311,10 +340,34 @@ th,td{
         height: 100%;
         font-size:small;
     }
+    .All{
+        height: 8%;
+        top: 12%;
+        width: 4%;
+        left: 68%
+    }
+    .Open{
+        height: 8%;
+        top: 12%;
+        width: 6%;
+        left: 72%;
+    }
+    .FullFilled{
+        height: 8%;
+        top: 12%;
+        width: 8%;
+    }
     .table{
-        width: 95%;
-        margin-left:1%
+        width: 85%;
+        top: 10%;
     }   
+    .list-heading{
+        margin: 5% 0% 0% 0%;
+    }
+    .search {
+        display: inline;
+        margin-left: 63%;
+    }
     .pageColor{
         font-size: small;
     }
