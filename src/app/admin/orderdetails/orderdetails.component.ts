@@ -24,13 +24,13 @@ export class OrderdetailsComponent implements OnInit {
   pageField: any[];
   pageNo: boolean[] = [];
   orderList: Order[];
-  all:boolean= false;
-  opened:boolean = false;
-  fulfilled:boolean = false;
+  all: boolean = false;
+  opened: boolean = false;
+  fulfilled: boolean = false;
 
   constructor(public adminService: AdminService, private router: Router,
     private modalService: NgbModal, public paginationService: PaginationService,
-    private confirmationDialogService:ConfirmationDialogService ) { }
+    private confirmationDialogService: ConfirmationDialogService) { }
 
   ngOnInit(): void {
 
@@ -64,7 +64,7 @@ export class OrderdetailsComponent implements OnInit {
     this.opened = true;
     this.fulfilled = false;
     this.paginationService.temppage = 0;
-    this.adminService.getSpecifiedOrder(1,this.pagenumber, this.pagesize).subscribe(
+    this.adminService.getSpecifiedOrder(1, this.pagenumber, this.pagesize).subscribe(
       data => {
         this.orderList = data;
         this.GetOrderStatusCount(1);
@@ -77,7 +77,7 @@ export class OrderdetailsComponent implements OnInit {
     this.opened = false;
     this.fulfilled = true;
     this.paginationService.temppage = 0;
-    this.adminService.getSpecifiedOrder(2,this.pagenumber, this.pagesize).subscribe(
+    this.adminService.getSpecifiedOrder(2, this.pagenumber, this.pagesize).subscribe(
       data => {
         this.orderList = data;
         this.GetOrderStatusCount(2);
@@ -124,7 +124,7 @@ export class OrderdetailsComponent implements OnInit {
     this.All();
   }
 
-  showOrdersByPageNumberOpen(page,i){
+  showOrdersByPageNumberOpen(page, i) {
     this.orderList = [];
     this.pageNo = [];
     this.pageNo[i] = true;
@@ -132,7 +132,7 @@ export class OrderdetailsComponent implements OnInit {
     this.Open();
   }
 
-  showOrdersByPageNumberFulfilled(page,i){
+  showOrdersByPageNumberFulfilled(page, i) {
     this.orderList = [];
     this.pageNo = [];
     this.pageNo[i] = true;
@@ -169,31 +169,34 @@ export class OrderdetailsComponent implements OnInit {
 
   //Function to update the status of an order
   UpdateStatus(order: Order) {
-  //   if(confirm("Are you sure you want to change the status to fulfilled?")){
-  //   if (order.Id != 0 || order.Id != null) {
-  //     this.adminService.ChangeStatus(order).subscribe(
-  //       data => {
-  //         console.log(data);
-  //         window.location.reload();
-  //       });
-  //   }
-  // }
-  this.confirmationDialogService.confirm('Confirmation', 'Are you sure the order was delivered?','Ok','Cancel')
-  .then((confirmed) => {
-    if(confirmed){
-      if (order.Id != 0 || order.Id != null) {
-        this.adminService.ChangeStatus(order).subscribe(
-          data => {
-            console.log(data);
-            window.location.reload();
-          });
-      }
+    //   if(confirm("Are you sure you want to change the status to fulfilled?")){
+    //   if (order.Id != 0 || order.Id != null) {
+    //     this.adminService.ChangeStatus(order).subscribe(
+    //       data => {
+    //         console.log(data);
+    //         window.location.reload();
+    //       });
+    //   }
+    // }
+    if (order.Status == 'Open') {
+      this.confirmationDialogService.confirm('Confirmation', 'Are you sure the order was delivered?', 'Ok', 'Cancel')
+        .then((confirmed) => {
+          if (confirmed) {
+            if (order.Id != 0 || order.Id != null) {
+              this.adminService.ChangeStatus(order).subscribe(
+                data => {
+                  console.log(data);
+                  window.location.reload();
+                });
+            }
+          }
+          else {
+            console.log('User confirmed:', confirmed);
+          }
+        })
+        .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+
     }
-    else{
-      console.log('User confirmed:', confirmed);
-    }
-  })
-  .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
 
   }
 

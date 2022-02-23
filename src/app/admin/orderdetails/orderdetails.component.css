@@ -1,6 +1,8 @@
 /* ---------------------------------------------------
       CONTENT STYLE
   ----------------------------------------------------- */
+ 
+
 .home-button {
     position: fixed;
     display: inline-flex;
@@ -110,7 +112,12 @@
     border-radius: 20px;
     text-align: center;
 }
-th,td{
+th{
+    color: #1F4173;
+    font-weight: 500;
+    font-size: 20px;
+}
+td{
     color: #1F4173;
 }
 
@@ -303,7 +310,8 @@ th,td{
     .FullFilled{
         height: 8%;
         top: 12%;
-        width: 12%;;
+        width: 12%;
+        left: 75%;
     }
     .list-heading{
         margin: 10% 0% 0% 0%;
@@ -370,5 +378,9 @@ th,td{
     }
     .pageColor{
         font-size: small;
+    }
+    .search {
+        display: inline;
+        margin-left: 72%;
     }
 }

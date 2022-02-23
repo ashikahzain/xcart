@@ -103,6 +103,7 @@ export class LoginComponent implements OnInit {
         token: response.accessToken
 
       }
+
       this.authService.getbyEmailId(details.username).subscribe(
         data=>{console.log(data)
           // token with role and username
