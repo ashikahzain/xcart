@@ -47,6 +47,7 @@ namespace xcart.Controllers
                
                 return NotFound("no active items");
             }
+           
             return Ok(items);
 
 
@@ -60,14 +61,20 @@ namespace xcart.Controllers
         [Route("inactive-items")]
         public async Task<IActionResult> GetAllInactiveItems()
         {
-            logger.LogInfo("Get All InActive items hit");
+           
+            
             var items = await itemService.GetAllInactiveItems();
                 if (items == null)
                 {
-                    return NotFound();
+                
+                return NotFound();
                 }
-                return Ok(items);
-      
+          
+            return Ok(items);
+       
+            
+
+
         }
         #endregion
 
