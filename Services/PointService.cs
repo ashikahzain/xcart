@@ -100,17 +100,26 @@ namespace xcart.Services
         #region Get Point limit
         public async Task<int> GetPointLimit()
         {
-            var pointLimit = await db.PointLimit.FirstOrDefaultAsync();
-            return pointLimit.Point;
+            if (db != null)
+            {
+                var pointLimit = await db.PointLimit.FirstOrDefaultAsync();
+                return pointLimit.Point;
+            }
+            return 0;
+
         }
         #endregion
 
         #region Update Point Limit
         public async Task<int> UpdatePointLimit(PointLimit pointLimit)
         {
-           db.PointLimit.Update(pointLimit);
-          await  db.SaveChangesAsync();
-            return pointLimit.Point;
+            if (db != null)
+            {
+                db.PointLimit.Update(pointLimit);
+                await db.SaveChangesAsync();
+                return pointLimit.Point;
+            }
+            return 0;
         }
 
         #endregion

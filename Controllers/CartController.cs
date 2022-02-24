@@ -87,7 +87,7 @@ namespace xcart.Controllers
         #region Delete Cart
         [Authorize]
         [HttpDelete]
-            [Route("{id}")]
+        [Route("{id}")]
 
             public async Task<IActionResult> DeleteCart(int id)
             {
