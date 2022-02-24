@@ -126,6 +126,7 @@ namespace xcart
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Demo API");
+                options.RoutePrefix = string.Empty;
             });
 
             app.UseDeveloperExceptionPage();

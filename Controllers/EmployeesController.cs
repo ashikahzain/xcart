@@ -18,24 +18,37 @@ namespace xcart.Controllers
 
         XCartDbContext db;
 
+        ILoggerService logger;
+
         //constructor     
-        public EmployeesController(IEmployeeService _employeeService, XCartDbContext _db)
+        public EmployeesController(IEmployeeService _employeeService, XCartDbContext _db, ILoggerService _logger)
         {
             employeeService = _employeeService;
             db = _db;
+            logger = _logger;
         }
 
         #region Get All employees
-        //[Authorize]
+        [Authorize]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllEmployees()
         {
-            var employees = await employeeService.GetAllEmployees();
-            if (employees == null)
+            try
             {
-                return NotFound();
+                logger.LogInfo("Get all Employees");
+                var employees = await employeeService.GetAllEmployees();
+                if (employees == null)
+                {
+                    logger.LogWarn("Employee records not found");
+                    return NotFound();
+                }
+                logger.LogInfo($"Returned Awards {employees}");
+                return Ok(employees);
             }
-            return Ok(employees);
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         #endregion
 
@@ -44,12 +57,23 @@ namespace xcart.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEmployeeById(long id)
         {
-            var employees = await employeeService.GetEmployeeById(id);
-            if (employees == null)
+            try
             {
-                return NotFound();
+                logger.LogInfo("Get an employee by ID API called");
+                var employees = await employeeService.GetEmployeeById(id);
+                if (employees == null)
+                {
+                    logger.LogWarn($"Employee with ID {id} was not found");
+                    return NotFound();
+                }
+                logger.LogInfo("Employee record found");
+                return Ok(employees);
             }
-            return Ok(employees);
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
         }
         #endregion
 
@@ -59,12 +83,23 @@ namespace xcart.Controllers
    
         public async Task<IActionResult> GetEmployeePoints(int pagenumber,int pagesize)
         {
-            var empPoints = await employeeService.GetEmployeePoints(pagenumber,pagesize);
-            if (empPoints == null)
+            try
             {
-                return NotFound();
+                logger.LogInfo("Getting all Employee Points");
+                var empPoints = await employeeService.GetEmployeePoints(pagenumber, pagesize);
+                if (empPoints == null)
+                {
+                    logger.LogWarn("Employee points record not found");
+                    return NotFound();
+                }
+                logger.LogInfo("Returning employee points records");
+                return Ok(empPoints);
             }
-            return Ok(empPoints);
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
         }
         #endregion
 
@@ -74,12 +109,23 @@ namespace xcart.Controllers
         [Route("most-awards")]
         public async Task<IActionResult> GetMostAwardedEmployee()
         {
-            var orders = await employeeService.GetMostAwardedEmployee();
-            if (orders == null)
+            try
             {
-                return NotFound();
+                logger.LogInfo("Getting record of most rewarded employee record");
+                var orders = await employeeService.GetMostAwardedEmployee();
+                if (orders == null)
+                {
+                    logger.LogWarn("Most rewarded employee record not found");
+                    return NotFound();
+                }
+                logger.LogInfo("Returning Most Awarded Employee");
+                return Ok(orders);
             }
-            return Ok(orders);
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
 
         }
         #endregion
@@ -93,12 +139,23 @@ namespace xcart.Controllers
 
         public async Task<IActionResult> GetEmployeeProfile(long id)
         {
-            var employee = await employeeService.GetEmployeeProfile(id);
-            if (employee == null)
+            try
             {
-                return NotFound();
+                logger.LogInfo($"Get profile of Employee ID {id}");
+                var employee = await employeeService.GetEmployeeProfile(id);
+                if (employee == null)
+                {
+                    logger.LogWarn($"Profile of employee with ID {id} not found");
+                    return NotFound();
+                }
+                logger.LogInfo($"Returning Employee profile of Employee ID {id}");
+                return Ok(employee);
             }
-            return Ok(employee);
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
         }
         #endregion
 
@@ -108,12 +165,23 @@ namespace xcart.Controllers
         [Route("{id}/orders")]
         public async Task<IActionResult> GetAllOrdersByEmployeeId(long id, int pagenumber, int pagesize)
         {
-            var order = await employeeService.GetAllOrdersByEmployeeId(id, pagenumber,pagesize);
-            if (order == null)
+            try
             {
-                return NotFound();
+                logger.LogInfo($"Get all orders placed by employee with ID {id}");
+                var order = await employeeService.GetAllOrdersByEmployeeId(id, pagenumber, pagesize);
+                if (order == null)
+                {
+                    logger.LogWarn($"No orders found for employee with ID {id}");
+                    return NotFound();
+                }
+                logger.LogInfo($"Returning all orders placed by employee with ID {id}");
+                return Ok(order);
             }
-            return Ok(order);
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
         }
         #endregion
 
@@ -123,8 +191,17 @@ namespace xcart.Controllers
         [Route("employee-count")]
         public async Task<IActionResult> GetEmployeeCount()
         {
-            var count = await employeeService.GetEmployeeCount();
-            return Ok(count);
+            try
+            {
+                logger.LogInfo("Getting total no: of employees");
+                var count = await employeeService.GetEmployeeCount();
+                return Ok(count);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+           
         }
 
 
@@ -136,8 +213,17 @@ namespace xcart.Controllers
         [Route("{id}/order-count")]
         public async Task<IActionResult> GetEmployeeOrderCount(int id)
         {
-            var count = await employeeService.GetEmployeeOrderCount(id);
-            return Ok(count);
+            try
+            {
+                logger.LogInfo($"Getting order count of employee with ID {id}");
+                var count = await employeeService.GetEmployeeOrderCount(id);
+                return Ok(count);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
         }
         #endregion
 

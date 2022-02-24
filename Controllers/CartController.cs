@@ -17,10 +17,13 @@ namespace xcart.Controllers
         ICartService cartService;
 
         XCartDbContext db;
-        public CartController(ICartService _cartService, XCartDbContext _db)
+
+        ILoggerService logger;
+        public CartController(ICartService _cartService, XCartDbContext _db, ILoggerService _logger)
         {
             cartService = _cartService;
             db = _db;
+            logger = _logger;
         }
 
         #region Get Cart By Id
@@ -29,12 +32,24 @@ namespace xcart.Controllers
         [Route("cart/{id}")]
         public async Task<IActionResult> GetCartById(long id)
         {
-            var cart = await cartService.GetCartById(id);
-            if (cart == null)
+            try
             {
-                return NotFound();
+                logger.LogInfo($"Getting cart data of employee with ID {id}");
+                var cart = await cartService.GetCartById(id);
+                if (cart == null)
+                {
+                    logger.LogWarn($"Cart found empty for employee with ID {id}");
+                    return NotFound();
+                }
+                logger.LogInfo($"Returning cart data of employee with ID {id}");
+                return Ok(cart);
             }
-            return Ok(cart);
+            catch(Exception ex)
+            {
+                logger.LogWarn($"Exception error occured {ex.Message}");
+                return BadRequest(ex.Message);
+            }
+            
         }
         #endregion
 
@@ -46,24 +61,27 @@ namespace xcart.Controllers
         {
             try
             {
+                logger.LogInfo("Adding items to cart");
                 if (ModelState.IsValid)
                 {
                     var c = await cartService.AddToCart(cart);
                     if(c>0)
                     {
+                        logger.LogInfo("Item has been added to cart");
                         return Ok(cart);
                     }
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                logger.LogWarn($"Exception error occured {ex.Message}");
                 return BadRequest();
             }
             return BadRequest();     
         }
         #endregion
 
-        #region increase Item Quantity
+        #region Decrease Item Quantity
         [Authorize]
         [HttpGet]
         [Route("decrease-quantity/{id}")]
@@ -72,11 +90,13 @@ namespace xcart.Controllers
         {
             try
             {
+                logger.LogInfo("Decreasing quantity of item added to cart");
                 var items = await cartService.DecreaseQuantity(id);
                 return Ok(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.LogWarn($"Exception error occured {ex.Message}");
                 return BadRequest();
             }
 
@@ -93,15 +113,19 @@ namespace xcart.Controllers
             {
                 try
                 {
+                logger.LogInfo($"Deleting item with {id} from cart");
                     var c = await cartService.DeleteCart(id);
                     if (c != null)
                     {
+                    logger.LogInfo($"Item with ID {id} deleted from cart");
                         return Ok(c);
                     }
+                    logger.LogWarn($"Item with ID {id} not found in cart");
                     return NotFound();
                 }
-                catch
+                catch(Exception ex)
                 {
+                    logger.LogWarn($"Exception error occured {ex.Message}");
                     return BadRequest();
                 }
             }
@@ -116,11 +140,14 @@ namespace xcart.Controllers
             {
                 try
                 {
+                    logger.LogInfo($"Increasing quantity of item with ID {id} in cart");
                     var items = await cartService.IncreaseQuantity(id);
+                    logger.LogInfo($"Item quantity has been increased in cart");
                     return Ok(id);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    logger.LogWarn($"Exception error occured {ex.Message}");
                     return BadRequest();
                 }
             }
@@ -135,15 +162,19 @@ namespace xcart.Controllers
         {
             try
             {
+                logger.LogInfo("Deleting cart by user id");
                 var c = await cartService.DeleteCartbyUserId(id);
                 if (c != null)
                 {
+                    logger.LogInfo("Cart has been deleted");
                     return Ok(c);
                 }
+                logger.LogWarn("Deletion was not done");
                 return NotFound();
             }
-            catch
+            catch(Exception ex)
             {
+                logger.LogWarn($"Exception error occured {ex.Message}");
                 return BadRequest();
             }
         }
