@@ -119,6 +119,7 @@ namespace xcart.Controllers
 
         #region Delete Award /api/awards/delete-award/{id}
         [Authorize]
+        [HttpPut]
         [Route("delete-award/{id}")]
         public async Task<IActionResult> DeleteAward(int id)
         {

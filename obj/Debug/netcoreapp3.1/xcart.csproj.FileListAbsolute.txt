@@ -201,3 +201,8 @@ D:\XCart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.genruntimeconfig.cache
 D:\XCart\Backend\xcart\bin\Debug\netcoreapp3.1\Nlog.config
 D:\XCart\Backend\xcart\bin\Debug\netcoreapp3.1\NLog.dll
 D:\XCart\Backend\xcart\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
+D:\XCart\Backend\xcart\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\XCart\Backend\xcart\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\XCart\Backend\xcart\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\XCart\Backend\xcart\obj\Debug\netcoreapp3.1\xcart.MvcApplicationPartsAssemblyInfo.cs
+D:\XCart\Backend\xcart\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll

@@ -65,6 +65,19 @@ namespace xcart
                     };
                 });
 
+            //Adding swagger
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "Swagger Demo API",
+                    Description = "Demo API for showing swagger",
+                    Version="v1"
+                });
+
+                options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+            });
+
             //Adding MVC and Cors
             services.AddMvc();
             services.AddCors();
@@ -81,6 +94,8 @@ namespace xcart
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+           
+
             app.UseCors(options =>
             options.WithOrigins("http://localhost:4200")
             .AllowAnyMethod()
@@ -105,6 +120,17 @@ namespace xcart
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Demo API");
+            });
+
+            app.UseDeveloperExceptionPage();
         }
+
+       
     }
 }
