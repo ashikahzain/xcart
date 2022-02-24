@@ -204,4 +204,8 @@ D:\XCart\Backend\xcart\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
 D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\Nlog.config
 D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\NLog.dll
 D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
-D:\Experion\XCart\BackEnd\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.CopyComplete
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Experion\XCart\BackEnd\xcart\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Experion\XCart\BackEnd\xcart\obj\Debug\netcoreapp3.1\xcart.MvcApplicationPartsAssemblyInfo.cs
