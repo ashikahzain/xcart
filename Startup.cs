@@ -35,7 +35,7 @@ namespace xcart
 
             //Adding DbContext
             services.AddDbContext<Models.XCartDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("XCart")));
-
+            
             //Adding Servies
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IOrderService, OrderService>();
