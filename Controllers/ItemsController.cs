@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,46 +22,51 @@ namespace xcart.Controllers
 
         XCartDbContext db;
 
+        ILoggerService logger;
+
         //constructor 
-        public ItemsController(IItemService _itemService, XCartDbContext _db)
+        public ItemsController(IItemService _itemService, XCartDbContext _db, ILoggerService _logger)  
         {
             itemService = _itemService;
             db = _db;
+            logger = _logger;
         }
 
 
         #region get all active items 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         [Route("active-items")]
 
         public async Task<IActionResult> GetAllActiveItems()
         {
+            logger.LogInfo("Get All Active items");
             var items = await itemService.GetAllActiveItems();
             if (items == null)
             {
+                logger.LogWarn("Active Items Not Found");
                 return NotFound("no active items");
             }
+            logger.LogInfo($" Active Items Returned {items}");
             return Ok(items);
-
-
-
         }
         #endregion
 
         #region get all inactive items 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         [Route("inactive-items")]
         public async Task<IActionResult> GetAllInactiveItems()
         {
-                var items = await itemService.GetAllInactiveItems();
-                if (items == null)
-                {
-                    return NotFound();
-                }
-                return Ok(items);
-      
+            logger.LogInfo("Get All InActive items");
+            var items = await itemService.GetAllInactiveItems();
+            if (items == null)
+            {
+                logger.LogWarn("Inactive Items Not Found");
+                return NotFound();
+            }
+            logger.LogInfo($"Inactive Items Returned {items}");
+            return Ok(items);
         }
         #endregion
 
@@ -75,14 +81,18 @@ namespace xcart.Controllers
             {
                 try
                 {
+                    logger.LogInfo($"Add to Item List {item}");
                     var eventId = await itemService.AddItem(item);
+                    logger.LogInfo($"Items added  to the itemList with Item id {eventId}");
                     return Ok(eventId);
                 }
                 catch (Exception)
                 {
+                    logger.LogWarn("Error encountered. Item not added to the Item list");
                     return BadRequest();
                 }
             }
+            logger.LogError("Bad Request");
             return BadRequest();
         }
         #endregion
@@ -95,15 +105,19 @@ namespace xcart.Controllers
         {
             try
             {
+                logger.LogInfo($"Get item by itemid {id}");
                 var item = await itemService.GetItemById(id);
                 if (item == null)
                 {
+                    logger.LogWarn($"Item {id} Not Found");
                     return NotFound();
                 }
+                logger.LogInfo($"Item {id} is returned {item}");
                 return Ok(item);
             }
             catch (Exception)
             {
+                logger.LogError("Bad Request");
                 return BadRequest();
             }
 
@@ -119,15 +133,19 @@ namespace xcart.Controllers
         {
             try
             {
+                logger.LogInfo($"Item {id} id to be deleted");
                 var item = await itemService.DeleteItem(id);  
                 if (item == 0)
                 {
+                    logger.LogWarn($"Item {id} Not Found");
                     return NotFound();
                 }
+                logger.LogInfo($"Item {id} is deleted");
                 return Ok(item);
             }
             catch (Exception)
             {
+                logger.LogError("Bad Request");
                 return BadRequest();
             }
 
@@ -144,14 +162,18 @@ namespace xcart.Controllers
             {
                 try
                 {
+                    logger.LogInfo("Updating Item details to");
                     await itemService.UpdateItem(item);
+                    logger.LogInfo($"Updated the Item details to item {item.Id}");
                     return Ok(item);
                 }
                 catch (Exception)
                 {
+                    logger.LogError("Bad Request");
                     return BadRequest();
                 }
             }
+            logger.LogError("Bad Request");
             return BadRequest();
         }
         #endregion

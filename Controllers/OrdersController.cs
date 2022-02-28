@@ -21,15 +21,18 @@ namespace xcart.Controllers
         IPointService pointService;
         ICartService cartservice;
         IItemService itemService;
+        ILoggerService logger;
 
         //constructor 
-        public OrdersController(IOrderService _orderService, XCartDbContext _db,IPointService _pointService,ICartService _cartService,IItemService _itemservice)
+        public OrdersController(IOrderService _orderService, XCartDbContext _db,IPointService _pointService,
+            ICartService _cartService,IItemService _itemservice, ILoggerService _logger)
         {
             orderService = _orderService;
             db = _db;
             pointService = _pointService;
             cartservice = _cartService;
             itemService = _itemservice;
+            logger = _logger;
             
         }
 
@@ -40,15 +43,19 @@ namespace xcart.Controllers
         {
             try
             {
+                logger.LogInfo("Get all the orders");
                 var orders = await orderService.GetAllOrders(pagenumber, pagesize);
                 if (orders == null)
                 {
+                    logger.LogWarn("Orders Not Found");
                     return NotFound("No Orders found in database");
                 }
+                logger.LogInfo($"All Orders returned {orders}");
                 return Ok(orders);
             }
             catch
             {
+                logger.LogError("Bad Request");
                 return BadRequest();
             }
         }
@@ -62,15 +69,19 @@ namespace xcart.Controllers
         {
             try
             {
+                logger.LogInfo("Get top 2 trending items");
                 var orders = await orderService.GetTrendingItems();
                 if (orders == null)
                 {
+                    logger.LogWarn("No trending items found");
                     return NotFound("No trending items found");
                 }
+                logger.LogInfo($"Top 2 trending items returned {orders}");
                 return Ok(orders);
             }
             catch
             {
+                logger.LogError("Bad request");
                 return BadRequest();
             }
         }
@@ -84,11 +95,14 @@ namespace xcart.Controllers
         {
             try
             {
+                logger.LogInfo("To change the status of an order");
                 await orderService.ChangeStatus(order);
+                logger.LogInfo("Order status changed");
                 return Ok();
             }
             catch
             {
+                logger.LogError("Bad request");
                 return BadRequest();
             }
         }
@@ -102,15 +116,19 @@ namespace xcart.Controllers
         {
             try
             {
+                logger.LogInfo($"To return the order details od order {id}");
                 var order = await orderService.GetOrderDetailsByOrderId(id);
                 if (order == null)
                 {
+                    logger.LogWarn($"Order {id} was not found");
                     return NotFound("No items found for that particular order Id");
                 }
+                logger.LogInfo($"Order details of order {id} was returned. {order}");
                 return Ok(order);
             }
             catch
             {
+                logger.LogError("Bad Request");
                 return BadRequest();
             }
         }
@@ -124,15 +142,19 @@ namespace xcart.Controllers
         {
             try
             {
+                logger.LogInfo("To return the list of orders based on status");
                 var order = await orderService.GetSpecificOrders(id, pagenumber, pagesize);
                 if (order == null)
                 {
+                    logger.LogWarn("List of orders qas not found");
                     return NotFound("No orders found for this status");
                 }
+                logger.LogInfo("List of orders were returned");
                 return Ok(order);
             }
             catch
             {
+                logger.LogError("Bad Request");
                 return BadRequest();
             } 
         }
@@ -147,21 +169,26 @@ namespace xcart.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    logger.LogInfo("An Item is orderes directly");
                     //c is assigned with orderid
                     var c = await orderService.AddOrder(order);
                     if (c > 0)
                     {
                         //to remove points from the current points
                         var userpoints = pointService.RemovePointsonCheckout(order.Points, order.UserId);
+                        logger.LogInfo($"Order {c} is Added to Order List");
                         return Ok(c);
                     }
+                    logger.LogInfo("Order added to orderlist");
                     return Ok();
                 }
            }
            catch
            {
+                logger.LogError("Bad Request");
                return BadRequest();
            }
+            logger.LogError("Bad Request");
             return BadRequest();
         }
         #endregion
@@ -175,6 +202,7 @@ namespace xcart.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    logger.LogInfo("Order is added to order list from cart");
                     //c gets assigned with orderid
                     var c = await orderService.AddOrder(order);
                     var userId = order.UserId;
@@ -199,15 +227,19 @@ namespace xcart.Controllers
                     if (c > 0)
                     {
                         var userpoints = pointService.RemovePointsonCheckout(order.Points, order.UserId);
+                        logger.LogInfo($"Order {c} is deleted from the cart");
                         return Ok(c);
                     }
+                    logger.LogInfo("Order {c} is added to the orderlist from cart");
                     return Ok();
                 }
             }
             catch
             {
+                logger.LogError("Bad Request");
                 return BadRequest();
             }
+            logger.LogError("Bad Request");
             return BadRequest();
         }
         #endregion
@@ -222,20 +254,24 @@ namespace xcart.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    logger.LogInfo(" order details is added");
                     //c is assigned with orderdetailsid
                     var c = await orderService.AddOrderdetails(order);
                     if (c > 0)
                     {
                         //decreases the quantity used from Total quantity in item class
                         var itemquantity = itemService.DescreaseQuantity(order.ItemId, order.Quantity);
+                        logger.LogInfo($"Orderdetail {c} is returned");
                         return Ok(c);
                     }
                 }
             }
             catch
             {
+                logger.LogError("Bad Request");
                 return BadRequest();
             }
+            logger.LogError("Bad Request");
             return BadRequest();
         }
         #endregion
@@ -248,15 +284,19 @@ namespace xcart.Controllers
         {
             try
             {
+                logger.LogInfo("TO get the count of total orders");
                 var count = await orderService.GetOrderCount();
                 if (count == 0)
                 {
+                    logger.LogWarn("No orders found");
                     return NotFound("No orders found");
                 }
+                logger.LogInfo("Number of orders is returned");
                 return Ok(count);
             }
             catch
             {
+                logger.LogError("Bad Request");
                 return BadRequest();
             }
         }
@@ -270,15 +310,19 @@ namespace xcart.Controllers
         {
             try
             {
+                logger.LogInfo("To get the count of order based on status");
                 var count = await orderService.GetStatusCount(id);
                 if (count == 0)
                 {
+                    logger.LogWarn("No orders found");
                     return NotFound("No orders found for that status");
                 }
+                logger.LogInfo("The count of orders is returned");
                 return Ok(count);
             }
             catch
             {
+                logger.LogError("Bad Request");
                 return BadRequest();
             }  
         }

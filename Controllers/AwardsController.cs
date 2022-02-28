@@ -20,11 +20,14 @@ namespace xcart.Controllers
 
         XCartDbContext db;
 
+        ILoggerService logger;
+
         //constructor 
-        public AwardsController(IAwardService _awardService, XCartDbContext _db)
+        public AwardsController(IAwardService _awardService, XCartDbContext _db, ILoggerService _logger)
         {
             awardService = _awardService;
             db = _db;
+            logger = _logger;
         }
 
         #region Get All Awards /api/awards GET
@@ -32,12 +35,23 @@ namespace xcart.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAwards()
         {
-            var awards = await awardService.GetAllAwards();
-            if (awards == null)
+            try
             {
-                return NotFound("No active awards");
+                logger.LogInfo("Get all awards");
+                var awards = await awardService.GetAllAwards();
+                if (awards == null)
+                {
+                    logger.LogWarn("Awards not found");
+                    return NotFound("No active awards");
+                }
+                logger.LogInfo("Getting all award records");
+                return Ok(awards);
             }
-            return Ok(awards);
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
 
         }
         #endregion
@@ -50,11 +64,14 @@ namespace xcart.Controllers
         {
             try
             {
+                logger.LogInfo($"Getting award with ID {id}");
                 var award = await awardService.GetAwardById(id);
                 if (award == null)
                 {
+                    logger.LogWarn($"Award with ID {id} not found");
                     return NotFound("No award with the given Id");
                 }
+                logger.LogInfo($"Returning award with ID {id}");
                 return Ok(award);
             }
             catch (Exception)
@@ -75,21 +92,26 @@ namespace xcart.Controllers
             {
                 try
                 {
+                    logger.LogInfo("Adding an Award API called");
                     var awardId = await awardService.AddAward(model);
                     if (awardId > 0)
                     {
+                        logger.LogInfo("Award has been added");
                         return Ok(awardId);
                     }
                     else
                     {
+                        logger.LogWarn("Award has not been added");
                         return NotFound();
                     }
                 }
                 catch (Exception)
                 {
+                    logger.LogWarn("Award has not been added due to incorrect format of entry parameters");
                     return BadRequest("Valid Data expected");
                 }
             }
+            logger.LogWarn("Award has not been added due to incorrect format of entry parameters");
             return BadRequest("Valid Data expected"); 
         }
         #endregion
@@ -105,11 +127,13 @@ namespace xcart.Controllers
             {
                 try
                 {
+                    logger.LogInfo("Updating Award detail");
                     await awardService.UpdateAward(model);
                     return Ok();
                 }
                 catch (Exception)
                 {
+                    logger.LogWarn("Award not updated due to incorrect input properties");
                     return BadRequest("Valid Data expected");
                 }
             }
@@ -119,6 +143,7 @@ namespace xcart.Controllers
 
         #region Delete Award /api/awards/delete-award/{id}
         [Authorize]
+        [HttpPut]
         [Route("delete-award/{id}")]
         public async Task<IActionResult> DeleteAward(int id)
         {
@@ -127,14 +152,17 @@ namespace xcart.Controllers
             {
                 try
                 {
+                    logger.LogInfo($"Deleting award with ID {id}");
                     await awardService.DeleteAward(id);
                     return Ok();
                 }
                 catch (Exception)
                 {
+                    logger.LogWarn($"Award of ID {id} was not found. Deletion could not be done.");
                     return BadRequest("No award with the given Id");
                 }
             }
+            logger.LogWarn($"Award of ID {id} was not found. Deletion could not be done.");
             return BadRequest();
         }
         #endregion

@@ -25,7 +25,6 @@ namespace xcart.Controllers
         }
 
         //Authenticate user POST Method
-      
         [HttpPost]
 
         public async Task<IActionResult> Login([FromBody] LoginViewModel user)
@@ -53,9 +52,7 @@ namespace xcart.Controllers
             return BadRequest();
 
         }
-
-        //get user and role by email id
-
+        //authenticate user by email id
         [HttpGet]
         public async Task<IActionResult> microsoftlogin(string email)
         {
