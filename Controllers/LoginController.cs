@@ -54,7 +54,7 @@ namespace xcart.Controllers
         }
         //authenticate user by email id
         [HttpGet]
-        public async Task<IActionResult> microsoftlogin(string email)
+        public async Task<IActionResult> Microsoftlogin(string email)
         {
             IActionResult response = Unauthorized();
             var userdetails = await login.GetbyEmailId(email);

@@ -55,20 +55,20 @@ namespace xcart.Services
                 //LINQ
                 //Sorting and Taking the sum of Items
                 var itemlist = await (from orderdetails in db.OrderDetails
+                                      join item in db.Item on orderdetails.ItemId equals item.Id
+                                      where item.IsActive==true
                                       group orderdetails.Quantity by orderdetails.Item.Id into g
                                       orderby g.Sum() descending
-                                      select g.Key).ToListAsync();
+                                      select  g.Key).Take(2).ToListAsync();
 
                 //list of objects of Item class
                 var trendinglist = new List<Item>();
-                int count = 0;
 
                 //iterating through each item and assigning it to trendingitem
                 foreach (int itemId in itemlist)
                 {
                     var trendingitem = (from item in db.Item
                                         where item.Id == itemId
-                                        where item.IsActive==true
                                         select new Item
                                         {
                                             Id = itemId,
@@ -79,16 +79,8 @@ namespace xcart.Services
                                             Points = item.Points
                                         }).FirstOrDefault();
 
-                    //Appending only 2 items to trendinglist
-                    if (count < 2)
-                    {
-                        if (trendingitem!=null)
-                        {
-                            trendinglist.Add(trendingitem);
-                            count++;
-                        }
-
-                    }
+                    trendinglist.Add(trendingitem);
+                    
                 }
                 return trendinglist;
             }
