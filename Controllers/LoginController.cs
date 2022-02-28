@@ -26,7 +26,7 @@ namespace xcart.Controllers
 
         //Authenticate user POST Method
         [HttpPost]
-       
+        [BasicAuthentication]
         public async Task<IActionResult> Login([FromBody] LoginViewModel user)
         {
             if (ModelState.IsValid)

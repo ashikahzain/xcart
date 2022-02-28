@@ -218,4 +218,3 @@ E:\XCart\xcart\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 E:\XCart\xcart\obj\Debug\netcoreapp3.1\xcart.MvcApplicationPartsAssemblyInfo.cs
 E:\XCart\xcart\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
 E:\XCart\xcart\bin\Debug\netcoreapp3.1\System.Web.Http.dll
-E:\XCart\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.CopyComplete
