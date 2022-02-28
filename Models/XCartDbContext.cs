@@ -8,7 +8,7 @@ namespace xcart.Models
 {
     public class XCartDbContext : DbContext
     {
-        protected XCartDbContext()
+        public XCartDbContext()
         {
         }
         public XCartDbContext(DbContextOptions<XCartDbContext> options) : base(options)

@@ -125,6 +125,22 @@ namespace xcart.Services
             return null;
         }
         #endregion
+        #region Validate User
+        //User Validation with database
+        public async  Task<User> VerifyUser(string UserName, string password)
+        {
+            if (db != null)
+            {
+                User user =await db.User.FirstOrDefaultAsync(em => em.UserName == UserName && em.Password == password);
+                if (user != null)
+                {
+                    return user;
+                }
+                return null;
+            }
+            return null;
+        }
+        #endregion
 
 
     }

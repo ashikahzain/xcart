@@ -147,7 +147,6 @@ E:\XCart\xcart\obj\Debug\netcoreapp3.1\xcart.RazorTargetAssemblyInfo.cache
 E:\XCart\xcart\obj\Debug\netcoreapp3.1\xcart.dll
 E:\XCart\xcart\obj\Debug\netcoreapp3.1\xcart.pdb
 E:\XCart\xcart\obj\Debug\netcoreapp3.1\xcart.genruntimeconfig.cache
-E:\XCart\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.AssemblyReference.cache
 D:\XCart\Backend\xcart\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\XCart\Backend\xcart\bin\Debug\netcoreapp3.1\appsettings.json
 D:\XCart\Backend\xcart\bin\Debug\netcoreapp3.1\xcart.exe
@@ -217,3 +216,6 @@ E:\XCart\xcart\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 E:\XCart\xcart\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 E:\XCart\xcart\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 E:\XCart\xcart\obj\Debug\netcoreapp3.1\xcart.MvcApplicationPartsAssemblyInfo.cs
+E:\XCart\xcart\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+E:\XCart\xcart\bin\Debug\netcoreapp3.1\System.Web.Http.dll
+E:\XCart\xcart\obj\Debug\netcoreapp3.1\xcart.csproj.CopyComplete
