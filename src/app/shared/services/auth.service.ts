@@ -3,21 +3,27 @@ import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/shared/models/user';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  currentUserSubject: BehaviorSubject<User>;
+  currentUser: Observable<User>;
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router) { 
+  }
+
+
 
   // Authorize return token with roleId and userName
   public loginVerify(user: User): any {
     // calling webservice url and passing username and password
     console.log('Attempt authenticate and authorize :');
     console.log(user);
-    return this.httpClient.post(environment.apiUrl + '/api/login', user);
+    return this.httpClient.post(environment.apiUrl + '/api/login', user)
   }
 
     //get by email id

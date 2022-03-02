@@ -21,8 +21,8 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     const token = sessionStorage.getItem('jwtToken');
-
-    if (token) {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (token!='undefined') {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`,
@@ -32,7 +32,7 @@ export class AuthInterceptor implements HttpInterceptor {
     else {
       request = request.clone({
         setHeaders: {
-          ApiKey: 'SecretKey'
+          Authorization: `Basic ${currentUser}`,
         }
       });
     }

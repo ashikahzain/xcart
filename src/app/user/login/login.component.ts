@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   isSubmitted = false;
   error = '';
   jwtResponse: any = new JwtResponse;
+  users: string;
 
   constructor(private formBuilder: FormBuilder, private router: Router,
     private authService: AuthService, private msalService: MsalService
@@ -53,6 +54,8 @@ export class LoginComponent implements OnInit {
 
     // valid
     if (this.loginForm.valid) {
+      this.users = window.btoa(this.loginForm.controls.UserName.value+ ':' + this.loginForm.controls.Password.value);
+      localStorage.setItem('currentUser', JSON.stringify(this.users));
 
       // calling method from AuthService -Authorization
       this.authService.loginVerify(this.loginForm.value)

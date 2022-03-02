@@ -26,7 +26,7 @@ export class ItemFormComponent implements OnInit {
     //for builder for item details
     this.itemForm = this.formbuilder.group({
       Id: 0,
-      Name: ['', [Validators.required, ValidateItemName]],
+      Name: ['', [Validators.required,Validators.minLength(3),ValidateItemName]],
       Image: ['',[Validators.required]],
       Quantity: ['', [Validators.required, ValidateNumbers]],
       Points: ['', [Validators.required, ValidateNumbers]],
@@ -54,6 +54,10 @@ export class ItemFormComponent implements OnInit {
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) { 
       const [file] = event.target.files;
+      if(file.size>1000000){
+        this.toastr.error('Image size should be less than 1 MB')
+      }
+    else{
       //read from file
       reader.readAsDataURL(file);
       reader.onload = () => {
@@ -66,6 +70,7 @@ export class ItemFormComponent implements OnInit {
         });
       };
     }
+  }
   }
 
   //on submit function

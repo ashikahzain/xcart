@@ -20,8 +20,10 @@
                 <input type="text" class="form-control" placeholder="Enter name of Item" formControlName="Name"
                     autocomplete="off" required [attr.disabled]="editingmode ? '' : null">
                 <div *ngIf="(itemForm.get('Name').dirty || itemForm.get('Name').touched)" class="error">
+                    <div *ngIf="itemForm.get('Name').errors?.minlength"> Name too small.</div>
                     <div *ngIf="itemForm.get('Name').invalid">Only alphabets allowed.</div>
                     <div *ngIf="itemForm.get('Name').errors?.required"> Required.</div>
+                   
                 </div>
             </div>
             <div class="form-data" id="Points">
@@ -45,10 +47,10 @@
 
             </div>
             <div class="form-data" id="image-div">
-                <label for="Image">Image</label>
+                <label for="Image">Image <span>*Less than 1 MB</span></label>
                 <div class="row">
                     <div *ngIf="editingmode==false">
-                        <div class="col-lg-5 ">
+                        <div class=" ">
                             <input type="file" class="form-control" id="image" placeholder="Upload Image"
                                 (change)=onFileSelected($event) autocomplete="off" required
                                 accept="image/png, image/jpeg" [attr.disabled]="editingmode ? '' : null">
