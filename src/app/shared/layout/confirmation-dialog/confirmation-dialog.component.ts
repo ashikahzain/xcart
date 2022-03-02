@@ -16,7 +16,7 @@ export class ConfirmationDialogComponent {
   constructor(private activeModal: NgbActiveModal) { }
   display:'block';
   public decline() {
-    this.activeModal.close(false);
+    this.activeModal.close(false); 
   }
 
   public accept() {
