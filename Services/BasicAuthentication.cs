@@ -8,38 +8,46 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.DependencyInjection;
 using xcart.Models;
 
 namespace xcart.Services
 {
-    public class BasicAuthenticationAttribute : AuthorizationFilterAttribute
+    [AttributeUsage(validOn: AttributeTargets.Class | AttributeTargets.Method)]
+    public class BasicAuthenticationAttribute : Attribute, Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter
     {
-        public override void OnAuthorization(HttpActionContext actionContext)
+        public void OnAuthorization(AuthorizationFilterContext actionContext)
         {
             try
             {
-                if (actionContext.Request.Headers.Authorization != null)
+                if (actionContext.HttpContext.Request.Headers["Authorization"].Count != 0)
                 {
+                   
                     //Taking the parameter from the header  
-                    var authToken = actionContext.Request.Headers.Authorization.Parameter;
+                    var authToken1 = actionContext.HttpContext.Request.Headers["Authorization"].ToString();
+                    var authToken = authToken1.Substring(5);
                     //decode the parameter  
                     var decoAuthToken = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(authToken));
+                   
                     //split by colon : and store in variable  
                     var UserNameAndPassword = decoAuthToken.Split(':');
                     //Passing to a function for authorization  
-                    if (IsAuthorizedUser(UserNameAndPassword[0], UserNameAndPassword[1]))
+                    var userService = actionContext.HttpContext.RequestServices.GetRequiredService<ILoginService>();
+                    if (userService.VerifyUser(UserNameAndPassword[0], UserNameAndPassword[1]))
                     {
                         // setting current principle  
                         Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(UserNameAndPassword[0]), null);
                     }
                     else
                     {
-                        actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
+                        actionContext.Result= new UnauthorizedResult();
                     }
                 }
                 else
                 {
-                    actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
+                    actionContext.Result = new UnauthorizedResult();
                 }
             }
             catch (Exception ex)
@@ -47,21 +55,9 @@ namespace xcart.Services
                 ex.Message.ToString();
             }
         }
-        
-        public static bool IsAuthorizedUser(string Username, string Password)
-        {
-            using XCartDbContext entity = new XCartDbContext();
 
-            if (entity != null)
-            {
-                User user =  entity.User.FirstOrDefault(em => em.UserName == Username && em.Password == Password);
-                if (user != null)
-                {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
+       
+
+
     }
 }

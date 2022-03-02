@@ -24,6 +24,12 @@ namespace xcart.Services
             db = _db;
         }
 
+        public LoginService() {
+            db = new XCartDbContext();
+        }
+        
+        
+
         #region Token Generation
         //Token Generation method implementation
         public string GenerateJWTToken(LoginViewModel userModel)
@@ -127,18 +133,19 @@ namespace xcart.Services
         #endregion
         #region Validate User
         //User Validation with database
-        public async  Task<User> VerifyUser(string UserName, string password)
+        public bool VerifyUser(string UserName, string password)
         {
+
             if (db != null)
             {
-                User user =await db.User.FirstOrDefaultAsync(em => em.UserName == UserName && em.Password == password);
+                User user = db.User.FirstOrDefault(em => em.UserName == UserName && em.Password == password);
                 if (user != null)
                 {
-                    return user;
+                    return true;
                 }
-                return null;
+                return false;
             }
-            return null;
+            return false;
         }
         #endregion
 

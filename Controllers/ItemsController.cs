@@ -34,7 +34,7 @@ namespace xcart.Controllers
 
 
         #region get all active items 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("active-items")]
 
@@ -53,7 +53,7 @@ namespace xcart.Controllers
         #endregion
 
         #region get all inactive items 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         [Route("inactive-items")]
         public async Task<IActionResult> GetAllInactiveItems()
