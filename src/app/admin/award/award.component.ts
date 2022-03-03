@@ -42,7 +42,7 @@ export class AwardComponent implements OnInit {
           this.adminService.deleteAward(awardId).subscribe(
             (result) => {
               console.log(result);
-              window.location.reload()
+              window.location.reload() 
             }
           );
         }

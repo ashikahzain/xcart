@@ -1,11 +1,14 @@
 .backdrop{
     opacity: 70%;
 }
-
+body{
+    font-family: Roboto;
+}
 #content {
     width: 100%;
     margin:2% 0% 0% 0%;
     transition: all 0.3s;
+  
   }
 
 .home-button {
@@ -228,6 +231,7 @@
     font-size: 21px;
     line-height: 31px;
 }
+
 th {
     color: #1f4173;
     font-family: Roboto;
@@ -281,14 +285,6 @@ table {
     border: 1px solid #dee2e6;
 }
 
-th{
-    color: #1F4173;
-    font-family: Lato;
-    font-style: normal;
-    font-weight: 500; 
-    font-size: 20px;
-
-}
 #point-limit-input{
     width: 60%;
     margin-left: 20%;

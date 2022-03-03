@@ -5,7 +5,7 @@ import { ConfirmationDialogComponent } from '../layout/confirmation-dialog/confi
 @Injectable()
 export class ConfirmationDialogService {
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) { } 
 
   public confirm(
     title: string,
