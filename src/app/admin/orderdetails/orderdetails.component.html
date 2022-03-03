@@ -11,10 +11,10 @@
 
     <!--Status Button-->
     <div class="category">
-      <button type="button" class="All" (click)="All()" [ngClass]="{'active' : all, 'inactive': !all}">All</button>
-      <button type="button" class="Open" (click)="Open()"
+      <button type="button" class="All" (click)="All(1,0)" [ngClass]="{'active' : all, 'inactive': !all}">All</button>
+      <button type="button" class="Open" (click)="Open(1,0)"
         [ngClass]="{'active' : opened, 'inactive': !opened}">Open</button>
-      <button type="button" class="FullFilled" (click)="FulFilled()"
+      <button type="button" class="FullFilled" (click)="FulFilled(1,0)"
         [ngClass]="{'active' : fulfilled, 'inactive': !fulfilled}">FulFilled</button>
     </div>
 

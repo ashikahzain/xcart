@@ -27,6 +27,7 @@ export class OrderdetailsComponent implements OnInit {
   all: boolean = false;
   opened: boolean = false;
   fulfilled: boolean = false;
+  temp:number=0;
 
   constructor(public adminService: AdminService, private router: Router,
     private modalService: NgbModal, public paginationService: PaginationService,
@@ -37,7 +38,7 @@ export class OrderdetailsComponent implements OnInit {
     this.pageNo[0] = true;
 
     //Get all orders whose order status is Open
-    this.Open();
+    this.Open(this.pagenumber,0);
   }
 
   //to navigate to the home page on clicking home button
@@ -46,7 +47,11 @@ export class OrderdetailsComponent implements OnInit {
   }
 
   //To get all orders
-  All() {
+  All(pagenum,i) {
+    this.pageNo[this.temp]=false;
+    this.temp=i;
+    this.pageNo[i] = true;
+    this.pagenumber=pagenum;
     this.all = true;
     this.opened = false;
     this.fulfilled = false;
@@ -59,7 +64,11 @@ export class OrderdetailsComponent implements OnInit {
   }
 
   //Get all orders whose order status is Open
-  Open() {
+  Open(pagenum,i) {
+    this.pageNo[this.temp]=false;
+    this.temp=i;
+    this.pageNo[i] = true;
+    this.pagenumber=pagenum;
     this.all = false;
     this.opened = true;
     this.fulfilled = false;
@@ -72,7 +81,11 @@ export class OrderdetailsComponent implements OnInit {
   }
 
   //Get all orders whose order status is Fulfilled
-  FulFilled() {
+  FulFilled(pagenum,i) {
+    this.pageNo[this.temp]=false;
+    this.temp=i;
+    this.pageNo[i] = true;
+    this.pagenumber=pagenum;
     this.all = false;
     this.opened = false;
     this.fulfilled = true;
@@ -117,27 +130,33 @@ export class OrderdetailsComponent implements OnInit {
 
 
   showOrdersByPageNumberAll(page, i) {
+    console.log(i);
+    console.log(page);
     this.orderList = [];
     this.pageNo = [];
-    this.pageNo[i] = true;
+    //this.pageNo[i] = true;
     this.pagenumber = page;
-    this.All();
+    this.All(this.pagenumber,i);
   }
 
   showOrdersByPageNumberOpen(page, i) {
+    console.log(i);
+    console.log(page);
     this.orderList = [];
     this.pageNo = [];
-    this.pageNo[i] = true;
+    //this.pageNo[i] = true;
     this.pagenumber = page;
-    this.Open();
+    this.Open(this.pagenumber,i);
   }
 
   showOrdersByPageNumberFulfilled(page, i) {
+    console.log(i);
+    console.log(page);
     this.orderList = [];
     this.pageNo = [];
-    this.pageNo[i] = true;
+    //this.pageNo[i] = true;
     this.pagenumber = page;
-    this.FulFilled();
+    this.FulFilled(this.pagenumber,i);
   }
 
   //To open popup
