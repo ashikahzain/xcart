@@ -21,7 +21,7 @@ body{
     border-radius: 5px;
 }
 .home-button:hover {
-    cursor: grab;
+    cursor: pointer;
 }
 .home-button i {
     font-size: 24px;
@@ -76,18 +76,18 @@ body{
     border-radius: 5px;
 }
 .Manage-awards:hover {
-    cursor: grab;
+    cursor: pointer;
 }
 
 .Manage-awards i {
-    font-size: 20px;
+    font-size: 24px;
     padding-left: 10%;
-    padding-top: 8%;
+    padding-top: 7%;
 }
 
 .Manage-awards h4 {
-    padding-left: 8%;
-    padding-top: 5%;
+    padding-left: 7%;
+    padding-top: 4%;
     font-family: Lato;
     font-style: normal;
     font-size: 21px;
@@ -107,7 +107,7 @@ body{
 }
 
 .point-button:hover {
-    cursor: grab;
+    cursor: pointer;
 }
 
 .point-button h4 {
@@ -123,9 +123,9 @@ body{
     color: #2d415d;
 }
 .point-button i{
-    margin-top: 7%;
+    margin-top: 6%;
     margin-left: 5%;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 #manage {

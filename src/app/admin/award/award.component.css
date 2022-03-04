@@ -21,7 +21,7 @@ h3 {
     border-radius: 5px;
 }
 .home-button:hover {
-    cursor: grab;
+    cursor: pointer;
 }
 .home-button i {
     font-size: 24px;
@@ -57,7 +57,7 @@ h3 {
     border-radius: 1.5em;
 }
 .point-button:hover {
-    cursor: hand;
+    cursor: pointer;
 }
 
 .point-button h4 {
