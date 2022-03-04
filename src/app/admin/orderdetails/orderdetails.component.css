@@ -12,6 +12,9 @@
     background: #f7c02d;
     border-radius: 5px;
   }
+  .home-button:hover{
+    cursor: grab;
+  }
   
   .home-button i {
     font-size: 24px;
@@ -105,13 +108,15 @@
 .fa-search {
     color: #2d415d;
 }
-.table {
+
+#table {
     position: fixed;
     margin-top: 15%;
     width: 70%;
     border-radius: 20px;
     text-align: center;
 }
+
 th{
     color: #1F4173;
     font-weight: 500;
@@ -125,6 +130,9 @@ td{
     width:90%;
     margin-left: 8%;
     background: #FBDD8E;
+}
+#popup{
+    text-align: center;
 }
 #status{
     background: #72D761;
@@ -211,7 +219,7 @@ td{
     #hide, #hide1{
         display: none;
     }
-    .table{
+    #table{
         font-size: small;
         top: 17%;
         width: 90%;
@@ -269,7 +277,7 @@ td{
     #navsearch{
         width: 24%;
     }
-    .table{
+    #table{
         width: 85%;
         top: 15%;
     }  
