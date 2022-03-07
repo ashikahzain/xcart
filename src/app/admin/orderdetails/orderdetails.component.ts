@@ -18,7 +18,7 @@ export class OrderdetailsComponent implements OnInit {
   closeResult: string;
   TotalOrders: number;
   pagenumber: any = 1;
-  pagesize: number = 4;
+  pagesize: number = 5;
   paginationdata: number;
   exactPageList: number;
   pageField: any[];
