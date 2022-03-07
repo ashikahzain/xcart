@@ -17,7 +17,7 @@
     border-radius: 5px;
   }
  .home-button:hover {
-    cursor: grab;
+    cursor: pointer;
  }
  .home-button i {
     font-size: 24px;
@@ -49,6 +49,7 @@
  }
  .all-button:hover{
     color: hsla(360, 0%, 100%, 1);
+    cursor: pointer;
  }
  .all-button p {
     display: flex;
@@ -68,6 +69,7 @@
  }
  .open-button:hover{
     color: hsla(360, 0%, 100%, 1);
+    cursor: pointer;
  }
  .open-button p {
     display: flex;
@@ -88,6 +90,7 @@
  }
  .fulFilled-button:hover{
     color: hsla(360, 0%, 100%, 1);
+    cursor:pointer;
  }
  .fulFilled-button p {
     display: flex;

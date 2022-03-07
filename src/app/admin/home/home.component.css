@@ -3,6 +3,9 @@ body {
     font-family: Roboto;
     padding: 1% 0;
 }
+.card-deck:hover{
+    cursor: pointer;
+}
 
 .heading {
     display: inline-flex;
